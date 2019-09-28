@@ -1,24 +1,24 @@
 /************************************************************************************
 **
 **  BSD 3-Clause License
-**  
+**
 **  Copyright (c) 2019, shaoguang
 **  All rights reserved.
-**  
+**
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions are met:
-**  
+**
 **  1. Redistributions of source code must retain the above copyright notice, this
 **     list of conditions and the following disclaimer.
-**  
+**
 **  2. Redistributions in binary form must reproduce the above copyright notice,
 **     this list of conditions and the following disclaimer in the documentation
 **     and/or other materials provided with the distribution.
-**  
+**
 **  3. Neither the name of the copyright holder nor the names of its
 **     contributors may be used to endorse or promote products derived from
 **     this software without specific prior written permission.
-**  
+**
 **  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 **  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 **  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -32,33 +32,45 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_VERSION_H_
-#define UTILS4CPP_CORE_VERSION_H_
+#ifndef UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
+#define UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
 
-#define UTILS4CPP_VERSION_MAJOR         0
-#define UTILS4CPP_VERSION_MINOR         0
-#define UTILS4CPP_VERSION_REVISION      0
-#define UTILS4CPP_VERSION_STATUS        "Alpha"
+#ifdef _MSVC_LANG
 
-#define UTILS4CPP_AUX_STR_EXP(__A)      #__A
-#define UTILS4CPP_AUX_STR(__A)          UTILS4CPP_AUX_STR_EXP(__A)
+#   if _MSVC_LANG > 201703L
+#       define UTILS4CPP_CPP20_SUPPORT
+#   endif
 
-#define UTILS4CPP_AUX_WSTR_EXP(__A)     L ## #__A
-#define UTILS4CPP_AUX_WSTR(__A)         UTILS4CPP_AUX_WSTR_EXP(__A)
+#   if _MSVC_LANG > 201402L
+#       define UTILS4CPP_CPP17STANDARD
+#   endif
 
-#define UTILS4CPP_VERSION_STR           UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_MAJOR) "."      \
-                                        UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_MINOR) "."      \
-                                        UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_REVISION) " "   \
-                                        UTILS4CPP_VERSION_STATUS
+#   if _MSVC_LANG > 201103L
+#       define UTILS4CPP_CPP14STANDARD
+#   endif
 
-#define UTILS4CPP_VERSION_WSTR          UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_MAJOR) "."     \
-                                        UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_MINOR) "."     \
-                                        UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_REVISION) " "  \
-                                        UTILS4CPP_VERSION_STATUS
+#   if _MSVC_LANG > 199711L
+#       define UTILS4CPP_CPP11STANDARD
+#   endif
 
-int majorVersion()
-{
-    return UTILS4CPP_VERSION_MAJOR;
-}
+#else // !_MSVC_LANG
 
-#endif // UTILS4CPP_CORE_VERSION_H_
+#   if __cplusplus > 201703L
+#       define UTILS4CPP_CPP17STANDARD
+#   endif
+
+#   if __cplusplus > 201402L
+#       define UTILS4CPP_CPP17STANDARD
+#   endif
+
+#   if __cplusplus > 201103L
+#       define UTILS4CPP_CPP14STANDARD
+#   endif
+
+#   if __cplusplus > 199711L
+#       define UTILS4CPP_CPP11STANDARD
+#   endif
+
+#endif // _MSVC_LANG
+
+#endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_

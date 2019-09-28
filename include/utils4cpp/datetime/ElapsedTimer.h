@@ -37,11 +37,12 @@
 
 #include <chrono>
 
-namespace utils4cpp { namespace datetime {
+namespace utils4cpp {
+namespace datetime {
 
 /*!
 	\class ElapsedTimer
-    \since v0.0
+    \since 0.0
 
 	\brief Defines a elapsed timer.
 */
@@ -53,21 +54,21 @@ public:
 	ElapsedTimer();
 	void reset();
 
-	std::chrono::microseconds::rep elapsed() const;
-	std::chrono::nanoseconds::rep elapsed_nanoseconds() const;
-	std::chrono::microseconds::rep elapsed_microseconds() const;
-	std::chrono::milliseconds::rep elapsed_milliseconds() const;
-	std::chrono::seconds::rep elapsed_seconds() const;
-	std::chrono::minutes::rep elapsed_minutes() const;
-	std::chrono::hours::rep elapsed_hours() const;
+	std::chrono::milliseconds::rep elapsed() const;
+	std::chrono::nanoseconds::rep elapsedNanoseconds() const;
+	std::chrono::microseconds::rep elapsedMicroseconds() const;
+	std::chrono::milliseconds::rep elapsedMilliseconds() const;
+	std::chrono::seconds::rep elapsedSeconds() const;
+	std::chrono::minutes::rep elapsedMinutes() const;
+	std::chrono::hours::rep elapsedHours() const;
 
-	elapsed_time_floating_t elapsed_floating() const;
-	elapsed_time_floating_t elapsed_nanoseconds_floating() const;
-	elapsed_time_floating_t elapsed_microseconds_floating() const;
-	elapsed_time_floating_t elapsed_milliseconds_floating() const;
-	elapsed_time_floating_t elapsed_seconds_floating() const;
-	elapsed_time_floating_t elapsed_minutes_floating() const;
-	elapsed_time_floating_t elapsed_hours_floating() const;
+	elapsed_time_floating_t elapsedFloating() const;
+	elapsed_time_floating_t elapsedNanosecondsFloating() const;
+	elapsed_time_floating_t elapsedMicrosecondsFloating() const;
+	elapsed_time_floating_t elapsedMillisecondsFloating() const;
+	elapsed_time_floating_t elapsedSecondsFloating() const;
+	elapsed_time_floating_t elapsedMinutesFloating() const;
+	elapsed_time_floating_t elapsedHoursFloating() const;
 
 private:
 	using nanoseconds_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::nanoseconds::period>;
@@ -80,6 +81,7 @@ private:
 	std::chrono::time_point<std::chrono::steady_clock> start_time;
 };
 
-} } // namespace
+} // namespace datetime
+} // namespace utils4cpp
 
 #endif // UTILS4CPP_DATETIME_ELAPSEDTIMER_H_

@@ -35,213 +35,214 @@
 #include <utils4cpp/datetime/ElapsedTimer.h>
 
 namespace utils4cpp {
+namespace datetime {
 
 /*!
-	\var ElapsedTimer::elapsed_time_floating_t
+    \var ElapsedTimer::elapsed_time_floating_t
 
-	The floating type of elapsed time.
+    The floating type of elapsed time.
 */
 
 /*!
-	\fn ElapsedTimer::ElapsedTimer()
-	
-	Constructs a elapsed timer, then start timing.
+    \fn ElapsedTimer::ElapsedTimer()
 
-	\sa reset()
+    Constructs a elapsed timer, and start timing.
+
+    \sa reset()
 */
 ElapsedTimer::ElapsedTimer()
-	: start_time(std::chrono::high_resolution_clock::now())
+    : start_time(std::chrono::high_resolution_clock::now())
 {
 }
 
 /*!
-	\fn void ElapsedTimer::reset()
+    \fn void ElapsedTimer::reset()
 
-	Restart timing.
+    Restart timing.
 */
 void ElapsedTimer::reset()
 {
-	start_time = std::chrono::high_resolution_clock::now();
+    start_time = std::chrono::high_resolution_clock::now();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
 
-	Returns the elapsed time in milliseconds with integer value.
-	
-	\sa elapsed_floating()
+    Returns the elapsed time in milliseconds with integer value.
+
+    \sa elapsedFloating()
 */
 std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
 {
-	return elapsed_milliseconds();
+    return elapsedMilliseconds();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_nanoseconds() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedNanoseconds() const
 
-	Returns the elapsed time in nanoseconds with integer value.
-	
-	\sa elapsed_nanoseconds_floating()
+    Returns the elapsed time in nanoseconds with integer value.
+
+    \sa elapsedNanosecondsFloating()
 */
-std::chrono::nanoseconds::rep ElapsedTimer::elapsed_nanoseconds() const
+std::chrono::nanoseconds::rep ElapsedTimer::elapsedNanoseconds() const
 {
-	return std::chrono::duration_cast<std::chrono::nanoseconds>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_microseconds() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMicroseconds() const
 
-	Returns the elapsed time in microseconds with integer value.
-	
-	\sa elapsed_microseconds_floating()
+    Returns the elapsed time in microseconds with integer value.
+
+    \sa elapsedMicrosecondsFloating()
 */
-std::chrono::microseconds::rep ElapsedTimer::elapsed_microseconds() const
+std::chrono::microseconds::rep ElapsedTimer::elapsedMicroseconds() const
 {
-	return std::chrono::duration_cast<std::chrono::microseconds>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::microseconds>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_milliseconds() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
 
-	Returns the elapsed time in milliseconds with integer value.
-	
-	\sa elapsed_milliseconds_floating()
+    Returns the elapsed time in milliseconds with integer value.
+
+    \sa elapsedMillisecondsFloating()
 */
-std::chrono::milliseconds::rep ElapsedTimer::elapsed_milliseconds() const
+std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_seconds() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedSeconds() const
 
-	Returns the elapsed time in seconds with integer value.
-	
-	sa elapsed_seconds_floating()
+    Returns the elapsed time in seconds with integer value.
+
+    sa elapsedSecondsFloating()
 */
-std::chrono::seconds::rep ElapsedTimer::elapsed_seconds() const
+std::chrono::seconds::rep ElapsedTimer::elapsedSeconds() const
 {
-	return std::chrono::duration_cast<std::chrono::seconds>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::seconds>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_minutes() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMinutes() const
 
-	Returns the elapsed time in minutes with integer value.
-	
-	\sa elapsed_minutes_floating()
+    Returns the elapsed time in minutes with integer value.
+
+    \sa elapsedMinutesFloating()
 */
-std::chrono::minutes::rep ElapsedTimer::elapsed_minutes() const
+std::chrono::minutes::rep ElapsedTimer::elapsedMinutes() const
 {
-	return std::chrono::duration_cast<std::chrono::minutes>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::minutes>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn std::chrono::milliseconds::rep ElapsedTimer::elapsed_hours() const
+    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedHours() const
 
-	Returns the elapsed time in hours with integer value.
-	
-	\sa elapsed_hours_floating()
+    Returns the elapsed time in hours with integer value.
+
+    \sa elapsedHoursFloating()
 */
-std::chrono::hours::rep ElapsedTimer::elapsed_hours() const
+std::chrono::hours::rep ElapsedTimer::elapsedHours() const
 {
-	return std::chrono::duration_cast<std::chrono::hours>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return std::chrono::duration_cast<std::chrono::hours>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
 
-	Returns the elapsed time in milliseconds with floating value.
-	
-	\sa elapsed()
+    Returns the elapsed time in milliseconds with floating value.
+
+    \sa elapsed()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
 {
-	return elapsed_milliseconds_floating();
+    return elapsedMillisecondsFloating();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_nanoseconds_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating() const
 
-	Returns the elapsed time in nanoseconds with floating value.
-	
-	\sa elapsed_nanoseconds()
+    Returns the elapsed time in nanoseconds with floating value.
+
+    \sa elapsedNanoseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_nanoseconds_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating() const
 {
-	return static_cast<nanoseconds_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<nanoseconds_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_microseconds_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating() const
 
-	Returns the elapsed time in microseconds with floating value.
-	
-	\sa elapsed_microseconds()
+    Returns the elapsed time in microseconds with floating value.
+
+    \sa elapsedMicroseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_microseconds_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating() const
 {
-	return static_cast<microseconds_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<microseconds_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_milliseconds_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating() const
 
-	Returns the elapsed time in milliseconds with floating value.
-	
-	\sa elapsed_milliseconds()
+    Returns the elapsed time in milliseconds with floating value.
+
+    \sa elapsedMilliseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_milliseconds_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating() const
 {
-	return static_cast<milliseconds_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<milliseconds_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_seconds_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() const
 
-	Returns the elapsed time in seconds with floating value.
-	
-	\sa elapsed_seconds()
+    Returns the elapsed time in seconds with floating value.
+
+    \sa elapsedSeconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_seconds_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() const
 {
-	return static_cast<seconds_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<seconds_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_minutes_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() const
 
-	Returns the elapsed time in minutes with floating value.
-	
-	\sa elapsed_minutes()
+    Returns the elapsed time in minutes with floating value.
+
+    \sa elapsedMinutes()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_minutes_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() const
 {
-	return static_cast<minutes_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<minutes_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
 /*!
-	\fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_hours_floating() const
+    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
 
-	Returns the elapsed time in hours with floating value.
-	
-	\sa elapsed_hours()
+    Returns the elapsed time in hours with floating value.
+
+    \sa elapsedHours()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsed_hours_floating() const
+ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
 {
-	return static_cast<hours_floating_t>(
-		std::chrono::high_resolution_clock::now() - start_time).count();
+    return static_cast<hours_floating_t>(
+        std::chrono::high_resolution_clock::now() - start_time).count();
 }
 
-} // namespace utils4cpp
+} }// namespace

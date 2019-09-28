@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+*.json
+*.sqlite
+*.db
+*.opendb
+*.ipch
+*.lastbuildstate
+*.log
+*.filters
+*.user
+ide/msvc15/utils4cpp/.vs/utils4cpp/v15/.suo

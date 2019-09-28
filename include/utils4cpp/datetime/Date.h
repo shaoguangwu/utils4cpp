@@ -44,7 +44,7 @@ namespace utils4cpp
 
 /*!
     \class Date
-    \since v0.0
+    \since 0.0
 
     \brief The Date class provides date functions.
 */
