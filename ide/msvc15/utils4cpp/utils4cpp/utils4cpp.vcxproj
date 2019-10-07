@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\CppStandardDetection.h" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\SystemDetection.h" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.h" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Date.h" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\Date.cpp" />
+    <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8F54440A-14D5-4D93-9488-6FE316741465}</ProjectGuid>
@@ -115,6 +126,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

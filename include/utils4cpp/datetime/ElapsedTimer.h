@@ -78,7 +78,7 @@ private:
 	using minutes_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::minutes::period>;
 	using hours_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::hours::period>;
 
-	std::chrono::time_point<std::chrono::steady_clock> start_time;
+	std::chrono::time_point<std::chrono::steady_clock> m_tp;
 };
 
 } // namespace datetime

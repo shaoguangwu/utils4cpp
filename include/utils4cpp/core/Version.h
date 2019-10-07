@@ -56,9 +56,4 @@
                                         UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_REVISION) " "  \
                                         UTILS4CPP_VERSION_STATUS
 
-int majorVersion()
-{
-    return UTILS4CPP_VERSION_MAJOR;
-}
-
 #endif // UTILS4CPP_CORE_VERSION_H_

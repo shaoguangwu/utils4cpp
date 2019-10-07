@@ -36,14 +36,14 @@
 #define UTILS4CPP_CORE_SYSTEMDETECTION_H_
 
 /*
-   The operating system, must be one of: (Q_OS_x)
+   The operating system, must be one of: (UTILS4CPP_OS_x)
 
      DARWIN   - Any Darwin system (macOS, iOS, watchOS, tvOS)
      MACOS    - macOS
      IOS      - iOS
      WATCHOS  - watchOS
      TVOS     - tvOS
-     WIN32    - Win32 (Windows 2000/XP/Vista/7 and Windows Server 2003/2008)
+     WIN32    - Win32 (Windows and Windows Server)
      WINRT    - WinRT (Windows Runtime)
      CYGWIN   - Cygwin
      SOLARIS  - Sun Solaris
@@ -64,203 +64,227 @@
      HAIKU    - Haiku
 
    The following operating systems have variants:
-     LINUX    - both Q_OS_LINUX and Q_OS_ANDROID are defined when building for Android
-              - only Q_OS_LINUX is defined if building for other Linux systems
-     FREEBSD  - Q_OS_FREEBSD is defined only when building for FreeBSD with a BSD userland
-              - Q_OS_FREEBSD_KERNEL is always defined on FreeBSD, even if the userland is from GNU
+     LINUX    - both UTILS4CPP_OS_LINUX and UTILS4CPP_OS_ANDROID are defined when building for Android
+              - only UTILS4CPP_OS_LINUX is defined if building for other Linux systems
+     FREEBSD  - UTILS4CPP_OS_FREEBSD is defined only when building for FreeBSD with a BSD userland
+              - UTILS4CPP_OS_FREEBSD_KERNEL is always defined on FreeBSD, even if the userland is from GNU
 */
 
 #if defined(__APPLE__) && (defined(__GNUC__) || defined(__xlC__) || defined(__xlc__))
-#  include <TargetConditionals.h>
-#  if defined(TARGET_OS_MAC) && TARGET_OS_MAC
-#    define Q_OS_DARWIN
-#    define Q_OS_BSD4
-#    ifdef __LP64__
-#      define Q_OS_DARWIN64
-#    else
-#      define Q_OS_DARWIN32
-#    endif
-#    if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
-#      define QT_PLATFORM_UIKIT
-#      if defined(TARGET_OS_WATCH) && TARGET_OS_WATCH
-#        define Q_OS_WATCHOS
-#      elif defined(TARGET_OS_TV) && TARGET_OS_TV
-#        define Q_OS_TVOS
-#      else
-#        // TARGET_OS_IOS is only available in newer SDKs,
-#        // so assume any other iOS-based platform is iOS for now
-#        define Q_OS_IOS
-#      endif
-#    else
-#      // TARGET_OS_OSX is only available in newer SDKs,
-#      // so assume any non iOS-based platform is macOS for now
-#      define Q_OS_MACOS
-#    endif
-#  else
-#    error "Qt has not been ported to this Apple platform - see http://www.qt.io/developers"
-#  endif
+#
+#   include <TargetConditionals.h>
+#
+#   if defined(TARGET_OS_MAC) && TARGET_OS_MAC
+#       define UTILS4CPP_OS_DARWIN
+#       define UTILS4CPP_OS_BSD4
+#
+#       ifdef __LP64__
+#           define UTILS4CPP_OS_DARWIN64
+#       else
+#           define UTILS4CPP_OS_DARWIN32
+#       endif /* __LP64__ */
+#
+#       if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
+#           define UTILS4CPP_PLATFORM_UIKIT
+#           if defined(TARGET_OS_WATCH) && TARGET_OS_WATCH
+#               define UTILS4CPP_OS_WATCHOS
+#           elif defined(TARGET_OS_TV) && TARGET_OS_TV
+#               define UTILS4CPP_OS_TVOS
+#           else
+#               define UTILS4CPP_OS_IOS
+#           endif
+#       else
+#          define UTILS4CPP_OS_MACOS
+#       endif
+#
+#   else
+#       error "Unknown Apple platform."
+#   endif
+#
 #elif defined(__ANDROID__) || defined(ANDROID)
-#  define Q_OS_ANDROID
-#  define Q_OS_LINUX
+#   define UTILS4CPP_OS_ANDROID
+#   define UTILS4CPP_OS_LINUX
+#
 #elif defined(__CYGWIN__)
-#  define Q_OS_CYGWIN
+#   define UTILS4CPP_OS_CYGWIN
+#
 #elif !defined(SAG_COM) && (!defined(WINAPI_FAMILY) || WINAPI_FAMILY==WINAPI_FAMILY_DESKTOP_APP) && (defined(WIN64) || defined(_WIN64) || defined(__WIN64__))
-#  define Q_OS_WIN32
-#  define Q_OS_WIN64
+#   define UTILS4CPP_OS_WIN32
+#   define UTILS4CPP_OS_WIN64
+#
 #elif !defined(SAG_COM) && (defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__))
-#  if defined(WINAPI_FAMILY)
-#    ifndef WINAPI_FAMILY_PC_APP
-#      define WINAPI_FAMILY_PC_APP WINAPI_FAMILY_APP
-#    endif
-#    if defined(WINAPI_FAMILY_PHONE_APP) && WINAPI_FAMILY==WINAPI_FAMILY_PHONE_APP
-#      define Q_OS_WINRT
-#    elif WINAPI_FAMILY==WINAPI_FAMILY_PC_APP
-#      define Q_OS_WINRT
-#    else
-#      define Q_OS_WIN32
-#    endif
-#  else
-#    define Q_OS_WIN32
+#   if defined(WINAPI_FAMILY)
+#       ifndef WINAPI_FAMILY_PC_APP
+#           define WINAPI_FAMILY_PC_APP WINAPI_FAMILY_APP
+#       endif
+#       if defined(WINAPI_FAMILY_PHONE_APP) && WINAPI_FAMILY==WINAPI_FAMILY_PHONE_APP
+#           define UTILS4CPP_OS_WINRT
+#       elif WINAPI_FAMILY==WINAPI_FAMILY_PC_APP
+#           define UTILS4CPP_OS_WINRT
+#       else
+#           define UTILS4CPP_OS_WIN32
+#       endif
+#   else
+#       define UTILS4CPP_OS_WIN32
 #  endif
+#
 #elif defined(__sun) || defined(sun)
-#  define Q_OS_SOLARIS
+#   define UTILS4CPP_OS_SOLARIS
+#
 #elif defined(hpux) || defined(__hpux)
-#  define Q_OS_HPUX
+#   define UTILS4CPP_OS_HPUX
+#
 #elif defined(__native_client__)
-#  define Q_OS_NACL
+#   define UTILS4CPP_OS_NACL
+#
 #elif defined(__EMSCRIPTEN__)
-#  define Q_OS_WASM
+#   define UTILS4CPP_OS_WASM
+#
 #elif defined(__linux__) || defined(__linux)
-#  define Q_OS_LINUX
+#   define UTILS4CPP_OS_LINUX
+#
 #elif defined(__FreeBSD__) || defined(__DragonFly__) || defined(__FreeBSD_kernel__)
-#  ifndef __FreeBSD_kernel__
-#    define Q_OS_FREEBSD
-#  endif
-#  define Q_OS_FREEBSD_KERNEL
-#  define Q_OS_BSD4
+#   ifndef __FreeBSD_kernel__
+#       define UTILS4CPP_OS_FREEBSD
+#   endif
+#   define UTILS4CPP_OS_FREEBSD_KERNEL
+#   define UTILS4CPP_OS_BSD4
+#
 #elif defined(__NetBSD__)
-#  define Q_OS_NETBSD
-#  define Q_OS_BSD4
+#   define UTILS4CPP_OS_NETBSD
+#   define UTILS4CPP_OS_BSD4
+#
 #elif defined(__OpenBSD__)
-#  define Q_OS_OPENBSD
-#  define Q_OS_BSD4
+#   define UTILS4CPP_OS_OPENBSD
+#   define UTILS4CPP_OS_BSD4
+#
 #elif defined(__INTERIX)
-#  define Q_OS_INTERIX
-#  define Q_OS_BSD4
+#   define UTILS4CPP_OS_INTERIX
+#   define UTILS4CPP_OS_BSD4
+#
 #elif defined(_AIX)
-#  define Q_OS_AIX
+#   define UTILS4CPP_OS_AIX
+#
 #elif defined(__Lynx__)
-#  define Q_OS_LYNX
+#   define UTILS4CPP_OS_LYNX
+#
 #elif defined(__GNU__)
-#  define Q_OS_HURD
+#   define UTILS4CPP_OS_HURD
+#
 #elif defined(__QNXNTO__)
-#  define Q_OS_QNX
+#   define UTILS4CPP_OS_QNX
+#
 #elif defined(__INTEGRITY)
-#  define Q_OS_INTEGRITY
-#elif defined(VXWORKS) /* there is no "real" VxWorks define - this has to be set in the mkspec! */
-#  define Q_OS_VXWORKS
+#   define UTILS4CPP_OS_INTEGRITY
+#
+#elif defined(VXWORKS)
+#   define UTILS4CPP_OS_VXWORKS
+#
 #elif defined(__HAIKU__)
-#  define Q_OS_HAIKU
+#   define UTILS4CPP_OS_HAIKU
+#
 #elif defined(__MAKEDEPEND__)
+#
 #else
-#  error "Qt has not been ported to this OS - see http://www.qt-project.org/"
+#   error "Unknown OS."
 #endif
 
-#if defined(Q_OS_WIN32) || defined(Q_OS_WIN64) || defined(Q_OS_WINRT)
-#  define Q_OS_WIN
-#endif
 
-#if defined(Q_OS_WIN)
-#  undef Q_OS_UNIX
-#elif !defined(Q_OS_UNIX)
-#  define Q_OS_UNIX
-#endif
+
+
+#if defined(UTILS4CPP_OS_WIN32) || defined(UTILS4CPP_OS_WIN64) || defined(UTILS4CPP_OS_WINRT)
+#   define UTILS4CPP_OS_WIN
+#endif /* UTILS4CPP_OS_WIN32 || UTILS4CPP_OS_WIN64 || UTILS4CPP_OS_WINRT */
+
+#if defined(UTILS4CPP_OS_WIN)
+#   undef UTILS4CPP_OS_UNIX
+#elif !defined(UTILS4CPP_OS_UNIX)
+#   define UTILS4CPP_OS_UNIX
+#endif /* UTILS4CPP_OS_WIN */
 
 // Compatibility synonyms
-#ifdef Q_OS_DARWIN
-#define Q_OS_MAC
-#endif
-#ifdef Q_OS_DARWIN32
-#define Q_OS_MAC32
-#endif
-#ifdef Q_OS_DARWIN64
-#define Q_OS_MAC64
-#endif
-#ifdef Q_OS_MACOS
-#define Q_OS_MACX
-#define Q_OS_OSX
-#endif
+#ifdef UTILS4CPP_OS_DARWIN
+#   define UTILS4CPP_OS_MAC
+#endif /* UTILS4CPP_OS_DARWIN */
 
-#ifdef Q_OS_DARWIN
-#  include <Availability.h>
-#  include <AvailabilityMacros.h>
+#ifdef UTILS4CPP_OS_DARWIN32
+#   define UTILS4CPP_OS_MAC32
+#endif /* UTILS4CPP_OS_DARWIN32 */
+
+#ifdef UTILS4CPP_OS_DARWIN64
+#   define UTILS4CPP_OS_MAC64
+#endif /* UTILS4CPP_OS_DARWIN64 */
+
+#ifdef UTILS4CPP_OS_MACOS
+#   define UTILS4CPP_OS_MACX
+#   define UTILS4CPP_OS_OSX
+#endif /* UTILS4CPP_OS_MACOS */
+
+#ifdef UTILS4CPP_OS_DARWIN
 #
-#  ifdef Q_OS_MACOS
-#    if !defined(__MAC_OS_X_VERSION_MIN_REQUIRED) || __MAC_OS_X_VERSION_MIN_REQUIRED < __MAC_10_6
-#       undef __MAC_OS_X_VERSION_MIN_REQUIRED
-#       define __MAC_OS_X_VERSION_MIN_REQUIRED __MAC_10_6
-#    endif
-#    if !defined(MAC_OS_X_VERSION_MIN_REQUIRED) || MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_6
-#       undef MAC_OS_X_VERSION_MIN_REQUIRED
-#       define MAC_OS_X_VERSION_MIN_REQUIRED MAC_OS_X_VERSION_10_6
-#    endif
-#  endif
+#   include <Availability.h>
+#   include <AvailabilityMacros.h>
 #
-#  // Numerical checks are preferred to named checks, but to be safe
-#  // we define the missing version names in case Qt uses them.
+#   ifdef UTILS4CPP_OS_MACOS
+#       if !defined(__MAC_OS_X_VERSION_MIN_REQUIRED) || __MAC_OS_X_VERSION_MIN_REQUIRED < __MAC_10_6
+#           undef __MAC_OS_X_VERSION_MIN_REQUIRED
+#           define __MAC_OS_X_VERSION_MIN_REQUIRED __MAC_10_6
+#       endif
+#       if !defined(MAC_OS_X_VERSION_MIN_REQUIRED) || MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_6
+#           undef MAC_OS_X_VERSION_MIN_REQUIRED
+#           define MAC_OS_X_VERSION_MIN_REQUIRED MAC_OS_X_VERSION_10_6
+#       endif
+#   endif
 #
-#  if !defined(__MAC_10_11)
+#   if !defined(__MAC_10_11)
 #       define __MAC_10_11 101100
-#  endif
-#  if !defined(__MAC_10_12)
+#   endif
+#   if !defined(__MAC_10_12)
 #       define __MAC_10_12 101200
-#  endif
-#  if !defined(__MAC_10_13)
+#   endif
+#   if !defined(__MAC_10_13)
 #       define __MAC_10_13 101300
-#  endif
-#  if !defined(__MAC_10_14)
+#   endif
+#   if !defined(__MAC_10_14)
 #       define __MAC_10_14 101400
-#  endif
-#  if !defined(MAC_OS_X_VERSION_10_11)
+#   endif
+#   if !defined(MAC_OS_X_VERSION_10_11)
 #       define MAC_OS_X_VERSION_10_11 101100
-#  endif
-#  if !defined(MAC_OS_X_VERSION_10_12)
+#   endif
+#   if !defined(MAC_OS_X_VERSION_10_12)
 #       define MAC_OS_X_VERSION_10_12 101200
-#  endif
-#  if !defined(MAC_OS_X_VERSION_10_13)
+#   endif
+#   if !defined(MAC_OS_X_VERSION_10_13)
 #       define MAC_OS_X_VERSION_10_13 101300
-#  endif
-#  if !defined(MAC_OS_X_VERSION_10_14)
+#   endif
+#   if !defined(MAC_OS_X_VERSION_10_14)
 #       define MAC_OS_X_VERSION_10_14 101400
-#  endif
+#   endif
 #
-#  if !defined(__IPHONE_10_0)
+#   if !defined(__IPHONE_10_0)
 #       define __IPHONE_10_0 100000
-#  endif
-#  if !defined(__IPHONE_10_1)
+#   endif
+#   if !defined(__IPHONE_10_1)
 #       define __IPHONE_10_1 100100
-#  endif
-#  if !defined(__IPHONE_10_2)
+#   endif
+#   if !defined(__IPHONE_10_2)
 #       define __IPHONE_10_2 100200
-#  endif
-#  if !defined(__IPHONE_10_3)
+#   endif
+#   if !defined(__IPHONE_10_3)
 #       define __IPHONE_10_3 100300
-#  endif
-#  if !defined(__IPHONE_11_0)
+#   endif
+#   if !defined(__IPHONE_11_0)
 #       define __IPHONE_11_0 110000
-#  endif
-#  if !defined(__IPHONE_12_0)
+#   endif
+#   if !defined(__IPHONE_12_0)
 #       define __IPHONE_12_0 120000
-#  endif
-#endif
+#   endif
+#endif /* UTILS4CPP_OS_DARWIN */
 
 #ifdef __LSB_VERSION__
-#  if __LSB_VERSION__ < 40
-#    error "This version of the Linux Standard Base is unsupported"
-#  endif
-#ifndef QT_LINUXBASE
-#  define QT_LINUXBASE
-#endif
-#endif
+#   ifndef UTILS4CPP_LINUXBASE
+#       define UTILS4CPP_LINUXBASE
+#   endif
+#endif /* __LSB_VERSION__ */
 
 #endif // UTILS4CPP_CORE_SYSTEMDETECTION_H_

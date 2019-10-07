@@ -36,41 +36,33 @@
 #define UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
 
 #ifdef _MSVC_LANG
+#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
+#else
+#   define UTILS4CPP_CPLUSPLUS      __cplusplus
+#endif /* _MSVC_LANG */
 
-#   if _MSVC_LANG > 201703L
-#       define UTILS4CPP_CPP20_SUPPORT
-#   endif
+#if UTILS4CPP_CPLUSPLUS > 201703L
+#   define UTILS4CPP_HAS_CPP20      1
+#else
+#   define UTILS4CPP_HAS_CPP20      0
+#endif
 
-#   if _MSVC_LANG > 201402L
-#       define UTILS4CPP_CPP17STANDARD
-#   endif
+#if UTILS4CPP_CPLUSPLUS > 201402L
+#    define UTILS4CPP_HAS_CPP17     1
+#else
+#    define UTILS4CPP_HAS_CPP17     0
+#endif
 
-#   if _MSVC_LANG > 201103L
-#       define UTILS4CPP_CPP14STANDARD
-#   endif
+#if UTILS4CPP_CPLUSPLUS > 201103L
+#    define UTILS4CPP_HAS_CPP14     1
+#else
+#    define UTILS4CPP_HAS_CPP14     0
+#endif
 
-#   if _MSVC_LANG > 199711L
-#       define UTILS4CPP_CPP11STANDARD
-#   endif
-
-#else // !_MSVC_LANG
-
-#   if __cplusplus > 201703L
-#       define UTILS4CPP_CPP17STANDARD
-#   endif
-
-#   if __cplusplus > 201402L
-#       define UTILS4CPP_CPP17STANDARD
-#   endif
-
-#   if __cplusplus > 201103L
-#       define UTILS4CPP_CPP14STANDARD
-#   endif
-
-#   if __cplusplus > 199711L
-#       define UTILS4CPP_CPP11STANDARD
-#   endif
-
-#endif // _MSVC_LANG
+#if UTILS4CPP_CPLUSPLUS > 199711L
+#    define UTILS4CPP_HAS_CPP11     1
+#else
+#    define UTILS4CPP_HAS_CPP11     0
+#endif
 
 #endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_

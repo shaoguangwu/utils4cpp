@@ -51,7 +51,7 @@ namespace datetime {
     \sa reset()
 */
 ElapsedTimer::ElapsedTimer()
-    : start_time(std::chrono::high_resolution_clock::now())
+    : m_tp(std::chrono::high_resolution_clock::now())
 {
 }
 
@@ -62,7 +62,7 @@ ElapsedTimer::ElapsedTimer()
 */
 void ElapsedTimer::reset()
 {
-    start_time = std::chrono::high_resolution_clock::now();
+    m_tp = std::chrono::high_resolution_clock::now();
 }
 
 /*!
@@ -87,7 +87,7 @@ std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
 std::chrono::nanoseconds::rep ElapsedTimer::elapsedNanoseconds() const
 {
     return std::chrono::duration_cast<std::chrono::nanoseconds>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -100,7 +100,7 @@ std::chrono::nanoseconds::rep ElapsedTimer::elapsedNanoseconds() const
 std::chrono::microseconds::rep ElapsedTimer::elapsedMicroseconds() const
 {
     return std::chrono::duration_cast<std::chrono::microseconds>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -113,7 +113,7 @@ std::chrono::microseconds::rep ElapsedTimer::elapsedMicroseconds() const
 std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
 {
     return std::chrono::duration_cast<std::chrono::milliseconds>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -126,7 +126,7 @@ std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
 std::chrono::seconds::rep ElapsedTimer::elapsedSeconds() const
 {
     return std::chrono::duration_cast<std::chrono::seconds>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -139,7 +139,7 @@ std::chrono::seconds::rep ElapsedTimer::elapsedSeconds() const
 std::chrono::minutes::rep ElapsedTimer::elapsedMinutes() const
 {
     return std::chrono::duration_cast<std::chrono::minutes>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -152,7 +152,7 @@ std::chrono::minutes::rep ElapsedTimer::elapsedMinutes() const
 std::chrono::hours::rep ElapsedTimer::elapsedHours() const
 {
     return std::chrono::duration_cast<std::chrono::hours>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -177,7 +177,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating() const
 {
     return static_cast<nanoseconds_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -190,7 +190,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating()
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating() const
 {
     return static_cast<microseconds_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -203,7 +203,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating(
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating() const
 {
     return static_cast<milliseconds_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -216,7 +216,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating(
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() const
 {
     return static_cast<seconds_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -229,7 +229,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() con
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() const
 {
     return static_cast<minutes_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 /*!
@@ -242,7 +242,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() con
 ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
 {
     return static_cast<hours_floating_t>(
-        std::chrono::high_resolution_clock::now() - start_time).count();
+        std::chrono::high_resolution_clock::now() - m_tp).count();
 }
 
 } }// namespace
