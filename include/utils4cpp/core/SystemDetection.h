@@ -98,7 +98,7 @@
 #       endif
 #
 #   else
-#       error "Unknown Apple platform."
+#       warning "Unknown Apple platform."
 #   endif
 #
 #elif defined(__ANDROID__) || defined(ANDROID)
@@ -186,7 +186,7 @@
 #elif defined(__MAKEDEPEND__)
 #
 #else
-#   error "Unknown OS."
+#   warning "Unknown OS."
 #endif
 
 
