@@ -35,8 +35,8 @@
 #ifndef UTILS4CPP_CORE_CORE_H_
 #define UTILS4CPP_CORE_CORE_H_
 
-#include <utils4cpp/core/Version.h>
-#include <utils4cpp/core/CppStandardDetection.h>
-#include <utils4cpp/core/SystemDetection.h>
+#include "utils4cpp/core/Version.h"
+#include "utils4cpp/core/CppStandardDetection.h"
+#include "utils4cpp/core/SystemDetection.h"
 
 #endif // UTILS4CPP_CORE_CORE_H_
