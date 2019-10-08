@@ -65,4 +65,8 @@
 #    define UTILS4CPP_HAS_CPP11     0
 #endif
 
+#if !UTILS4CPP_HAS_CPP11
+#   error "utils4cpp requires enabled c++11 support."
+#endif
+
 #endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
