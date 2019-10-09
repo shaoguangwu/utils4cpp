@@ -1,2 +1,4 @@
 # utils4cpp
- C++ utility library
+![avatar](./doc/logo/utils4cpp.svg)
+
+utils4cpp is a C++ utility library.
