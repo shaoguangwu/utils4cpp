@@ -39,6 +39,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <cwctype>
+#include <memory>
 
 namespace utils4cpp {
 namespace str {
@@ -75,6 +76,8 @@ void replaceString(std::wstring& str, const std::wstring& before, const std::wst
     \note 
         - If there is no delimiter in this string, returns an empty string-vector. 
         - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+
+    \sa joinString()
 */
 std::vector<std::string> splitString(const std::string& str, char delim)
 {
@@ -100,6 +103,8 @@ std::vector<std::string> splitString(const std::string& str, char delim)
     \note 
         - If there is no delimiter in this string, returns an empty string-vector. 
         - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+
+    \sa joinString()
 */
 std::vector<std::string> splitString(const std::string& str, const std::string& delim)
 {
@@ -125,6 +130,8 @@ std::vector<std::string> splitString(const std::string& str, const std::string& 
     \note 
         - If there is no delimiter in this string, returns an empty string-vector. 
         - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+
+    \sa joinString()
 */
 std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
 {
@@ -150,6 +157,8 @@ std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
     \note 
         - If there is no delimiter in this string, returns an empty string-vector. 
         - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+
+    \sa joinString()
 */
 std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim)
 {
@@ -171,6 +180,8 @@ std::vector<std::wstring> splitString(const std::wstring& str, const std::wstrin
 
 /*！
     Joins \a strs with delimiter (\a delim).
+
+    \sa splitString()
 */
 std::string joinString(const std::vector<std::string>& strs, char delim)
 {
@@ -187,6 +198,8 @@ std::string joinString(const std::vector<std::string>& strs, char delim)
 
 /*！
     Joins \a strs with delimiter (\a delim).
+
+    \sa splitString()
 */
 std::string joinString(const std::vector<std::string>& strs, const std::string& delim)
 {
@@ -203,6 +216,8 @@ std::string joinString(const std::vector<std::string>& strs, const std::string& 
 
 /*！
     Joins \a strs with delimiter (\a delim).
+
+    \sa splitString()
 */
 std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
 {
@@ -219,6 +234,8 @@ std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
 
 /*！
     Joins \a strs with delimiter (\a delim).
+
+    \sa splitString()
 */
 std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim)
 {
@@ -235,6 +252,8 @@ std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstrin
 
 /*!
     Converts the given string (\a str) to lowercase, if possible.
+
+    \sa toUpper()
 */
 std::string toLower(const std::string& str)
 {
@@ -246,6 +265,8 @@ std::string toLower(const std::string& str)
 
 /*!
     Converts the given string (\a str) to uppercase, if possible.
+
+    \sa toLower()
 */
 std::string toUpper(const std::string& str)
 {
@@ -257,6 +278,8 @@ std::string toUpper(const std::string& str)
 
 /*!
     Converts the given wide string (\a str) to lowercase, if possible.
+
+    \sa toUpper()
 */
 std::wstring toLower(const std::wstring& str)
 {
@@ -268,6 +291,8 @@ std::wstring toLower(const std::wstring& str)
 
 /*!
     Converts the given wide string (\a str) to uppercase, if possible.
+
+    \sa toLower()
 */
 std::wstring toUpper(const std::wstring& str)
 {
@@ -306,6 +331,8 @@ std::wstring capitalized(const std::wstring& str)
 /*!
     Return a 'capitalized words' string (i.e the first letter of each word
     is uppercased all other are left untouched though).
+
+    \sa uncapitalizedWords()
 */
 std::string capitalizedWords(const std::string& str)
 {
@@ -330,6 +357,8 @@ std::string capitalizedWords(const std::string& str)
 /*!
     Return a 'capitalized words' wide string (i.e the first letter of each word
     is uppercased all other are left untouched though).
+
+    \sa uncapitalizedWords()
 */
 std::wstring capitalizedWords(const std::wstring& str)
 {
@@ -345,8 +374,10 @@ std::wstring capitalizedWords(const std::wstring& str)
 /*!
     Return a 'uncapitalized words' string (i.e the first letter of each word
     is lowercased all other are left untouched though).
+
+    \sa capitalizedWords()
 */
-std::string unCapitalizedWords(const std::string& str)
+std::string uncapitalizedWords(const std::string& str)
 {
     std::string result(str);
 
@@ -369,8 +400,10 @@ std::string unCapitalizedWords(const std::string& str)
 /*!
     Return a 'uncapitalized words' wide string (i.e the first letter of each word
     is lowercased all other are left untouched though).
+
+    \sa capitalizedWords()
 */
-std::wstring unCapitalizedWords(const std::wstring& str)
+std::wstring uncapitalizedWords(const std::wstring& str)
 {
     std::wstring result(str);
     for (std::size_t i = 0; i < str.size(); ++i) {
@@ -383,7 +416,7 @@ std::wstring unCapitalizedWords(const std::wstring& str)
 /*!
     Converts std::string to std::wstring.
 
-    \sa wstringToString()
+    \sa toString()
 */
 std::wstring toWstring(const std::string& str)
 {
@@ -401,7 +434,7 @@ std::wstring toWstring(const std::string& str)
 /*!
     Converts std::wstring to std::string.
 
-    \sa stringToWstring()
+    \sa toWstring()
 */
 std::string toString(const std::wstring& str)
 {
@@ -495,6 +528,198 @@ DstT toNumber(const StringT& str, bool noexception)
     else {
         return internal::stringToNumber<DstT>(str);
     }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+bool startsWith(const std::string& str, char starts, CaseSensitivity cs)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::tolower((int)starts == std::tolower((int)str.front()));
+    } else {
+        return starts == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs)
+{
+    if (str.empty() || starts.empty() || starts.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(starts.begin(), starts.end(), str.begin(), 
+            [](char a, char b) {
+                return std::tolower((int)a) == std::tolower((int)b);
+        });
+    } else  {
+        return std::equal(starts.begin(), starts.end(), str.begin());
+    }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::towlower((std::wint_t)starts) == std::towlower((std::wint_t)str.front());
+    } else {
+        return starts == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs)
+{
+    if (str.empty() || starts.empty() || starts.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(starts.begin(), starts.end(), str.begin(), 
+            [](wchar_t a, wchar_t b) {
+                return std::towlower((std::wint_t)a) == std::towlower((std::wint_t)b);
+        });
+    } else  {
+        return std::equal(starts.begin(), starts.end(), str.begin());
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+bool endsWith(const std::string& str, char ends, CaseSensitivity cs)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::towlower((int)ends) == std::towlower((int)str.front());
+    } else {
+        return ends == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs)
+{
+    if (str.empty() || ends.empty() || ends.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
+            [](char a, char b) {
+                return std::tolower((int)a) == std::tolower((int)b);
+        });
+    } else {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::towlower((std::wint_t)ends) == std::towlower((std::wint_t)str.front());
+    } else {
+        return ends == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs)
+{
+    if (str.empty() || ends.empty() || ends.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
+            [](wchar_t a, wchar_t b) {
+                return std::towlower((std::wint_t)a) == std::towlower((std::wint_t)b);
+        });
+    } else {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
+    }
+}
+
+/*!
+    Format string in a specified \a format by \a args.
+    The format specifiers can reference snprintf()'s format specifiers.
+*/
+template<typename ... Args>
+std::string formatString(const std::string& format, Args ... args)
+{
+    auto size = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    std::unique_ptr<char[]> buf(new char[size]);
+    std::snprintf(buf.get(), size, format.c_str(), args ...);
+    return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
+}
+
+/*!
+    Format wide string in a specified \a format by \a args.
+    The format specifiers can reference swprintf()'s format specifiers.
+
+    \warning If \a args contains string, use wide string form. 
+*/
+template<typename ... Args>
+std::wstring formatString(const std::wstring& format, Args ... args)
+{
+    auto size = std::swprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    std::unique_ptr<wchar_t[]> buf(new wchar_t[size]);
+    std::swprintf(buf.get(), size, format.c_str(), args ...);
+    return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
 }
 
 } // namespace str

@@ -72,8 +72,8 @@ std::string capitalized(const std::string& str);
 std::wstring capitalized(const std::wstring& str);
 std::string capitalizedWords(const std::string& str);
 std::wstring capitalizedWords(const std::wstring& str);
-std::string unCapitalizedWords(const std::string& str);
-std::wstring unCapitalizedWords(const std::wstring& str);
+std::string uncapitalizedWords(const std::string& str);
+std::wstring uncapitalizedWords(const std::wstring& str);
 
 std::wstring toWstring(const std::string& str);
 std::string toString(const std::wstring& wstr);
@@ -86,6 +86,22 @@ DstT toNumber(const StringT& str, std::size_t* pos, bool noexception = false);
 
 template<typename DstT, class StringT>
 DstT toNumber(const StringT& str, bool noexception = false);
+
+bool startsWith(const std::string& str, char starts, CaseSensitivity cs = CaseSensitive);
+bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs = CaseSensitive);
+bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs = CaseSensitive);
+bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs = CaseSensitive);
+
+bool endsWith(const std::string& str, char ends, CaseSensitivity cs = CaseSensitive);
+bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs = CaseSensitive);
+bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs = CaseSensitive);
+bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs = CaseSensitive);
+
+template<typename ... Args>
+std::string formatString(const std::string& format, Args ... args);
+
+template<typename ... Args>
+std::wstring formatString(const std::wstring& format, Args ... args);
 
 } // namespace str
 } // namespace utils4cpp
