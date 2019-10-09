@@ -35,52 +35,57 @@
 #ifndef UTILS4CPP_STR_STRINGUTILS_H_
 #define UTILS4CPP_STR_STRINGUTILS_H_
 
+#include <vector>
+
 #include "utils4cpp/str/StringToNumber.h"
 
 namespace utils4cpp {
 namespace str {
 
-template<typename DstT>
-DstT toNumber(const std::string& str, std::size_t* pos, int base, bool noexception = false)
-{
-    if (noexception) {
-        try {
-            return internal::stringToNumber<DstT>(str, pos, base);
-        } catch(const std::exception& e) {
-            return DstT(0);
-        }
-    } else {
-        return internal::stringToNumber<DstT>(str, pos, base);
-    }
-}
+/*!
+    \enum Indicates case sensitive or not.
+*/
+enum CaseSensitivity {
+    CaseInsensitive,                ///< Case insensitive.  (no)
+    CaseSensitive                   ///< Case sensitive.    (yes)
+};
 
-template<typename DstT>
-DstT toNumber(const std::string& str, std::size_t* pos, bool noexception = false)
-{
-    if (noexception) {
-        try {
-            return internal::stringToNumber<DstT>(str, pos);
-        } catch(const std::exception& e) {
-            return DstT(0);
-        }
-    } else {
-        return internal::stringToNumber<DstT>(str, pos);
-    }
-}
+void replaceString(std::string& str, const std::string& before, const std::string& after);
+void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after);
 
-template<typename DstT>
-DstT toNumber(const std::string& str, bool noexception = false)
-{
-    if (noexception) {
-        try {
-            return internal::stringToNumber<DstT>(str);
-        } catch(const std::exception& e) {
-            return DstT(0);
-        }
-    } else {
-        return internal::stringToNumber<DstT>(str);
-    }
-}
+std::vector<std::string> splitString(const std::string& str, char delim);
+std::vector<std::string> splitString(const std::string& str, const std::string& delim);
+std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim);
+std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim);
+
+std::string joinString(const std::vector<std::string>& strs, char delim);
+std::string joinString(const std::vector<std::string>& strs, const std::string& delim);
+std::wstring joinString(const std::vector<std::wstring>& strs, char delim);
+std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim);
+
+std::string toLower(const std::string& str);
+std::string toUpper(const std::string& str);
+std::wstring toLower(const std::wstring& str);
+std::wstring toUpper(const std::wstring& str);
+
+std::string capitalized(const std::string& str);
+std::wstring capitalized(const std::wstring& str);
+std::string capitalizedWords(const std::string& str);
+std::wstring capitalizedWords(const std::wstring& str);
+std::string unCapitalizedWords(const std::string& str);
+std::wstring unCapitalizedWords(const std::wstring& str);
+
+std::wstring toWstring(const std::string& str);
+std::string toString(const std::wstring& wstr);
+
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = false);
+
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, std::size_t* pos, bool noexception = false);
+
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, bool noexception = false);
 
 } // namespace str
 } // namespace utils4cpp
