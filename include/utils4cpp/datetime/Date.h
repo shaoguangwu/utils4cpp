@@ -78,40 +78,40 @@ public:
 
     bool isValid() const;
     bool setDate(int year, int month, int day);
-    void getDate(int &year, int &month, int &day) const;
+    void getDate(int& year, int& month, int& day) const;
 
     std::int64_t toJulianDay() const;
     static Date fromJulianDay(std::int64_t julianDay);
-    std::int64_t daysTo(const Date &d) const;
+    std::int64_t daysTo(const Date& d) const;
 
     Date addDays(std::int64_t days) const;
     Date addMonths(int months) const;
     Date addYears(int years) const;
 	
-	std::string toString(const char *format);
+	std::string toString(const char* format);
 
-    bool operator==(const Date &other) const;
-    bool operator!=(const Date &other) const;
-    bool operator< (const Date &other) const;
-    bool operator<=(const Date &other) const;
-    bool operator> (const Date &other) const;
-    bool operator>=(const Date &other) const;
+    bool operator==(const Date& other) const;
+    bool operator!=(const Date& other) const;
+    bool operator< (const Date& other) const;
+    bool operator<=(const Date& other) const;
+    bool operator> (const Date& other) const;
+    bool operator>=(const Date& other) const;
 
     static bool is31Days(int month);
     static bool is30Days(int month);
     static bool isValid(int year, int month, int day);
     static bool isLeapYear(int year);
     static bool beforGregorianCalendar(int year, int month, int day);
-    static bool beforGregorianCalendar(const Date &d);
+    static bool beforGregorianCalendar(const Date& d);
     static int dayOfYear(int year, int month, int day);
     static int dayOfWeek(int year, int month, int day);
 
     static Date currentLocalDate();
     static Date currentGmDate();
 
-    friend std::ostream &operator<<(std::ostream &os, const Date &date);
+    friend std::ostream& operator<<(std::ostream& os, const Date& date);
 private:
-    Date(const std::tm &tm);
+    Date(const std::tm& tm);
     void makeInvalid();
 
     enum Month {

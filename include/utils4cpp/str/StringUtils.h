@@ -35,6 +35,54 @@
 #ifndef UTILS4CPP_STR_STRINGUTILS_H_
 #define UTILS4CPP_STR_STRINGUTILS_H_
 
+#include "utils4cpp/str/StringToNumber.h"
 
+namespace utils4cpp {
+namespace str {
+
+template<typename DstT>
+DstT toNumber(const std::string& str, std::size_t* pos, int base, bool noexception = false)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str, pos, base);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } else {
+        return internal::stringToNumber<DstT>(str, pos, base);
+    }
+}
+
+template<typename DstT>
+DstT toNumber(const std::string& str, std::size_t* pos, bool noexception = false)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str, pos);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } else {
+        return internal::stringToNumber<DstT>(str, pos);
+    }
+}
+
+template<typename DstT>
+DstT toNumber(const std::string& str, bool noexception = false)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } else {
+        return internal::stringToNumber<DstT>(str);
+    }
+}
+
+} // namespace str
+} // namespace utils4cpp
 
 #endif // UTILS4CPP_STR_STRINGUTILS_H_

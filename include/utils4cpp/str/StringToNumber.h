@@ -40,66 +40,530 @@
 
 #include "utils4cpp/core/Core.h"
 
+namespace utils4cpp {
+namespace str {
+namespace internal {
+
+/*!
+    template<typename DstT> DstT stringToNumber(const std::string& str, std::size_t* pos, int base)
+
+    Interprets an integer value in the string str.
+    std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long.
+    
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+    \param base the number base.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the 
+                underlying function (std::strtol, std::strtoll, std::strtoul or std::strtoull) sets errno to ERANGE.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull()
+*/
+
 template<typename DstT>
 [[noreturn]] 
-inline DstT stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline DstT stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
-    throw std::invalid_argument("invalid argument");
+    throw std::invalid_argument("invalid template argument");
 }
 
 template<>
-inline short stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline short stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return (short)std::stoi(str, pos, base);
 }
 
 template<>
-inline unsigned short stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline unsigned short stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return (unsigned short)std::stoul(str, pos, base);
 }
 
 template<>
-inline int stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline int stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return std::stoi(str, pos, base);
 }
 
 template<>
-inline unsigned int stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline unsigned int stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return (unsigned int)std::stoul(str, pos, base);
 }
 
 template<>
-inline long stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline long stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return std::stol(str, pos, base);
 }
 
 template<>
-inline unsigned long stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline unsigned long stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return std::stoul(str, pos, base);
 }
 
 template<>
-inline long long stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline long long stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return std::stoll(str, pos, base);
 }
 
 template<>
-inline unsigned long long stringToNumber(const std::string &str, std::size_t *pos, int base)
+inline unsigned long long stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     return std::stoull(str, pos, base);
 }
 
+/*!
+    template<typename DstT> DstT stringToNumber(const std::string& str, std::size_t* pos)
+
+    Interprets an integer value or a floating point value in the string str.
+    std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long, float, double, long double.
+    
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the underlying 
+                function (std::strtol, std::strtoll, std::strtoul, std::strtoull, strtof, (since C++17)strtod or strtold) 
+                sets errno to ERANGE.
+
+    \note Converses to decimal base integer by default.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
+*/
+
+template<typename DstT>
+[[noreturn]]
+inline DstT stringToNumber(const std::string& str, std::size_t* pos)
+{
+    throw std::invalid_argument("invalid template argument");
+}
+
+template<>
+inline short stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return (short)std::stoi(str, pos);
+}
+
+template<>
+inline unsigned short stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return (unsigned short)std::stoul(str, pos);
+}
+
+template<>
+inline int stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stoi(str, pos);
+}
+
+template<>
+inline unsigned int stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return (unsigned int)std::stoul(str, pos);
+}
+
+template<>
+inline long stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stol(str, pos);
+}
+
+template<>
+inline unsigned long stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stoul(str, pos);
+}
+
+template<>
+inline long long stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stoll(str, pos);
+}
+
+template<>
+inline unsigned long long stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stoull(str, pos);
+}
+
+template<>
+inline float stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stof(str, pos);
+}
+
+template<>
+inline double stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stod(str, pos);
+}
+
+template<>
+inline long double stringToNumber(const std::string& str, std::size_t* pos)
+{
+    return std::stold(str, pos);
+}
+
+/*!
+    template<typename DstT> DstT stringToNumber(const std::string& str)
+
+    Interprets an integer value or a floating point value in the string str.
+    std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long, float, double, long double.
+    
+    \param str the string to convert.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the underlying 
+                function (std::strtol, std::strtoll, std::strtoul, std::strtoull, strtof, (since C++17)strtod or strtold) 
+                sets errno to ERANGE.
+
+    \note Converses to decimal base integer by default.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
+*/
+
+template<typename DstT>
+[[noreturn]]
+inline DstT stringToNumber(const std::string& str)
+{
+    throw std::invalid_argument("invalid template argument");
+}
+
+template<>
+inline short stringToNumber(const std::string& str)
+{
+    return (short)std::stoi(str);
+}
+
+template<>
+inline unsigned short stringToNumber(const std::string& str)
+{
+    return (unsigned short)std::stoul(str);
+}
+
+template<>
+inline int stringToNumber(const std::string& str)
+{
+    return std::stoi(str);
+}
+
+template<>
+inline unsigned int stringToNumber(const std::string& str)
+{
+    return (unsigned int)std::stoul(str);
+}
+
+template<>
+inline long stringToNumber(const std::string& str)
+{
+    return std::stol(str);
+}
+
+template<>
+inline unsigned long stringToNumber(const std::string& str)
+{
+    return std::stoul(str);
+}
+
+template<>
+inline long long stringToNumber(const std::string& str)
+{
+    return std::stoll(str);
+}
+
+template<>
+inline unsigned long long stringToNumber(const std::string& str)
+{
+    return std::stoull(str);
+}
+
+template<>
+inline float stringToNumber(const std::string& str)
+{
+    return std::stof(str);
+}
+
+template<>
+inline double stringToNumber(const std::string& str)
+{
+    return std::stod(str);
+}
+
+template<>
+inline long double stringToNumber(const std::string& str)
+{
+    return std::stold(str);
+}
+
+
+
+/*!
+    template<typename DstT> DstT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+
+    Interprets an integer value in the string str.
+    std::wstring ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long.
+    
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+    \param base the number base.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the 
+                underlying function (std::strtol, std::strtoll, std::strtoul or std::strtoull) sets errno to ERANGE.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull()
+*/
+
 template<typename DstT>
 [[noreturn]] 
-inline DstT stringToNumber(const std::wstring &str, std::size_t *pos, int base)
+inline DstT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
 {
-    throw std::invalid_argument("invalid argument");
+    throw std::invalid_argument("invalid template argument");
 }
+
+template<>
+inline short stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return (short)std::stoi(str, pos, base);
+}
+
+template<>
+inline unsigned short stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return (unsigned short)std::stoul(str, pos, base);
+}
+
+template<>
+inline int stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return std::stoi(str, pos, base);
+}
+
+template<>
+inline unsigned int stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return (unsigned int)std::stoul(str, pos, base);
+}
+
+template<>
+inline long stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return std::stol(str, pos, base);
+}
+
+template<>
+inline unsigned long stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return std::stoul(str, pos, base);
+}
+
+template<>
+inline long long stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return std::stoll(str, pos, base);
+}
+
+template<>
+inline unsigned long long stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+{
+    return std::stoull(str, pos, base);
+}
+
+/*!
+    template<typename DstT> DstT stringToNumber(const std::wstring& str, std::size_t* pos)
+
+    Interprets an integer value or a floating point value in the string str.
+    std::wstring ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long, float, double, long double.
+    
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the underlying 
+                function (std::strtol, std::strtoll, std::strtoul, std::strtoull, strtof, (since C++17)strtod or strtold) 
+                sets errno to ERANGE.
+
+    \note Converses to decimal base integer by default.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
+*/
+
+template<typename DstT>
+[[noreturn]]
+inline DstT stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    throw std::invalid_argument("invalid template argument");
+}
+
+template<>
+inline short stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return (short)std::stoi(str, pos);
+}
+
+template<>
+inline unsigned short stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return (unsigned short)std::stoul(str, pos);
+}
+
+template<>
+inline int stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stoi(str, pos);
+}
+
+template<>
+inline unsigned int stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return (unsigned int)std::stoul(str, pos);
+}
+
+template<>
+inline long stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stol(str, pos);
+}
+
+template<>
+inline unsigned long stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stoul(str, pos);
+}
+
+template<>
+inline long long stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stoll(str, pos);
+}
+
+template<>
+inline unsigned long long stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stoull(str, pos);
+}
+
+template<>
+inline float stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stof(str, pos);
+}
+
+template<>
+inline double stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stod(str, pos);
+}
+
+template<>
+inline long double stringToNumber(const std::wstring& str, std::size_t* pos)
+{
+    return std::stold(str, pos);
+}
+
+/*!
+    template<typename DstT> DstT stringToNumber(const std::string& str)
+
+    Interprets an integer value or a floating point value in the string str.
+    std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
+                    long long, unsigned long long, float, double, long double.
+    
+    \param str the string to convert.
+
+    \exception  std::invalid_argument if no conversion could be performed.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type or if the underlying 
+                function (std::strtol, std::strtoll, std::strtoul, std::strtoull, strtof, (since C++17)strtod or strtold) 
+                sets errno to ERANGE.
+
+    \note Converses to decimal base integer by default.
+
+    \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
+*/
+
+template<typename DstT>
+[[noreturn]]
+inline DstT stringToNumber(const std::wstring& str)
+{
+    throw std::invalid_argument("invalid template argument");
+}
+
+template<>
+inline short stringToNumber(const std::wstring& str)
+{
+    return (short)std::stoi(str);
+}
+
+template<>
+inline unsigned short stringToNumber(const std::wstring& str)
+{
+    return (unsigned short)std::stoul(str);
+}
+
+template<>
+inline int stringToNumber(const std::wstring& str)
+{
+    return std::stoi(str);
+}
+
+template<>
+inline unsigned int stringToNumber(const std::wstring& str)
+{
+    return (unsigned int)std::stoul(str);
+}
+
+template<>
+inline long stringToNumber(const std::wstring& str)
+{
+    return std::stol(str);
+}
+
+template<>
+inline unsigned long stringToNumber(const std::wstring& str)
+{
+    return std::stoul(str);
+}
+
+template<>
+inline long long stringToNumber(const std::wstring& str)
+{
+    return std::stoll(str);
+}
+
+template<>
+inline unsigned long long stringToNumber(const std::wstring& str)
+{
+    return std::stoull(str);
+}
+
+template<>
+inline float stringToNumber(const std::wstring& str)
+{
+    return std::stof(str);
+}
+
+template<>
+inline double stringToNumber(const std::wstring& str)
+{
+    return std::stod(str);
+}
+
+template<>
+inline long double stringToNumber(const std::wstring& str)
+{
+    return std::stold(str);
+}
+
+} // namespace internal
+} // namespace str
+} // namespace utils4cpp
 
 #endif // UTILS4CPP_STR_STRINGTONUMBER_H_

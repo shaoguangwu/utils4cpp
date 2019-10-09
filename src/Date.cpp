@@ -77,7 +77,7 @@ static std::int64_t julianDayFromDate(int year, int month, int day)
     return day + floordiv(153 * m + 2, 5) + 365 * y + floordiv(y, 4) - floordiv(y, 100) + floordiv(y, 400) - 32045;
 }
 
-static void getDateFromJulianDay(std::int64_t julianDay, int &year, int &month, int &day)
+static void getDateFromJulianDay(std::int64_t julianDay, int& year, int& month, int& day)
 {
     /*
      * Math from The Calendar FAQ at http://www.tondering.dk/claus/cal/julperiod.php
@@ -102,7 +102,7 @@ static void getDateFromJulianDay(std::int64_t julianDay, int &year, int &month, 
 }
 
 template<class T>
-inline const T &min(const T &t1, const T &t2)
+inline const T& min(const T& t1, const T& t2)
 {
     return t1 < t2 ? t1 : t2;
 }
@@ -133,7 +133,7 @@ Date::Date()
 
     \sa isValid()
 */
-Date::Date(const std::tm &tm)
+Date::Date(const std::tm& tm)
 {
     m_dt.mday = tm.tm_mday;
     m_dt.mon = tm.tm_mon + 1;
@@ -305,7 +305,7 @@ bool Date::setDate(int y, int m, int d)
 
     \sa year(), month(), day(), isValid()
 */
-void Date::getDate(int &year, int &month, int &day) const
+void Date::getDate(int& year, int& month, int& day) const
 {
     year = m_dt.year;
     month = m_dt.mon;
@@ -360,7 +360,7 @@ Date Date::fromJulianDay(std::int64_t julianDay)
 
     Returns 0 if either date is invalid.
 */
-std::int64_t Date::daysTo(const Date &d) const
+std::int64_t Date::daysTo(const Date& d) const
 {
     if (!isValid())
         return 0;
@@ -396,7 +396,7 @@ Date Date::addDays(std::int64_t days) const
 
 	\note The result is 1024 character limits.
 */
-std::string Date::toString(const char *format)
+std::string Date::toString(const char* format)
 {
 	std::size_t buff_size = 1024; 
 	std::string result;
@@ -407,7 +407,7 @@ std::string Date::toString(const char *format)
 	tm.tm_mon = m_dt.mon - 1;
 	tm.tm_mday = m_dt.mday;
 	
-	std::strftime(&result.front, buff_size, format, &tm)
+	std::strftime(&result.front, buff_size, format, &tm);
 	
 	return result;
 }
@@ -519,7 +519,7 @@ void Date::makeInvalid()
     Returns \c true if this date is equal to \a d; otherwise returns
     false.
 */
-bool Date::operator==(const Date &other) const
+bool Date::operator==(const Date& other) const
 {
     return m_dt.year == other.m_dt.year
         && m_dt.mon == other.m_dt.mon
@@ -530,7 +530,7 @@ bool Date::operator==(const Date &other) const
     Returns \c true if this date is different from \a d; otherwise
     returns \c false.
 */
-bool Date::operator!=(const Date &other) const
+bool Date::operator!=(const Date& other) const
 {
     return m_dt.year != other.m_dt.year
         || m_dt.mon != other.m_dt.mon
@@ -541,7 +541,7 @@ bool Date::operator!=(const Date &other) const
     Returns \c true if this date is earlier than \a d; otherwise returns
     false.
 */
-bool Date::operator<(const Date &other) const
+bool Date::operator<(const Date& other) const
 {
     if (m_dt.year < other.m_dt.year)
         return true;
@@ -556,7 +556,7 @@ bool Date::operator<(const Date &other) const
     Returns \c true if this date is earlier than or equal to \a d;
     otherwise returns \c false.
 */
-bool Date::operator<=(const Date &other) const
+bool Date::operator<=(const Date& other) const
 {
     if (*this == other)
         return true;
@@ -567,7 +567,7 @@ bool Date::operator<=(const Date &other) const
     Returns \c true if this date is later than \a d; otherwise returns
     false.
 */
-bool Date::operator>(const Date &other) const
+bool Date::operator>(const Date& other) const
 {
     if (m_dt.year > other.m_dt.year)
         return true;
@@ -582,7 +582,7 @@ bool Date::operator>(const Date &other) const
     Returns \c true if this date is later than or equal to \a d;
     otherwise returns \c false.
 */
-bool Date::operator>=(const Date &other) const
+bool Date::operator>=(const Date& other) const
 {
     if (*this == other)
         return true;
@@ -656,7 +656,7 @@ bool Date::beforGregorianCalendar(int year, int month, int day)
     Returns \c true if this date \a d is earlier than Gregorian Calendar(1582.10.04);
     otherwise returns false.
 */
-bool Date::beforGregorianCalendar(const Date &d)
+bool Date::beforGregorianCalendar(const Date& d)
 {
     return beforGregorianCalendar(d.m_dt.year, d.m_dt.mon, d.m_dt.mday);
 }
@@ -738,7 +738,7 @@ Date Date::currentGmDate()
   Date frriend functions
  *****************************************************************************/
 
-std::ostream &operator<<(std::ostream &os, const Date &date)
+std::ostream& operator<<(std::ostream& os, const Date& date)
 {
     os << "Date(\""
         << std::setw(4) << std::setfill('0') << date.year() << "-"
