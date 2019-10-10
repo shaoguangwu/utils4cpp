@@ -10,7 +10,7 @@ utils4cpp is a C++ utility library.
 
 ## Document
 
-[utils4cpp documents](http://shaoguangwu.github.io/utils4cpp/doc/html/index.html)
+[utils4cpp documents](https://www.utils4cpp.com/doc/html/index.html)
 
 ## License
 
