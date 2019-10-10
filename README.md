@@ -8,6 +8,10 @@
 
 utils4cpp是一个跨平台的C++工具库，需编译器支持C++11标准.
 
+## Document
+
+[utils4cpp documents](https://github.com/shaoguangwu/utils4cpp/tree/master/doc/html/index.html)
+
 ## License
 
 **utils4cpp**基于BSD 3-Clause协议，详情请参考[LICENSE](LICENSE)。
