@@ -10,4 +10,4 @@ utils4cpp is a C++ utility library.
 
 ## License
 
-utils4cpp is based on the BSD 3-Clause protocol. Please refer to [LICENSE](LICENSE) for details.
+**utils4cpp** is based on the BSD 3-Clause protocol. Please refer to [LICENSE](LICENSE) for details.
