@@ -3,8 +3,6 @@
 ![avatar](./doc/logo/utils4cpp.png)
 
 [![license](https://img.shields.io/badge/license-BSD%203--Clause-blue)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/Tencent/InjectFix/pulls)
-[![Build status](https://travis-ci.org/Tencent/InjectFix.svg?branch=master)](https://travis-ci.org/Tencent/InjectFix)
 
 [(English Documents Available)](README_en.md)
 
