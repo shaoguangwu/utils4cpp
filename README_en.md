@@ -8,6 +8,10 @@
 
 utils4cpp is a C++ utility library.
 
+## Document
+
+[utils4cpp documents](http://shaoguangwu.github.io/utils4cpp/doc/html/index.html)
+
 ## License
 
 **utils4cpp** is based on the BSD 3-Clause protocol. Please refer to [LICENSE](LICENSE) for details.
