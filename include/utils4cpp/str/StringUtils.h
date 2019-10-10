@@ -35,6 +35,7 @@
 #ifndef UTILS4CPP_STR_STRINGUTILS_H_
 #define UTILS4CPP_STR_STRINGUTILS_H_
 
+#include <string>
 #include <vector>
 
 #include "utils4cpp/str/StringToNumber.h"
@@ -102,6 +103,119 @@ std::string formatString(const std::string& format, Args ... args);
 
 template<typename ... Args>
 std::wstring formatString(const std::wstring& format, Args ... args);
+
+
+
+
+
+/*!
+    Interprets an integer value in the string \a str.
+
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+    \param base the number base.
+    \param noexception indicates whether an exception is thrown.
+
+    \exception  std::invalid_argument if no conversion could be performed and noexception is set to false.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type.
+
+    \note If param \a noexception set to true and exceptions are performed, return zero.
+*/
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str, pos, base);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } else {
+        return internal::stringToNumber<DstT>(str, pos, base);
+    }
+}
+
+/*!
+    Interprets an integer value or a floating point value in the string \a str.
+
+    \param str the string to convert.
+    \param pos address of an integer to store the number of characters processed.
+    \param noexception indicates whether an exception is thrown.
+
+    \exception  std::invalid_argument if no conversion could be performed and noexception is set to false.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type.
+
+    \note If param \a noexception set to true and exceptions are performed, return zero.
+    \note Converses to decimal base integer by default.
+*/
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, std::size_t* pos, bool noexception)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str, pos);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } else {
+        return internal::stringToNumber<DstT>(str, pos);
+    }
+}
+
+/*!
+    Interprets an integer value a floating point value in the string \a str.
+
+    \param str the string to convert.
+    \param noexception indicates whether an exception is thrown.
+
+    \exception  std::invalid_argument if no conversion could be performed and noexception is set to false.
+    \exception  std::out_of_range if the converted value would fall out of the range of the result type.
+
+    \note If param \a noexception set to true and exceptions are performed, return zero.
+    \note Converses to decimal base integer by default.
+*/
+template<typename DstT, class StringT>
+DstT toNumber(const StringT& str, bool noexception)
+{
+    if (noexception) {
+        try {
+            return internal::stringToNumber<DstT>(str);
+        } catch(const std::exception& e) {
+            return DstT(0);
+        }
+    } 
+    else {
+        return internal::stringToNumber<DstT>(str);
+    }
+}
+
+/*!
+    Format string in a specified \a format by \a args.
+    The format specifiers can reference snprintf()'s format specifiers.
+*/
+template<typename ... Args>
+std::string formatString(const std::string& format, Args ... args)
+{
+    auto size = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    std::unique_ptr<char[]> buf(new char[size]);
+    std::snprintf(buf.get(), size, format.c_str(), args ...);
+    return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
+}
+
+/*!
+    Format wide string in a specified \a format by \a args.
+    The format specifiers can reference swprintf()'s format specifiers.
+
+    \warning If \a args contains string, use wide string form. 
+*/
+template<typename ... Args>
+std::wstring formatString(const std::wstring& format, Args ... args)
+{
+    auto size = std::swprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    std::unique_ptr<wchar_t[]> buf(new wchar_t[size]);
+    std::swprintf(buf.get(), size, format.c_str(), args ...);
+    return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
+}
 
 } // namespace str
 } // namespace utils4cpp
