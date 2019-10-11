@@ -30,8 +30,15 @@
 **  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **
 ************************************************************************************/
+
+#include <time.h>
+
 #include <cstring>
 #include <iomanip>
+
+#ifdef UTILS4CPP_OS_UNIX
+#   include <sys/time.h>
+#endif
 
 #include "utils4cpp/datetime/Date.h"
 
@@ -708,12 +715,16 @@ int Date::dayOfWeek(int year, int month, int day)
 Date Date::currentLocalDate()
 {
     std::time_t t = std::time(nullptr);
-#ifdef _MSC_VER
     std::tm tm;
+
+#if defined(UTILS4CPP_OS_WIN)
     localtime_s(&tm, &t);
+#elif defined(UTILS4CPP_OS_UNIX)
+    localtime_r(&t, &tm);
 #else
-    std::tm tm = *std::localtime(&t);
+    tm = *std::localtime(&t);
 #endif
+
     return Date(tm);
 }
 
@@ -723,12 +734,16 @@ Date Date::currentLocalDate()
 Date Date::currentGmDate()
 {
     std::time_t t = std::time(nullptr);
-#ifdef _MSC_VER
     std::tm tm;
+    
+#if defined(UTILS4CPP_OS_WIN)
     gmtime_s(&tm, &t);
+#elif defined(UTILS4CPP_OS_UNIX)
+    gmtime_r(&t, &tm);
 #else
-    std::tm tm = *std::gmtime(&t);
+    tm = *std::gmtime(&t);
 #endif
+
     return Date(tm);
 }
 
