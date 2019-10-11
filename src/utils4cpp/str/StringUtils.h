@@ -2,8 +2,7 @@
 **
 **  BSD 3-Clause License
 **
-**  Copyright (c) 2019, shaoguang
-**  All rights reserved.
+**  Copyright (c) 2019, shaoguang. All rights reserved.
 **
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions are met:
@@ -39,6 +38,7 @@
 #include <vector>
 
 #include "utils4cpp/str/StringToNumber.h"
+#include "utils4cpp/core/Core.h"
 
 namespace utils4cpp {
 namespace str {
@@ -51,33 +51,33 @@ enum CaseSensitivity {
     CaseSensitive                   ///< Case sensitive.    (yes)
 };
 
-void replaceString(std::string& str, const std::string& before, const std::string& after);
-void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after);
+UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before, const std::string& after);
+UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after);
 
-std::vector<std::string> splitString(const std::string& str, char delim);
-std::vector<std::string> splitString(const std::string& str, const std::string& delim);
-std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim);
-std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim);
+UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, char delim);
+UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, const std::string& delim);
+UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim);
+UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim);
 
-std::string joinString(const std::vector<std::string>& strs, char delim);
-std::string joinString(const std::vector<std::string>& strs, const std::string& delim);
-std::wstring joinString(const std::vector<std::wstring>& strs, char delim);
-std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim);
+UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, char delim);
+UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, const std::string& delim);
+UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, char delim);
+UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim);
+ 
+UTILS4CPP_EXPORT std::string toLower(const std::string& str);
+UTILS4CPP_EXPORT std::string toUpper(const std::string& str);
+UTILS4CPP_EXPORT std::wstring toLower(const std::wstring& str);
+UTILS4CPP_EXPORT std::wstring toUpper(const std::wstring& str);
 
-std::string toLower(const std::string& str);
-std::string toUpper(const std::string& str);
-std::wstring toLower(const std::wstring& str);
-std::wstring toUpper(const std::wstring& str);
+UTILS4CPP_EXPORT std::string capitalized(const std::string& str);
+UTILS4CPP_EXPORT std::wstring capitalized(const std::wstring& str);
+UTILS4CPP_EXPORT std::string capitalizedWords(const std::string& str);
+UTILS4CPP_EXPORT std::wstring capitalizedWords(const std::wstring& str);
+UTILS4CPP_EXPORT std::string uncapitalizedWords(const std::string& str);
+UTILS4CPP_EXPORT std::wstring uncapitalizedWords(const std::wstring& str);
 
-std::string capitalized(const std::string& str);
-std::wstring capitalized(const std::wstring& str);
-std::string capitalizedWords(const std::string& str);
-std::wstring capitalizedWords(const std::wstring& str);
-std::string uncapitalizedWords(const std::string& str);
-std::wstring uncapitalizedWords(const std::wstring& str);
-
-std::wstring toWstring(const std::string& str);
-std::string toString(const std::wstring& wstr);
+UTILS4CPP_EXPORT std::wstring toWstring(const std::string& str);
+UTILS4CPP_EXPORT std::string toString(const std::wstring& wstr);
 
 template<typename DstT, class StringT>
 DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = false);
@@ -88,15 +88,15 @@ DstT toNumber(const StringT& str, std::size_t* pos, bool noexception = false);
 template<typename DstT, class StringT>
 DstT toNumber(const StringT& str, bool noexception = false);
 
-bool startsWith(const std::string& str, char starts, CaseSensitivity cs = CaseSensitive);
-bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs = CaseSensitive);
-bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool startsWith(const std::string& str, char starts, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs = CaseSensitive);
 bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs = CaseSensitive);
 
-bool endsWith(const std::string& str, char ends, CaseSensitivity cs = CaseSensitive);
-bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs = CaseSensitive);
-bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs = CaseSensitive);
-bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool endsWith(const std::string& str, char ends, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs = CaseSensitive);
 
 template<typename ... Args>
 std::string formatString(const std::string& format, Args ... args);

@@ -31,41 +31,21 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
-#define UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
+#ifndef UTILS4CPP_CORE_EXPORT_H_
+#define UTILS4CPP_CORE_EXPORT_H_
 
-#ifdef _MSVC_LANG
-#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
-#else
-#   define UTILS4CPP_CPLUSPLUS      __cplusplus
-#endif /* _MSVC_LANG */
-
-#if UTILS4CPP_CPLUSPLUS > 201703L
-#   define UTILS4CPP_HAS_CPP20      1
-#else
-#   define UTILS4CPP_HAS_CPP20      0
+#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
+#   ifdef UTILS4CPP_BUILD_DLL  /* Compiled to dynamic link library */
+#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
+#           define UTILS4CPP_EXPORT __declspec(dllexport)
+#       else                        /* import */
+#           define UTILS4CPP_EXPORT __declspec(dllimport)
+#       endif
+#   endif
 #endif
 
-#if UTILS4CPP_CPLUSPLUS > 201402L
-#    define UTILS4CPP_HAS_CPP17     1
-#else
-#    define UTILS4CPP_HAS_CPP17     0
+#ifndef UTILS4CPP_EXPORT
+#   define UTILS4CPP_EXPORT
 #endif
 
-#if UTILS4CPP_CPLUSPLUS > 201103L
-#    define UTILS4CPP_HAS_CPP14     1
-#else
-#    define UTILS4CPP_HAS_CPP14     0
-#endif
-
-#if UTILS4CPP_CPLUSPLUS > 199711L
-#    define UTILS4CPP_HAS_CPP11     1
-#else
-#    define UTILS4CPP_HAS_CPP11     0
-#endif
-
-#if !UTILS4CPP_HAS_CPP11
-#   error "utils4cpp requires enabled c++11 support."
-#endif
-
-#endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
+#endif // UTILS4CPP_CORE_EXPORT_H_

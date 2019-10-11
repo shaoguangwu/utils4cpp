@@ -2,8 +2,7 @@
 **
 **  BSD 3-Clause License
 **
-**  Copyright (c) 2019, shaoguang
-**  All rights reserved.
+**  Copyright (c) 2019, shaoguang. All rights reserved.
 **
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions are met:
@@ -31,11 +30,11 @@
 **  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **
 ************************************************************************************/
-
 #ifndef UTILS4CPP_CORE_CORE_H_
 #define UTILS4CPP_CORE_CORE_H_
 
 #include "utils4cpp/core/Version.h"
+#include "utils4cpp/core/Export.h"
 #include "utils4cpp/core/CppStandardDetection.h"
 #include "utils4cpp/core/SystemDetection.h"
 

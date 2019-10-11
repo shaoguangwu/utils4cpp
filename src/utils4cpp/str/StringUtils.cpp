@@ -2,8 +2,7 @@
 **
 **  BSD 3-Clause License
 **
-**  Copyright (c) 2019, shaoguang
-**  All rights reserved.
+**  Copyright (c) 2019, shaoguang. All rights reserved.
 **
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions are met:
@@ -47,7 +46,7 @@ namespace str {
 /*!
     Replaces all part strings (\a before) in this string (\a str) with \a after.
 */
-void replaceString(std::string& str, const std::string& before, const std::string& after)
+UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before, const std::string& after)
 {
     auto pos = str.find(before);
     while (pos != std::string::npos)
@@ -60,7 +59,7 @@ void replaceString(std::string& str, const std::string& before, const std::strin
 /*!
     Replaces all part strings (\a before) in this wstring (\a str) with \a after.
 */
-void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after)
+UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after)
 {
     auto pos = str.find(before);
     while (pos != std::wstring::npos)
@@ -79,7 +78,7 @@ void replaceString(std::wstring& str, const std::wstring& before, const std::wst
 
     \sa joinString()
 */
-std::vector<std::string> splitString(const std::string& str, char delim)
+UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, char delim)
 {
     std::vector<std::string> result;
     std::size_t beg = 0;
@@ -106,7 +105,7 @@ std::vector<std::string> splitString(const std::string& str, char delim)
 
     \sa joinString()
 */
-std::vector<std::string> splitString(const std::string& str, const std::string& delim)
+UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, const std::string& delim)
 {
     std::vector<std::string> result;
     std::size_t beg = 0;
@@ -133,7 +132,7 @@ std::vector<std::string> splitString(const std::string& str, const std::string& 
 
     \sa joinString()
 */
-std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
+UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
 {
     std::vector<std::wstring> result;
     std::size_t beg = 0;
@@ -160,7 +159,7 @@ std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
 
     \sa joinString()
 */
-std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim)
+UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim)
 {
     std::vector<std::wstring> result;
     std::size_t beg = 0;
@@ -183,7 +182,7 @@ std::vector<std::wstring> splitString(const std::wstring& str, const std::wstrin
 
     \sa splitString()
 */
-std::string joinString(const std::vector<std::string>& strs, char delim)
+UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, char delim)
 {
     std::string result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
@@ -201,7 +200,7 @@ std::string joinString(const std::vector<std::string>& strs, char delim)
 
     \sa splitString()
 */
-std::string joinString(const std::vector<std::string>& strs, const std::string& delim)
+UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, const std::string& delim)
 {
     std::string result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
@@ -219,7 +218,7 @@ std::string joinString(const std::vector<std::string>& strs, const std::string& 
 
     \sa splitString()
 */
-std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
+UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
 {
     std::wstring result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
@@ -237,7 +236,7 @@ std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
 
     \sa splitString()
 */
-std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim)
+UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim)
 {
     std::wstring result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
@@ -255,7 +254,7 @@ std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstrin
 
     \sa toUpper()
 */
-std::string toLower(const std::string& str)
+UTILS4CPP_EXPORT std::string toLower(const std::string& str)
 {
     std::string result(str);
     std::transform(result.begin(), result.end(), result.begin(),
@@ -268,7 +267,7 @@ std::string toLower(const std::string& str)
 
     \sa toLower()
 */
-std::string toUpper(const std::string& str)
+UTILS4CPP_EXPORT std::string toUpper(const std::string& str)
 {
     std::string result(str);
     std::transform(result.begin(), result.end(), result.begin(),
@@ -281,7 +280,7 @@ std::string toUpper(const std::string& str)
 
     \sa toUpper()
 */
-std::wstring toLower(const std::wstring& str)
+UTILS4CPP_EXPORT std::wstring toLower(const std::wstring& str)
 {
     std::wstring result(str);
     std::transform(result.begin(), result.end(), result.begin(),
@@ -294,7 +293,7 @@ std::wstring toLower(const std::wstring& str)
 
     \sa toLower()
 */
-std::wstring toUpper(const std::wstring& str)
+UTILS4CPP_EXPORT std::wstring toUpper(const std::wstring& str)
 {
     std::wstring result(str);
     std::transform(result.begin(), result.end(), result.begin(),
@@ -305,7 +304,7 @@ std::wstring toUpper(const std::wstring& str)
 /*!
     Return a capitalized string (i.e the first letter is uppercased, all other are lowercased).
 */
-std::string capitalized(const std::string& str)
+UTILS4CPP_EXPORT std::string capitalized(const std::string& str)
 {
     std::string result(toLower(str));
     auto it = result.begin();
@@ -318,7 +317,7 @@ std::string capitalized(const std::string& str)
 /*!
     Return a capitalized wide string (i.e the first letter is uppercased, all other are lowercased).
 */
-std::wstring capitalized(const std::wstring& str)
+UTILS4CPP_EXPORT std::wstring capitalized(const std::wstring& str)
 {
     std::wstring result(toLower(str));
     auto it = result.begin();
@@ -334,7 +333,7 @@ std::wstring capitalized(const std::wstring& str)
 
     \sa uncapitalizedWords()
 */
-std::string capitalizedWords(const std::string& str)
+UTILS4CPP_EXPORT std::string capitalizedWords(const std::string& str)
 {
     std::string result(str);
 
@@ -360,7 +359,7 @@ std::string capitalizedWords(const std::string& str)
 
     \sa uncapitalizedWords()
 */
-std::wstring capitalizedWords(const std::wstring& str)
+UTILS4CPP_EXPORT std::wstring capitalizedWords(const std::wstring& str)
 {
     std::wstring result(str);
 
@@ -377,7 +376,7 @@ std::wstring capitalizedWords(const std::wstring& str)
 
     \sa capitalizedWords()
 */
-std::string uncapitalizedWords(const std::string& str)
+UTILS4CPP_EXPORT std::string uncapitalizedWords(const std::string& str)
 {
     std::string result(str);
 
@@ -403,7 +402,7 @@ std::string uncapitalizedWords(const std::string& str)
 
     \sa capitalizedWords()
 */
-std::wstring uncapitalizedWords(const std::wstring& str)
+UTILS4CPP_EXPORT std::wstring uncapitalizedWords(const std::wstring& str)
 {
     std::wstring result(str);
     for (std::size_t i = 0; i < str.size(); ++i) {
@@ -418,7 +417,7 @@ std::wstring uncapitalizedWords(const std::wstring& str)
 
     \sa toString()
 */
-std::wstring toWstring(const std::string& str)
+UTILS4CPP_EXPORT std::wstring toWstring(const std::string& str)
 {
     std::setlocale(LC_CTYPE, "");
     std::mbstate_t state = std::mbstate_t();
@@ -445,7 +444,7 @@ std::wstring toWstring(const std::string& str)
 
     \sa toWstring()
 */
-std::string toString(const std::wstring& str)
+UTILS4CPP_EXPORT std::string toString(const std::wstring& str)
 {
     std::setlocale(LC_CTYPE, "");
     std::mbstate_t state = std::mbstate_t();
@@ -473,7 +472,7 @@ std::string toString(const std::wstring& str)
 
     \sa endsWith()
 */
-bool startsWith(const std::string& str, char starts, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool startsWith(const std::string& str, char starts, CaseSensitivity cs)
 {
     if (str.empty()) {
         return false;
@@ -492,7 +491,7 @@ bool startsWith(const std::string& str, char starts, CaseSensitivity cs)
 
     \sa endsWith()
 */
-bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs)
 {
     if (str.empty() || starts.empty() || starts.size() > str.size()) {
         return false;
@@ -514,7 +513,7 @@ bool startsWith(const std::string& str, const std::string& starts, CaseSensitivi
 
     \sa endsWith()
 */
-bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs)
 {
     if (str.empty()) {
         return false;
@@ -533,7 +532,7 @@ bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs)
 
     \sa endsWith()
 */
-bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs)
 {
     if (str.empty() || starts.empty() || starts.size() > str.size()) {
         return false;
@@ -555,7 +554,7 @@ bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensiti
 
     \sa startsWith()
 */
-bool endsWith(const std::string& str, char ends, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool endsWith(const std::string& str, char ends, CaseSensitivity cs)
 {
     if (str.empty()) {
         return false;
@@ -574,7 +573,7 @@ bool endsWith(const std::string& str, char ends, CaseSensitivity cs)
 
     \sa startsWith()
 */
-bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs)
 {
     if (str.empty() || ends.empty() || ends.size() > str.size()) {
         return false;
@@ -596,7 +595,7 @@ bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity c
 
     \sa startsWith()
 */
-bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs)
 {
     if (str.empty()) {
         return false;
@@ -615,7 +614,7 @@ bool endsWith(const std::wstring& str, wchar_t ends, CaseSensitivity cs)
 
     \sa startsWith()
 */
-bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs)
+UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, const std::wstring& ends, CaseSensitivity cs)
 {
     if (str.empty() || ends.empty() || ends.size() > str.size()) {
         return false;

@@ -1,24 +1,23 @@
 /************************************************************************************
 **
 **  BSD 3-Clause License
-**  
-**  Copyright (c) 2019, shaoguang
-**  All rights reserved.
-**  
+**
+**  Copyright (c) 2019, shaoguang. All rights reserved.
+**
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions are met:
-**  
+**
 **  1. Redistributions of source code must retain the above copyright notice, this
 **     list of conditions and the following disclaimer.
-**  
+**
 **  2. Redistributions in binary form must reproduce the above copyright notice,
 **     this list of conditions and the following disclaimer in the documentation
 **     and/or other materials provided with the distribution.
-**  
+**
 **  3. Neither the name of the copyright holder nor the names of its
 **     contributors may be used to endorse or promote products derived from
 **     this software without specific prior written permission.
-**  
+**
 **  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 **  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 **  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -37,6 +36,8 @@
 
 #include <chrono>
 
+#include "utils4cpp/core/Core.h"
+
 namespace utils4cpp {
 namespace datetime {
 
@@ -46,7 +47,7 @@ namespace datetime {
 
 	\brief Defines a elapsed timer.
 */
-class ElapsedTimer
+class UTILS4CPP_EXPORT ElapsedTimer
 {
 public:
 	using elapsed_time_floating_t = double;
@@ -77,6 +78,12 @@ private:
 	using seconds_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::seconds::period>;
 	using minutes_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::minutes::period>;
 	using hours_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::hours::period>;
+
+#if UTILS4CPP_HAS_CPP20
+	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::days::period>;
+#else
+	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, std::ratio<86400>>;
+#endif
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> m_tp;
 };
