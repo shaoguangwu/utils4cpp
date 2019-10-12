@@ -41,9 +41,19 @@ namespace datetime {
 
 class UTILS4CPP_EXPORT Time
 {
+    struct tms
+    {
+        int hour;       //!< hours since midnight - [0, 23]
+        int min;        //!< minutes after the hour - [0, 59]
+        int sec;        //!< seconds after the minute - [0, 60], including leap second
+        int msec;       //!< milliseconds sfter the second - [0, 999]
+        int isdst;      //!< daylight savings time flag. The value is positive if DST is in effect, zero if not and negative if no information is available
+    };
+    tms m_tm;
+
 public:
     Time();
-    Time(int h, int m, int s, int ms = 0);
+    Time(int h, int m, int s, int ms = 0, int dst = -1);
 
     int hour() const;
     int minute() const;
@@ -52,7 +62,7 @@ public:
 
     bool isValid();
 
-    bool setTime(int h, int m, int s, int ms = 0);
+    bool setTime(int h, int m, int s, int ms = 0, int dst = -1);
 
     static Time currentLocalTime();
     static Time currentGmTime();
@@ -62,10 +72,10 @@ public:
 private:
     void makeInvalid();
 
-    int m_hour;
-    int m_min;
-    int m_sec;
-    int m_msec;
+    // int m_hour;
+    // int m_min;
+    // int m_sec;
+    // int m_msec;
 };
 
 } // namespace datetime

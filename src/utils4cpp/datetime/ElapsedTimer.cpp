@@ -55,11 +55,11 @@ ElapsedTimer::ElapsedTimer()
 }
 
 /*!
-    \fn void ElapsedTimer::reset()
+    \fn void ElapsedTimer::restart()
 
     Restart timing.
 */
-void ElapsedTimer::reset()
+void ElapsedTimer::restart()
 {
     m_tp = std::chrono::high_resolution_clock::now();
 }

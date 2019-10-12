@@ -134,33 +134,31 @@ Date::Date()
 }
 
 /*!
+    Constructs a date with year \a y, month \a m and day \a d.
+
+    If the specified date is invalid, the date is set to default 
+    invalid date and isValid() returns \c false.
+
+    \param isdst Daylight Saving Time flag. The value is positive if DST is in effect, 
+                 zero if not and negative if no information is available
+
+    \warning Years 1 to 99 are interpreted as is. Year 0 is invalid.
+
+    \sa isValid()
+*/
+Date::Date(int y, int m, int d, int isdst)
+{
+    setDate(y, m, d, isdst);
+}
+
+/*!
     Constructs a date with std::tm structur \a tm.
 
     \sa isValid()
 */
 Date::Date(const std::tm& tm)
 {
-    m_dt.mday = tm.tm_mday;
-    m_dt.mon = tm.tm_mon + 1;
-    m_dt.year = tm.tm_year + 1900;
-    m_dt.wday = tm.tm_wday ? tm.tm_wday : 7;
-    m_dt.yday = tm.tm_yday + 1;
-    m_dt.isdst = tm.tm_isdst;
-}
-
-/*!
-    Constructs a date with year \a y, month \a m and day \a d.
-
-    If the specified date is invalid, the date is set to default 
-    invalid date and isValid() returns \c false.
-
-    \warning Years 1 to 99 are interpreted as is. Year 0 is invalid.
-
-    \sa isValid()
-*/
-Date::Date(int y, int m, int d)
-{
-    setDate(y, m, d);
+    fromTm(tm);
 }
 
 /*!
@@ -214,6 +212,16 @@ int Date::month() const
 int Date::day() const
 {
     return m_dt.mday;
+}
+
+/*!
+    Returns the daylight saving time flag.
+
+    The value is positive if DST is in effect, zero if not and negative if no information is available.
+*/
+int Date::dst() const
+{
+    return m_dt.isdst;
 }
 
 /*!
@@ -288,7 +296,7 @@ bool Date::isValid() const
 
     \sa isValid()
 */
-bool Date::setDate(int y, int m, int d)
+bool Date::setDate(int y, int m, int d, int isdst)
 {
     if (isValid(y, m, d)) {
         m_dt.year = y;
@@ -296,7 +304,7 @@ bool Date::setDate(int y, int m, int d)
         m_dt.mday = d;
         m_dt.wday = dayOfWeek(y, m, d);
         m_dt.yday = dayOfYear(y, m, d);
-        m_dt.isdst = 0;
+        m_dt.isdst = isdst;
         return true;
     }
 
@@ -306,7 +314,7 @@ bool Date::setDate(int y, int m, int d)
 
 /*!
     Extracts the date's year, month, and day, and assigns them to
-    *\a year, *\a month, and *\a day.
+    \a year, \a month, and \a day.
 
     \sa year(), month(), day(), isValid()
 */
@@ -315,6 +323,39 @@ void Date::getDate(int& year, int& month, int& day) const
     year = m_dt.year;
     month = m_dt.mon;
     day = m_dt.mday;
+}
+
+/*!
+    Sets this date with a tm structur.
+
+    \sa toTm()
+*/
+void Date::fromTm(const std::tm& tm)
+{
+    m_dt.mday = tm.tm_mday;
+    m_dt.mon = tm.tm_mon + 1;
+    m_dt.year = tm.tm_year + 1900;
+    m_dt.wday = tm.tm_wday ? tm.tm_wday : 7;
+    m_dt.yday = tm.tm_yday + 1;
+    m_dt.isdst = tm.tm_isdst;
+}
+
+/*!
+    Converts date to a tm struct.
+
+    \sa fromTm()
+*/
+std::tm Date::toTm()
+{
+    std::tm datetm;
+    std::memset(&datetm, 0, sizeof(datetm));
+    datetm.tm_mday = m_dt.mday;
+    datetm.tm_mon = m_dt.mon - 1;
+    datetm.tm_year = m_dt.year - 1900;
+    datetm.tm_wday = (m_dt.wday == 7 ? 0 : m_dt.wday);
+    datetm.tm_yday = m_dt.yday - 1;
+    datetm.tm_isdst = m_dt.isdst;
+    return datetm;
 }
 
 /*!
@@ -517,7 +558,8 @@ Date Date::addYears(int nyears) const
 */
 void Date::makeInvalid()
 {
-    std::memset(&m_dt, 0, sizeof(dt));
+    std::memset(&m_dt, 0, sizeof(m_dt));
+    m_dt.isdst = -1;
 }
 
 /*
@@ -548,13 +590,7 @@ bool Date::operator!=(const Date& other) const
 */
 bool Date::operator<(const Date& other) const
 {
-    if (m_dt.year < other.m_dt.year)
-        return true;
-    if (m_dt.mon < other.m_dt.mon)
-        return true;
-    if (m_dt.mday < other.m_dt.mday)
-        return true;
-    return false;
+    return toJulianDay() < other.toJulianDay();
 }
 
 /*!
@@ -574,13 +610,7 @@ bool Date::operator<=(const Date& other) const
 */
 bool Date::operator>(const Date& other) const
 {
-    if (m_dt.year > other.m_dt.year)
-        return true;
-    if (m_dt.mon > other.m_dt.mon)
-        return true;
-    if (m_dt.mday > other.m_dt.mday)
-        return true;
-    return false;
+    return toJulianDay() > other.toJulianDay();
 }
 
 /*!

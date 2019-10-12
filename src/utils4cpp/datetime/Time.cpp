@@ -34,6 +34,7 @@
 #include <time.h>
 
 #include <ctime>
+#include <cstring>
 
 #ifdef UTILS4CPP_OS_UNIX
 #   include <sys/time.h>
@@ -55,10 +56,7 @@ enum {
 
 void Time::makeInvalid()
 {
-    m_hour = -1;
-    m_min = -1;
-    m_sec = -1;
-    m_msec = -1;
+    std::memset(&m_tm, -1, sizeof(m_tm));
 }
 
 Time::Time()
@@ -66,47 +64,48 @@ Time::Time()
     makeInvalid();
 }
 
-Time::Time(int h, int m, int s, int ms)
+Time::Time(int h, int m, int s, int ms, int dst)
 {
-    setTime(h, m, s, ms);
+    setTime(h, m, s, ms, dst);
 }
 
 int Time::hour() const
 {
-    return m_hour;
+    return m_tm.hour;
 }
 
 int Time::minute() const
 {
-    return m_min;
+    return m_tm.min;
 }
 
 int Time::second() const
 {
-    return m_sec;
+    return m_tm.sec;
 }
 
 int Time::msec() const
 {
-    return m_msec;
+    return m_tm.msec;
 }
 
 bool Time::isValid()
 {
-    return isValid(m_hour, m_min, m_sec, m_msec);
+    return isValid(m_tm.hour, m_tm.min, m_tm.sec, m_tm.msec);
 }
 
-bool Time::setTime(int h, int m, int s, int ms)
+bool Time::setTime(int h, int m, int s, int ms, int dst)
 {
     if (!isValid(h,m,s,ms)) {
         makeInvalid();
         return false;
     }
 
-    m_hour = h;
-    m_min = m;
-    m_sec = s;
-    m_msec = ms;
+    m_tm.hour = h;
+    m_tm.min = m;
+    m_tm.sec = s;
+    m_tm.msec = ms;
+    m_tm.isdst = dst;
 
     return true;
 }
@@ -125,7 +124,7 @@ Time Time::currentLocalTime()
     tm = *std::localtime(&tb.time);
 #endif
 
-    return {tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm};
+    return {tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag};
 }
 
 Time Time::currentGmTime()

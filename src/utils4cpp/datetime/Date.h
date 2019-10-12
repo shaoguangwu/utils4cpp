@@ -61,25 +61,30 @@ class UTILS4CPP_EXPORT Date
         int year;               //!< year now
         int wday;               //!< weekday (Monday to Sunday) - [1, 7]
         int yday;               //!< days since January 1 - [0, 365]
-        int isdst;              //!< daylight savings time flag. (valid: +, invalid: 0, no information: -).
+        int isdst;              //!< daylight savings time flag. The value is positive if DST is in effect, zero if not and negative if no information is available.
     };
     dt m_dt;
 
 public:
     Date();
-    Date(int y, int m, int d);
+    Date(int y, int m, int d, int isdst = -1);
+    Date(const std::tm& tm);
 
     int year() const;
     int month() const;
     int day() const;
+    int dst() const;
     int dayOfWeek() const;
     int dayOfYear() const;
     int daysInMonth() const;
     int daysInYear() const;
 
     bool isValid() const;
-    bool setDate(int year, int month, int day);
+    bool setDate(int year, int month, int day, int isdst = -1);
     void getDate(int& year, int& month, int& day) const;
+
+    void fromTm(const std::tm& tm);
+    std::tm toTm();
 
     std::int64_t toJulianDay() const;
     static Date fromJulianDay(std::int64_t julianDay);
@@ -112,7 +117,6 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Date& date);
 private:
-    Date(const std::tm& tm);
     void makeInvalid();
 
     enum Month {

@@ -53,7 +53,7 @@ public:
 	using elapsed_time_floating_t = double;
 
 	ElapsedTimer();
-	void reset();
+	void restart();
 
 	std::chrono::milliseconds::rep elapsed() const;
 	std::chrono::nanoseconds::rep elapsedNanoseconds() const;
