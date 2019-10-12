@@ -35,7 +35,6 @@
 #define UTILS4CPP_DATASTRUCTURE_GEOMETRY_POINT_H_
 
 namespace utils4cpp {
-namespace datastructure { 
 namespace geometry {
 
 template<typename T, unsigned int D>
@@ -49,7 +48,6 @@ private:
 };
 
 } // namespace geometry
-} // namespace datastructure
 } // namespace utils4cpp
 
 #endif // UTILS4CPP_DATASTRUCTURE_GEOMETRY_POINT_H_

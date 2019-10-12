@@ -37,6 +37,8 @@
 *.ipch
 *.lastbuildstate
 *.log
-*.filters
-*.user
 ide/msvc15/utils4cpp/.vs/utils4cpp/v15/.suo
+*.tlog
+*.idb
+*.pdb
+ide/vs2017/msvc15/.vs/msvc15/v15/.suo

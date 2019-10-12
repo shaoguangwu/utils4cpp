@@ -146,9 +146,9 @@ Date::Date()
 
     \sa isValid()
 */
-Date::Date(int y, int m, int d, int isdst)
+Date::Date(int y, int m, int d, int dst)
 {
-    setDate(y, m, d, isdst);
+    setDate(y, m, d, dst);
 }
 
 /*!
@@ -296,7 +296,7 @@ bool Date::isValid() const
 
     \sa isValid()
 */
-bool Date::setDate(int y, int m, int d, int isdst)
+bool Date::setDate(int y, int m, int d, int dst)
 {
     if (isValid(y, m, d)) {
         m_dt.year = y;
@@ -304,7 +304,7 @@ bool Date::setDate(int y, int m, int d, int isdst)
         m_dt.mday = d;
         m_dt.wday = dayOfWeek(y, m, d);
         m_dt.yday = dayOfYear(y, m, d);
-        m_dt.isdst = isdst;
+        m_dt.isdst = dst;
         return true;
     }
 
