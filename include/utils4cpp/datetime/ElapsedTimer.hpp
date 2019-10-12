@@ -31,12 +31,12 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_ELAPSEDTIMER_H_
-#define UTILS4CPP_DATETIME_ELAPSEDTIMER_H_
+#ifndef UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP
+#define UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP
 
 #include <chrono>
 
-#include "utils4cpp/core/Core.h"
+#include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -85,10 +85,10 @@ private:
 	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, std::ratio<86400>>;
 #endif
 
-	std::chrono::time_point<std::chrono::high_resolution_clock> m_tp;
+    std::chrono::high_resolution_clock::time_point m_tp;
 };
 
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_ELAPSEDTIMER_H_
+#endif // UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP

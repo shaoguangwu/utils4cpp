@@ -41,7 +41,7 @@
 #endif
 #include <sys/timeb.h>
 
-#include "utils4cpp/datetime/Time.h"
+#include "utils4cpp/datetime/Time.hpp"
 
 namespace utils4cpp {
 namespace datetime {

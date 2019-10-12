@@ -31,10 +31,10 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_TIME_H_
-#define UTILS4CPP_DATETIME_TIME_H_
+#ifndef UTILS4CPP_DATETIME_TIME_HPP
+#define UTILS4CPP_DATETIME_TIME_HPP
 
-#include "utils4cpp/core/Core.h"
+#include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -81,4 +81,4 @@ private:
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_TIME_H_
+#endif // UTILS4CPP_DATETIME_TIME_HPP

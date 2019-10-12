@@ -31,17 +31,17 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATE_H
-#define UTILS4CPP_DATE_H
+#ifndef UTILS4CPP_DATETIME_DATE_HPP
+#define UTILS4CPP_DATETIME_DATE_HPP
 
 #include <cstdint>
 #include <ctime>
 #include <iostream>
 
-#include "utils4cpp/core/Core.h"
+#include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
-namespace datetimne {
+namespace datetime {
 
 /*!
     \class Date
@@ -138,4 +138,4 @@ private:
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATE_H
+#endif // UTILS4CPP_DATETIME_DATE_HPP

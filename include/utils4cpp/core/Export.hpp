@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_H_
-#define UTILS4CPP_CORE_EXPORT_H_
+#ifndef UTILS4CPP_CORE_EXPORT_HPP
+#define UTILS4CPP_CORE_EXPORT_HPP
 
 #if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
 #   ifdef UTILS4CPP_BUILD_DLL  /* Compiled to dynamic link library */
@@ -48,4 +48,4 @@
 #   define UTILS4CPP_EXPORT
 #endif
 
-#endif // UTILS4CPP_CORE_EXPORT_H_
+#endif // UTILS4CPP_CORE_EXPORT_HPP

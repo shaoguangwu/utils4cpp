@@ -30,24 +30,12 @@
 **  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **
 ************************************************************************************/
+#ifndef UTILS4CPP_CORE_CORE_HPP
+#define UTILS4CPP_CORE_CORE_HPP
 
-#ifndef UTILS4CPP_DATASTRUCTURE_GEOMETRY_POINT_H_
-#define UTILS4CPP_DATASTRUCTURE_GEOMETRY_POINT_H_
+#include "utils4cpp/core/Version.hpp"
+#include "utils4cpp/core/Export.hpp"
+#include "utils4cpp/core/CppStandardDetection.hpp"
+#include "utils4cpp/core/SystemDetection.hpp"
 
-namespace utils4cpp {
-namespace geometry {
-
-template<typename T, unsigned int D>
-class PointBase
-{
-public:
-    PointBase();
-
-private:
-    T m_data[D];
-};
-
-} // namespace geometry
-} // namespace utils4cpp
-
-#endif // UTILS4CPP_DATASTRUCTURE_GEOMETRY_POINT_H_
+#endif // UTILS4CPP_CORE_CORE_HPP

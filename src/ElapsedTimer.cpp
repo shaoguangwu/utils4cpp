@@ -31,7 +31,7 @@
 **
 ************************************************************************************/
 
-#include "utils4cpp/datetime/ElapsedTimer.h"
+#include "utils4cpp/datetime/ElapsedTimer.hpp"
 
 namespace utils4cpp {
 namespace datetime {

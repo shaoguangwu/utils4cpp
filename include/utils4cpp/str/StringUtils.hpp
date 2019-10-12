@@ -31,14 +31,14 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGUTILS_H_
-#define UTILS4CPP_STR_STRINGUTILS_H_
+#ifndef UTILS4CPP_STR_STRINGUTILS_HPP
+#define UTILS4CPP_STR_STRINGUTILS_HPP
 
 #include <string>
 #include <vector>
 
-#include "utils4cpp/str/StringToNumber.h"
-#include "utils4cpp/core/Core.h"
+#include "utils4cpp/str/StringToNumber.hpp"
+#include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
 namespace str {
@@ -91,7 +91,7 @@ DstT toNumber(const StringT& str, bool noexception = false);
 UTILS4CPP_EXPORT bool startsWith(const std::string& str, char starts, CaseSensitivity cs = CaseSensitive);
 UTILS4CPP_EXPORT bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs = CaseSensitive);
 UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, wchar_t starts, CaseSensitivity cs = CaseSensitive);
-bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs = CaseSensitive);
+UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, const std::wstring& starts, CaseSensitivity cs = CaseSensitive);
 
 UTILS4CPP_EXPORT bool endsWith(const std::string& str, char ends, CaseSensitivity cs = CaseSensitive);
 UTILS4CPP_EXPORT bool endsWith(const std::string& str, const std::string& ends, CaseSensitivity cs = CaseSensitive);
@@ -220,4 +220,4 @@ std::wstring formatString(const std::wstring& format, Args ... args)
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_STRINGUTILS_H_
+#endif // UTILS4CPP_STR_STRINGUTILS_HPP

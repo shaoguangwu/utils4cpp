@@ -31,13 +31,13 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGTONUMBER_H_
-#define UTILS4CPP_STR_STRINGTONUMBER_H_
+#ifndef UTILS4CPP_STR_STRINGTONUMBER_HPP
+#define UTILS4CPP_STR_STRINGTONUMBER_HPP
 
 #include <string>
 #include <stdexcept>
 
-#include "utils4cpp/core/Core.h"
+#include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
 namespace str {
@@ -565,4 +565,4 @@ inline long double stringToNumber(const std::wstring& str)
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_STRINGTONUMBER_H_
+#endif // UTILS4CPP_STR_STRINGTONUMBER_HPP

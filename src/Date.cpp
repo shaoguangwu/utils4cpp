@@ -38,9 +38,9 @@
 
 #ifdef UTILS4CPP_OS_UNIX
 #   include <sys/time.h>
-#endif
+#endif // UTILS4CPP_OS_UNIX
 
-#include "utils4cpp/datetime/Date.h"
+#include "utils4cpp/datetime/Date.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -453,7 +453,7 @@ std::string Date::toString(const char* format)
 	tm.tm_mon = m_dt.mon - 1;
 	tm.tm_mday = m_dt.mday;
 	
-	std::strftime(&result.front, buff_size, format, &tm);
+	std::strftime(&result.front(), buff_size, format, &tm);
 	
 	return result;
 }

@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_VERSION_H_
-#define UTILS4CPP_CORE_VERSION_H_
+#ifndef UTILS4CPP_CORE_VERSION_HPP
+#define UTILS4CPP_CORE_VERSION_HPP
 
 #define UTILS4CPP_VERSION_MAJOR         0
 #define UTILS4CPP_VERSION_MINOR         0
@@ -55,4 +55,4 @@
                                         UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_REVISION) " "  \
                                         UTILS4CPP_VERSION_STATUS
 
-#endif // UTILS4CPP_CORE_VERSION_H_
+#endif // UTILS4CPP_CORE_VERSION_HPP

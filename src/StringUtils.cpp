@@ -31,7 +31,7 @@
 **
 ************************************************************************************/
 
-#include "utils4cpp/str/StringUtils.h"
+#include "utils4cpp/str/StringUtils.hpp"
 
 #include <clocale>
 #include <cstdlib>
@@ -72,9 +72,9 @@ UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& befor
 /*!
     Splits this string (\a str) with delimiter (\a delim).
 
-    \note 
-        - If there is no delimiter in this string, returns an empty string-vector. 
-        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+    \note
+        - If there is no delimiter in this string, returns an empty string-vector.
+        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string.
 
     \sa joinString()
 */
@@ -83,7 +83,7 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, ch
     std::vector<std::string> result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
-    while (pos != std::string::npos) 
+    while (pos != std::string::npos)
     {
         result.push_back(str.substr(beg, pos - beg));
         beg = ++pos;
@@ -99,9 +99,9 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, ch
 /*!
     Splits this string (\a str) with delimiter (\a delim).
 
-    \note 
-        - If there is no delimiter in this string, returns an empty string-vector. 
-        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+    \note
+        - If there is no delimiter in this string, returns an empty string-vector.
+        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string.
 
     \sa joinString()
 */
@@ -110,7 +110,7 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, co
     std::vector<std::string> result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
-    while (pos != std::string::npos) 
+    while (pos != std::string::npos)
     {
         result.push_back(str.substr(beg, pos - beg));
         beg = pos + delim.length();
@@ -126,9 +126,9 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, co
 /*!
     Splits this string (\a str) with delimiter (\a delim).
 
-    \note 
-        - If there is no delimiter in this string, returns an empty string-vector. 
-        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+    \note
+        - If there is no delimiter in this string, returns an empty string-vector.
+        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string.
 
     \sa joinString()
 */
@@ -137,7 +137,7 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
     std::vector<std::wstring> result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
-    while (pos != std::wstring::npos) 
+    while (pos != std::wstring::npos)
     {
         result.push_back(str.substr(beg, pos - beg));
         beg = ++pos;
@@ -153,9 +153,9 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
 /*!
     Splits this string (\a str) with delimiter (\a delim).
 
-    \note 
-        - If there is no delimiter in this string, returns an empty string-vector. 
-        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string. 
+    \note
+        - If there is no delimiter in this string, returns an empty string-vector.
+        - If a delimiter exists at the end of this string, the end element of the string-vector will be an empty string.
 
     \sa joinString()
 */
@@ -164,7 +164,7 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
     std::vector<std::wstring> result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
-    while (pos != std::wstring::npos) 
+    while (pos != std::wstring::npos)
     {
         result.push_back(str.substr(beg, pos - beg));
         beg = pos + delim.length();
@@ -177,7 +177,7 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
     return result;
 }
 
-/*！
+/*á
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -185,7 +185,7 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
 UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, char delim)
 {
     std::string result;
-    for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
+    for (auto it = strs.cbegin(); it != strs.cend(); ++it)
     {
         if (it != strs.cbegin()) {
             result += delim;
@@ -195,7 +195,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, ch
     return result;
 }
 
-/*！
+/*á
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -203,7 +203,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, ch
 UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, const std::string& delim)
 {
     std::string result;
-    for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
+    for (auto it = strs.cbegin(); it != strs.cend(); ++it)
     {
         if (it != strs.cbegin()) {
             result += delim;
@@ -213,7 +213,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, co
     return result;
 }
 
-/*！
+/*á
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -221,7 +221,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, co
 UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
 {
     std::wstring result;
-    for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
+    for (auto it = strs.cbegin(); it != strs.cend(); ++it)
     {
         if (it != strs.cbegin()) {
             result += delim;
@@ -231,7 +231,7 @@ UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, 
     return result;
 }
 
-/*！
+/*á
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -239,7 +239,7 @@ UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, 
 UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim)
 {
     std::wstring result;
-    for (auto it = strs.cbegin(); it != strs.cend(); ++it) 
+    for (auto it = strs.cbegin(); it != strs.cend(); ++it)
     {
         if (it != strs.cbegin()) {
             result += delim;
@@ -480,7 +480,8 @@ UTILS4CPP_EXPORT bool startsWith(const std::string& str, char starts, CaseSensit
 
     if (CaseSensitivity::CaseInsensitive == cs) {
         return std::tolower((int)starts == std::tolower((int)str.front()));
-    } else {
+    }
+    else {
         return starts == str.front();
     }
 }
@@ -498,11 +499,12 @@ UTILS4CPP_EXPORT bool startsWith(const std::string& str, const std::string& star
     }
 
     if (CaseSensitivity::CaseInsensitive == cs) {
-        return std::equal(starts.begin(), starts.end(), str.begin(), 
+        return std::equal(starts.begin(), starts.end(), str.begin(),
             [](char a, char b) {
                 return std::tolower((int)a) == std::tolower((int)b);
-        });
-    } else  {
+            });
+    }
+    else {
         return std::equal(starts.begin(), starts.end(), str.begin());
     }
 }
@@ -521,7 +523,8 @@ UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, wchar_t starts, CaseSe
 
     if (CaseSensitivity::CaseInsensitive == cs) {
         return std::towlower((std::wint_t)starts) == std::towlower((std::wint_t)str.front());
-    } else {
+    }
+    else {
         return starts == str.front();
     }
 }
@@ -539,11 +542,12 @@ UTILS4CPP_EXPORT bool startsWith(const std::wstring& str, const std::wstring& st
     }
 
     if (CaseSensitivity::CaseInsensitive == cs) {
-        return std::equal(starts.begin(), starts.end(), str.begin(), 
+        return std::equal(starts.begin(), starts.end(), str.begin(),
             [](wchar_t a, wchar_t b) {
                 return std::towlower((std::wint_t)a) == std::towlower((std::wint_t)b);
-        });
-    } else  {
+            });
+    }
+    else {
         return std::equal(starts.begin(), starts.end(), str.begin());
     }
 }
@@ -562,7 +566,8 @@ UTILS4CPP_EXPORT bool endsWith(const std::string& str, char ends, CaseSensitivit
 
     if (CaseSensitivity::CaseInsensitive == cs) {
         return std::towlower((int)ends) == std::towlower((int)str.front());
-    } else {
+    }
+    else {
         return ends == str.front();
     }
 }
@@ -583,8 +588,9 @@ UTILS4CPP_EXPORT bool endsWith(const std::string& str, const std::string& ends, 
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
             [](char a, char b) {
                 return std::tolower((int)a) == std::tolower((int)b);
-        });
-    } else {
+            });
+    }
+    else {
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
     }
 }
@@ -603,7 +609,8 @@ UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, wchar_t ends, CaseSensit
 
     if (CaseSensitivity::CaseInsensitive == cs) {
         return std::towlower((std::wint_t)ends) == std::towlower((std::wint_t)str.front());
-    } else {
+    }
+    else {
         return ends == str.front();
     }
 }
@@ -624,8 +631,9 @@ UTILS4CPP_EXPORT bool endsWith(const std::wstring& str, const std::wstring& ends
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
             [](wchar_t a, wchar_t b) {
                 return std::towlower((std::wint_t)a) == std::towlower((std::wint_t)b);
-        });
-    } else {
+            });
+    }
+    else {
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
     }
 }

@@ -31,41 +31,23 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
-#define UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
+#ifndef UTILS4CPP_GEOMETRY_POINT_HPP
+#define UTILS4CPP_GEOMETRY_POINT_HPP
 
-#ifdef _MSVC_LANG
-#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
-#else
-#   define UTILS4CPP_CPLUSPLUS      __cplusplus
-#endif /* _MSVC_LANG */
+namespace utils4cpp {
+namespace geometry {
 
-#if UTILS4CPP_CPLUSPLUS > 201703L
-#   define UTILS4CPP_HAS_CPP20      1
-#else
-#   define UTILS4CPP_HAS_CPP20      0
-#endif
+template<typename T, unsigned int D>
+class PointBase
+{
+public:
+    PointBase();
 
-#if UTILS4CPP_CPLUSPLUS > 201402L
-#    define UTILS4CPP_HAS_CPP17     1
-#else
-#    define UTILS4CPP_HAS_CPP17     0
-#endif
+private:
+    T m_data[D];
+};
 
-#if UTILS4CPP_CPLUSPLUS > 201103L
-#    define UTILS4CPP_HAS_CPP14     1
-#else
-#    define UTILS4CPP_HAS_CPP14     0
-#endif
+} // namespace geometry
+} // namespace utils4cpp
 
-#if UTILS4CPP_CPLUSPLUS > 199711L
-#    define UTILS4CPP_HAS_CPP11     1
-#else
-#    define UTILS4CPP_HAS_CPP11     0
-#endif
-
-#if !UTILS4CPP_HAS_CPP11
-#   error "utils4cpp requires enabled c++11 support."
-#endif
-
-#endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_H_
+#endif // UTILS4CPP_GEOMETRY_POINT_HPP

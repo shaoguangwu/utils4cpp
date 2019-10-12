@@ -30,12 +30,42 @@
 **  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **
 ************************************************************************************/
-#ifndef UTILS4CPP_CORE_CORE_H_
-#define UTILS4CPP_CORE_CORE_H_
 
-#include "utils4cpp/core/Version.h"
-#include "utils4cpp/core/Export.h"
-#include "utils4cpp/core/CppStandardDetection.h"
-#include "utils4cpp/core/SystemDetection.h"
+#ifndef UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
+#define UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
 
-#endif // UTILS4CPP_CORE_CORE_H_
+#ifdef _MSVC_LANG
+#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
+#else
+#   define UTILS4CPP_CPLUSPLUS      __cplusplus
+#endif /* _MSVC_LANG */
+
+#if UTILS4CPP_CPLUSPLUS > 201703L
+#   define UTILS4CPP_HAS_CPP20      1
+#else
+#   define UTILS4CPP_HAS_CPP20      0
+#endif
+
+#if UTILS4CPP_CPLUSPLUS > 201402L
+#    define UTILS4CPP_HAS_CPP17     1
+#else
+#    define UTILS4CPP_HAS_CPP17     0
+#endif
+
+#if UTILS4CPP_CPLUSPLUS > 201103L
+#    define UTILS4CPP_HAS_CPP14     1
+#else
+#    define UTILS4CPP_HAS_CPP14     0
+#endif
+
+#if UTILS4CPP_CPLUSPLUS > 199711L
+#    define UTILS4CPP_HAS_CPP11     1
+#else
+#    define UTILS4CPP_HAS_CPP11     0
+#endif
+
+#if !UTILS4CPP_HAS_CPP11
+#   error "utils4cpp requires enabled c++11 support."
+#endif
+
+#endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
