@@ -34,6 +34,8 @@
 #ifndef UTILS4CPP_DATETIME_TIME_HPP
 #define UTILS4CPP_DATETIME_TIME_HPP
 
+#include <cstdint>
+
 #include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
@@ -41,41 +43,48 @@ namespace datetime {
 
 class UTILS4CPP_EXPORT Time
 {
-    struct tms
-    {
-        int hour;       //!< hours since midnight - [0, 23]
-        int min;        //!< minutes after the hour - [0, 59]
-        int sec;        //!< seconds after the minute - [0, 60], including leap second
-        int msec;       //!< milliseconds sfter the second - [0, 999]
-        int isdst;      //!< daylight savings time flag. The value is positive if DST is in effect, zero if not and negative if no information is available
-    };
-    tms m_tm;
+    using milliseconds_t = std::int32_t;
 
 public:
     Time();
+    Time(milliseconds_t msecs, int dst = -1);
     Time(int h, int m, int s, int ms = 0, int dst = -1);
+
+    bool isNull() const;
+    bool isValid() const;
+    static bool isValid(milliseconds_t msecs);
+    static bool isValid(int h, int m, int s, int ms = 0);
 
     int hour() const;
     int minute() const;
     int second() const;
     int msec() const;
-
-    bool isValid();
-
     bool setTime(int h, int m, int s, int ms = 0, int dst = -1);
+
+    Time addSecs(int secs) const;
+    int secsTo(const Time& t) const;
+    Time addMSecs(milliseconds_t ms) const;
+    int msecsTo(const Time& t) const;
+
+    bool operator==(const Time& other) const;
+    bool operator!=(const Time& other) const;
+    bool operator< (const Time& other) const;
+    bool operator<=(const Time& other) const;
+    bool operator> (const Time& other) const;
+    bool operator>=(const Time& other) const;
+    bool isDstFlagEqual(const Time& other) const;
+
+    static Time fromMilliseconds(milliseconds_t ms, int dst = -1);
+    milliseconds_t toMilliseconds() const;
 
     static Time currentLocalTime();
     static Time currentGmTime();
 
-    static bool isValid(int h, int m, int s, int ms = 0);
-
 private:
-    void makeInvalid();
+    enum { NullTime = -1 };
 
-    // int m_hour;
-    // int m_min;
-    // int m_sec;
-    // int m_msec;
+    milliseconds_t  m_msecs;
+    int             m_isdst;
 };
 
 } // namespace datetime

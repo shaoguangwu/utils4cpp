@@ -51,17 +51,18 @@ enum {
     MSECS_PER_DAY   = 86400000,
     SECS_PER_HOUR   = 3600,
     MSECS_PER_HOUR  = 3600000,
-    SECS_PER_MIN    = 60
+    SECS_PER_MIN    = 60,
+    MSECS_PER_MIN   = 60000
 };
 
-void Time::makeInvalid()
+Time::Time()
+    : m_msecs(NullTime), m_isdst(-1)
 {
-    std::memset(&m_tm, -1, sizeof(m_tm));
 }
 
-Time::Time()
+Time::Time(milliseconds_t msecs, int dst)
+    : m_msecs(msecs), m_isdst(dst)
 {
-    makeInvalid();
 }
 
 Time::Time(int h, int m, int s, int ms, int dst)
@@ -69,45 +70,150 @@ Time::Time(int h, int m, int s, int ms, int dst)
     setTime(h, m, s, ms, dst);
 }
 
+bool Time::isNull() const
+{
+    return m_msecs == NullTime;
+}
+
+bool Time::isValid() const
+{
+    return isValid(m_msecs);
+}
+
+bool Time::isValid(milliseconds_t msecs)
+{
+    return msecs >= 0 && msecs < MSECS_PER_DAY;
+}
+
+bool Time::isValid(int h, int m, int s, int ms)
+{
+    return (unsigned int)h < 24 && (unsigned int)m < 60 && (unsigned int)s < 60 && (unsigned int)ms < 1000;
+}
+
 int Time::hour() const
 {
-    return m_tm.hour;
+    if (!isValid())
+        return -1;
+
+    return m_msecs / MSECS_PER_HOUR;
 }
 
 int Time::minute() const
 {
-    return m_tm.min;
+    if (!isValid())
+        return -1;
+
+    return (m_msecs % MSECS_PER_HOUR) / MSECS_PER_MIN;
 }
 
 int Time::second() const
 {
-    return m_tm.sec;
+    if (!isValid())
+        return -1;
+
+    return (m_msecs / 1000) % SECS_PER_MIN;
 }
 
 int Time::msec() const
 {
-    return m_tm.msec;
-}
+    if (!isValid())
+        return -1;
 
-bool Time::isValid()
-{
-    return isValid(m_tm.hour, m_tm.min, m_tm.sec, m_tm.msec);
+    return m_msecs % 1000;
 }
 
 bool Time::setTime(int h, int m, int s, int ms, int dst)
 {
-    if (!isValid(h,m,s,ms)) {
-        makeInvalid();
+    m_isdst = dst;
+    if (!isValid(h, m, s, ms)) {
+        m_msecs = NullTime;    // make this invalid
         return false;
     }
-
-    m_tm.hour = h;
-    m_tm.min = m;
-    m_tm.sec = s;
-    m_tm.msec = ms;
-    m_tm.isdst = dst;
-
+    m_msecs = (h * SECS_PER_HOUR + m * SECS_PER_MIN + s) * 1000 + ms;
     return true;
+}
+
+Time Time::addSecs(int secs) const
+{
+    secs %= SECS_PER_DAY;
+    return addMSecs(secs * 1000);
+}
+int Time::secsTo(const Time& t) const
+{
+    if (!isValid() || !t.isValid())
+        return 0;
+
+    // Truncate milliseconds as we do not want to consider them.
+    return (t.toMilliseconds() / 1000) - (toMilliseconds() / 1000);
+}
+Time Time::addMSecs(milliseconds_t ms) const
+{
+    Time result;
+    if (isValid()) {
+        if (ms < 0) {
+            // %,/ not well-defined for -ve, so always work with +ve.
+            int negdays = (MSECS_PER_DAY - ms) / MSECS_PER_DAY;
+            result.m_msecs = (toMilliseconds() + ms + negdays * MSECS_PER_DAY) % MSECS_PER_DAY;
+        } else {
+            result.m_msecs = (toMilliseconds() + ms) % MSECS_PER_DAY;
+        }
+    }
+    return result;
+}
+int Time::msecsTo(const Time& t) const
+{
+    if (!isValid() || !t.isValid())
+        return 0;
+    return t.toMilliseconds() - toMilliseconds();
+}
+
+bool Time::operator==(const Time& other) const
+{
+    return m_msecs == other.m_msecs;
+}
+
+bool Time::operator!=(const Time& other) const
+{
+    return m_msecs != other.m_msecs;
+}
+bool Time::operator< (const Time& other) const
+{
+    return m_msecs < other.m_msecs;
+}
+bool Time::operator<=(const Time& other) const
+{
+    return m_msecs <= other.m_msecs;
+}
+bool Time::operator> (const Time& other) const
+{
+    return m_msecs > other.m_msecs;
+}
+bool Time::operator>=(const Time& other) const
+{
+    return m_msecs >= other.m_msecs;
+}
+
+bool Time::isDstFlagEqual(const Time& other) const
+{
+    if (m_isdst < 0) {
+        return other.m_isdst < 0;
+    } 
+    else if (m_isdst == 0) {
+        return other.m_isdst == 0;
+    }
+    else {
+        return other.m_isdst > 0;
+    }
+}
+
+Time Time::fromMilliseconds(milliseconds_t ms, int dst)
+{
+    return Time(ms, dst);
+}
+
+inline Time::milliseconds_t Time::toMilliseconds() const
+{
+    return m_msecs == NullTime ? 0 : m_msecs;
 }
 
 Time Time::currentLocalTime()
@@ -124,7 +230,7 @@ Time Time::currentLocalTime()
     tm = *std::localtime(&tb.time);
 #endif
 
-    return {tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag};
+    return { tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag };
 }
 
 Time Time::currentGmTime()
@@ -141,12 +247,7 @@ Time Time::currentGmTime()
     tm = *std::gmtime(&tb.time);
 #endif
 
-    return {tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm};
-}
-
-bool Time::isValid(int h, int m, int s, int ms)
-{
-    return (unsigned int)h < 24 && (unsigned int)m < 60 && (unsigned int)s < 60 && (unsigned int)ms < 1000;
+    return { tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag };
 }
 
 
