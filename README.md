@@ -1,6 +1,6 @@
 # utils4cpp
 
-![avatar](./doc/logo/utils4cpp.svg)
+![avatar](./doc/logo/utils4cpp.png)
 
 [![license](https://img.shields.io/badge/license-BSD%203--Clause-blue)](LICENSE)
 
