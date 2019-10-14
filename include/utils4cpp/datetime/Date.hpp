@@ -39,6 +39,7 @@
 #include <iostream>
 
 #include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/datetime/DateTimeGlobal.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -64,6 +65,8 @@ class UTILS4CPP_EXPORT Date
         int isdst;              //!< daylight savings time flag. The value is positive if DST is in effect, zero if not and negative if no information is available.
     };
     dt m_dt;
+
+public:
 
 public:
     Date();
@@ -95,6 +98,9 @@ public:
     Date addYears(int years) const;
 	
 	std::string toString(const char* format);
+    std::wstring toWString(const wchar_t* format);
+    std::string toString(DateFormat format = TextDate) const;
+    std::wstring toWString(DateFormat format = TextDate) const;
 
     bool operator==(const Date& other) const;
     bool operator!=(const Date& other) const;
@@ -102,6 +108,7 @@ public:
     bool operator<=(const Date& other) const;
     bool operator> (const Date& other) const;
     bool operator>=(const Date& other) const;
+    bool isDstFlagSameTo(const Date& other) const;
 
     static bool is31Days(int month);
     static bool is30Days(int month);
@@ -115,7 +122,7 @@ public:
     static Date currentLocalDate();
     static Date currentGmDate();
 
-    friend std::ostream& operator<<(std::ostream& os, const Date& date);
+    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& os, const Date& date);
 private:
     void makeInvalid();
 

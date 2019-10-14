@@ -33,6 +33,7 @@
 
 #include <time.h>
 
+#include <cwchar>
 #include <cstring>
 #include <iomanip>
 
@@ -447,10 +448,11 @@ Date Date::addDays(std::int64_t days) const
     the format of the result string.
 
     These expressions can refer to std::strftime.
-	The URL is: https://zh.cppreference.com/w/cpp/chrono/c/strftime
+	see https://en.cppreference.com/w/cpp/chrono/c/strftime
 
 	\note The result is 1024 character limits.
 */
+#include <iomanip>
 std::string Date::toString(const char* format)
 {
 	std::size_t buff_size = 1024; 
@@ -461,10 +463,33 @@ std::string Date::toString(const char* format)
 	tm.tm_year = m_dt.year - 1900;
 	tm.tm_mon = m_dt.mon - 1;
 	tm.tm_mday = m_dt.mday;
-	
 	std::strftime(&result.front(), buff_size, format, &tm);
 	
 	return result;
+}
+
+/*!
+    Returns the date as a wide string. The \a format parameter determines
+    the format of the result string.
+
+    These expressions can refer to std::strftime.
+    see https://en.cppreference.com/w/cpp/chrono/c/wcsftime
+
+    \note The result is 1024 character limits.
+*/
+std::wstring Date::toWString(const wchar_t* format)
+{
+    std::size_t buff_size = 1024;
+    std::wstring result;
+    result.resize(buff_size);
+
+    std::tm tm{ 0 };
+    tm.tm_year = m_dt.year - 1900;
+    tm.tm_mon = m_dt.mon - 1;
+    tm.tm_mday = m_dt.mday;
+    std::wcsftime(&result.front(), buff_size, format, &tm);
+
+    return result;
 }
 
 /*!
@@ -643,6 +668,23 @@ bool Date::operator>=(const Date& other) const
 }
 
 /*!
+    Returns \c true if daylight savings time flag is same to \a other's daylight savings time flag,
+    otherwise returns \c false.
+
+    \sa dst()
+*/
+bool Date::isDstFlagSameTo(const Date& other) const
+{
+    if (m_dt.isdst < 0) {
+        return other.dst() < 0;
+    } else if (m_dt.isdst == 0) {
+        return other.dst() == 0;
+    } else {
+        return other.dst() > 0;
+    }
+}
+
+/*!
     Returns \c true if this month \a m has 31 days;
     otherwise returns \c false.
 */
@@ -811,7 +853,7 @@ Date Date::currentGmDate()
     Writes the date to stream \a out.
     \relates Date
 */
-std::ostream& operator<<(std::ostream& out, const Date& date)
+UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Date& date)
 {
     out << "Date(\""
         << std::setw(4) << std::setfill('0') << date.year() << "-"

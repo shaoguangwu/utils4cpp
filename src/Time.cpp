@@ -35,6 +35,7 @@
 
 #include <ctime>
 #include <cstring>
+#include <cstdio>
 
 #ifdef UTILS4CPP_OS_UNIX
 #   include <sys/time.h>
@@ -167,6 +168,48 @@ int Time::msecsTo(const Time& t) const
     return t.toMilliseconds() - toMilliseconds();
 }
 
+std::string Time::toString(const char* format) const
+{
+    std::size_t buff_size = 1024;
+    std::string result;
+    result.resize(buff_size);
+
+    std::tm tm{ 0 };
+    tm.tm_hour = hour();
+    tm.tm_min = minute();
+    tm.tm_sec = second();
+    tm.tm_isdst = m_isdst;
+    std::strftime(&result.front(), buff_size, format, &tm);
+
+    return result;
+}
+
+std::wstring Time::toWString(const wchar_t* format) const
+{
+    std::size_t buff_size = 1024;
+    std::wstring result;
+    result.resize(buff_size);
+
+    std::tm tm{ 0 };
+    tm.tm_hour = hour();
+    tm.tm_min = minute();
+    tm.tm_sec = second();
+    tm.tm_isdst = m_isdst;
+    std::wcsftime(&result.front(), buff_size, format, &tm);
+
+    return result;
+}
+
+std::string Time::sprintfTime(const char* format) const
+{
+    
+}
+
+std::wstring Time::sprintfTime(const wchar_t* format) const
+{
+
+}
+
 bool Time::operator==(const Time& other) const
 {
     return m_msecs == other.m_msecs;
@@ -193,6 +236,12 @@ bool Time::operator>=(const Time& other) const
     return m_msecs >= other.m_msecs;
 }
 
+/*!
+    Returns \c true if daylight savings time flag is same to \a other's daylight savings time flag,
+    otherwise returns \c false.
+
+    \sa dst()
+*/
 bool Time::isDstFlagEqual(const Time& other) const
 {
     if (m_isdst < 0) {

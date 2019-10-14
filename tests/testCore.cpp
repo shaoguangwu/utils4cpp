@@ -1,4 +1,4 @@
-/************************************************************************************
+﻿/************************************************************************************
 **
 **  BSD 3-Clause License
 **
@@ -31,26 +31,15 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_HPP
-#define UTILS4CPP_CORE_EXPORT_HPP
+#include <iostream>
 
-#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-#   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
-#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
-#           define UTILS4CPP_EXPORT __declspec(dllexport)
-#       else                        /* import */
-#           define UTILS4CPP_EXPORT __declspec(dllimport)
-#       endif
-#   endif
-#endif
+#include <utils4cpp/core/Core.hpp>
 
-#ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT
-#endif
+int main()
+{
+    // utils4cpp library version
+    std::cout << "utils4cpp library version : " << UTILS4CPP_VERSION_STR << std::endl;
+    std::wcout << "utils4cpp library version (wide) : " << UTILS4CPP_VERSION_WSTR << std::endl;
 
-/*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
-*/
-
-#endif // UTILS4CPP_CORE_EXPORT_HPP
+    return 0;
+}

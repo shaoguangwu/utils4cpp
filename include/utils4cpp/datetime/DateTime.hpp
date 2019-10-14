@@ -31,26 +31,21 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_HPP
-#define UTILS4CPP_CORE_EXPORT_HPP
+#ifndef UTILS4CPP_DATETIME_DATETIME_HPP
+#define UTILS4CPP_DATETIME_DATETIME_HPP
 
-#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-#   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
-#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
-#           define UTILS4CPP_EXPORT __declspec(dllexport)
-#       else                        /* import */
-#           define UTILS4CPP_EXPORT __declspec(dllimport)
-#       endif
-#   endif
-#endif
+#include <cstdint>
+#include <string>
 
-#ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT
-#endif
+#include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/datetime/DateTimeGlobal.hpp"
 
-/*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
-*/
+namespace utils4cpp {
+namespace datetime {
 
-#endif // UTILS4CPP_CORE_EXPORT_HPP
+
+
+} // namespace datetime
+} // namespace utils4cpp
+
+#endif // UTILS4CPP_DATETIME_DATETIME_HPP

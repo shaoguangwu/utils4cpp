@@ -31,26 +31,27 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_HPP
-#define UTILS4CPP_CORE_EXPORT_HPP
+#ifndef UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
+#define UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
 
-#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-#   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
-#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
-#           define UTILS4CPP_EXPORT __declspec(dllexport)
-#       else                        /* import */
-#           define UTILS4CPP_EXPORT __declspec(dllimport)
-#       endif
-#   endif
-#endif
+namespace utils4cpp {
+namespace datetime {
 
-#ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT
-#endif
+enum DateFormat {
+    TextDate,                       // default utils4cpp
+    ISODate,                        // ISO 8601
+    SystemLocaleDate,               // deprecated
+    LocalDate = SystemLocaleDate,   // deprecated
+    LocaleDate,                     // deprecated
+    SystemLocaleShortDate,
+    SystemLocaleLongDate,
+    DefaultLocaleShortDate,
+    DefaultLocaleLongDate,
+    RFC2822Date,                    // RFC 2822 (+ 850 and 1036 during parsing)
+    ISODateWithMs
+};
 
-/*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
-*/
+} // namespace datetime
+} // namespace utils4cpp
 
-#endif // UTILS4CPP_CORE_EXPORT_HPP
+#endif // UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP

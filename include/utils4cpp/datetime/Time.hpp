@@ -35,8 +35,10 @@
 #define UTILS4CPP_DATETIME_TIME_HPP
 
 #include <cstdint>
+#include <string>
 
 #include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/datetime/DateTimeGlobal.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -65,6 +67,11 @@ public:
     int secsTo(const Time& t) const;
     Time addMSecs(milliseconds_t ms) const;
     int msecsTo(const Time& t) const;
+
+    std::string toString(const char* format) const;
+    std::wstring toWString(const wchar_t* format) const;
+    std::string sprintfTime(const char* format) const;
+    std::wstring sprintfTime(const wchar_t* format) const;
 
     bool operator==(const Time& other) const;
     bool operator!=(const Time& other) const;

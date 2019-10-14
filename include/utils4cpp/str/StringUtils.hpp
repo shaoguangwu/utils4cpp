@@ -196,6 +196,9 @@ template<typename ... Args>
 std::string formatString(const std::string& format, Args ... args)
 {
     auto size = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    if (size <= 0) {
+        return std::string();
+    }
     std::unique_ptr<char[]> buf(new char[size]);
     std::snprintf(buf.get(), size, format.c_str(), args ...);
     return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
@@ -211,6 +214,9 @@ template<typename ... Args>
 std::wstring formatString(const std::wstring& format, Args ... args)
 {
     auto size = std::swprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    if (size <= 0) {
+        return std::wstring();
+    }
     std::unique_ptr<wchar_t[]> buf(new wchar_t[size]);
     std::swprintf(buf.get(), size, format.c_str(), args ...);
     return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside

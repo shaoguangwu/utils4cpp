@@ -1,4 +1,4 @@
-/************************************************************************************
+﻿/************************************************************************************
 **
 **  BSD 3-Clause License
 **
@@ -31,26 +31,19 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_HPP
-#define UTILS4CPP_CORE_EXPORT_HPP
+#include <iostream>
+#include <utils4cpp/datetime/Date.hpp>
+#include <utils4cpp/datetime/Time.hpp>
 
-#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-#   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
-#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
-#           define UTILS4CPP_EXPORT __declspec(dllexport)
-#       else                        /* import */
-#           define UTILS4CPP_EXPORT __declspec(dllimport)
-#       endif
-#   endif
-#endif
+#pragma comment(lib, "utils4cppd.lib")
 
-#ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT
-#endif
+int main(int argc, char** argv)
+{
+    utils4cpp::datetime::Date d = utils4cpp::datetime::Date::currentLocalDate();
+    std::string str = d.toString("%F");
+    std::wstring wstr = d.toWString(L"%F");
 
-/*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
-*/
+    std::cout << d << std::endl;
 
-#endif // UTILS4CPP_CORE_EXPORT_HPP
+    return 0;
+}
