@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['elapsed_5ftime_5ffloating_5ft',['elapsed_time_floating_t',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#afdc63c01104917cb21b6b975f0e89e42',1,'utils4cpp::datetime::ElapsedTimer']]]
+  ['chrono_5fclock_5ftype',['chrono_clock_type',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#a73364bddddf9676d9287c2653a6781a1',1,'utils4cpp::datetime::ElapsedTimer']]],
+  ['chrono_5fdays',['chrono_days',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#a24dfe1b0c30594c7b08dfa990cffccc3',1,'utils4cpp::datetime::ElapsedTimer']]]
 ];
