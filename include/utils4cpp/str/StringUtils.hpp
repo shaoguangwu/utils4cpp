@@ -43,9 +43,7 @@
 namespace utils4cpp {
 namespace str {
 
-/*!
-    \enum Indicates case sensitive or not.
-*/
+/*! Indicates case sensitive or not. */
 enum CaseSensitivity {
     CaseInsensitive,                ///< Case insensitive.  (no)
     CaseSensitive                   ///< Case sensitive.    (yes)
@@ -108,7 +106,8 @@ std::wstring formatString(const std::wstring& format, Args ... args);
 
 
 
-/*!
+/*! 
+    \fn template<typename DstT, class StringT> DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
     Interprets an integer value in the string \a str.
 
     \param str the string to convert.

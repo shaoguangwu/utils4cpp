@@ -48,4 +48,9 @@
 #   define UTILS4CPP_EXPORT
 #endif
 
+/*!
+    \def UTILS4CPP_EXPORT
+    The export symbol for utils4cpp library.
+*/
+
 #endif // UTILS4CPP_CORE_EXPORT_HPP

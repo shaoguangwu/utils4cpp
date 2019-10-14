@@ -97,6 +97,8 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, ch
 }
 
 /*!
+    \fn std::vector<std::string> splitString(const std::string& str, const std::string& delim)
+    
     Splits this string (\a str) with delimiter (\a delim).
 
     \note

@@ -34,22 +34,32 @@
 #ifndef UTILS4CPP_CORE_VERSION_HPP
 #define UTILS4CPP_CORE_VERSION_HPP
 
+/*! The major version of utils4cpp library. */
 #define UTILS4CPP_VERSION_MAJOR         0
+/*! The minor version of utils4cpp library. */
 #define UTILS4CPP_VERSION_MINOR         0
+/*! The revision of utils4cpp library. */
 #define UTILS4CPP_VERSION_REVISION      0
+/*! The build status of utils4cpp library. */
 #define UTILS4CPP_VERSION_STATUS        "Alpha"
 
+/*! Transform expression \a __A to string format. */
 #define UTILS4CPP_AUX_STR_EXP(__A)      #__A
+/*! Transform \a __A to string format. */
 #define UTILS4CPP_AUX_STR(__A)          UTILS4CPP_AUX_STR_EXP(__A)
 
+/*! Transform expression \a __A to wide string format. */
 #define UTILS4CPP_AUX_WSTR_EXP(__A)     L ## #__A
+/*! Transform \a __A to wide string format. */
 #define UTILS4CPP_AUX_WSTR(__A)         UTILS4CPP_AUX_WSTR_EXP(__A)
 
+/*! The version of utils4cpp library in string format. */
 #define UTILS4CPP_VERSION_STR           UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_MAJOR) "."      \
                                         UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_MINOR) "."      \
                                         UTILS4CPP_AUX_STR(UTILS4CPP_VERSION_REVISION) " "   \
                                         UTILS4CPP_VERSION_STATUS
 
+/*! The version of utils4cpp library in wide string format. */
 #define UTILS4CPP_VERSION_WSTR          UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_MAJOR) "."     \
                                         UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_MINOR) "."     \
                                         UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_REVISION) " "  \

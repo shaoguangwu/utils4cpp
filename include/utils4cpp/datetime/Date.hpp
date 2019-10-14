@@ -67,7 +67,7 @@ class UTILS4CPP_EXPORT Date
 
 public:
     Date();
-    Date(int y, int m, int d, int isdst = -1);
+    Date(int y, int m, int d, int dst = -1);
     Date(const std::tm& tm);
 
     int year() const;

@@ -37,6 +37,18 @@ namespace utils4cpp {
 namespace datetime {
 
 /*!
+    \var ElapsedTimer::chrono_clock_type
+
+    The type of std::chrono clock.
+*/
+
+/*!
+    \var ElapsedTimer::chrono_days
+
+    std::chrono::days defines in c++20 standard, define it before that.
+*/
+
+/*!
     \var ElapsedTimer::elapsed_time_floating_t
 
     The floating type of elapsed time.

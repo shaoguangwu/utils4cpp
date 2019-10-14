@@ -139,7 +139,10 @@ Date::Date()
     If the specified date is invalid, the date is set to default 
     invalid date and isValid() returns \c false.
 
-    \param isdst Daylight Saving Time flag. The value is positive if DST is in effect, 
+    \param y year
+    \param m month
+    \param d day
+    \param dst Daylight saving time flag. The value is positive if DST is in effect, 
                  zero if not and negative if no information is available
 
     \warning Years 1 to 99 are interpreted as is. Year 0 is invalid.
@@ -178,7 +181,6 @@ int Date::year() const
     Returns the number corresponding to the month of this date, using
     the following convention:
 
-    \list
     \li 1 = "January"
     \li 2 = "February"
     \li 3 = "March"
@@ -191,7 +193,6 @@ int Date::year() const
     \li 10 = "October"
     \li 11 = "November"
     \li 12 = "December"
-    \endlist
 
     Returns 0 if the date is invalid.
 
@@ -227,7 +228,15 @@ int Date::dst() const
 /*!
     Returns the weekday (1 = Monday to 7 = Sunday) for this date.
 
-    Returns 0 if the date is invalid.
+    Returns 0 if the date is invalid. Using the following convention:
+
+    \li 1 - "Monday"
+    \li 2 - "Tuesday"
+    \li 3 - "Wednesday"
+    \li 4 - "Thursday"
+    \li 5 - "Friday"
+    \li 6 - "Saturday"
+    \li 7 - "Sunday"
 
     \sa day(), dayOfYear(), Date::DayOfWeek
 */
@@ -562,9 +571,10 @@ void Date::makeInvalid()
     m_dt.isdst = -1;
 }
 
-/*
-    Returns \c true if this date is equal to \a d; otherwise returns
-    false.
+/*!
+    Returns \c true if this date is equal to \a d; otherwise returns \c false.
+
+    \sa operator!=()
 */
 bool Date::operator==(const Date& other) const
 {
@@ -576,6 +586,8 @@ bool Date::operator==(const Date& other) const
 /*!
     Returns \c true if this date is different from \a d; otherwise
     returns \c false.
+
+    \sa operator==()
 */
 bool Date::operator!=(const Date& other) const
 {
@@ -585,8 +597,9 @@ bool Date::operator!=(const Date& other) const
 }
 
 /*!
-    Returns \c true if this date is earlier than \a d; otherwise returns
-    false.
+    Returns \c true if this date is earlier than \a d; otherwise returns \c false.
+
+    \sa operator>(), operator<=()
 */
 bool Date::operator<(const Date& other) const
 {
@@ -596,6 +609,8 @@ bool Date::operator<(const Date& other) const
 /*!
     Returns \c true if this date is earlier than or equal to \a d;
     otherwise returns \c false.
+
+    \sa operator>=(), operator<()
 */
 bool Date::operator<=(const Date& other) const
 {
@@ -605,8 +620,9 @@ bool Date::operator<=(const Date& other) const
 }
 
 /*!
-    Returns \c true if this date is later than \a d; otherwise returns
-    false.
+    Returns \c true if this date is later than \a d; otherwise returns \c false.
+
+    \sa operator>=(), operator<()
 */
 bool Date::operator>(const Date& other) const
 {
@@ -616,6 +632,8 @@ bool Date::operator>(const Date& other) const
 /*!
     Returns \c true if this date is later than or equal to \a d;
     otherwise returns \c false.
+
+    \sa operator>(), operator<=()
 */
 bool Date::operator>=(const Date& other) const
 {
@@ -672,9 +690,9 @@ bool Date::isLeapYear(int y)
     return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
 }
 
-/*
+/*!
     Returns \c true if this date is earlier than Gregorian Calendar(1582.10.04);
-    otherwise returns false.
+    otherwise returns \c false.
 */
 bool Date::beforGregorianCalendar(int year, int month, int day)
 {
@@ -687,9 +705,9 @@ bool Date::beforGregorianCalendar(int year, int month, int day)
     return true;
 }
 
-/*
+/*!
     Returns \c true if this date \a d is earlier than Gregorian Calendar(1582.10.04);
-    otherwise returns false.
+    otherwise returns \c false.
 */
 bool Date::beforGregorianCalendar(const Date& d)
 {
@@ -697,8 +715,7 @@ bool Date::beforGregorianCalendar(const Date& d)
 }
 
 /*!
-    Returns the day of the year (1 to 365 or 366 on leap years) for
-    this date.
+    Returns the day of the year (1 to 365 or 366 on leap years) for this date.
 
     Returns 0 if the date is invalid.
 */
@@ -719,6 +736,15 @@ int Date::dayOfYear(int year, int month, int day)
 
 /*!
     Returns the weekday (1 = Monday to 7 = Sunday) for this date (\a year, \a month, \a day).
+    Using the following convention:
+
+    \li 1 - "Monday"
+    \li 2 - "Tuesday"
+    \li 3 - "Wednesday"
+    \li 4 - "Thursday"
+    \li 5 - "Friday"
+    \li 6 - "Saturday"
+    \li 7 - "Sunday"
 
     Returns 0 if the date is invalid.
 */
@@ -781,13 +807,17 @@ Date Date::currentGmDate()
   Date frriend functions
  *****************************************************************************/
 
-std::ostream& operator<<(std::ostream& os, const Date& date)
+/*!
+    Writes the date to stream \a out.
+    \relates Date
+*/
+std::ostream& operator<<(std::ostream& out, const Date& date)
 {
-    os << "Date(\""
+    out << "Date(\""
         << std::setw(4) << std::setfill('0') << date.year() << "-"
         << std::setw(2) << std::setfill('0') << date.month() << "-"
         << std::setw(2) << std::setfill('0') << date.day() << ")\"";
-    return os;
+    return out;
 }
 
 } // namespace datetime
