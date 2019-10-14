@@ -50,6 +50,12 @@ namespace datetime {
 class UTILS4CPP_EXPORT ElapsedTimer
 {
 public:
+	using chrono_clock_type = std::chrono::high_resolution_clock;
+#if UTILS4CPP_HAS_CPP20
+	using chrono_days = std::chrono::days;
+#else
+	using chrono_days = std::chrono::duration<std::chrono::hours::rep, std::ratio<86400>>;
+#endif
 	using elapsed_time_floating_t = double;
 
 	ElapsedTimer();
@@ -62,6 +68,7 @@ public:
 	std::chrono::seconds::rep elapsedSeconds() const;
 	std::chrono::minutes::rep elapsedMinutes() const;
 	std::chrono::hours::rep elapsedHours() const;
+	chrono_days::rep elapsedDays() const;
 
 	elapsed_time_floating_t elapsedFloating() const;
 	elapsed_time_floating_t elapsedNanosecondsFloating() const;
@@ -70,6 +77,7 @@ public:
 	elapsed_time_floating_t elapsedSecondsFloating() const;
 	elapsed_time_floating_t elapsedMinutesFloating() const;
 	elapsed_time_floating_t elapsedHoursFloating() const;
+	elapsed_time_floating_t elapsedDaysFloating() const;
 
 private:
 	using nanoseconds_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::nanoseconds::period>;
@@ -78,14 +86,9 @@ private:
 	using seconds_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::seconds::period>;
 	using minutes_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::minutes::period>;
 	using hours_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::hours::period>;
+	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, chrono_days::period>;
 
-#if UTILS4CPP_HAS_CPP20
-	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, std::chrono::days::period>;
-#else
-	using days_floating_t = std::chrono::duration<elapsed_time_floating_t, std::ratio<86400>>;
-#endif
-
-    std::chrono::high_resolution_clock::time_point m_tp;
+    chrono_clock_type::time_point m_tp;
 };
 
 } // namespace datetime
