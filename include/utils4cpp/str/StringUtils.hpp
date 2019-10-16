@@ -49,6 +49,12 @@ enum CaseSensitivity {
     CaseSensitive                   ///< Case sensitive.    (yes)
 };
 
+UTILS4CPP_EXPORT std::string removeCharacter(const std::string& str, char ch,  int option = 0);
+UTILS4CPP_EXPORT std::wstring removeCharacter(const std::wstring& str, wchar_t ch, int option = 0);
+
+UTILS4CPP_EXPORT std::string removeSubstr(const std::string& str, const std::string& sub, int option = 0);
+UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::wstring& sub, int option = 0);
+
 UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before, const std::string& after);
 UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after);
 
