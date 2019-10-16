@@ -34,6 +34,10 @@
 #ifndef UTILS4CPP_CORE_EXPORT_HPP
 #define UTILS4CPP_CORE_EXPORT_HPP
 
+/*!
+    \def UTILS4CPP_EXPORT
+    The export symbol for utils4cpp library.
+*/
 #if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
 #   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
 #       ifdef UTILS4CPP_DLL_EXPORT  /* export */
@@ -47,10 +51,5 @@
 #ifndef UTILS4CPP_EXPORT
 #   define UTILS4CPP_EXPORT
 #endif
-
-/*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
-*/
 
 #endif // UTILS4CPP_CORE_EXPORT_HPP

@@ -31,31 +31,31 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
-#define UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
+#ifndef UTILS4CPP_GEOMETRY_GEOMETRYGLOBAL_HPP
+#define UTILS4CPP_GEOMETRY_GEOMETRYGLOBAL_HPP
 
 namespace utils4cpp {
 /*!
-    Date-time libraries.
+    The geometry namespace supports for geometric data structures.
     \since v0.0
 */
-namespace datetime {
+namespace geometry {
 
-enum DateFormat {
-    TextDate,                       // default utils4cpp
-    ISODate,                        // ISO 8601
-    SystemLocaleDate,               // deprecated
-    LocalDate = SystemLocaleDate,   // deprecated
-    LocaleDate,                     // deprecated
-    SystemLocaleShortDate,
-    SystemLocaleLongDate,
-    DefaultLocaleShortDate,
-    DefaultLocaleLongDate,
-    RFC2822Date,                    // RFC 2822 (+ 850 and 1036 during parsing)
-    ISODateWithMs
+/*! Defines two-dimensional plane coordinate axis. */
+enum Axis2D {
+    Axis2DX = 0,    //!< Two-dimensional plane coordinate axis X.
+    Axis2DY = 1     //!< Two-dimensional plane coordinate axis Y.
 };
 
-} // namespace datetime
+/*! Defines three-dimensional space coordinate axis. */
+enum Axis3D {
+    Axis3DX = 0,    //!< Three-dimensional space Space coordinate axis X.
+    Axis3DY = 1,    //!< Three-dimensional space coordinate axis Y.
+    Axis3DZ = 2     //!< Three-dimensional space coordinate axis Z.
+};
+
+} // namespace geometry
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
+
+#endif // UTILS4CPP_GEOMETRY_GEOMETRYGLOBAL_HPP

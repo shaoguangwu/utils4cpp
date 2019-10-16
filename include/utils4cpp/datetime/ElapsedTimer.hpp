@@ -43,7 +43,7 @@ namespace datetime {
 
 /*!
 	\class ElapsedTimer
-    \since 0.0
+    \since v0.0
 
 	\brief Defines a elapsed timer.
 */

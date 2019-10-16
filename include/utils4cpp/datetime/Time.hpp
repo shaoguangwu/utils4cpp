@@ -43,6 +43,12 @@
 namespace utils4cpp {
 namespace datetime {
 
+/*!
+	\class Time
+    \since v0.0
+
+	\brief Defines a Time class.
+*/
 class UTILS4CPP_EXPORT Time
 {
     using milliseconds_t = std::int32_t;

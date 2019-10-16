@@ -46,15 +46,13 @@ namespace datetime {
 
 /*!
     \class Date
-    \since 0.0
+    \since v0.0
 
     \brief The Date class provides date functions.
 */
 class UTILS4CPP_EXPORT Date
 {
-    /*!
-        Structure holding a calendar date broken down into its components.
-    */
+    /*! Structure holding a calendar date broken down into its components. */
     struct dt 
     {
         int mday;               //!< day of the month - [1, 31]
