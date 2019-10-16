@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['testmain_2ecpp',['testMain.cpp',['../test_main_8cpp.html',1,'']]],
-  ['testversion_2ecpp',['testVersion.cpp',['../test_version_8cpp.html',1,'']]],
-  ['time_2ecpp',['Time.cpp',['../_time_8cpp.html',1,'']]],
-  ['time_2ehpp',['Time.hpp',['../_time_8hpp.html',1,'']]]
+  ['size_2ehpp',['Size.hpp',['../_size_8hpp.html',1,'']]],
+  ['stringtonumber_2ehpp',['StringToNumber.hpp',['../_string_to_number_8hpp.html',1,'']]],
+  ['stringutils_2ecpp',['StringUtils.cpp',['../_string_utils_8cpp.html',1,'']]],
+  ['stringutils_2ehpp',['StringUtils.hpp',['../_string_utils_8hpp.html',1,'']]],
+  ['systemdetection_2ehpp',['SystemDetection.hpp',['../_system_detection_8hpp.html',1,'']]]
 ];

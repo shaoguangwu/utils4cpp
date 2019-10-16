@@ -36,7 +36,7 @@
 
 namespace utils4cpp {
 /*!
-    The geometry namespace supports for geometric data structures.
+    \brief The geometry namespace supports for geometric data structures.
     \since v0.0
 */
 namespace geometry {

@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['version_2ehpp',['Version.hpp',['../_version_8hpp.html',1,'']]]
+  ['datetime',['datetime',['../namespaceutils4cpp_1_1datetime.html',1,'utils4cpp']]],
+  ['geometry',['geometry',['../namespaceutils4cpp_1_1geometry.html',1,'utils4cpp']]],
+  ['internal',['internal',['../namespaceutils4cpp_1_1str_1_1internal.html',1,'utils4cpp::str']]],
+  ['utils4cpp',['utils4cpp',['../md__c_1__users__shaoguang__documents__git_hub_utils4cpp__r_e_a_d_m_e.html',1,'']]],
+  ['utils4cpp',['utils4cpp',['../md__c_1__users__shaoguang__documents__git_hub_utils4cpp__r_e_a_d_m_e_en.html',1,'']]],
+  ['str',['str',['../namespaceutils4cpp_1_1str.html',1,'utils4cpp']]],
+  ['uncapitalizedwords',['uncapitalizedWords',['../namespaceutils4cpp_1_1str.html#a6f90033ab5bc58bae520505b2cd5b97e',1,'utils4cpp::str::uncapitalizedWords(const std::string &amp;str)'],['../namespaceutils4cpp_1_1str.html#a0f9ff2a50f788ec6d777148fe774c096',1,'utils4cpp::str::uncapitalizedWords(const std::wstring &amp;str)']]],
+  ['utils4cpp',['utils4cpp',['../namespaceutils4cpp.html',1,'']]],
+  ['utils4cpp_5faux_5fstr',['UTILS4CPP_AUX_STR',['../_version_8hpp.html#ab85c555d8617dfa70630f897e5db4b93',1,'Version.hpp']]],
+  ['utils4cpp_5faux_5fstr_5fexp',['UTILS4CPP_AUX_STR_EXP',['../_version_8hpp.html#af806a875b8ef4d288eec973ee6edf2fb',1,'Version.hpp']]],
+  ['utils4cpp_5faux_5fwstr',['UTILS4CPP_AUX_WSTR',['../_version_8hpp.html#ae8c141eb446e63b8a3ade1ddcf21c253',1,'Version.hpp']]],
+  ['utils4cpp_5faux_5fwstr_5fexp',['UTILS4CPP_AUX_WSTR_EXP',['../_version_8hpp.html#a4df67785e3298e7029e813160a8e5bfe',1,'Version.hpp']]],
+  ['utils4cpp_5fcplusplus',['UTILS4CPP_CPLUSPLUS',['../_cpp_standard_detection_8hpp.html#aed5b88733c57d3a542c316052b17d04d',1,'CppStandardDetection.hpp']]],
+  ['utils4cpp_5fexport',['UTILS4CPP_EXPORT',['../_export_8hpp.html#a3de7a0e6dfff562cc57477738686aed8',1,'Export.hpp']]],
+  ['utils4cpp_5fhas_5fcpp11',['UTILS4CPP_HAS_CPP11',['../_cpp_standard_detection_8hpp.html#a039707a05fcd39c04c42994e6e3755a5',1,'CppStandardDetection.hpp']]],
+  ['utils4cpp_5fhas_5fcpp14',['UTILS4CPP_HAS_CPP14',['../_cpp_standard_detection_8hpp.html#aec039a9f00f000be41de35ef7241c800',1,'CppStandardDetection.hpp']]],
+  ['utils4cpp_5fhas_5fcpp17',['UTILS4CPP_HAS_CPP17',['../_cpp_standard_detection_8hpp.html#aa8a1596d182425e9a34dbba62036dcb7',1,'CppStandardDetection.hpp']]],
+  ['utils4cpp_5fhas_5fcpp20',['UTILS4CPP_HAS_CPP20',['../_cpp_standard_detection_8hpp.html#ab14b72d251837cc94a1565b4d869e64c',1,'CppStandardDetection.hpp']]],
+  ['utils4cpp_5fos_5funix',['UTILS4CPP_OS_UNIX',['../_system_detection_8hpp.html#ad3f01c8fd31adf6cac6f5218e4e25135',1,'SystemDetection.hpp']]],
+  ['utils4cpp_5fversion_5fmajor',['UTILS4CPP_VERSION_MAJOR',['../_version_8hpp.html#ace27e16b11fcf1bc63840993177a391a',1,'Version.hpp']]],
+  ['utils4cpp_5fversion_5fminor',['UTILS4CPP_VERSION_MINOR',['../_version_8hpp.html#ad49165ed092731543797b3ef24718084',1,'Version.hpp']]],
+  ['utils4cpp_5fversion_5frevision',['UTILS4CPP_VERSION_REVISION',['../_version_8hpp.html#a40e20850b7b4ce7ce08828e0b225c9a5',1,'Version.hpp']]],
+  ['utils4cpp_5fversion_5fstatus',['UTILS4CPP_VERSION_STATUS',['../_version_8hpp.html#aecb15ed453284ef9313452aec23a0da7',1,'Version.hpp']]],
+  ['utils4cpp_5fversion_5fstr',['UTILS4CPP_VERSION_STR',['../_version_8hpp.html#aebf1e8b6d5c289856a7a4270d031d825',1,'Version.hpp']]],
+  ['utils4cpp_5fversion_5fwstr',['UTILS4CPP_VERSION_WSTR',['../_version_8hpp.html#aff6e1308c500f1c61a76d7ca2e401e93',1,'Version.hpp']]]
 ];

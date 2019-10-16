@@ -24,13 +24,13 @@ if (edges && edges.length) {
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
                 <g id="zoomPlus">
-                        <use xlink:href="#rim" fill="#404040">
+                        <use xlink:href="#rim" target="_top" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomplus.mouseover" end="zoomplus.mouseout"/>
                         </use>
                         <path d="M-4,0h8M0,-4v8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
                 </g>
                 <g id="zoomMin">
-                        <use xlink:href="#rim" fill="#404040">
+                        <use xlink:href="#rim" target="_top" fill="#404040">
                                 <set attributeName="fill" to="#808080" begin="zoomminus.mouseover" end="zoomminus.mouseout"/>
                         </use>
                         <path d="M-4,0h8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
@@ -39,7 +39,7 @@ if (edges && edges.length) {
                         <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
                <g id="resetDef">
-                       <use xlink:href="#rim2" fill="#404040">
+                       <use xlink:href="#rim2" target="_top" fill="#404040">
                                <set attributeName="fill" to="#808080" begin="reset.mouseover" end="reset.mouseout"/>
                        </use>
                </g>
@@ -50,7 +50,7 @@ var viewWidth = 733;
 var viewHeight = 362;
 var sectionId = 'dynsection-0';
 </script>
-<script xlink:href="svgpan.js"/>
+<script xlink:href="svgpan.js" target="_top"/>
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>C:/Users/Lh/Documents/GitHub/utils4cpp/include/utils4cpp/core/SystemDetection.hpp</title>
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="_core_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="_core_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="366,-234.5 366,-275.5 491,-275.5 491,-234.5 366,-234.5"/>
 <text text-anchor="start" x="374" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="374" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -82,7 +82,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="_date_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="_date_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="0,-156.5 0,-197.5 141,-197.5 141,-156.5 0,-156.5"/>
 <text text-anchor="start" x="8" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="8" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -97,7 +97,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="_elapsed_timer_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="_elapsed_timer_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="159.5,-156.5 159.5,-197.5 339.5,-197.5 339.5,-156.5 159.5,-156.5"/>
 <text text-anchor="start" x="167.5" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="167.5" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -112,7 +112,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="_time_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node7"><a xlink:href="_time_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="357.5,-156.5 357.5,-197.5 499.5,-197.5 499.5,-156.5 357.5,-156.5"/>
 <text text-anchor="start" x="365.5" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="365.5" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -127,7 +127,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="_string_to_number_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="_string_to_number_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="517.5,-156.5 517.5,-197.5 681.5,-197.5 681.5,-156.5 517.5,-156.5"/>
 <text text-anchor="start" x="525.5" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="525.5" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -142,7 +142,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>
-<g id="a_node10"><a xlink:href="_string_utils_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="_string_utils_8hpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="584.5,-78.5 584.5,-119.5 724.5,-119.5 724.5,-78.5 584.5,-78.5"/>
 <text text-anchor="start" x="592.5" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="592.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/include</text>
@@ -157,7 +157,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="_date_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="_date_8cpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="10,-78.5 10,-119.5 131,-119.5 131,-78.5 10,-78.5"/>
 <text text-anchor="start" x="18" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="18" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/src</text>
@@ -172,7 +172,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="_elapsed_timer_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="_elapsed_timer_8cpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="189,-78.5 189,-119.5 310,-119.5 310,-78.5 189,-78.5"/>
 <text text-anchor="start" x="197" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="197" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/src</text>
@@ -187,7 +187,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
-<g id="a_node8"><a xlink:href="_time_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node8"><a xlink:href="_time_8cpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="368,-78.5 368,-119.5 489,-119.5 489,-78.5 368,-78.5"/>
 <text text-anchor="start" x="376" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="376" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/src</text>
@@ -207,7 +207,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node11" class="node"><title>Node11</title>
-<g id="a_node11"><a xlink:href="_string_utils_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node11"><a xlink:href="_string_utils_8cpp.html" target="_top" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="594,-0.5 594,-41.5 715,-41.5 715,-0.5 594,-0.5"/>
 <text text-anchor="start" x="602" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">C:/Users/Lh/Documents</text>
 <text text-anchor="start" x="602" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">/GitHub/utils4cpp/src</text>
@@ -224,29 +224,29 @@ var sectionId = 'dynsection-0';
 </svg>
         <g id="navigator" transform="translate(0 0)" fill="#404254">
                 <rect fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width=".5" x="0" y="0" width="60" height="60"/>
-                <use id="zoomplus" xlink:href="#zoomPlus" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
-                <use id="zoomminus" xlink:href="#zoomMin" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
-                <use id="reset" xlink:href="#resetDef" x="30" y="36" onmousedown="handleReset()"/>
-                <g id="arrowUp" xlink:href="#dirArrow" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
-                  <use xlink:href="#rim" fill="#404040">
+                <use id="zoomplus" xlink:href="#zoomPlus" target="_top" x="17" y="9" onmousedown="handleZoom(evt,'in')"/>
+                <use id="zoomminus" xlink:href="#zoomMin" target="_top" x="42" y="9" onmousedown="handleZoom(evt,'out')"/>
+                <use id="reset" xlink:href="#resetDef" target="_top" x="30" y="36" onmousedown="handleReset()"/>
+                <g id="arrowUp" xlink:href="#dirArrow" target="_top" transform="translate(30 24)" onmousedown="handlePan(0,-1)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowUp.mouseover" end="arrowUp.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowRight" xlink:href="#dirArrow" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowRight" xlink:href="#dirArrow" target="_top" transform="rotate(90) translate(36 -43)" onmousedown="handlePan(1,0)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowRight.mouseover" end="arrowRight.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowDown" xlink:href="#dirArrow" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowDown" xlink:href="#dirArrow" target="_top" transform="rotate(180) translate(-30 -48)" onmousedown="handlePan(0,1)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowDown.mouseover" end="arrowDown.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
                 </g>
-                <g id="arrowLeft" xlink:href="#dirArrow" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
-                  <use xlink:href="#rim" fill="#404040">
+                <g id="arrowLeft" xlink:href="#dirArrow" target="_top" transform="rotate(270) translate(-36 17)" onmousedown="handlePan(-1,0)">
+                  <use xlink:href="#rim" target="_top" fill="#404040">
                         <set attributeName="fill" to="#808080" begin="arrowLeft.mouseover" end="arrowLeft.mouseout"/>
                   </use>
                   <path fill="none" stroke="white" stroke-width="1.5" d="M0,-3.0v7 M-2.5,-0.5L0,-3.0L2.5,-0.5"/>
@@ -254,7 +254,7 @@ var sectionId = 'dynsection-0';
         </g>
         <svg viewBox="0 0 15 15" width="100%" height="30px" preserveAspectRatio="xMaxYMin meet">
          <g id="arrow_out" transform="scale(0.3 0.3)">
-          <a xlink:href="_system_detection_8hpp__dep__incl_org.svg" target="_base">
+          <a xlink:href="_system_detection_8hpp__dep__incl_org.svg" target="_top" target="_base">
            <rect id="button" ry="5" rx="5" y="6" x="6" height="38" width="38"
                 fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width="1.0"/>
            <path id="arrow"

@@ -36,7 +36,7 @@
 
 namespace utils4cpp {
 /*!
-    Date-time libraries.
+    \brief Date-time libraries.
     \since v0.0
 */
 namespace datetime {

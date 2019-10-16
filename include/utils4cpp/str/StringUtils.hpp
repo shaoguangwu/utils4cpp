@@ -41,6 +41,10 @@
 #include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
+/*!
+    \brief String utility library.
+    \since v0.0
+*/
 namespace str {
 
 /*! Indicates case sensitive or not. */
