@@ -6,7 +6,7 @@
 
 [(English Documents Available)](README_en.md)
 
-utils4cpp是一个跨平台的C++工具库，需编译器支持C++11标准.
+utils4cpp是一个跨平台的C++11工具库.
 
 ## Document
 
