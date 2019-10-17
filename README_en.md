@@ -6,7 +6,7 @@
 
 [(Chinese Documents Available)](README.md)
 
-utils4cpp is a C++ utility library.
+utils4cpp is a C++11 utility library.
 
 ## Document
 
