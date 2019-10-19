@@ -31,24 +31,33 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIME_HPP
-#define UTILS4CPP_DATETIME_DATETIME_HPP
+#ifndef UTILS4CPP_STR_STRINGTONUMBER_HPP
+#define UTILS4CPP_STR_STRINGTONUMBER_HPP
+
+#include <string>
+#include <stdexcept>
 
 #include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
-#include "utils4cpp/datetime/Date.hpp"
-#include "utils4cpp/datetime/Time.hpp"
 
 namespace utils4cpp {
-namespace datetime {
+namespace str {
+namespace internal {
 
-class UTILS4CPP_EXPORT DateTime
+template<class StringT, typename NumT>
+[[noreturn]]
+inline NumT stringToNumber(const StringT& str, std::size_t* pos, int base)
 {
-public:
-    DateTime();
+    throw std::invalid_argument("invalid template argument");
 }
 
-} // namespace datetime
+template<class StringT>
+inline short stringToNumber(const StringT& str, std::size_t* pos, int base)
+{
+
+}
+
+} // namespace internal
+} // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATETIME_HPP
+#endif // UTILS4CPP_STR_STRINGTONUMBER_HPP

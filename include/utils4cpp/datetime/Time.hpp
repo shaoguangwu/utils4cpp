@@ -93,11 +93,14 @@ public:
     static Time currentLocalTime();
     static Time currentGmTime();
 
+    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& os, const Time& time);
 private:
     enum { NullTime = -1 };
 
     milliseconds_t  m_msecs;
     int             m_isdst;
+
+    friend class DateTime;
 };
 
 } // namespace datetime

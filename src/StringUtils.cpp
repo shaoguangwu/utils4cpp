@@ -258,9 +258,9 @@ UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& befor
 
     \sa joinString()
 */
-UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, char delim)
+UTILS4CPP_EXPORT StringVector splitString(const std::string& str, char delim)
 {
-    std::vector<std::string> result;
+    StringVector result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
     while (pos != std::string::npos)
@@ -287,9 +287,9 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, ch
 
     \sa joinString()
 */
-UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, const std::string& delim)
+UTILS4CPP_EXPORT StringVector splitString(const std::string& str, const std::string& delim)
 {
-    std::vector<std::string> result;
+    StringVector result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
     while (pos != std::string::npos)
@@ -314,9 +314,9 @@ UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, co
 
     \sa joinString()
 */
-UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim)
+UTILS4CPP_EXPORT WStringVector splitString(const std::wstring& str, wchar_t delim)
 {
-    std::vector<std::wstring> result;
+    WStringVector result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
     while (pos != std::wstring::npos)
@@ -341,9 +341,9 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
 
     \sa joinString()
 */
-UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim)
+UTILS4CPP_EXPORT WStringVector splitString(const std::wstring& str, const std::wstring& delim)
 {
-    std::vector<std::wstring> result;
+    WStringVector result;
     std::size_t beg = 0;
     std::size_t pos = str.find(delim);
     while (pos != std::wstring::npos)
@@ -364,7 +364,7 @@ UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, 
 
     \sa splitString()
 */
-UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, char delim)
+UTILS4CPP_EXPORT std::string joinString(const StringVector& strs, char delim)
 {
     std::string result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it)
@@ -382,7 +382,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, ch
 
     \sa splitString()
 */
-UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, const std::string& delim)
+UTILS4CPP_EXPORT std::string joinString(const StringVector& strs, const std::string& delim)
 {
     std::string result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it)
@@ -400,7 +400,7 @@ UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, co
 
     \sa splitString()
 */
-UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, char delim)
+UTILS4CPP_EXPORT std::wstring joinString(const WStringVector& strs, char delim)
 {
     std::wstring result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it)
@@ -418,7 +418,7 @@ UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, 
 
     \sa splitString()
 */
-UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim)
+UTILS4CPP_EXPORT std::wstring joinString(const WStringVector& strs, const std::wstring& delim)
 {
     std::wstring result;
     for (auto it = strs.cbegin(); it != strs.cend(); ++it)
@@ -599,7 +599,7 @@ UTILS4CPP_EXPORT std::wstring uncapitalizedWords(const std::wstring& str)
 
     \sa toString()
 */
-UTILS4CPP_EXPORT std::wstring toWstring(const std::string& str)
+UTILS4CPP_EXPORT std::wstring toWString(const std::string& str)
 {
     std::setlocale(LC_CTYPE, "");
     std::mbstate_t state = std::mbstate_t();
@@ -610,14 +610,16 @@ UTILS4CPP_EXPORT std::wstring toWstring(const std::string& str)
 #   pragma warning(disable:4996)
 #endif
     auto len = std::mbsrtowcs(nullptr, &mbstr, 0, &state) + 1;
-    wchar_t* wstr = new wchar_t[len];
-    std::mbsrtowcs(wstr, &mbstr, len, &state);
+    if (len <= 1) {
+        return std::wstring();
+    }
+    std::unique_ptr<wchar_t[]> buf(new wchar_t[len]);
+    std::mbsrtowcs(buf.get(), &mbstr, len, &state);
 #ifdef _MSC_VER
 #   pragma warning(pop)
 #endif
 
-    std::wstring result(wstr);
-    delete[] wstr;
+    std::wstring result(buf.get(), len - 1);
     return result;
 }
 
@@ -637,14 +639,17 @@ UTILS4CPP_EXPORT std::string toString(const std::wstring& str)
 #   pragma warning(disable:4996)
 #endif // _MSC_VER
     auto len = std::wcsrtombs(nullptr, &wstr, 0, &state) + 1;
-    char* mbstr = new char[len];
-    std::wcsrtombs(mbstr, &wstr, len, &state);
+    if (len <= 1) {
+        return std::string();
+    }
+    std::unique_ptr<char[]> buf(new char[len]);
+    //char* mbstr = new char[len];
+    std::wcsrtombs(buf.get(), &wstr, len, &state);
 #ifdef _MSC_VER
 #   pragma warning(pop)
 #endif // _MSC_VER
 
-    std::string result(mbstr);
-    delete[] mbstr;
+    std::string result(buf.get(), len - 1);
     return result;
 }
 

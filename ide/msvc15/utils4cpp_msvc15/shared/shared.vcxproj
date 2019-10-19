@@ -26,17 +26,23 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\Matrix.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Date.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTime.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Cuboid.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Point.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Rect.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Size.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringGlobal.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringList.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringToNumber.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringUtils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Date.cpp" />
+    <ClCompile Include="..\..\..\..\src\DateTime.cpp" />
     <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
     <ClCompile Include="..\..\..\..\src\StringUtils.cpp" />
     <ClCompile Include="..\..\..\..\src\Time.cpp" />

@@ -32,8 +32,12 @@
 ************************************************************************************/
 
 #include <iostream>
+#include "utils4cpp/str/StringList.hpp"
 
 int main()
 {
+    utils4cpp::str::StringList list;
+
+
     std::cout << "Hello World!\n"; 
 }

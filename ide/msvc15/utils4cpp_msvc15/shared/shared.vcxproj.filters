@@ -24,6 +24,9 @@
     <Filter Include="include\str">
       <UniqueIdentifier>{ad036e8a-2cdc-4356-ab64-79e0a7d0695a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\filesystem">
+      <UniqueIdentifier>{77707058-add2-4453-bfc4-259b18245c86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Core.hpp">
@@ -71,6 +74,21 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp">
       <Filter>include\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTime.hpp">
+      <Filter>include\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp">
+      <Filter>include\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringList.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringGlobal.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Date.cpp">
@@ -83,6 +101,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Time.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\DateTime.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

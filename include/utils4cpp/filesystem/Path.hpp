@@ -31,24 +31,26 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIME_HPP
-#define UTILS4CPP_DATETIME_DATETIME_HPP
+#ifndef UTILS4CPP_FILESYSTEM_PATH_HPP
+#define UTILS4CPP_FILESYSTEM_PATH_HPP
 
-#include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
-#include "utils4cpp/datetime/Date.hpp"
-#include "utils4cpp/datetime/Time.hpp"
+#include <string>
+#include <vector>
 
-namespace utils4cpp {
-namespace datetime {
-
-class UTILS4CPP_EXPORT DateTime
+class Path
 {
 public:
-    DateTime();
-}
+    using StringVector = std::vector<std::string>;
+    
+    static std::string absolutePath(const std::string& path);
+    static std::string fileName(const std::string& path);
+    static std::string suffix(const std::string& path);
+    static std::string completeSuffix(const std::string& path);
+    static std::string baseName(const std::string& path);
+    static std::string completeBaseName(const std::string& path);
 
-} // namespace datetime
-} // namespace utils4cpp
+    static StringVector splitPath(const std::string& path);
+    static std::string joinPath(const StringVector& paths, char delim);
+};
 
-#endif // UTILS4CPP_DATETIME_DATETIME_HPP
+#endif // UTILS4CPP_FILESYSTEM_PATH_HPP

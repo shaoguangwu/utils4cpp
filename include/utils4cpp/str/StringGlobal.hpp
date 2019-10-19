@@ -31,24 +31,23 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIME_HPP
-#define UTILS4CPP_DATETIME_DATETIME_HPP
+#ifndef UTILS4CPP_STR_STRINGGLOBAL_HPP
+#define UTILS4CPP_STR_STRINGGLOBAL_HPP
+
+#include <string>
 
 #include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
-#include "utils4cpp/datetime/Date.hpp"
-#include "utils4cpp/datetime/Time.hpp"
 
 namespace utils4cpp {
-namespace datetime {
+namespace str {
 
-class UTILS4CPP_EXPORT DateTime
-{
-public:
-    DateTime();
-}
+/*! Indicates case sensitive or not. */
+enum CaseSensitivity {
+    CaseInsensitive,                ///< Case insensitive.  (no)
+    CaseSensitive                   ///< Case sensitive.    (yes)
+};
 
-} // namespace datetime
+} // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATETIME_HPP
+#endif

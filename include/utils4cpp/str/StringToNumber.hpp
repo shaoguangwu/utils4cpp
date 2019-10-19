@@ -44,7 +44,7 @@ namespace str {
 namespace internal {
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::string& str, std::size_t* pos, int base)
+    template<typename NumT> NumT stringToNumber(const std::string& str, std::size_t* pos, int base)
 
     Interprets an integer value in the string str.
     std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -61,9 +61,9 @@ namespace internal {
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]] 
-inline DstT stringToNumber(const std::string& str, std::size_t* pos, int base)
+inline NumT stringToNumber(const std::string& str, std::size_t* pos, int base)
 {
     throw std::invalid_argument("invalid template argument");
 }
@@ -117,7 +117,7 @@ inline unsigned long long stringToNumber(const std::string& str, std::size_t* po
 }
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::string& str, std::size_t* pos)
+    template<typename NumT> NumT stringToNumber(const std::string& str, std::size_t* pos)
 
     Interprets an integer value or a floating point value in the string str.
     std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -136,9 +136,9 @@ inline unsigned long long stringToNumber(const std::string& str, std::size_t* po
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]]
-inline DstT stringToNumber(const std::string& str, std::size_t* pos)
+inline NumT stringToNumber(const std::string& str, std::size_t* pos)
 {
     throw std::invalid_argument("invalid template argument");
 }
@@ -210,7 +210,7 @@ inline long double stringToNumber(const std::string& str, std::size_t* pos)
 }
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::string& str)
+    template<typename NumT> NumT stringToNumber(const std::string& str)
 
     Interprets an integer value or a floating point value in the string str.
     std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -228,9 +228,9 @@ inline long double stringToNumber(const std::string& str, std::size_t* pos)
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]]
-inline DstT stringToNumber(const std::string& str)
+inline NumT stringToNumber(const std::string& str)
 {
     throw std::invalid_argument("invalid template argument");
 }
@@ -304,7 +304,7 @@ inline long double stringToNumber(const std::string& str)
 
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+    template<typename NumT> NumT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
 
     Interprets an integer value in the string str.
     std::wstring ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -321,9 +321,9 @@ inline long double stringToNumber(const std::string& str)
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]] 
-inline DstT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
+inline NumT stringToNumber(const std::wstring& str, std::size_t* pos, int base)
 {
     throw std::invalid_argument("invalid template argument");
 }
@@ -377,7 +377,7 @@ inline unsigned long long stringToNumber(const std::wstring& str, std::size_t* p
 }
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::wstring& str, std::size_t* pos)
+    template<typename NumT> NumT stringToNumber(const std::wstring& str, std::size_t* pos)
 
     Interprets an integer value or a floating point value in the string str.
     std::wstring ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -396,9 +396,9 @@ inline unsigned long long stringToNumber(const std::wstring& str, std::size_t* p
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]]
-inline DstT stringToNumber(const std::wstring& str, std::size_t* pos)
+inline NumT stringToNumber(const std::wstring& str, std::size_t* pos)
 {
     throw std::invalid_argument("invalid template argument");
 }
@@ -470,7 +470,7 @@ inline long double stringToNumber(const std::wstring& str, std::size_t* pos)
 }
 
 /*!
-    template<typename DstT> DstT stringToNumber(const std::string& str)
+    template<typename NumT> NumT stringToNumber(const std::string& str)
 
     Interprets an integer value or a floating point value in the string str.
     std::string ==> short, unsigned short, int unsigned int, long, unsigned long, 
@@ -488,9 +488,9 @@ inline long double stringToNumber(const std::wstring& str, std::size_t* pos)
     \sa std::stoi(), std::stol(), std::stoll(), std::stoul(), std::stoull(), std::stof(), std::stod(), std::stold()
 */
 
-template<typename DstT>
+template<typename NumT>
 [[noreturn]]
-inline DstT stringToNumber(const std::wstring& str)
+inline NumT stringToNumber(const std::wstring& str)
 {
     throw std::invalid_argument("invalid template argument");
 }

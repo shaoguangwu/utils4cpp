@@ -65,8 +65,6 @@ class UTILS4CPP_EXPORT Date
     dt m_dt;
 
 public:
-
-public:
     Date();
     Date(int y, int m, int d, int dst = -1);
     Date(const std::tm& tm);
@@ -120,24 +118,10 @@ public:
     static Date currentLocalDate();
     static Date currentGmDate();
 
-    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& os, const Date& date);
+    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Date& date);
 private:
     void makeInvalid();
-
-    enum Month {
-        Jan = 1,                //!< January
-        Feb,                    //!< February
-        Mar,                    //!< March
-        Apr,                    //!< April
-        May,                    //!< May
-        June,                   //!< June
-        July,                   //!< July
-        Aug,                    //!< August
-        Sept,                   //!< September
-        Oct,                    //!< October
-        Nov,                    //!< November  
-        Dec                     //!< December
-    };
+    friend class DateTime;
 };
 
 } // namespace datetime

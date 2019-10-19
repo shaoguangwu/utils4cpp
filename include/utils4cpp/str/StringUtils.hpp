@@ -34,11 +34,10 @@
 #ifndef UTILS4CPP_STR_STRINGUTILS_HPP
 #define UTILS4CPP_STR_STRINGUTILS_HPP
 
-#include <string>
 #include <vector>
 
 #include "utils4cpp/str/StringToNumber.hpp"
-#include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/str/StringGlobal.hpp"
 
 namespace utils4cpp {
 /*!
@@ -47,11 +46,10 @@ namespace utils4cpp {
 */
 namespace str {
 
-/*! Indicates case sensitive or not. */
-enum CaseSensitivity {
-    CaseInsensitive,                ///< Case insensitive.  (no)
-    CaseSensitive                   ///< Case sensitive.    (yes)
-};
+/*! StringVector is a sequence container that encapsulates strings. */
+using StringVector = std::vector<std::string>; 
+/*! WStringVector is a sequence container that encapsulates wide strings. */
+using WStringVector = std::vector<std::wstring>;
 
 UTILS4CPP_EXPORT std::string removeCharacter(const std::string& str, char ch,  int option = 0);
 UTILS4CPP_EXPORT std::wstring removeCharacter(const std::wstring& str, wchar_t ch, int option = 0);
@@ -62,15 +60,15 @@ UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::w
 UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before, const std::string& after);
 UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after);
 
-UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, char delim);
-UTILS4CPP_EXPORT std::vector<std::string> splitString(const std::string& str, const std::string& delim);
-UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, wchar_t delim);
-UTILS4CPP_EXPORT std::vector<std::wstring> splitString(const std::wstring& str, const std::wstring& delim);
+UTILS4CPP_EXPORT StringVector splitString(const std::string& str, char delim);
+UTILS4CPP_EXPORT StringVector splitString(const std::string& str, const std::string& delim);
+UTILS4CPP_EXPORT WStringVector splitString(const std::wstring& str, wchar_t delim);
+UTILS4CPP_EXPORT WStringVector splitString(const std::wstring& str, const std::wstring& delim);
 
-UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, char delim);
-UTILS4CPP_EXPORT std::string joinString(const std::vector<std::string>& strs, const std::string& delim);
-UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, char delim);
-UTILS4CPP_EXPORT std::wstring joinString(const std::vector<std::wstring>& strs, const std::wstring& delim);
+UTILS4CPP_EXPORT std::string joinString(const StringVector& strs, char delim);
+UTILS4CPP_EXPORT std::string joinString(const StringVector& strs, const std::string& delim);
+UTILS4CPP_EXPORT std::wstring joinString(const WStringVector& strs, char delim);
+UTILS4CPP_EXPORT std::wstring joinString(const WStringVector& strs, const std::wstring& delim);
  
 UTILS4CPP_EXPORT std::string toLower(const std::string& str);
 UTILS4CPP_EXPORT std::string toUpper(const std::string& str);
@@ -84,17 +82,17 @@ UTILS4CPP_EXPORT std::wstring capitalizedWords(const std::wstring& str);
 UTILS4CPP_EXPORT std::string uncapitalizedWords(const std::string& str);
 UTILS4CPP_EXPORT std::wstring uncapitalizedWords(const std::wstring& str);
 
-UTILS4CPP_EXPORT std::wstring toWstring(const std::string& str);
+UTILS4CPP_EXPORT std::wstring toWString(const std::string& str);
 UTILS4CPP_EXPORT std::string toString(const std::wstring& wstr);
 
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = false);
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = false);
 
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, std::size_t* pos, bool noexception = false);
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, std::size_t* pos, bool noexception = false);
 
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, bool noexception = false);
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, bool noexception = false);
 
 UTILS4CPP_EXPORT bool startsWith(const std::string& str, char starts, CaseSensitivity cs = CaseSensitive);
 UTILS4CPP_EXPORT bool startsWith(const std::string& str, const std::string& starts, CaseSensitivity cs = CaseSensitive);
@@ -115,7 +113,6 @@ std::wstring formatString(const std::wstring& format, Args ... args);
 
 
 
-
 /*! 
     \fn template<typename DstT, class StringT> DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
     Interprets an integer value in the string \a str.
@@ -130,17 +127,17 @@ std::wstring formatString(const std::wstring& format, Args ... args);
 
     \note If param \a noexception set to true and exceptions are performed, return zero.
 */
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
 {
     if (noexception) {
         try {
-            return internal::stringToNumber<DstT>(str, pos, base);
+            return internal::stringToNumber<NumT>(str, pos, base);
         } catch(const std::exception& e) {
-            return DstT(0);
+            return NumT(0);
         }
     } else {
-        return internal::stringToNumber<DstT>(str, pos, base);
+        return internal::stringToNumber<NumT>(str, pos, base);
     }
 }
 
@@ -157,17 +154,17 @@ DstT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
     \note If param \a noexception set to true and exceptions are performed, return zero.
     \note Converses to decimal base integer by default.
 */
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, std::size_t* pos, bool noexception)
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, std::size_t* pos, bool noexception)
 {
     if (noexception) {
         try {
-            return internal::stringToNumber<DstT>(str, pos);
+            return internal::stringToNumber<NumT>(str, pos);
         } catch(const std::exception& e) {
-            return DstT(0);
+            return NumT(0);
         }
     } else {
-        return internal::stringToNumber<DstT>(str, pos);
+        return internal::stringToNumber<NumT>(str, pos);
     }
 }
 
@@ -183,18 +180,17 @@ DstT toNumber(const StringT& str, std::size_t* pos, bool noexception)
     \note If param \a noexception set to true and exceptions are performed, return zero.
     \note Converses to decimal base integer by default.
 */
-template<typename DstT, class StringT>
-DstT toNumber(const StringT& str, bool noexception)
+template<typename NumT, class StringT>
+NumT toNumber(const StringT& str, bool noexception)
 {
     if (noexception) {
         try {
-            return internal::stringToNumber<DstT>(str);
+            return internal::stringToNumber<NumT>(str);
         } catch(const std::exception& e) {
-            return DstT(0);
+            return NumT(0);
         }
-    } 
-    else {
-        return internal::stringToNumber<DstT>(str);
+    } else {
+        return internal::stringToNumber<NumT>(str);
     }
 }
 
@@ -206,7 +202,7 @@ template<typename ... Args>
 std::string formatString(const std::string& format, Args ... args)
 {
     auto size = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
-    if (size <= 0) {
+    if (size <= 1) {
         return std::string();
     }
     std::unique_ptr<char[]> buf(new char[size]);
@@ -224,7 +220,7 @@ template<typename ... Args>
 std::wstring formatString(const std::wstring& format, Args ... args)
 {
     auto size = std::swprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
-    if (size <= 0) {
+    if (size <= 1) {
         return std::wstring();
     }
     std::unique_ptr<wchar_t[]> buf(new wchar_t[size]);

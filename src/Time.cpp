@@ -36,6 +36,7 @@
 #include <ctime>
 #include <cstring>
 #include <cstdio>
+#include <iomanip>
 
 #ifdef UTILS4CPP_OS_UNIX
 #   include <sys/time.h>
@@ -297,6 +298,19 @@ Time Time::currentGmTime()
 #endif
 
     return { tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag };
+}
+
+/*!
+    Writes the \a time to stream \a out.
+*/
+UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Time& time)
+{
+    out << "Time(\""
+        << std::setw(2) << std::setfill('0') << time.hour() << ":"
+        << std::setw(2) << std::setfill('0') << time.minute() << ":"
+        << std::setw(2) << std::setfill('0') << time.second() << "."
+        << std::setw(2) << std::setfill('0') << time.msec() << ")\"";
+    return out;
 }
 
 

@@ -41,6 +41,21 @@ namespace utils4cpp {
 */
 namespace datetime {
 
+    enum Month {
+        Jan = 1,                    //!< January
+        Feb,                        //!< February
+        Mar,                        //!< March
+        Apr,                        //!< April
+        May,                        //!< May
+        June,                       //!< June
+        July,                       //!< July
+        Aug,                        //!< August
+        Sept,                       //!< September
+        Oct,                        //!< October
+        Nov,                        //!< November  
+        Dec                         //!< December
+    };  
+
 enum DateFormat {
     TextDate,                       // default utils4cpp
     ISODate,                        // ISO 8601

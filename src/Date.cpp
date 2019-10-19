@@ -850,8 +850,7 @@ Date Date::currentGmDate()
  *****************************************************************************/
 
 /*!
-    Writes the date to stream \a out.
-    \relates Date
+    Writes the \a date to stream \a out.
 */
 UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Date& date)
 {
