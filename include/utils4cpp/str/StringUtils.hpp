@@ -36,7 +36,7 @@
 
 #include <vector>
 
-#include "utils4cpp/str/StringToNumber.hpp"
+#include "utils4cpp/str/StringToNumber.inc"
 #include "utils4cpp/str/StringGlobal.hpp"
 
 namespace utils4cpp {
@@ -50,9 +50,6 @@ namespace str {
 using StringVector = std::vector<std::string>; 
 /*! WStringVector is a sequence container that encapsulates wide strings. */
 using WStringVector = std::vector<std::wstring>;
-
-UTILS4CPP_EXPORT std::string removeCharacter(const std::string& str, char ch,  int option = 0);
-UTILS4CPP_EXPORT std::wstring removeCharacter(const std::wstring& str, wchar_t ch, int option = 0);
 
 UTILS4CPP_EXPORT std::string removeSubstr(const std::string& str, const std::string& sub, int option = 0);
 UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::wstring& sub, int option = 0);

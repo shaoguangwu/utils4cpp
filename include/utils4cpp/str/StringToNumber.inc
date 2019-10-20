@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGTONUMBER_HPP
-#define UTILS4CPP_STR_STRINGTONUMBER_HPP
+#ifndef UTILS4CPP_STR_STRINGTONUMBER_INC
+#define UTILS4CPP_STR_STRINGTONUMBER_INC
 
 #include <string>
 #include <stdexcept>
@@ -565,4 +565,4 @@ inline long double stringToNumber(const std::wstring& str)
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_STRINGTONUMBER_HPP
+#endif // UTILS4CPP_STR_STRINGTONUMBER_INC

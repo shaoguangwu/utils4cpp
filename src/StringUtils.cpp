@@ -35,103 +35,13 @@
 
 #include <clocale>
 #include <cstdlib>
-#include <algorithm>
 #include <cctype>
 #include <cwctype>
+#include <algorithm>
 #include <memory>
 
 namespace utils4cpp {
 namespace str {
-
-/*!
-    Remove character \a ch from string \a str. 
-    
-    The \a option : 
-    \li negative (  < 0) : Remove the first character equal to \a ch in the given string.
-    \li positive (  > 0) : Remove the last character equal to \a ch in the given string.
-    \li     zero ( == 0) : Remove all the characters equal to \a ch in the given string.
-
-    \sa removeSubstr()
-*/
-UTILS4CPP_EXPORT std::string removeCharacter(const std::string& str, char ch,  int option)
-{
-    if (str.empty()) {
-        return str;
-    }
-
-    if (option != 0) {
-        auto pos = option < 0 ? str.find(ch) : str.rfind(ch);
-        if (pos != std::string::npos) {
-            std::string result(str);
-            result.erase(pos, 1);
-            return result;
-        }
-        return str;
-    } else { // option == 0
-        auto pos = str.find(ch);
-        if (pos == std::string::npos)  {
-            return str;
-        }
-
-        std::unique_ptr<char[]> buff(new char[str.size() + 1]);
-        std::size_t len = 0;
-        std::string::size_type pos1 = 0;
-        while (pos != std::string::npos) {
-            std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
-            len += pos - pos1;
-            pos1 = ++pos;
-            pos = str.find(ch, pos1);
-        }
-        std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
-        len += str.size() - pos1;
-        return std::string(buff.get(), len);
-    }
-}
-
-/*!
-    Remove character \a ch from wide string \a str. 
-    
-    The \a option : 
-    \li negative (  < 0) : Remove the first character equal to \a ch in the given wide string.
-    \li positive (  > 0) : Remove the last character equal to \a ch in the given wide string.
-    \li     zero ( == 0) : Remove all the characters equal to \a ch in the given wide string.
-
-    \sa removeSubstr()
-*/
-UTILS4CPP_EXPORT std::wstring removeCharacter(const std::wstring& str, wchar_t ch, int option)
-{
-    if (str.empty()) {
-        return str;
-    }
-
-    if (option != 0) {
-        auto pos = option < 0 ? str.find(ch) : str.rfind(ch);
-        if (pos != std::wstring::npos) {
-            std::wstring result(str);
-            result.erase(pos, 1);
-            return result;
-        }
-        return str;
-    } else { // option == 0
-        auto pos = str.find(ch);
-        if (pos == std::wstring::npos)  {
-            return str;
-        }
-
-        std::unique_ptr<wchar_t[]> buff(new wchar_t[str.size() + 1]);
-        std::size_t len = 0;
-        std::wstring::size_type pos1 = 0;
-        while (pos != std::wstring::npos) {
-            std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
-            len += pos - pos1;
-            pos1 = ++pos;
-            pos = str.find(ch, pos1);
-        }
-        std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
-        len += str.size() - pos1;
-        return std::wstring(buff.get(), len);
-    }
-}
 
 /*!
     Remove substring \a sub from string \a str. 
@@ -145,7 +55,7 @@ UTILS4CPP_EXPORT std::wstring removeCharacter(const std::wstring& str, wchar_t c
 */
 UTILS4CPP_EXPORT std::string removeSubstr(const std::string& str, const std::string& sub, int option)
 {
-    if (str.empty()) {
+    if (str.empty() || sub.empty()) {
         return str;
     }
 
@@ -156,26 +66,25 @@ UTILS4CPP_EXPORT std::string removeSubstr(const std::string& str, const std::str
             result.erase(pos, sub.size());
             return result;
         }
-        return str;
     } else { // option == 0
         auto pos = str.find(sub);
-        if (pos == std::string::npos)  {
-            return str;
+        if (pos != std::string::npos) {
+            std::unique_ptr<char[]> buff(new char[str.size() + 1]);
+            std::size_t len = 0;
+            std::string::size_type pos1 = 0;
+            while (pos != std::string::npos) {
+                std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
+                len += pos - pos1;
+                pos1 = pos + sub.size();
+                pos = str.find(sub, pos1);
+            }
+            std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
+            len += str.size() - pos1;
+            return std::string(buff.get(), len);
         }
-
-        std::unique_ptr<char[]> buff(new char[str.size() + 1]);
-        std::size_t len = 0;
-        std::string::size_type pos1 = 0;
-        while (pos != std::string::npos) {
-            std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
-            len += pos - pos1;
-            pos1 = pos + sub.size();
-            pos = str.find(sub, pos1);
-        }
-        std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
-        len += str.size() - pos1;
-        return std::string(buff.get(), len);
     }
+
+    return str;
 }
 
 /*!
@@ -190,7 +99,7 @@ UTILS4CPP_EXPORT std::string removeSubstr(const std::string& str, const std::str
 */
 UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::wstring& sub, int option)
 {
-    if (str.empty()) {
+    if (str.empty() || sub.empty()) {
         return str;
     }
 
@@ -201,26 +110,25 @@ UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::w
             result.erase(pos, sub.size());
             return result;
         }
-        return str;
     } else { // option == 0
         auto pos = str.find(sub);
-        if (pos == std::wstring::npos)  {
-            return str;
+        if (pos != std::wstring::npos)  {
+            std::unique_ptr<wchar_t[]> buff(new wchar_t[str.size() + 1]);
+            std::size_t len = 0;
+            std::wstring::size_type pos1 = 0;
+            while (pos != std::wstring::npos) {
+                std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
+                len += pos - pos1;
+                pos1 = pos + sub.size();
+                pos = str.find(sub, pos1);
+            }
+            std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
+            len += str.size() - pos1;
+            return std::wstring(buff.get(), len);
         }
-        
-        std::unique_ptr<wchar_t[]> buff(new wchar_t[str.size() + 1]);
-        std::size_t len = 0;
-        std::wstring::size_type pos1 = 0;
-        while (pos != std::wstring::npos) {
-            std::copy_n(str.begin() + pos1, pos - pos1, buff.get() + len);
-            len += pos - pos1;
-            pos1 = pos + sub.size();
-            pos = str.find(sub, pos1);
-        }
-        std::copy_n(str.begin() + pos1, str.size() - pos1, buff.get() + len);
-        len += str.size() - pos1;
-        return std::wstring(buff.get(), len);
     }
+
+    return str;
 }
 
 /*!
@@ -228,6 +136,9 @@ UTILS4CPP_EXPORT std::wstring removeSubstr(const std::wstring& str, const std::w
 */
 UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before, const std::string& after)
 {
+    if (before.empty()) {
+        return;
+    }
     auto pos = str.find(before);
     while (pos != std::string::npos)
     {
@@ -241,6 +152,9 @@ UTILS4CPP_EXPORT void replaceString(std::string& str, const std::string& before,
 */
 UTILS4CPP_EXPORT void replaceString(std::wstring& str, const std::wstring& before, const std::wstring& after)
 {
+    if (before.empty()) {
+        return;
+    }
     auto pos = str.find(before);
     while (pos != std::wstring::npos)
     {
