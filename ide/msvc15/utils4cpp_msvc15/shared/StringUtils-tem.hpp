@@ -47,7 +47,7 @@
 #include "utils4cpp/str/StringGlobal.hpp"
 
 namespace utils4cpp {
-namespace str_tem {
+namespace str {
 
 /*! StringVector is a sequence container that encapsulates strings. */
 template<class StringT>
@@ -113,6 +113,15 @@ std::string convertString(const std::wstring& str);
 template<> // template specialization
 std::wstring convertString(const std::string& str);
 
+template<class StringT>
+bool startsWith(const StringT& str, typename StringT::value_type starts, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
+template<class StringT>
+bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
+
+template<class StringT>
+bool endsWith(const StringT& str, typename StringT::value_type ends, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
+template<class StringT>
+bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
 
 
 /*!
@@ -560,7 +569,13 @@ DstStringT convertString(const SrcStringT& str, const char* locale)
 template<>
 std::string convertString(const std::wstring& str, const char* locale)
 {
-    std::setlocale(LC_CTYPE, locale);
+    std::string ctype_locale;
+    auto prev_ctype_loc = std::setlocale(LC_CTYPE, locale);
+    if (prev_ctype_loc) {
+        ctype_locale = prev_ctype_loc;
+    }
+
+    std::string result;
     std::mbstate_t state = std::mbstate_t();
     const wchar_t* wstr = str.c_str();
 
@@ -569,17 +584,17 @@ std::string convertString(const std::wstring& str, const char* locale)
 #   pragma warning(disable:4996)
 #endif // _MSC_VER
     auto len = std::wcsrtombs(nullptr, &wstr, 0, &state) + 1;
-    if (len <= 1) {
-        return std::string();
+    if (len > 1) {
+        std::unique_ptr<char[]> buf(new char[len]);
+        std::wcsrtombs(buf.get(), &wstr, len, &state);
+        result = std::string(buf.get(), len - 1);
     }
-    std::unique_ptr<char[]> buf(new char[len]);
-    //char* mbstr = new char[len];
-    std::wcsrtombs(buf.get(), &wstr, len, &state);
+    
 #ifdef _MSC_VER
 #   pragma warning(pop)
 #endif // _MSC_VER
 
-    std::string result(buf.get(), len - 1);
+    std::setlocale(LC_CTYPE, ctype_locale.c_str()); // restore locale-ctype
     return result;
 }
 
@@ -590,7 +605,13 @@ std::string convertString(const std::wstring& str, const char* locale)
 template<>
 std::wstring convertString(const std::string& str, const char* locale)
 {
-    std::setlocale(LC_CTYPE, locale);
+    std::string ctype_locale;
+    auto prev_ctype_loc = std::setlocale(LC_CTYPE, locale);
+    if (prev_ctype_loc) {
+        ctype_locale = prev_ctype_loc;
+    }
+
+    std::wstring result;
     std::mbstate_t state = std::mbstate_t();
     const char* mbstr = str.c_str();
 
@@ -599,16 +620,16 @@ std::wstring convertString(const std::string& str, const char* locale)
 #   pragma warning(disable:4996)
 #endif
     auto len = std::mbsrtowcs(nullptr, &mbstr, 0, &state) + 1;
-    if (len <= 1) {
-        return std::wstring();
+    if (len > 1) {
+        std::unique_ptr<wchar_t[]> buf(new wchar_t[len]);
+        std::mbsrtowcs(buf.get(), &mbstr, len, &state);
+        result = std::wstring(buf.get(), len - 1);
     }
-    std::unique_ptr<wchar_t[]> buf(new wchar_t[len]);
-    std::mbsrtowcs(buf.get(), &mbstr, len, &state);
 #ifdef _MSC_VER
 #   pragma warning(pop)
 #endif
 
-    std::wstring result(buf.get(), len - 1);
+    std::setlocale(LC_CTYPE, ctype_locale.c_str()); // restore locale-ctype
     return result;
 }
 
@@ -641,7 +662,97 @@ std::wstring convertString(const std::string& str)
     return convertString<std::wstring, std::string>(str, "");
 }
 
-} // namespace str_tem
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+template<class StringT>
+bool startsWith(const StringT& str, typename StringT::value_type starts, CaseSensitivity cs, const std::locale& loc)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::tolower(starts, loc) == std::tolower(str.front(), loc);
+    } else {
+        return starts == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+template<class StringT>
+bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs, const std::locale& loc)
+{
+    using CharT = typename StringT::value_type;
+
+    if (str.empty() || starts.empty() || starts.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(starts.begin(), starts.end(), str.begin(),
+            [&](const CharT& a, const CharT& b) {
+                return std::tolower((a, loc) == std::tolower(b, loc);
+            });
+    } else {
+        return std::equal(starts.begin(), starts.end(), str.begin());
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+template<class StringT>
+bool endsWith(const StringT& str, typename StringT::value_type ends, CaseSensitivity, const std::locale& loc)
+{
+    if (str.empty()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::towlower(ends, loc) == std::towlower(str.front(), loc);
+    } else {
+        return ends == str.front();
+    }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+template<class StringT>
+bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs, const std::locale& loc)
+{
+    using CharT = typename StringT::value_type;
+
+    if (str.empty() || ends.empty() || ends.size() > str.size()) {
+        return false;
+    }
+
+    if (CaseSensitivity::CaseInsensitive == cs) {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
+            [&](const CharT& a, const CharT& b) {
+                return std::tolower(a, loc) == std::tolower(b, loc);
+            });
+    } else {
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
+    }
+}
+
+} // namespace str
 } // namespace utils4cpp
 
 #endif // UTILS4CPP_STR_STRINGUTILSEXT_HPP
