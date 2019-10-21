@@ -47,7 +47,7 @@ class UTILS4CPP_EXPORT BasicStringList : public std::list<StringT>
 {
 public:
     using value_type = StringT;
-    using size_type = std::list<StringT>::size_type;
+    using size_type = typename std::list<StringT>::size_type;
 
 public:
     using std::list<StringT>::list;

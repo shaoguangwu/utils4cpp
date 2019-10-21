@@ -47,6 +47,14 @@ enum CaseSensitivity {
     CaseSensitive                   ///< Case sensitive.    (yes)
 };
 
+template<typename CharT>
+inline void swapChar(CharT &a, CharT& b) noexcept
+{
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+}
+
 } // namespace str
 } // namespace utils4cpp
 
