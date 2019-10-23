@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\FileSystemGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Cuboid.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Point.hpp" />
@@ -44,7 +45,6 @@
     <ClCompile Include="..\..\..\..\src\Date.cpp" />
     <ClCompile Include="..\..\..\..\src\DateTime.cpp" />
     <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
-    <ClCompile Include="..\..\..\..\src\StringUtils.cpp" />
     <ClCompile Include="..\..\..\..\src\Time.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

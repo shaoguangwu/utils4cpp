@@ -89,15 +89,15 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringToNumber.inc">
       <Filter>include\str</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\FileSystemGlobal.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Date.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\StringUtils.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\Time.cpp">
