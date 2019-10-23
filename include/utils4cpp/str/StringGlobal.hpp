@@ -39,6 +39,11 @@
 #include "utils4cpp/core/Core.hpp"
 
 namespace utils4cpp {
+
+/*!
+    \brief string libraries.
+    \since v0.0
+*/
 namespace str {
 
 /*! Indicates case sensitive or not. */
@@ -47,6 +52,9 @@ enum CaseSensitivity {
     CaseSensitive                   ///< Case sensitive.    (yes)
 };
 
+/*!
+    Swap char \a a and \a b with no intermediate variable.
+*/
 template<typename CharT>
 inline void swapChar(CharT &a, CharT& b) noexcept
 {

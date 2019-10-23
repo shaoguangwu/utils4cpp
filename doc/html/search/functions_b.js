@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../classutils4cpp_1_1datetime_1_1_date.html#a5e015a8a719f076f0a4fd7f6ec27d97b',1,'utils4cpp::datetime::Date::operator!=()'],['../classutils4cpp_1_1datetime_1_1_time.html#aa8fbc0f79129e0e4a09025960ec61a9d',1,'utils4cpp::datetime::Time::operator!=()']]],
-  ['operator_3c',['operator&lt;',['../classutils4cpp_1_1datetime_1_1_date.html#ab463ac99a7019994a58ba67cc6cba045',1,'utils4cpp::datetime::Date::operator&lt;()'],['../classutils4cpp_1_1datetime_1_1_time.html#a6229fd9423af04f15e1da3cbe716ab7e',1,'utils4cpp::datetime::Time::operator&lt;()']]],
-  ['operator_3c_3c',['operator&lt;&lt;',['../classutils4cpp_1_1datetime_1_1_date.html#a9e709d01a6e68b651425c00aa7034c46',1,'utils4cpp::datetime::Date']]],
-  ['operator_3c_3d',['operator&lt;=',['../classutils4cpp_1_1datetime_1_1_date.html#a6af8bbefd838ae503fde2db38ffb1d8d',1,'utils4cpp::datetime::Date::operator&lt;=()'],['../classutils4cpp_1_1datetime_1_1_time.html#a179544aeb0062689d668a3352d45140e',1,'utils4cpp::datetime::Time::operator&lt;=()']]],
-  ['operator_3d_3d',['operator==',['../classutils4cpp_1_1datetime_1_1_date.html#ae926db9cc3005d90c99e292a284a766e',1,'utils4cpp::datetime::Date::operator==()'],['../classutils4cpp_1_1datetime_1_1_time.html#af89b978384010ef2feaa5752361b058a',1,'utils4cpp::datetime::Time::operator==()']]],
-  ['operator_3e',['operator&gt;',['../classutils4cpp_1_1datetime_1_1_date.html#a8e99a50f8291da90cf7de66f38d57ec6',1,'utils4cpp::datetime::Date::operator&gt;()'],['../classutils4cpp_1_1datetime_1_1_time.html#a26e4e0004b49b3925058435dc694a92e',1,'utils4cpp::datetime::Time::operator&gt;()']]],
-  ['operator_3e_3d',['operator&gt;=',['../classutils4cpp_1_1datetime_1_1_date.html#ac6ae574b6a512915846f8ae430c86432',1,'utils4cpp::datetime::Date::operator&gt;=()'],['../classutils4cpp_1_1datetime_1_1_time.html#a285d87fc40e0138a0f77e35d8dbf1984',1,'utils4cpp::datetime::Time::operator&gt;=()']]]
+  ['main',['main',['../test_core_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testCore.cpp'],['../test_date_time_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;testDateTime.cpp'],['../test_geometry_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testGeometry.cpp'],['../test_str_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testStr.cpp']]],
+  ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
+  ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_time.html#aaabfdce87f061c152e02c92092b86635',1,'utils4cpp::datetime::Time']]],
+  ['month',['month',['../classutils4cpp_1_1datetime_1_1_date.html#a643ff983256338d1d20ed38a50a33748',1,'utils4cpp::datetime::Date']]],
+  ['msec',['msec',['../classutils4cpp_1_1datetime_1_1_time.html#abbc58fb8bdc98c5e7b8779fc4ecfcc4a',1,'utils4cpp::datetime::Time']]],
+  ['msecsto',['msecsTo',['../classutils4cpp_1_1datetime_1_1_time.html#a4cc4dbfe0503cfae8fba0a9f23b7cd83',1,'utils4cpp::datetime::Time']]]
 ];

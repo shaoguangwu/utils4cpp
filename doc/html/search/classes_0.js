@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['date',['Date',['../classutils4cpp_1_1datetime_1_1_date.html',1,'utils4cpp::datetime']]]
+  ['basicstringlist',['BasicStringList',['../classutils4cpp_1_1str_1_1_basic_string_list.html',1,'utils4cpp::str']]]
 ];

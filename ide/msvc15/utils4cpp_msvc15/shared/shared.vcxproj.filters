@@ -86,9 +86,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringGlobal.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
-    <ClInclude Include="StringUtils-tem.hpp">
-      <Filter>include\str</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringToNumber.inc">
       <Filter>include\str</Filter>
     </ClInclude>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['date',['Date',['../classutils4cpp_1_1datetime_1_1_date.html#aba4a7c8a2ac4e87ce3857634484141ad',1,'utils4cpp::datetime::Date::Date()'],['../classutils4cpp_1_1datetime_1_1_date.html#a37f8fbef5d43750a0e8ff27f20b9985b',1,'utils4cpp::datetime::Date::Date(int y, int m, int d, int dst=-1)'],['../classutils4cpp_1_1datetime_1_1_date.html#a0ef250db461b11de84e2f2440146e455',1,'utils4cpp::datetime::Date::Date(const std::tm &amp;tm)']]],
+  ['datetime',['DateTime',['../classutils4cpp_1_1datetime_1_1_date_time.html#a0e8b6302814a0e9b792b1ab227b955fa',1,'utils4cpp::datetime::DateTime']]],
   ['day',['day',['../classutils4cpp_1_1datetime_1_1_date.html#a82dd7ee4a793e2249b14949af7ef349b',1,'utils4cpp::datetime::Date']]],
   ['dayofweek',['dayOfWeek',['../classutils4cpp_1_1datetime_1_1_date.html#abca55b8d4e17961d51b3d278eb51ba67',1,'utils4cpp::datetime::Date::dayOfWeek() const'],['../classutils4cpp_1_1datetime_1_1_date.html#a5f3ffa1b708defbae8133c8f86b11fd3',1,'utils4cpp::datetime::Date::dayOfWeek(int year, int month, int day)']]],
   ['dayofyear',['dayOfYear',['../classutils4cpp_1_1datetime_1_1_date.html#abc56f5900432bcfd6a3e8ddf37749e05',1,'utils4cpp::datetime::Date::dayOfYear() const'],['../classutils4cpp_1_1datetime_1_1_date.html#ac9de57651b3f7319ff280c96b3ac501d',1,'utils4cpp::datetime::Date::dayOfYear(int year, int month, int day)']]],

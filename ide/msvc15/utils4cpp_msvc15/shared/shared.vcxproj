@@ -39,7 +39,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringList.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringToNumber.inc" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringUtils.hpp" />
-    <ClInclude Include="StringUtils-tem.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Date.cpp" />

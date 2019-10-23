@@ -64,6 +64,11 @@ template<class StringT>
 StringT removeSubstr(const StringT& str, const StringT& sub, int option = 0);
 
 template<class StringT>
+bool containsCharacter(const StringT& str, typename StringT::value_type ch, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
+template<class StringT>
+bool containsSubstr(const StringT& str, const StringT& sub, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
+
+template<class StringT>
 void replaceStringSelf(StringT& str, const StringT& before, const StringT& after);
 template<class StringT>
 StringT replaceString(const StringT& str, const StringT& before, const StringT& after);
@@ -231,7 +236,7 @@ inline StringT removeCharacter(const StringT& str, typename StringT::value_type 
     \sa removeCharacter(), removeSubstr()
 */
 template<class StringT>
-void removeSubstrSelf(StringT& str, const StringT& sub, int option = 0)
+void removeSubstrSelf(StringT& str, const StringT& sub, int option)
 {
     using CharT = typename StringT::value_type;
     using SizeT = typename StringT::size_type;
@@ -276,11 +281,56 @@ void removeSubstrSelf(StringT& str, const StringT& sub, int option = 0)
     \sa removeCharacter(), removeSubstrSelf()
 */
 template<class StringT>
-inline StringT removeSubstr(const StringT& str, const StringT& sub, int option = 0)
+inline StringT removeSubstr(const StringT& str, const StringT& sub, int option)
 {
     StringT result(str);
     removeSubstr(result, sub, option);
     return result;
+}
+
+/*!
+    Returns \c true if \a str contains \a ch, otherwise returns \c false.
+
+    \sa containsSubstr()
+*/
+template<class StringT>
+bool containsCharacter(const StringT& str, typename StringT::value_type ch, CaseSensitivity cs, const std::locale& loc)
+{
+    if (!str.empty()) {
+        if (cs == CaseSensitive) {
+            return str.find(ch) != StringT::npos;
+        }
+        else {
+            using CharT = typename StringT::value_type;
+            CharT chl = std::tolower(ch, loc);
+            CharT chu = std::toupper(ch, loc);
+            for (const auto& c : str) {
+                if (c == chl || c == chu) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+/*!
+    Returns \c true if \a str contains \a sub, otherwise returns \c false.
+
+    \sa containsCharacter()
+*/
+template<class StringT>
+bool containsSubstr(const StringT& str, const StringT& sub, CaseSensitivity cs, const std::locale& loc)
+{
+    if (!str.empty() && !sub.empty()) {
+        if (cs == CaseSensitive) {
+            return str.find(sub) != StringT::npos;
+        } else {
+            StringT temp = toLower(str, loc);
+            return temp.find(toLower(sub, loc)) != StringT::npos;
+        }
+    }
+    return false;
 }
 
 /*!
@@ -369,7 +419,7 @@ StringVector<StringT> splitString(const StringT& str, const StringT& delim)
     return result;
 }
 
-/*ив
+/*!
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -378,8 +428,7 @@ template<class StringT, class DelimT>
 StringT joinString(const StringVector<StringT>& strs, const DelimT& delim)
 {
     StringT result;
-    for (auto it = strs.begin(); it != strs.end(); ++it)
-    {
+    for (auto it = strs.begin(); it != strs.end(); ++it) {
         if (it != strs.begin()) {
             result += delim;
         }
@@ -913,7 +962,7 @@ NumT toNumber(const StringT& str, std::size_t* pos, bool noexception)
     \note Converses to decimal base integer by default.
 */
 template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, bool noexception = false)
+NumT toNumber(const StringT& str, bool noexception)
 {
     if (noexception) {
         try {

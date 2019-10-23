@@ -4,6 +4,7 @@ var searchData=
   ['date_2ecpp',['Date.cpp',['../_date_8cpp.html',1,'']]],
   ['date_2ehpp',['Date.hpp',['../_date_8hpp.html',1,'']]],
   ['dateformat',['DateFormat',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349',1,'utils4cpp::datetime']]],
+  ['datetime',['DateTime',['../classutils4cpp_1_1datetime_1_1_date_time.html',1,'utils4cpp::datetime::DateTime'],['../classutils4cpp_1_1datetime_1_1_date.html#ae3d4a8787eced68c65a23f5906c11add',1,'utils4cpp::datetime::Date::DateTime()'],['../classutils4cpp_1_1datetime_1_1_time.html#ae3d4a8787eced68c65a23f5906c11add',1,'utils4cpp::datetime::Time::DateTime()'],['../classutils4cpp_1_1datetime_1_1_date_time.html#a0e8b6302814a0e9b792b1ab227b955fa',1,'utils4cpp::datetime::DateTime::DateTime()']]],
   ['datetime_2ecpp',['DateTime.cpp',['../_date_time_8cpp.html',1,'']]],
   ['datetime_2ehpp',['DateTime.hpp',['../_date_time_8hpp.html',1,'']]],
   ['datetimeglobal_2ehpp',['DateTimeGlobal.hpp',['../_date_time_global_8hpp.html',1,'']]],
@@ -13,6 +14,7 @@ var searchData=
   ['daysinmonth',['daysInMonth',['../classutils4cpp_1_1datetime_1_1_date.html#a5c79c7e7e39bde768be4195e37925634',1,'utils4cpp::datetime::Date']]],
   ['daysinyear',['daysInYear',['../classutils4cpp_1_1datetime_1_1_date.html#ac3a2448d144c5455ecd62d1b25d77d1c',1,'utils4cpp::datetime::Date']]],
   ['daysto',['daysTo',['../classutils4cpp_1_1datetime_1_1_date.html#a21facc134692270a524404a140b57a41',1,'utils4cpp::datetime::Date']]],
+  ['dec',['Dec',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a524cb283651adcaa888e92478efe9075',1,'utils4cpp::datetime']]],
   ['defaultlocalelongdate',['DefaultLocaleLongDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a0a25471ab139ab6c0d0c319064c1c623',1,'utils4cpp::datetime']]],
   ['defaultlocaleshortdate',['DefaultLocaleShortDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a7948fdc3740e75de2bfe416c991c87ed',1,'utils4cpp::datetime']]],
   ['dst',['dst',['../classutils4cpp_1_1datetime_1_1_date.html#a7ad811c3a7a148eb9612b5f1dad9016c',1,'utils4cpp::datetime::Date']]]
