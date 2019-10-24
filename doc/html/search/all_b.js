@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['main',['main',['../test_core_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testCore.cpp'],['../test_date_time_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;testDateTime.cpp'],['../test_geometry_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testGeometry.cpp'],['../test_str_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;testStr.cpp']]],
   ['mar',['Mar',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4ab4b0277e5cc708559f8abaf60b5402cb',1,'utils4cpp::datetime']]],
-  ['matrix_2ehpp',['Matrix.hpp',['../_matrix_8hpp.html',1,'']]],
   ['may',['May',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4aa2265b3141aa4f578140c81ae34f6d62',1,'utils4cpp::datetime']]],
   ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
   ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_time.html#aaabfdce87f061c152e02c92092b86635',1,'utils4cpp::datetime::Time']]],

@@ -53,6 +53,11 @@ namespace str {
 template<class StringT>
 using StringVector = std::vector<StringT>;
 
+
+/*****************************************************************************
+  function declaration
+ *****************************************************************************/
+
 template<class StringT>
 void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int option = 0);
 template<class StringT>
@@ -160,6 +165,10 @@ std::string formatString(const std::string& format, Args ... args);
 template<typename ... Args>
 std::wstring formatString(const std::wstring& format, Args ... args);
 
+
+/*****************************************************************************
+  function implementation
+ *****************************************************************************/
 
 /*!
     Remove character \a ch from string \a str.

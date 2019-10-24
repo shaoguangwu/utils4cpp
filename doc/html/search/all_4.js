@@ -18,8 +18,5 @@ var searchData=
   ['elapsedseconds',['elapsedSeconds',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#abfcad6cc0d20507313046d4558109662',1,'utils4cpp::datetime::ElapsedTimer']]],
   ['elapsedsecondsfloating',['elapsedSecondsFloating',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#a8a8c78bbc77247f22c670962688cd8a1',1,'utils4cpp::datetime::ElapsedTimer']]],
   ['elapsedtimer',['ElapsedTimer',['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html',1,'utils4cpp::datetime::ElapsedTimer'],['../classutils4cpp_1_1datetime_1_1_elapsed_timer.html#a7d94a4d3bd8d2b22026ee417fdc9c9e0',1,'utils4cpp::datetime::ElapsedTimer::ElapsedTimer()']]],
-  ['elapsedtimer_2ecpp',['ElapsedTimer.cpp',['../_elapsed_timer_8cpp.html',1,'']]],
-  ['elapsedtimer_2ehpp',['ElapsedTimer.hpp',['../_elapsed_timer_8hpp.html',1,'']]],
-  ['endswith',['endsWith',['../namespaceutils4cpp_1_1str.html#a6aba02b35190cb120461f025d6720ebf',1,'utils4cpp::str::endsWith(const StringT &amp;str, typename StringT::value_type ends, CaseSensitivity, const std::locale &amp;loc)'],['../namespaceutils4cpp_1_1str.html#a7fd24069b616b753a59bf3077e0d8370',1,'utils4cpp::str::endsWith(const StringT &amp;str, const StringT &amp;ends, CaseSensitivity cs, const std::locale &amp;loc)']]],
-  ['export_2ehpp',['Export.hpp',['../_export_8hpp.html',1,'']]]
+  ['endswith',['endsWith',['../namespaceutils4cpp_1_1str.html#a6aba02b35190cb120461f025d6720ebf',1,'utils4cpp::str::endsWith(const StringT &amp;str, typename StringT::value_type ends, CaseSensitivity, const std::locale &amp;loc)'],['../namespaceutils4cpp_1_1str.html#a7fd24069b616b753a59bf3077e0d8370',1,'utils4cpp::str::endsWith(const StringT &amp;str, const StringT &amp;ends, CaseSensitivity cs, const std::locale &amp;loc)']]]
 ];
