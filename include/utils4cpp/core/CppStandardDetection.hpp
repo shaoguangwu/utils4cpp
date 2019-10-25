@@ -41,28 +41,28 @@
 #   define UTILS4CPP_CPLUSPLUS      __cplusplus
 #endif /* _MSVC_LANG */
 
-/*! Compiler support c++20 standard or not. */
+/*! Compiler enabled c++20 standard or not. */
 #if UTILS4CPP_CPLUSPLUS > 201703L
 #   define UTILS4CPP_HAS_CPP20      1
 #else
 #   define UTILS4CPP_HAS_CPP20      0
 #endif
 
-/*! Compiler support c++17 standard or not. */
+/*! Compiler enabled c++17 standard or not. */
 #if UTILS4CPP_CPLUSPLUS > 201402L
 #    define UTILS4CPP_HAS_CPP17     1
 #else
 #    define UTILS4CPP_HAS_CPP17     0
 #endif
 
-/*! Compiler support c++14 standard or not. */
+/*! Compiler enabled c++14 standard or not. */
 #if UTILS4CPP_CPLUSPLUS > 201103L
 #    define UTILS4CPP_HAS_CPP14     1
 #else
 #    define UTILS4CPP_HAS_CPP14     0
 #endif
 
-/*! Compiler support c++11 standard or not. */
+/*! Compiler enabled c++11 standard or not. */
 #if UTILS4CPP_CPLUSPLUS > 199711L
 #    define UTILS4CPP_HAS_CPP11     1
 #else
