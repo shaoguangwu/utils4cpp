@@ -22,7 +22,8 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Core.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\CppStandardDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Export.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\SystemDetection.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\StlConfig.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\OsDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\Matrix.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Date.hpp" />
@@ -30,8 +31,12 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Dir.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\File.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\FileSystemGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathToString.inc" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathUtils.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Cuboid.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Point.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Rect.hpp" />
@@ -44,7 +49,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\Date.cpp" />
     <ClCompile Include="..\..\..\..\src\DateTime.cpp" />
+    <ClCompile Include="..\..\..\..\src\Dir.cpp" />
     <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
+    <ClCompile Include="..\..\..\..\src\File.cpp" />
     <ClCompile Include="..\..\..\..\src\Time.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -151,6 +158,7 @@ copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
       <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -203,6 +211,7 @@ copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
       <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

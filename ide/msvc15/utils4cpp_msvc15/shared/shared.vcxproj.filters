@@ -38,9 +38,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Export.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\SystemDetection.hpp">
-      <Filter>include\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
@@ -77,9 +74,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp">
       <Filter>include\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp">
-      <Filter>include\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringList.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
@@ -90,6 +84,27 @@
       <Filter>include\str</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\FileSystemGlobal.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Dir.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\File.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathUtils.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\StlConfig.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\OsDetection.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp">
+      <Filter>include\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathToString.inc">
       <Filter>include\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,6 +119,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\DateTime.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Dir.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\File.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

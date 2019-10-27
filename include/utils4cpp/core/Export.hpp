@@ -35,21 +35,39 @@
 #define UTILS4CPP_CORE_EXPORT_HPP
 
 /*!
-    \def UTILS4CPP_EXPORT
-    The export symbol for utils4cpp library.
+    \def UTILS4CPP_DECL_EXPORT
+    Declare export symbol for utils4cpp library.
+*/
+/*!
+    \def UTILS4CPP_DECL_IMPORT
+    Declare import symbol for utils4cpp library.
 */
 #if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-#   ifdef UTILS4CPP_HAS_DLL  /* Compiled to dynamic link library */
-#       ifdef UTILS4CPP_DLL_EXPORT  /* export */
-#           define UTILS4CPP_EXPORT __declspec(dllexport)
-#       else                        /* import */
-#           define UTILS4CPP_EXPORT __declspec(dllimport)
-#       endif
+/* Defines needed for building dynamic-link library on windows. */
+#   define UTILS4CPP_DECL_EXPORT   __declspec(dllexport)
+#   define UTILS4CPP_DECL_IMPORT   __declspec(dllimport)
+#else
+/* Do not need export/import symbol */
+#   define UTILS4CPP_DECL_EXPORT
+#   define UTILS4CPP_DECL_IMPORT
+#endif
+
+/*!
+    \def UTILS4CPP_DECL_EXPORT
+    The export/import symbol for utils4cpp library.
+*/
+#ifdef UTILS4CPP_HAS_DLL  
+#   /* Compiled to dynamic-link library */
+#   ifdef UTILS4CPP_DLL_EXPORT
+#       define UTILS4CPP_EXPORT UTILS4CPP_DECL_EXPORT
+#   /* Import dynamic-link library */
+#   else
+#       define UTILS4CPP_EXPORT UTILS4CPP_DECL_IMPORT
 #   endif
 #endif
 
 #ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT
+#   define UTILS4CPP_EXPORT     /*! Ensure defined */
 #endif
 
 #endif // UTILS4CPP_CORE_EXPORT_HPP

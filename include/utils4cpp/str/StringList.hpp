@@ -236,7 +236,7 @@ public:
     /*!
         Exchange the item at index position \a i with the item at index position \a j.
         The \a index must be a valid index position in the list (i.e., 0 <= i < size()),
-        otherwise unexpected behavior.
+        otherwise the behavior is undefined.
 
         \note No bounds checking is performed.
         \sa swapItemsAt()

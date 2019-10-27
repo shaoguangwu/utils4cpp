@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_SYSTEMDETECTION_HPP
-#define UTILS4CPP_CORE_SYSTEMDETECTION_HPP
+#ifndef UTILS4CPP_CORE_OSDETECTION_HPP
+#define UTILS4CPP_CORE_OSDETECTION_HPP
 
 /*
    The operating system, must be one of: (UTILS4CPP_OS_x)
@@ -286,4 +286,4 @@
 #   endif
 #endif /* __LSB_VERSION__ */
 
-#endif // UTILS4CPP_CORE_SYSTEMDETECTION_HPP
+#endif // UTILS4CPP_CORE_OSDETECTION_HPP

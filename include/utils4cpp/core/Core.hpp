@@ -35,7 +35,7 @@
 
 #include "utils4cpp/core/Version.hpp"
 #include "utils4cpp/core/Export.hpp"
-#include "utils4cpp/core/CppStandardDetection.hpp"
-#include "utils4cpp/core/SystemDetection.hpp"
+#include "utils4cpp/core/OsDetection.hpp"
+#include "utils4cpp/core/StlConfig.hpp"
 
 #endif // UTILS4CPP_CORE_CORE_HPP

@@ -55,7 +55,7 @@ using StringVector = std::vector<StringT>;
 
 
 /*****************************************************************************
-  function declaration
+    declaration
  *****************************************************************************/
 
 template<class StringT>
@@ -167,7 +167,7 @@ std::wstring formatString(const std::wstring& format, Args ... args);
 
 
 /*****************************************************************************
-  function implementation
+    implementation
  *****************************************************************************/
 
 /*!
