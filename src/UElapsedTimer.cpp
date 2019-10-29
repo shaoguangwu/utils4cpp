@@ -31,32 +31,30 @@
 **
 ************************************************************************************/
 
-#include "utils4cpp/datetime/ElapsedTimer.hpp"
+#include "utils4cpp/datetime/UElapsedTimer.hpp"
 
 namespace utils4cpp {
 namespace datetime {
 
 /*!
-    \var ElapsedTimer::chrono_clock_type
+    \var UElapsedTimer::chrono_clock_type
 
     The type of std::chrono clock.
 */
 
 /*!
-    \var ElapsedTimer::chrono_days
+    \var UElapsedTimer::chrono_days
 
     std::chrono::days defines in c++20 standard, define it before that.
 */
 
 /*!
-    \var ElapsedTimer::elapsed_time_floating_t
+    \var UElapsedTimer::elapsed_time_floating_t
 
     The floating type of elapsed time.
 */
 
 /*!
-    \fn ElapsedTimer::ElapsedTimer()
-
     Constructs a elapsed timer, and start timing.
 
     \sa reset()
@@ -67,8 +65,6 @@ UElapsedTimer::UElapsedTimer()
 }
 
 /*!
-    \fn void ElapsedTimer::restart()
-
     Restart timing.
 */
 void UElapsedTimer::restart()
@@ -77,8 +73,6 @@ void UElapsedTimer::restart()
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
-
     Returns the elapsed time in milliseconds with integer value.
 
     \sa elapsedFloating()
@@ -89,8 +83,6 @@ std::chrono::milliseconds::rep UElapsedTimer::elapsed() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedNanoseconds() const
-
     Returns the elapsed time in nanoseconds with integer value.
 
     \sa elapsedNanosecondsFloating()
@@ -101,8 +93,6 @@ std::chrono::nanoseconds::rep UElapsedTimer::elapsedNanoseconds() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMicroseconds() const
-
     Returns the elapsed time in microseconds with integer value.
 
     \sa elapsedMicrosecondsFloating()
@@ -113,8 +103,6 @@ std::chrono::microseconds::rep UElapsedTimer::elapsedMicroseconds() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
-
     Returns the elapsed time in milliseconds with integer value.
 
     \sa elapsedMillisecondsFloating()
@@ -125,8 +113,6 @@ std::chrono::milliseconds::rep UElapsedTimer::elapsedMilliseconds() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedSeconds() const
-
     Returns the elapsed time in seconds with integer value.
 
     sa elapsedSecondsFloating()
@@ -137,8 +123,6 @@ std::chrono::seconds::rep UElapsedTimer::elapsedSeconds() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedMinutes() const
-
     Returns the elapsed time in minutes with integer value.
 
     \sa elapsedMinutesFloating()
@@ -149,8 +133,6 @@ std::chrono::minutes::rep UElapsedTimer::elapsedMinutes() const
 }
 
 /*!
-    \fn std::chrono::milliseconds::rep ElapsedTimer::elapsedHours() const
-
     Returns the elapsed time in hours with integer value.
 
     \sa elapsedHoursFloating()
@@ -161,8 +143,6 @@ std::chrono::hours::rep UElapsedTimer::elapsedHours() const
 }
 
 /*!
-    \fn ElapsedTimer::chrono_days::rep ElapsedTimer::elapsedDays() const
-
     Returns the elapsed time in days with integer value.
 
     \sa elapsedHDaysFloating()
@@ -173,8 +153,6 @@ UElapsedTimer::chrono_days::rep UElapsedTimer::elapsedDays() const
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
-
     Returns the elapsed time in milliseconds with floating value.
 
     \sa elapsed()
@@ -185,8 +163,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedFloating() const
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating() const
-
     Returns the elapsed time in nanoseconds with floating value.
 
     \sa elapsedNanoseconds()
@@ -197,8 +173,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedNanosecondsFloating
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating() const
-
     Returns the elapsed time in microseconds with floating value.
 
     \sa elapsedMicroseconds()
@@ -209,8 +183,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMicrosecondsFloatin
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating() const
-
     Returns the elapsed time in milliseconds with floating value.
 
     \sa elapsedMilliseconds()
@@ -221,8 +193,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMillisecondsFloatin
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() const
-
     Returns the elapsed time in seconds with floating value.
 
     \sa elapsedSeconds()
@@ -233,8 +203,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedSecondsFloating() c
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() const
-
     Returns the elapsed time in minutes with floating value.
 
     \sa elapsedMinutes()
@@ -245,8 +213,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMinutesFloating() c
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
-
     Returns the elapsed time in hours with floating value.
 
     \sa elapsedHours()
@@ -257,8 +223,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedHoursFloating() con
 }
 
 /*!
-    \fn ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedDaysFloating() const
-
     Returns the elapsed time in days with floating value.
 
     \sa elapsedDays()

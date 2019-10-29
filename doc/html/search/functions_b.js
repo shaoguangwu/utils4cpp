@@ -1,8 +1,9 @@
 var searchData=
 [
   ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
-  ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_time.html#aaabfdce87f061c152e02c92092b86635',1,'utils4cpp::datetime::Time']]],
-  ['month',['month',['../classutils4cpp_1_1datetime_1_1_date.html#a643ff983256338d1d20ed38a50a33748',1,'utils4cpp::datetime::Date']]],
-  ['msec',['msec',['../classutils4cpp_1_1datetime_1_1_time.html#abbc58fb8bdc98c5e7b8779fc4ecfcc4a',1,'utils4cpp::datetime::Time']]],
-  ['msecsto',['msecsTo',['../classutils4cpp_1_1datetime_1_1_time.html#a4cc4dbfe0503cfae8fba0a9f23b7cd83',1,'utils4cpp::datetime::Time']]]
+  ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_u_time.html#aed875628e33eabc3d75e8682dcff4321',1,'utils4cpp::datetime::UTime']]],
+  ['month',['month',['../classutils4cpp_1_1datetime_1_1_u_date.html#a35ba9a55984ffb543b60a416cbab8028',1,'utils4cpp::datetime::UDate']]],
+  ['movetoinputstring',['moveToInputString',['../classutils4cpp_1_1filesystem_1_1_u_path.html#afcb582c22d93e37103eabea748065139',1,'utils4cpp::filesystem::UPath::moveToInputString()'],['../classutils4cpp_1_1str_1_1_u_string.html#afe01afaf2ead2f2b38d1e40c6912a902',1,'utils4cpp::str::UString::moveToInputString()']]],
+  ['msec',['msec',['../classutils4cpp_1_1datetime_1_1_u_time.html#a701745071cb4202f09e594f0a56c4be6',1,'utils4cpp::datetime::UTime']]],
+  ['msecsto',['msecsTo',['../classutils4cpp_1_1datetime_1_1_u_time.html#a34d226d2acfb02315cb871b86cb2207d',1,'utils4cpp::datetime::UTime']]]
 ];

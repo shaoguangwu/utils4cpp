@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['size_5ftype',['size_type',['../classutils4cpp_1_1str_1_1_basic_string_list.html#abec2b0a67ad54b7bd012028cf69d6681',1,'utils4cpp::str::BasicStringList']]],
-  ['stringlist',['StringList',['../namespaceutils4cpp_1_1str.html#a864be1ffbd822332d27d4a088c6efc96',1,'utils4cpp::str']]],
-  ['stringvector',['StringVector',['../class_path.html#a4a96af95cbb504fdbca9946cb0b22d67',1,'Path::StringVector()'],['../namespaceutils4cpp_1_1str.html#a63868d175a488a172f80108c7669fd1f',1,'utils4cpp::str::StringVector()']]]
+  ['size_5ftype',['size_type',['../classutils4cpp_1_1filesystem_1_1_u_path.html#ab4c4dc6f5aea350505ddcc1c7def0928',1,'utils4cpp::filesystem::UPath::size_type()'],['../classutils4cpp_1_1str_1_1_u_string.html#ac16384dad104e7fca50cb40e922192ad',1,'utils4cpp::str::UString::size_type()'],['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#af8e1d4f2471d803a42e024a7538955fc',1,'utils4cpp::str::UBasicStringList::size_type()']]],
+  ['string_5ftype',['string_type',['../classutils4cpp_1_1filesystem_1_1_u_path.html#a6b4c51ff4bdede55ad263c6b2c515e0a',1,'utils4cpp::filesystem::UPath::string_type()'],['../classutils4cpp_1_1str_1_1_u_string.html#ace2132b1daeeb8f1b8930f593af56329',1,'utils4cpp::str::UString::string_type()']]]
 ];

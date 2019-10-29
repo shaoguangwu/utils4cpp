@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['absolutepath',['absolutePath',['../class_path.html#a41be360034aa270d19882c29184f2694',1,'Path']]],
-  ['adddays',['addDays',['../classutils4cpp_1_1datetime_1_1_date.html#a6065701386b4bd660355ab9e7a9c2ebc',1,'utils4cpp::datetime::Date']]],
-  ['addmonths',['addMonths',['../classutils4cpp_1_1datetime_1_1_date.html#aebce900093689b957298d9c7a4be6fb4',1,'utils4cpp::datetime::Date']]],
-  ['addmsecs',['addMSecs',['../classutils4cpp_1_1datetime_1_1_time.html#adaa2cc2f4da1563849747620f79a2a9c',1,'utils4cpp::datetime::Time']]],
-  ['addsecs',['addSecs',['../classutils4cpp_1_1datetime_1_1_time.html#aa299305967a434723fa6e756a3b4377e',1,'utils4cpp::datetime::Time']]],
-  ['addyears',['addYears',['../classutils4cpp_1_1datetime_1_1_date.html#a1d7ec19546b2843d211db88754de5c2f',1,'utils4cpp::datetime::Date']]],
-  ['at',['at',['../classutils4cpp_1_1str_1_1_basic_string_list.html#ab08af23d38326ac70bf0a5dae01e87ca',1,'utils4cpp::str::BasicStringList']]]
+  ['adddays',['addDays',['../classutils4cpp_1_1datetime_1_1_u_date.html#a203330bf326ce84f6ddb10f3bbe27a61',1,'utils4cpp::datetime::UDate']]],
+  ['addmonths',['addMonths',['../classutils4cpp_1_1datetime_1_1_u_date.html#a08397b7834b73c7084a43b63368750b4',1,'utils4cpp::datetime::UDate']]],
+  ['addmsecs',['addMSecs',['../classutils4cpp_1_1datetime_1_1_u_time.html#ade640a85271b45c5f88fb3e872b3639a',1,'utils4cpp::datetime::UTime']]],
+  ['addsecs',['addSecs',['../classutils4cpp_1_1datetime_1_1_u_time.html#acde139f9077f9de4506858606c87d3be',1,'utils4cpp::datetime::UTime']]],
+  ['addyears',['addYears',['../classutils4cpp_1_1datetime_1_1_u_date.html#a404cdfb347d3d0adfbc253724f3b3c9f',1,'utils4cpp::datetime::UDate']]],
+  ['at',['at',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a9d8788a6a443993835d9211a60d62765',1,'utils4cpp::str::UBasicStringList']]]
 ];

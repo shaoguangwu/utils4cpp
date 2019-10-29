@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['date',['Date',['../classutils4cpp_1_1datetime_1_1_date.html#aba4a7c8a2ac4e87ce3857634484141ad',1,'utils4cpp::datetime::Date::Date()'],['../classutils4cpp_1_1datetime_1_1_date.html#a37f8fbef5d43750a0e8ff27f20b9985b',1,'utils4cpp::datetime::Date::Date(int y, int m, int d, int dst=-1)'],['../classutils4cpp_1_1datetime_1_1_date.html#a0ef250db461b11de84e2f2440146e455',1,'utils4cpp::datetime::Date::Date(const std::tm &amp;tm)']]],
-  ['datetime',['DateTime',['../classutils4cpp_1_1datetime_1_1_date_time.html#a0e8b6302814a0e9b792b1ab227b955fa',1,'utils4cpp::datetime::DateTime']]],
-  ['day',['day',['../classutils4cpp_1_1datetime_1_1_date.html#a82dd7ee4a793e2249b14949af7ef349b',1,'utils4cpp::datetime::Date']]],
-  ['dayofweek',['dayOfWeek',['../classutils4cpp_1_1datetime_1_1_date.html#abca55b8d4e17961d51b3d278eb51ba67',1,'utils4cpp::datetime::Date::dayOfWeek() const'],['../classutils4cpp_1_1datetime_1_1_date.html#a5f3ffa1b708defbae8133c8f86b11fd3',1,'utils4cpp::datetime::Date::dayOfWeek(int year, int month, int day)']]],
-  ['dayofyear',['dayOfYear',['../classutils4cpp_1_1datetime_1_1_date.html#abc56f5900432bcfd6a3e8ddf37749e05',1,'utils4cpp::datetime::Date::dayOfYear() const'],['../classutils4cpp_1_1datetime_1_1_date.html#ac9de57651b3f7319ff280c96b3ac501d',1,'utils4cpp::datetime::Date::dayOfYear(int year, int month, int day)']]],
-  ['daysinmonth',['daysInMonth',['../classutils4cpp_1_1datetime_1_1_date.html#a5c79c7e7e39bde768be4195e37925634',1,'utils4cpp::datetime::Date']]],
-  ['daysinyear',['daysInYear',['../classutils4cpp_1_1datetime_1_1_date.html#ac3a2448d144c5455ecd62d1b25d77d1c',1,'utils4cpp::datetime::Date']]],
-  ['daysto',['daysTo',['../classutils4cpp_1_1datetime_1_1_date.html#a21facc134692270a524404a140b57a41',1,'utils4cpp::datetime::Date']]],
-  ['dst',['dst',['../classutils4cpp_1_1datetime_1_1_date.html#a7ad811c3a7a148eb9612b5f1dad9016c',1,'utils4cpp::datetime::Date']]]
+  ['data',['data',['../classutils4cpp_1_1filesystem_1_1_u_path.html#a0200e9c86754b72074774b828eb2e2f9',1,'utils4cpp::filesystem::UPath::data() noexcept'],['../classutils4cpp_1_1filesystem_1_1_u_path.html#ad6cf409381d6d3093afe25c3ccaa7ae0',1,'utils4cpp::filesystem::UPath::data() const noexcept'],['../classutils4cpp_1_1str_1_1_u_string.html#a308a573491a60b3f341b6d1b8c8d9993',1,'utils4cpp::str::UString::data() noexcept'],['../classutils4cpp_1_1str_1_1_u_string.html#abc75bada97b2f57897e456a26bf93c97',1,'utils4cpp::str::UString::data() const noexcept']]],
+  ['day',['day',['../classutils4cpp_1_1datetime_1_1_u_date.html#afcc109b31d69770ce685721b66a5a6aa',1,'utils4cpp::datetime::UDate']]],
+  ['dayofweek',['dayOfWeek',['../classutils4cpp_1_1datetime_1_1_u_date.html#a8ebb46c4cb4bbf64978c2523879a036c',1,'utils4cpp::datetime::UDate::dayOfWeek() const'],['../classutils4cpp_1_1datetime_1_1_u_date.html#afc2b437a2f26ce42358f37b61b379872',1,'utils4cpp::datetime::UDate::dayOfWeek(int year, int month, int day)']]],
+  ['dayofyear',['dayOfYear',['../classutils4cpp_1_1datetime_1_1_u_date.html#a50708ef3a65854f6d89cb32686ace533',1,'utils4cpp::datetime::UDate::dayOfYear() const'],['../classutils4cpp_1_1datetime_1_1_u_date.html#a091f12c23346317757c51fd9067a036d',1,'utils4cpp::datetime::UDate::dayOfYear(int year, int month, int day)']]],
+  ['daysinmonth',['daysInMonth',['../classutils4cpp_1_1datetime_1_1_u_date.html#a65aab9526cfba0153fa4807d94b59ba3',1,'utils4cpp::datetime::UDate']]],
+  ['daysinyear',['daysInYear',['../classutils4cpp_1_1datetime_1_1_u_date.html#ae11f400f54c4fcc6295fbb7c2711b957',1,'utils4cpp::datetime::UDate']]],
+  ['daysto',['daysTo',['../classutils4cpp_1_1datetime_1_1_u_date.html#a7fe6256341e4286d7d84f1fa21b4517d',1,'utils4cpp::datetime::UDate']]],
+  ['dst',['dst',['../classutils4cpp_1_1datetime_1_1_u_date.html#a48303de0fe975097975b3c61a2240147',1,'utils4cpp::datetime::UDate']]]
 ];

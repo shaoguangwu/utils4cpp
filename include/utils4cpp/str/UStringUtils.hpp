@@ -885,7 +885,7 @@ inline void reverseStringSelf(StringT& str)
 {
     using SizeT = typename StringT::size_type;
     for (SizeT i = 0; i < str.size() / 2; ++i) {
-        swapChar(str[i], str[str.size() - i - 1]);
+        uSwapChar(str[i], str[str.size() - i - 1]);
     }
 }
 
@@ -918,14 +918,14 @@ NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
 {
     if (noexception) {
         try {
-            return inc::stringToNumber<NumT>(str, pos, base);
+            return impl::stringToNumber<NumT>(str, pos, base);
         }
         catch (const std::exception& e) {
             return NumT(0);
         }
     }
     else {
-        return inc::stringToNumber<NumT>(str, pos, base);
+        return impl::stringToNumber<NumT>(str, pos, base);
     }
 }
 
@@ -947,14 +947,14 @@ NumT toNumber(const StringT& str, std::size_t* pos, bool noexception)
 {
     if (noexception) {
         try {
-            return inc::stringToNumber<NumT>(str, pos);
+            return impl::stringToNumber<NumT>(str, pos);
         }
         catch (const std::exception& e) {
             return NumT(0);
         }
     }
     else {
-        return inc::stringToNumber<NumT>(str, pos);
+        return impl::stringToNumber<NumT>(str, pos);
     }
 }
 
@@ -975,14 +975,14 @@ NumT toNumber(const StringT& str, bool noexception)
 {
     if (noexception) {
         try {
-            return inc::stringToNumber<NumT>(str);
+            return impl::stringToNumber<NumT>(str);
         }
         catch (const std::exception& e) {
             return NumT(0);
         }
     }
     else {
-        return inc::stringToNumber<NumT>(str);
+        return impl::stringToNumber<NumT>(str);
     }
 }
 
