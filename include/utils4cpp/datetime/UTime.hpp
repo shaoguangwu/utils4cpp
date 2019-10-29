@@ -37,8 +37,8 @@
 #include <cstdint>
 #include <string>
 
-#include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
+#include "utils4cpp/core/UCore.hpp"
+#include "utils4cpp/datetime/UDateTimeGlobal.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -49,14 +49,14 @@ namespace datetime {
 
 	\brief Defines a Time class.
 */
-class UTILS4CPP_EXPORT Time
+class UTILS4CPP_EXPORT UTime
 {
     using milliseconds_t = std::int32_t;
 
 public:
-    Time();
-    Time(milliseconds_t msecs, int dst = -1);
-    Time(int h, int m, int s, int ms = 0, int dst = -1);
+    UTime();
+    UTime(milliseconds_t msecs, int dst = -1);
+    UTime(int h, int m, int s, int ms = 0, int dst = -1);
 
     bool isNull() const;
     bool isValid() const;
@@ -69,38 +69,38 @@ public:
     int msec() const;
     bool setTime(int h, int m, int s, int ms = 0, int dst = -1);
 
-    Time addSecs(int secs) const;
-    int secsTo(const Time& t) const;
-    Time addMSecs(milliseconds_t ms) const;
-    int msecsTo(const Time& t) const;
+    UTime addSecs(int secs) const;
+    int secsTo(const UTime& t) const;
+    UTime addMSecs(milliseconds_t ms) const;
+    int msecsTo(const UTime& t) const;
 
     std::string toString(const char* format) const;
     std::wstring toWString(const wchar_t* format) const;
     std::string sprintfTime(const char* format) const;
     std::wstring sprintfTime(const wchar_t* format) const;
 
-    bool operator==(const Time& other) const;
-    bool operator!=(const Time& other) const;
-    bool operator< (const Time& other) const;
-    bool operator<=(const Time& other) const;
-    bool operator> (const Time& other) const;
-    bool operator>=(const Time& other) const;
-    bool isDstFlagEqual(const Time& other) const;
+    bool operator==(const UTime& other) const;
+    bool operator!=(const UTime& other) const;
+    bool operator< (const UTime& other) const;
+    bool operator<=(const UTime& other) const;
+    bool operator> (const UTime& other) const;
+    bool operator>=(const UTime& other) const;
+    bool isDstFlagEqual(const UTime& other) const;
 
-    static Time fromMilliseconds(milliseconds_t ms, int dst = -1);
+    static UTime fromMilliseconds(milliseconds_t ms, int dst = -1);
     milliseconds_t toMilliseconds() const;
 
-    static Time currentLocalTime();
-    static Time currentGmTime();
+    static UTime currentLocalTime();
+    static UTime currentGmTime();
 
-    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& os, const Time& time);
+    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& os, const UTime& time);
 private:
     enum { NullTime = -1 };
 
     milliseconds_t  m_msecs;
     int             m_isdst;
 
-    friend class DateTime;
+    friend class UDateTime;
 };
 
 } // namespace datetime

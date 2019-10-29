@@ -31,23 +31,46 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_GEOMETRY_POINT_HPP
-#define UTILS4CPP_GEOMETRY_POINT_HPP
+#ifndef UTILS4CPP_DATETIME_UDATETIMEGLOBAL_HPP
+#define UTILS4CPP_DATETIME_UDATETIMEGLOBAL_HPP
 
 namespace utils4cpp {
-namespace geometry {
+/*!
+    \brief Date-time libraries.
+    \since v0.0
+*/
+namespace datetime {
 
-template<typename T, unsigned int D>
-class PointBase
-{
-public:
-    PointBase();
+enum Month {
+    Jan = 1,                    //!< January
+    Feb,                        //!< February
+    Mar,                        //!< March
+    Apr,                        //!< April
+    May,                        //!< May
+    June,                       //!< June
+    July,                       //!< July
+    Aug,                        //!< August
+    Sept,                       //!< September
+    Oct,                        //!< October
+    Nov,                        //!< November  
+    Dec                         //!< December
+};  
 
-private:
-    T m_data[D];
+enum DateFormat {
+    TextDate,                       // default utils4cpp
+    ISODate,                        // ISO 8601
+    SystemLocaleDate,               // deprecated
+    LocalDate = SystemLocaleDate,   // deprecated
+    LocaleDate,                     // deprecated
+    SystemLocaleShortDate,
+    SystemLocaleLongDate,
+    DefaultLocaleShortDate,
+    DefaultLocaleLongDate,
+    RFC2822Date,                    // RFC 2822 (+ 850 and 1036 during parsing)
+    ISODateWithMs
 };
 
-} // namespace geometry
+} // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_GEOMETRY_POINT_HPP
+#endif // UTILS4CPP_DATETIME_UDATETIMEGLOBAL_HPP

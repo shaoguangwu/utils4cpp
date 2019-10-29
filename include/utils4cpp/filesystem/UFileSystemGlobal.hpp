@@ -31,24 +31,39 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIME_HPP
-#define UTILS4CPP_DATETIME_DATETIME_HPP
+#ifndef UTILS4CPP_FILESYSTEM_UFILESYSTEMGLOBAL_HPP
+#define UTILS4CPP_FILESYSTEM_UFILESYSTEMGLOBAL_HPP
 
-#include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
-#include "utils4cpp/datetime/Date.hpp"
-#include "utils4cpp/datetime/Time.hpp"
+#include <string>
+#include "utils4cpp/core/UCore.hpp"
+
+#if UTILS4CPP_HAS_STDFILESYSTEM
+#   include <filesystem>
+#endif /* UTILS4CPP_HAS_STDFILESYSTEM */ 
 
 namespace utils4cpp {
-namespace datetime {
+/*!
+    \brief file system libraries.
+    \since v0.0
+*/
+namespace filesystem {
 
-class UTILS4CPP_EXPORT DateTime
+/*!
+    Returns the path separator on native operating system.
+    The template parameter \a CharT must one of char, wchar_t, char16_t, char32_t, 
+    char8_t(c++20).
+*/
+template<typename CharT>
+static constexpr CharT nativeSeparator() noexcept
 {
-public:
-    DateTime();
+#ifdef UTILS4CPP_OS_WIN
+    return '\\';
+#else
+    return '/';
+#endif
 }
 
-} // namespace datetime
+} // namespace filesystem
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATETIME_HPP
+#endif // UTILS4CPP_FILESYSTEM_UFILESYSTEMGLOBAL_HPP

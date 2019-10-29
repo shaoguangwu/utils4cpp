@@ -38,8 +38,8 @@
 #include <set>
 #include <utility>
 
-#include "utils4cpp/str/StringGlobal.hpp"
-#include "utils4cpp/str/StringUtils.hpp"
+#include "utils4cpp/str/UStringGlobal.hpp"
+#include "utils4cpp/str/UStringUtils.hpp"
 
 namespace utils4cpp {
 namespace str {
@@ -51,7 +51,7 @@ namespace str {
     \brief The string list template class.
 */
 template<class StringT>
-class BasicStringList : public std::list<StringT>
+class UBasicStringList : public std::list<StringT>
 {
 public:
     /*! Typedef for StringT. Provided for STL compatibility. */
@@ -408,9 +408,9 @@ public:
         Returns a new string list which removes duplicate entries from a \a list. 
         The entries do not have to be sorted. They will retain their original order.
     */
-    static BasicStringList removeDuplicates(const BasicStringList& list)
+    static UBasicStringList removeDuplicates(const UBasicStringList& list)
     {
-        BasicStringList result(list);
+        UBasicStringList result(list);
         result.removeDuplicates();
         return result;
     }
@@ -447,10 +447,10 @@ public:
 
         \sa contains()
     */
-    BasicStringList filter(const StringT& str, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale()) const
+    UBasicStringList filter(const StringT& str, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale()) const
     {
         const auto& self = *this;
-        BasicStringList result;
+        UBasicStringList result;
         for (const auto& s : self) {
             if (containsSubstr(s, str, cs, loc)) {
                 result << s;
@@ -465,9 +465,9 @@ public:
 
         \sa toStdList(), fromStdVector()
     */
-    static BasicStringList fromStdList(const std::list<StringT>& list)
+    static UBasicStringList fromStdList(const std::list<StringT>& list)
     {
-        BasicStringList result;
+        UBasicStringList result;
         for (const auto& str : list) {
             result << str;
         }
@@ -494,9 +494,9 @@ public:
 
         \sa toStdVector(), fromStdList()
     */
-    static BasicStringList fromStdVector(const std::vector<StringT>& vec)
+    static UBasicStringList fromStdVector(const std::vector<StringT>& vec)
     {
-        BasicStringList result;
+        UBasicStringList result;
         for (const auto& str : vec) {
             result << str;
         }
@@ -522,7 +522,7 @@ public:
 
         \sa operator<<()
     */
-    BasicStringList& operator+=(const StringT& str)
+    UBasicStringList& operator+=(const StringT& str)
     {
         this->emplace_back(str);
         return *this;
@@ -533,7 +533,7 @@ public:
 
         \sa operator+(), operator<<()
     */
-    BasicStringList& operator+=(const BasicStringList& list)
+    UBasicStringList& operator+=(const UBasicStringList& list)
     {
         for (const auto& str : list) {
             this->emplace_back(str);
@@ -546,7 +546,7 @@ public:
 
         \sa operator+(), operator<<()
     */
-    BasicStringList& operator+=(const std::list<StringT>& list)
+    UBasicStringList& operator+=(const std::list<StringT>& list)
     {
         for (const auto& str : list) {
             this->emplace_back(str);
@@ -559,9 +559,9 @@ public:
 
         \sa operator+=()
     */
-    BasicStringList operator+(const BasicStringList& list) const
+    UBasicStringList operator+(const UBasicStringList& list) const
     {
-        BasicStringList result(*this);
+        UBasicStringList result(*this);
         result += list;
         return result;
     }
@@ -571,7 +571,7 @@ public:
 
         \sa operator+=()
     */
-    BasicStringList& operator<<(const StringT& str)
+    UBasicStringList& operator<<(const StringT& str)
     {
         *this += str;
         return *this;
@@ -582,7 +582,7 @@ public:
 
         \sa operator+=()
     */
-    BasicStringList& operator<<(const BasicStringList& list)
+    UBasicStringList& operator<<(const UBasicStringList& list)
     {
         *this += list;
         return *this;
@@ -593,7 +593,7 @@ public:
 
         \sa operator+=()
     */
-    BasicStringList& operator<<(const std::list<StringT>& list)
+    UBasicStringList& operator<<(const std::list<StringT>& list)
     {
         *this += list;
         return *this;
@@ -601,17 +601,17 @@ public:
 };
 
 /*! The std::string list. */
-using StringList = BasicStringList<std::string>;
+using UStringList = UBasicStringList<std::string>;
 /*! The std::wstring list. */
-using WStringList = BasicStringList<std::wstring>;
+using UWStringList = UBasicStringList<std::wstring>;
 /*! The std::u16string list. */
-using U16StringList = BasicStringList<std::u16string>;
+using U16StringList = UBasicStringList<std::u16string>;
 /*! The std::u32string list. */
-using U32StringList = BasicStringList<std::u32string>;
+using U32StringList = UBasicStringList<std::u32string>;
 
 #if UTILS4CPP_HAS_CPP20
     /*! The std::u8string list. (if c++20 enabled) */
-    using U8StringList = BasicStringList<std::u8string>;
+    using U8StringList = UBasicStringList<std::u8string>;
 #endif
 
 } // namespace str

@@ -31,26 +31,26 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATE_HPP
-#define UTILS4CPP_DATETIME_DATE_HPP
+#ifndef UTILS4CPP_DATETIME_UDATE_HPP
+#define UTILS4CPP_DATETIME_UDATE_HPP
 
 #include <cstdint>
 #include <ctime>
 #include <iostream>
 
-#include "utils4cpp/core/Core.hpp"
-#include "utils4cpp/datetime/DateTimeGlobal.hpp"
+#include "utils4cpp/core/UCore.hpp"
+#include "utils4cpp/datetime/UDateTimeGlobal.hpp"
 
 namespace utils4cpp {
 namespace datetime {
 
 /*!
-    \class Date
+    \class UDate
     \since v0.0
 
-    \brief The Date class provides date functions.
+    \brief The UDate class provides date functions.
 */
-class UTILS4CPP_EXPORT Date
+class UTILS4CPP_EXPORT UDate
 {
     /*! Structure holding a calendar date broken down into its components. */
     struct dt 
@@ -65,9 +65,9 @@ class UTILS4CPP_EXPORT Date
     dt m_dt;
 
 public:
-    Date();
-    Date(int y, int m, int d, int dst = -1);
-    Date(const std::tm& tm);
+    UDate();
+    UDate(int y, int m, int d, int dst = -1);
+    UDate(const std::tm& tm);
 
     int year() const;
     int month() const;
@@ -86,39 +86,39 @@ public:
     std::tm toTm();
 
     std::int64_t toJulianDay() const;
-    static Date fromJulianDay(std::int64_t julianDay);
-    std::int64_t daysTo(const Date& d) const;
+    static UDate fromJulianDay(std::int64_t julianDay);
+    std::int64_t daysTo(const UDate& d) const;
 
-    Date addDays(std::int64_t days) const;
-    Date addMonths(int months) const;
-    Date addYears(int years) const;
+    UDate addDays(std::int64_t days) const;
+    UDate addMonths(int months) const;
+    UDate addYears(int years) const;
 	
 	std::string toString(const char* format);
     std::wstring toWString(const wchar_t* format);
     std::string toString(DateFormat format = TextDate) const;
     std::wstring toWString(DateFormat format = TextDate) const;
 
-    bool operator==(const Date& other) const;
-    bool operator!=(const Date& other) const;
-    bool operator< (const Date& other) const;
-    bool operator<=(const Date& other) const;
-    bool operator> (const Date& other) const;
-    bool operator>=(const Date& other) const;
-    bool isDstFlagSameTo(const Date& other) const;
+    bool operator==(const UDate& other) const;
+    bool operator!=(const UDate& other) const;
+    bool operator< (const UDate& other) const;
+    bool operator<=(const UDate& other) const;
+    bool operator> (const UDate& other) const;
+    bool operator>=(const UDate& other) const;
+    bool isDstFlagSameTo(const UDate& other) const;
 
     static bool is31Days(int month);
     static bool is30Days(int month);
     static bool isValid(int year, int month, int day);
     static bool isLeapYear(int year);
     static bool beforGregorianCalendar(int year, int month, int day);
-    static bool beforGregorianCalendar(const Date& d);
+    static bool beforGregorianCalendar(const UDate& d);
     static int dayOfYear(int year, int month, int day);
     static int dayOfWeek(int year, int month, int day);
 
-    static Date currentLocalDate();
-    static Date currentGmDate();
+    static UDate currentLocalDate();
+    static UDate currentGmDate();
 
-    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Date& date);
+    friend UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const UDate& date);
 private:
     void makeInvalid();
     friend class DateTime;
@@ -127,4 +127,4 @@ private:
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATE_HPP
+#endif // UTILS4CPP_DATETIME_UDATE_HPP

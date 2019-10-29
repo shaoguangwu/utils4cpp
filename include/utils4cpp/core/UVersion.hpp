@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_VERSION_HPP
-#define UTILS4CPP_CORE_VERSION_HPP
+#ifndef UTILS4CPP_CORE_UVERSION_HPP
+#define UTILS4CPP_CORE_UVERSION_HPP
 
 /*! The major version of utils4cpp library. */
 #define UTILS4CPP_VERSION_MAJOR         0
@@ -65,4 +65,4 @@
                                         UTILS4CPP_AUX_WSTR(UTILS4CPP_VERSION_REVISION) " "  \
                                         UTILS4CPP_VERSION_STATUS
 
-#endif // UTILS4CPP_CORE_VERSION_HPP
+#endif // UTILS4CPP_CORE_UVERSION_HPP

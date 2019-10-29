@@ -19,40 +19,40 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\Core.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\CppStandardDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\Export.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\StlConfig.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\OsDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\Matrix.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Date.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCore.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardDetection.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UExport.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UStlConfig.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UOsDetection.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UVersion.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\UMatrix.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDate.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTime.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTimeGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Dir.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\File.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\FileSystemGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\Path.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathToString.inc" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\PathUtils.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Cuboid.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Point.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Rect.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Size.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringList.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringToNumber.inc" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringUtils.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDateTimeGlobal.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UElapsedTimer.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UTime.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UDir.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UFile.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UFileSystemGlobal.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPath.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPathToString.inl" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPathUtils.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UCuboid.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UPoint.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URect.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\USize.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringGlobal.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringList.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.inl" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringUtils.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\Date.cpp" />
+    <ClCompile Include="..\..\..\..\src\UDate.cpp" />
     <ClCompile Include="..\..\..\..\src\DateTime.cpp" />
-    <ClCompile Include="..\..\..\..\src\Dir.cpp" />
-    <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
-    <ClCompile Include="..\..\..\..\src\File.cpp" />
-    <ClCompile Include="..\..\..\..\src\Time.cpp" />
+    <ClCompile Include="..\..\..\..\src\UDir.cpp" />
+    <ClCompile Include="..\..\..\..\src\UElapsedTimer.cpp" />
+    <ClCompile Include="..\..\..\..\src\UFile.cpp" />
+    <ClCompile Include="..\..\..\..\src\UTime.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

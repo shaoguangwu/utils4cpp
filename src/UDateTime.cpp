@@ -31,39 +31,12 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGGLOBAL_HPP
-#define UTILS4CPP_STR_STRINGGLOBAL_HPP
-
-#include <string>
-
-#include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/datetime/UDateTime.hpp"
 
 namespace utils4cpp {
+namespace datetime {
 
-/*!
-    \brief string libraries.
-    \since v0.0
-*/
-namespace str {
 
-/*! Indicates case sensitive or not. */
-enum CaseSensitivity {
-    CaseInsensitive,                ///< Case insensitive.  (no)
-    CaseSensitive                   ///< Case sensitive.    (yes)
-};
 
-/*!
-    Swap char \a a and \a b with no intermediate variable.
-*/
-template<typename CharT>
-inline void swapChar(CharT &a, CharT& b) noexcept
-{
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
-}
-
-} // namespace str
+} // namespace datetime
 } // namespace utils4cpp
-
-#endif

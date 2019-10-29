@@ -43,15 +43,15 @@
 #include <typeinfo>
 #include <type_traits>
 
-#include "utils4cpp/str/StringToNumber.inc"
-#include "utils4cpp/str/StringGlobal.hpp"
+#include "utils4cpp/str/UStringToNumber.inl"
+#include "utils4cpp/str/UStringGlobal.hpp"
 
 namespace utils4cpp {
 namespace str {
 
 /*! StringVector is a sequence container that encapsulates strings. */
 template<class StringT>
-using StringVector = std::vector<StringT>;
+using UStringVector = std::vector<StringT>;
 
 
 /*****************************************************************************
@@ -79,12 +79,12 @@ template<class StringT>
 StringT replaceString(const StringT& str, const StringT& before, const StringT& after);
 
 template<class StringT>
-StringVector<StringT> splitString(const StringT& str, typename StringT::value_type delim);
+UStringVector<StringT> splitString(const StringT& str, typename StringT::value_type delim);
 template<class StringT>
-StringVector<StringT> splitString(const StringT& str, const StringT& delim);
+UStringVector<StringT> splitString(const StringT& str, const StringT& delim);
 
 template<class StringT, class DelimT>
-StringT joinString(const StringVector<StringT>& strs, const DelimT& delim);
+StringT joinString(const UStringVector<StringT>& strs, const DelimT& delim);
 
 template<class StringT>
 void toLowerSelf(StringT& str, const std::locale& loc = std::locale());
@@ -377,10 +377,10 @@ inline StringT replaceString(const StringT& str, const StringT& before, const St
     \sa joinString()
 */
 template<class StringT>
-StringVector<StringT> splitString(const StringT& str, typename StringT::value_type delim)
+UStringVector<StringT> splitString(const StringT& str, typename StringT::value_type delim)
 {
     using SizeT = typename StringT::size_type;
-    StringVector<StringT> result;
+    UStringVector<StringT> result;
     if (!str.empty()) {
         SizeT beg = 0;
         SizeT pos = str.find(delim);
@@ -407,10 +407,10 @@ StringVector<StringT> splitString(const StringT& str, typename StringT::value_ty
     \sa joinString()
 */
 template<class StringT>
-StringVector<StringT> splitString(const StringT& str, const StringT& delim)
+UStringVector<StringT> splitString(const StringT& str, const StringT& delim)
 {
     using SizeT = typename StringT::size_type;
-    StringVector<StringT> result;
+    UStringVector<StringT> result;
 
     if (!str.empty() && !delim.empty()) {
         SizeT beg = 0;
@@ -434,7 +434,7 @@ StringVector<StringT> splitString(const StringT& str, const StringT& delim)
     \sa splitString()
 */
 template<class StringT, class DelimT>
-StringT joinString(const StringVector<StringT>& strs, const DelimT& delim)
+StringT joinString(const UStringVector<StringT>& strs, const DelimT& delim)
 {
     StringT result;
     for (auto it = strs.begin(); it != strs.end(); ++it) {

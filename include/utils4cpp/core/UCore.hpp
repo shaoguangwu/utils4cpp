@@ -30,19 +30,12 @@
 **  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **
 ************************************************************************************/
+#ifndef UTILS4CPP_CORE_UCORE_HPP
+#define UTILS4CPP_CORE_UCORE_HPP
 
-#ifndef UTILS4CPP_FILESYSTEM_DIR_HPP
-#define UTILS4CPP_FILESYSTEM_DIR_HPP
+#include "utils4cpp/core/UVersion.hpp"
+#include "utils4cpp/core/UExport.hpp"
+#include "utils4cpp/core/UOsDetection.hpp"
+#include "utils4cpp/core/UStlConfig.hpp"
 
-namespace utils4cpp {
-namespace filesystem {
-
-class Dir
-{
-
-};
-
-} // namespace filesystem
-} // namespace utils4cpp
-
-#endif // UTILS4CPP_FILESYSTEM_DIR_HPP
+#endif // UTILS4CPP_CORE_UCORE_HPP

@@ -31,12 +31,12 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP
-#define UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP
+#ifndef UTILS4CPP_DATETIME_UELAPSEDTIMER_HPP
+#define UTILS4CPP_DATETIME_UELAPSEDTIMER_HPP
 
 #include <chrono>
 
-#include "utils4cpp/core/Core.hpp"
+#include "utils4cpp/core/UCore.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -47,7 +47,7 @@ namespace datetime {
 
 	\brief Defines a elapsed timer.
 */
-class UTILS4CPP_EXPORT ElapsedTimer
+class UTILS4CPP_EXPORT UElapsedTimer
 {
 public:
 	using chrono_clock_type = std::chrono::high_resolution_clock;
@@ -58,7 +58,7 @@ public:
 #endif
 	using elapsed_time_floating_t = double;
 
-	ElapsedTimer();
+	UElapsedTimer();
 	void restart();
 
 	std::chrono::milliseconds::rep elapsed() const;
@@ -94,4 +94,4 @@ private:
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_ELAPSEDTIMER_HPP
+#endif // UTILS4CPP_DATETIME_UELAPSEDTIMER_HPP

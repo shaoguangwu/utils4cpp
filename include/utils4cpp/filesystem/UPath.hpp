@@ -31,19 +31,19 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_FILESYSTEM_PATH_HPP
-#define UTILS4CPP_FILESYSTEM_PATH_HPP
+#ifndef UTILS4CPP_FILESYSTEM_UPATH_HPP
+#define UTILS4CPP_FILESYSTEM_UPATH_HPP
 
 #include <utility>
 
-#include "utils4cpp/filesystem/FileSystemGlobal.hpp"
-#include "utils4cpp/filesystem/PathToString.inc"
+#include "utils4cpp/filesystem/UFileSystemGlobal.hpp"
+#include "utils4cpp/filesystem/UPathToString.inl"
 
 namespace utils4cpp {
 namespace filesystem {
 
 /*!
-    \class Path
+    \class UPath
     \brief Objects of type path represent paths on a filesystem. 
     \since v0.0
     
@@ -51,7 +51,7 @@ namespace filesystem {
     path or even one that is not allowed to exist on the current file system or OS.
 */
 template<class StringT>
-class Path
+class UPath
 {
 public:
     /*! Typedef for StringT::value_type. Provided for STL compatibility. */
@@ -62,44 +62,39 @@ public:
     using size_type = typename StringT::size_type;
 
 public:
-#if UTILS4CPP_HAS_CPP17
     /*! 
         Constructs an empty path.
-        std::basic_string::basic_string() has noexcept attribute since c++17.
     */
-    Path() noexcept = default;
-#else
-    Path() = default;
-#endif
+    UPath() noexcept(std::is_nothrow_default_constructible_v<StringT>) = default;
 
     /*!
         Destroys the path object.
     */
-    ~Path() = default;
+    ~UPath() = default;
 
-    Path(const StringT& str) : m_data(str)
+    UPath(const StringT& str) : m_data(str)
     {}
 
-    Path(StringT&& str) noexcept : m_data(std::move(str))
+    UPath(StringT&& str) noexcept : m_data(std::move(str))
     {}
 
-    Path(const Path& other) : m_data(other.m_data)
+    UPath(const UPath& other) : m_data(other.m_data)
     {}
 
-    Path(Path&& other) noexcept : m_data(std::move(other.m_data))
+    UPath(UPath&& other) noexcept : m_data(std::move(other.m_data))
     {}
 
-    Path& operator=(const StringT& str)
+    UPath& operator=(const StringT& str)
     {
         m_data = str;
         return *this;
     }
-    Path& operator=(StringT& str) noexcept
+    UPath& operator=(StringT& str) noexcept
     {
         m_data = std::move(str);
         return *this;
     }
-    Path& operator=(const Path& other)
+    UPath& operator=(const UPath& other)
     {
         if (&other != this) {
             m_data = other.m_data;
@@ -108,7 +103,7 @@ public:
     }
 
 #if UTILS4CPP_HAS_CPP17
-    Path& operator=(Path&& other) noexcept
+    UPath& operator=(UPath&& other) noexcept
     {
         if (&other != this) {
             m_data = std::move(other.m_data);
@@ -116,7 +111,7 @@ public:
         return *this;
     }
 #else
-    Path& operator=(Path&& other)
+    UPath& operator=(UPath&& other)
     {
         if (&other != this) {
             m_data = std::move(other.m_data);
@@ -126,37 +121,37 @@ public:
 #endif
 
 #if UTILS4CPP_HAS_STDFILESYSTEM
-    Path(const std::filesystem::path& path) : m_data(inc::pathToString<StringT>(path))
+    UPath(const std::filesystem::path& path) : m_data(impl::pathToString<StringT>(path))
     {}
-    Path& operator=(const std::filesystem::path& path)
+    UPath& operator=(const std::filesystem::path& path)
     {
-        m_data = inc::pathToString<StringT>(path);
+        m_data = impl::pathToString<StringT>(path);
         return *this;
     }
 #endif
 
-    StringT& data()
+    StringT& data() noexcept
     {
         return m_data;
     }
 
-    const StringT& data() const
+    const StringT& data() const noexcept
     {
         return m_data;
     }
 
-    const StringT& constData() const
+    const StringT& constData() const noexcept
     {
         return m_data;
     }
 
-    StringT toString() const
+    StringT toInputString() const
     {
         return m_data;
     }
 
 
-    StringT moveToString() noexcept
+    StringT moveToInputString() noexcept
     {
         return std::move(m_data);
     }
@@ -172,12 +167,12 @@ public:
     }
 
 #if UTILS4CPP_HAS_CPP17
-    void swap(Path& other) noexcept
+    void swap(UPath& other) noexcept
     {
         m_data.swap(other.m_data);
     }
 #else
-    void swap(Path& other)
+    void swap(UPath& other)
     {
         m_data.swap(other.m_data);
     }
@@ -191,4 +186,4 @@ private:
 } // namespace filesystem
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_FILESYSTEM_PATH_HPP
+#endif // UTILS4CPP_FILESYSTEM_UPATH_HPP

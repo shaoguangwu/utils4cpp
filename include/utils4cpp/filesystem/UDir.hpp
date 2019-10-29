@@ -31,39 +31,18 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_FILESYSTEM_FILESYSTEMGLOBAL_HPP
-#define UTILS4CPP_FILESYSTEM_FILESYSTEMGLOBAL_HPP
-
-#include <string>
-#include "utils4cpp/core/Core.hpp"
-
-#if UTILS4CPP_HAS_STDFILESYSTEM
-#   include <filesystem>
-#endif /* UTILS4CPP_HAS_STDFILESYSTEM */ 
+#ifndef UTILS4CPP_FILESYSTEM_UDIR_HPP
+#define UTILS4CPP_FILESYSTEM_UDIR_HPP
 
 namespace utils4cpp {
-/*!
-    \brief file system libraries.
-    \since v0.0
-*/
 namespace filesystem {
 
-/*!
-    Returns the path separator on native operating system.
-    The template parameter \a CharT must one of char, wchar_t, char16_t, char32_t, 
-    char8_t(c++20).
-*/
-template<typename CharT>
-static constexpr CharT nativeSeparator() noexcept
+class UDir
 {
-#ifdef UTILS4CPP_OS_WIN
-    return '\\';
-#else
-    return '/';
-#endif
-}
+
+};
 
 } // namespace filesystem
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_FILESYSTEM_FILESYSTEMGLOBAL_HPP
+#endif // UTILS4CPP_FILESYSTEM_UDIR_HPP

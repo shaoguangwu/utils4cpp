@@ -31,10 +31,10 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_STLCONFIG_HPP
-#define UTILS4CPP_CORE_STLCONFIG_HPP
+#ifndef UTILS4CPP_CORE_USTLCONFIG_HPP
+#define UTILS4CPP_CORE_USTLCONFIG_HPP
 
-#include "utils4cpp/core/CppStandardDetection.hpp"
+#include "utils4cpp/core/UCppStandardDetection.hpp"
 
 /*!
     \def UTILS4CPP_HAS_STDFILESYSTEM
@@ -99,4 +99,4 @@
 #   define UTILS4CPP_HAS_U8STRING                      0
 #endif /* UTILS4CPP_HAS_CHAR8T */
 
-#endif // UTILS4CPP_CORE_STLCONFIG_HPP
+#endif // UTILS4CPP_CORE_USTLCONFIG_HPP

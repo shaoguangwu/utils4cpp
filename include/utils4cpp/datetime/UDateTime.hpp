@@ -31,12 +31,24 @@
 **
 ************************************************************************************/
 
-#include "utils4cpp/datetime/DateTime.hpp"
+#ifndef UTILS4CPP_DATETIME_UDATETIME_HPP
+#define UTILS4CPP_DATETIME_UDATETIME_HPP
+
+#include "utils4cpp/core/UCore.hpp"
+#include "utils4cpp/datetime/UDateTimeGlobal.hpp"
+#include "utils4cpp/datetime/UDate.hpp"
+#include "utils4cpp/datetime/UTime.hpp"
 
 namespace utils4cpp {
 namespace datetime {
 
-
+class UTILS4CPP_EXPORT UDateTime
+{
+public:
+    UDateTime();
+}
 
 } // namespace datetime
 } // namespace utils4cpp
+
+#endif // UTILS4CPP_DATETIME_UDATETIME_HPP

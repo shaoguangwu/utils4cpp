@@ -31,46 +31,65 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
-#define UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
+#ifndef UTILS4CPP_FILESYSTEM_UPATHTOSTRING_INL
+#define UTILS4CPP_FILESYSTEM_UPATHTOSTRING_INL
 
-/*! cplusplus-standard version number. */
-#ifdef _MSVC_LANG
-#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
-#else
-#   define UTILS4CPP_CPLUSPLUS      __cplusplus
-#endif /* _MSVC_LANG */
+#include <string>
+#include <filesystem>
+#include <stdexcept>
 
-/*! Compiler enabled c++20 standard or not. */
-#if UTILS4CPP_CPLUSPLUS > 201703L
-#   define UTILS4CPP_HAS_CPP20      1
-#else
-#   define UTILS4CPP_HAS_CPP20      0
-#endif
+#include "utils4cpp/core/UStlConfig.hpp"
 
-/*! Compiler enabled c++17 standard or not. */
-#if UTILS4CPP_CPLUSPLUS > 201402L
-#    define UTILS4CPP_HAS_CPP17     1
-#else
-#    define UTILS4CPP_HAS_CPP17     0
-#endif
+#if UTILS4CPP_HAS_STDFILESYSTEM
 
-/*! Compiler enabled c++14 standard or not. */
-#if UTILS4CPP_CPLUSPLUS > 201103L
-#    define UTILS4CPP_HAS_CPP14     1
-#else
-#    define UTILS4CPP_HAS_CPP14     0
-#endif
+namespace utils4cpp {
+namespace filesystem {
+namespace impl {
 
-/*! Compiler enabled c++11 standard or not. */
-#if UTILS4CPP_CPLUSPLUS > 199711L
-#    define UTILS4CPP_HAS_CPP11     1
-#else
-#    define UTILS4CPP_HAS_CPP11     0
-#endif
+template<class StringT>
+inline StringT pathToString(const std::filesystem::path& path)
+{
+    throw std::invalid_argument("invalid template argument");
+}
 
-#if !UTILS4CPP_HAS_CPP11
-#   error "utils4cpp requires enabled c++11 support."
-#endif
+template<>
+inline std::string pathToString(const std::filesystem::path& path)
+{
+    return path.string();
+}
 
-#endif // UTILS4CPP_CORE_CPPSTANDARDDETECTION_HPP
+template<>
+inline std::wstring pathToString(const std::filesystem::path& path)
+{
+    return path.wstring();
+}
+
+template<>
+inline std::u16string pathToString(const std::filesystem::path& path)
+{
+    return path.u16string();
+}
+
+template<>
+inline std::u32string pathToString(const std::filesystem::path& path)
+{
+    return path.u32string();
+}
+
+#if UTILS4CPP_HAS_U8STRING
+
+template<>
+inline std::u8string pathToString(const std::filesystem::path& path)
+{
+    return path.u8string();
+}
+
+#endif // UTILS4CPP_HAS_U8STRING
+
+} // namespace impl
+} // namespace filesystem
+} // namespace utils4cpp
+
+#endif // UTILS4CPP_HAS_STDFILESYSTEM
+
+#endif // UTILS4CPP_FILESYSTEM_UPATHTOSTRING_INL

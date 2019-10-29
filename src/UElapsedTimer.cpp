@@ -61,7 +61,7 @@ namespace datetime {
 
     \sa reset()
 */
-ElapsedTimer::ElapsedTimer()
+UElapsedTimer::UElapsedTimer()
     : m_tp(chrono_clock_type::now())
 {
 }
@@ -71,7 +71,7 @@ ElapsedTimer::ElapsedTimer()
 
     Restart timing.
 */
-void ElapsedTimer::restart()
+void UElapsedTimer::restart()
 {
     m_tp = chrono_clock_type::now();
 }
@@ -83,7 +83,7 @@ void ElapsedTimer::restart()
 
     \sa elapsedFloating()
 */
-std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
+std::chrono::milliseconds::rep UElapsedTimer::elapsed() const
 {
     return elapsedMilliseconds();
 }
@@ -95,7 +95,7 @@ std::chrono::milliseconds::rep ElapsedTimer::elapsed() const
 
     \sa elapsedNanosecondsFloating()
 */
-std::chrono::nanoseconds::rep ElapsedTimer::elapsedNanoseconds() const
+std::chrono::nanoseconds::rep UElapsedTimer::elapsedNanoseconds() const
 {
     return std::chrono::duration_cast<std::chrono::nanoseconds>(chrono_clock_type::now() - m_tp).count();
 }
@@ -107,7 +107,7 @@ std::chrono::nanoseconds::rep ElapsedTimer::elapsedNanoseconds() const
 
     \sa elapsedMicrosecondsFloating()
 */
-std::chrono::microseconds::rep ElapsedTimer::elapsedMicroseconds() const
+std::chrono::microseconds::rep UElapsedTimer::elapsedMicroseconds() const
 {
     return std::chrono::duration_cast<std::chrono::microseconds>(chrono_clock_type::now() - m_tp).count();
 }
@@ -119,7 +119,7 @@ std::chrono::microseconds::rep ElapsedTimer::elapsedMicroseconds() const
 
     \sa elapsedMillisecondsFloating()
 */
-std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
+std::chrono::milliseconds::rep UElapsedTimer::elapsedMilliseconds() const
 {
     return std::chrono::duration_cast<std::chrono::milliseconds>(chrono_clock_type::now() - m_tp).count();
 }
@@ -131,7 +131,7 @@ std::chrono::milliseconds::rep ElapsedTimer::elapsedMilliseconds() const
 
     sa elapsedSecondsFloating()
 */
-std::chrono::seconds::rep ElapsedTimer::elapsedSeconds() const
+std::chrono::seconds::rep UElapsedTimer::elapsedSeconds() const
 {
     return std::chrono::duration_cast<std::chrono::seconds>(chrono_clock_type::now() - m_tp).count();
 }
@@ -143,7 +143,7 @@ std::chrono::seconds::rep ElapsedTimer::elapsedSeconds() const
 
     \sa elapsedMinutesFloating()
 */
-std::chrono::minutes::rep ElapsedTimer::elapsedMinutes() const
+std::chrono::minutes::rep UElapsedTimer::elapsedMinutes() const
 {
     return std::chrono::duration_cast<std::chrono::minutes>(chrono_clock_type::now() - m_tp).count();
 }
@@ -155,7 +155,7 @@ std::chrono::minutes::rep ElapsedTimer::elapsedMinutes() const
 
     \sa elapsedHoursFloating()
 */
-std::chrono::hours::rep ElapsedTimer::elapsedHours() const
+std::chrono::hours::rep UElapsedTimer::elapsedHours() const
 {
     return std::chrono::duration_cast<std::chrono::hours>(chrono_clock_type::now() - m_tp).count();
 }
@@ -167,7 +167,7 @@ std::chrono::hours::rep ElapsedTimer::elapsedHours() const
 
     \sa elapsedHDaysFloating()
 */
-ElapsedTimer::chrono_days::rep ElapsedTimer::elapsedDays() const
+UElapsedTimer::chrono_days::rep UElapsedTimer::elapsedDays() const
 {
     return std::chrono::duration_cast<chrono_days>(chrono_clock_type::now() - m_tp).count();
 }
@@ -179,7 +179,7 @@ ElapsedTimer::chrono_days::rep ElapsedTimer::elapsedDays() const
 
     \sa elapsed()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedFloating() const
 {
     return elapsedMillisecondsFloating();
 }
@@ -191,7 +191,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedFloating() const
 
     \sa elapsedNanoseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedNanosecondsFloating() const
 {
     return static_cast<nanoseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -203,7 +203,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedNanosecondsFloating()
 
     \sa elapsedMicroseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMicrosecondsFloating() const
 {
     return static_cast<microseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -215,7 +215,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMicrosecondsFloating(
 
     \sa elapsedMilliseconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMillisecondsFloating() const
 {
     return static_cast<milliseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -227,7 +227,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMillisecondsFloating(
 
     \sa elapsedSeconds()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedSecondsFloating() const
 {
     return static_cast<seconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -239,7 +239,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedSecondsFloating() con
 
     \sa elapsedMinutes()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMinutesFloating() const
 {
     return static_cast<minutes_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -251,7 +251,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedMinutesFloating() con
 
     \sa elapsedHours()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedHoursFloating() const
 {
     return static_cast<hours_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
@@ -263,7 +263,7 @@ ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedHoursFloating() const
 
     \sa elapsedDays()
 */
-ElapsedTimer::elapsed_time_floating_t ElapsedTimer::elapsedDaysFloating() const
+UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedDaysFloating() const
 {
     return static_cast<days_floating_t>(chrono_clock_type::now() - m_tp).count();
 }

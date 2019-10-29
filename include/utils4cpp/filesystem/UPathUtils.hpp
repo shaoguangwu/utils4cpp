@@ -31,13 +31,13 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_FILESYSTEM_PATHUTILS_HPP
-#define UTILS4CPP_FILESYSTEM_PATHUTILS_HPP
+#ifndef UTILS4CPP_FILESYSTEM_UPATHUTILS_HPP
+#define UTILS4CPP_FILESYSTEM_UPATHUTILS_HPP
 
 #include <string>
 #include <vector>
 
-#include "utils4cpp/filesystem/FileSystemGlobal.hpp"
+#include "utils4cpp/filesystem/UFileSystemGlobal.hpp"
 
 namespace utils4cpp {
 namespace filesystem {
@@ -154,4 +154,4 @@ std::filesystem::path fileName(const std::filesystem::path& path)
 } // namespace filesystem
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_FILESYSTEM_PATHUTILS_HPP
+#endif // UTILS4CPP_FILESYSTEM_UPATHUTILS_HPP

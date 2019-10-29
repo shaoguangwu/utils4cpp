@@ -25,9 +25,9 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\SystemDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\Version.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\Matrix.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Date.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\ElapsedTimer.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\Time.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDate.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UElapsedTimer.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UTime.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Cuboid.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Point.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\Rect.hpp" />
@@ -36,10 +36,9 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\StringUtils.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\Date.cpp" />
-    <ClCompile Include="..\..\..\..\src\ElapsedTimer.cpp" />
-    <ClCompile Include="..\..\..\..\src\StringUtils.cpp" />
-    <ClCompile Include="..\..\..\..\src\Time.cpp" />
+    <ClCompile Include="..\..\..\..\src\UDate.cpp" />
+    <ClCompile Include="..\..\..\..\src\UElapsedTimer.cpp" />
+    <ClCompile Include="..\..\..\..\src\UTime.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

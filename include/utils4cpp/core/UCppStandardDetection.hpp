@@ -31,18 +31,46 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_FILESYSTEM_FILE_HPP
-#define UTILS4CPP_FILESYSTEM_FILE_HPP
+#ifndef UTILS4CPP_CORE_UCPPSTANDARDDETECTION_HPP
+#define UTILS4CPP_CORE_UCPPSTANDARDDETECTION_HPP
 
-namespace utils4cpp {
-namespace filesystem {
+/*! cplusplus-standard version number. */
+#ifdef _MSVC_LANG
+#   define UTILS4CPP_CPLUSPLUS      _MSVC_LANG
+#else
+#   define UTILS4CPP_CPLUSPLUS      __cplusplus
+#endif /* _MSVC_LANG */
 
-class File
-{
+/*! Compiler enabled c++20 standard or not. */
+#if UTILS4CPP_CPLUSPLUS > 201703L
+#   define UTILS4CPP_HAS_CPP20      1
+#else
+#   define UTILS4CPP_HAS_CPP20      0
+#endif
 
-};
+/*! Compiler enabled c++17 standard or not. */
+#if UTILS4CPP_CPLUSPLUS > 201402L
+#    define UTILS4CPP_HAS_CPP17     1
+#else
+#    define UTILS4CPP_HAS_CPP17     0
+#endif
 
-} // namespace filesystem
-} // namespace utils4cpp
+/*! Compiler enabled c++14 standard or not. */
+#if UTILS4CPP_CPLUSPLUS > 201103L
+#    define UTILS4CPP_HAS_CPP14     1
+#else
+#    define UTILS4CPP_HAS_CPP14     0
+#endif
 
-#endif // UTILS4CPP_FILESYSTEM_FILE_HPP
+/*! Compiler enabled c++11 standard or not. */
+#if UTILS4CPP_CPLUSPLUS > 199711L
+#    define UTILS4CPP_HAS_CPP11     1
+#else
+#    define UTILS4CPP_HAS_CPP11     0
+#endif
+
+#if !UTILS4CPP_HAS_CPP11
+#   error "utils4cpp requires enabled c++11 support."
+#endif
+
+#endif // UTILS4CPP_CORE_UCPPSTANDARDDETECTION_HPP

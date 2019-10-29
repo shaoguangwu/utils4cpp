@@ -31,65 +31,39 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_FILESYSTEM_PATHTOSTRING_INC
-#define UTILS4CPP_FILESYSTEM_PATHTOSTRING_INC
-
-#if UTILS4CPP_HAS_STDFILESYSTEM
+#ifndef UTILS4CPP_STR_USTRINGGLOBAL_HPP
+#define UTILS4CPP_STR_USTRINGGLOBAL_HPP
 
 #include <string>
-#include <filesystem>
-#include <stdexcept>
 
-#include "utils4cpp/core/StlConfig.hpp"
+#include "utils4cpp/core/UCore.hpp"
 
 namespace utils4cpp {
-namespace filesystem {
-namespace inc {
 
-template<class StringT>
-inline StringT pathToString(const std::filesystem::path& path)
+/*!
+    \brief string libraries.
+    \since v0.0
+*/
+namespace str {
+
+/*! Indicates case sensitive or not. */
+enum CaseSensitivity {
+    CaseInsensitive,                ///< Case insensitive.  (no)
+    CaseSensitive                   ///< Case sensitive.    (yes)
+};
+
+/*!
+    Swap char \a a and \a b with no intermediate variable.
+*/
+template<typename CharT>
+inline void swapChar(CharT &a, CharT& b) noexcept
 {
-    throw std::invalid_argument("invalid template argument");
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
 }
 
-template<>
-inline std::string pathToString(const std::filesystem::path& path)
-{
-    return path.string();
-}
-
-template<>
-inline std::wstring pathToString(const std::filesystem::path& path)
-{
-    return path.wstring();
-}
-
-template<>
-inline std::u16string pathToString(const std::filesystem::path& path)
-{
-    return path.u16string();
-}
-
-template<>
-inline std::u32string pathToString(const std::filesystem::path& path)
-{
-    return path.u32string();
-}
-
-#if UTILS4CPP_HAS_U8STRING
-
-template<>
-inline std::u8string pathToString(const std::filesystem::path& path)
-{
-    return path.u8string();
-}
-
-#endif // UTILS4CPP_HAS_U8STRING
-
-} // namespace inc
-} // namespace filesystem
+} // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_HAS_STDFILESYSTEM
-
-#endif // UTILS4CPP_FILESYSTEM_PATHTOSTRING_INC
+#endif // UTILS4CPP_STR_USTRINGGLOBAL_HPP

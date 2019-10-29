@@ -57,42 +57,42 @@ enum {
     MSECS_PER_MIN   = 60000
 };
 
-Time::Time()
+UTime::UTime()
     : m_msecs(NullTime), m_isdst(-1)
 {
 }
 
-Time::Time(milliseconds_t msecs, int dst)
+UTime::UTime(milliseconds_t msecs, int dst)
     : m_msecs(msecs), m_isdst(dst)
 {
 }
 
-Time::Time(int h, int m, int s, int ms, int dst)
+UTime::UTime(int h, int m, int s, int ms, int dst)
 {
     setTime(h, m, s, ms, dst);
 }
 
-bool Time::isNull() const
+bool UTime::isNull() const
 {
     return m_msecs == NullTime;
 }
 
-bool Time::isValid() const
+bool UTime::isValid() const
 {
     return isValid(m_msecs);
 }
 
-bool Time::isValid(milliseconds_t msecs)
+bool UTime::isValid(milliseconds_t msecs)
 {
     return msecs >= 0 && msecs < MSECS_PER_DAY;
 }
 
-bool Time::isValid(int h, int m, int s, int ms)
+bool UTime::isValid(int h, int m, int s, int ms)
 {
     return (unsigned int)h < 24 && (unsigned int)m < 60 && (unsigned int)s < 60 && (unsigned int)ms < 1000;
 }
 
-int Time::hour() const
+int UTime::hour() const
 {
     if (!isValid())
         return -1;
@@ -100,7 +100,7 @@ int Time::hour() const
     return m_msecs / MSECS_PER_HOUR;
 }
 
-int Time::minute() const
+int UTime::minute() const
 {
     if (!isValid())
         return -1;
@@ -108,7 +108,7 @@ int Time::minute() const
     return (m_msecs % MSECS_PER_HOUR) / MSECS_PER_MIN;
 }
 
-int Time::second() const
+int UTime::second() const
 {
     if (!isValid())
         return -1;
@@ -116,7 +116,7 @@ int Time::second() const
     return (m_msecs / 1000) % SECS_PER_MIN;
 }
 
-int Time::msec() const
+int UTime::msec() const
 {
     if (!isValid())
         return -1;
@@ -124,7 +124,7 @@ int Time::msec() const
     return m_msecs % 1000;
 }
 
-bool Time::setTime(int h, int m, int s, int ms, int dst)
+bool UTime::setTime(int h, int m, int s, int ms, int dst)
 {
     m_isdst = dst;
     if (!isValid(h, m, s, ms)) {
@@ -135,12 +135,12 @@ bool Time::setTime(int h, int m, int s, int ms, int dst)
     return true;
 }
 
-Time Time::addSecs(int secs) const
+UTime UTime::addSecs(int secs) const
 {
     secs %= SECS_PER_DAY;
     return addMSecs(secs * 1000);
 }
-int Time::secsTo(const Time& t) const
+int UTime::secsTo(const UTime& t) const
 {
     if (!isValid() || !t.isValid())
         return 0;
@@ -148,9 +148,9 @@ int Time::secsTo(const Time& t) const
     // Truncate milliseconds as we do not want to consider them.
     return (t.toMilliseconds() / 1000) - (toMilliseconds() / 1000);
 }
-Time Time::addMSecs(milliseconds_t ms) const
+UTime UTime::addMSecs(milliseconds_t ms) const
 {
-    Time result;
+    UTime result;
     if (isValid()) {
         if (ms < 0) {
             // %,/ not well-defined for -ve, so always work with +ve.
@@ -162,14 +162,14 @@ Time Time::addMSecs(milliseconds_t ms) const
     }
     return result;
 }
-int Time::msecsTo(const Time& t) const
+int UTime::msecsTo(const UTime& t) const
 {
     if (!isValid() || !t.isValid())
         return 0;
     return t.toMilliseconds() - toMilliseconds();
 }
 
-std::string Time::toString(const char* format) const
+std::string UTime::toString(const char* format) const
 {
     std::size_t buff_size = 1024;
     std::string result;
@@ -185,7 +185,7 @@ std::string Time::toString(const char* format) const
     return result;
 }
 
-std::wstring Time::toWString(const wchar_t* format) const
+std::wstring UTime::toWString(const wchar_t* format) const
 {
     std::size_t buff_size = 1024;
     std::wstring result;
@@ -201,38 +201,38 @@ std::wstring Time::toWString(const wchar_t* format) const
     return result;
 }
 
-std::string Time::sprintfTime(const char* format) const
+std::string UTime::sprintfTime(const char* format) const
 {
     
 }
 
-std::wstring Time::sprintfTime(const wchar_t* format) const
+std::wstring UTime::sprintfTime(const wchar_t* format) const
 {
 
 }
 
-bool Time::operator==(const Time& other) const
+bool UTime::operator==(const UTime& other) const
 {
     return m_msecs == other.m_msecs;
 }
 
-bool Time::operator!=(const Time& other) const
+bool UTime::operator!=(const UTime& other) const
 {
     return m_msecs != other.m_msecs;
 }
-bool Time::operator< (const Time& other) const
+bool UTime::operator< (const UTime& other) const
 {
     return m_msecs < other.m_msecs;
 }
-bool Time::operator<=(const Time& other) const
+bool UTime::operator<=(const UTime& other) const
 {
     return m_msecs <= other.m_msecs;
 }
-bool Time::operator> (const Time& other) const
+bool UTime::operator> (const UTime& other) const
 {
     return m_msecs > other.m_msecs;
 }
-bool Time::operator>=(const Time& other) const
+bool UTime::operator>=(const UTime& other) const
 {
     return m_msecs >= other.m_msecs;
 }
@@ -243,7 +243,7 @@ bool Time::operator>=(const Time& other) const
 
     \sa dst()
 */
-bool Time::isDstFlagEqual(const Time& other) const
+bool UTime::isDstFlagEqual(const UTime& other) const
 {
     if (m_isdst < 0) {
         return other.m_isdst < 0;
@@ -256,17 +256,17 @@ bool Time::isDstFlagEqual(const Time& other) const
     }
 }
 
-Time Time::fromMilliseconds(milliseconds_t ms, int dst)
+UTime UTime::fromMilliseconds(milliseconds_t ms, int dst)
 {
-    return Time(ms, dst);
+    return UTime(ms, dst);
 }
 
-inline Time::milliseconds_t Time::toMilliseconds() const
+inline UTime::milliseconds_t UTime::toMilliseconds() const
 {
     return m_msecs == NullTime ? 0 : m_msecs;
 }
 
-Time Time::currentLocalTime()
+UTime UTime::currentLocalTime()
 {
     struct timeb tb;
     ftime(&tb);
@@ -283,7 +283,7 @@ Time Time::currentLocalTime()
     return { tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag };
 }
 
-Time Time::currentGmTime()
+UTime UTime::currentGmTime()
 {
     struct timeb tb;
     ftime(&tb);
@@ -303,7 +303,7 @@ Time Time::currentGmTime()
 /*!
     Writes the \a time to stream \a out.
 */
-UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Time& time)
+UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const UTime& time)
 {
     out << "Time(\""
         << std::setw(2) << std::setfill('0') << time.hour() << ":"

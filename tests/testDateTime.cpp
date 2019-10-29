@@ -32,14 +32,14 @@
 ************************************************************************************/
 
 #include <iostream>
-#include <utils4cpp/datetime/Date.hpp>
-#include <utils4cpp/datetime/Time.hpp>
+#include <utils4cpp/datetime/UDate.hpp>
+#include <utils4cpp/datetime/UTime.hpp>
 
 #pragma comment(lib, "utils4cppd.lib")
 
 int main(int argc, char** argv)
 {
-    utils4cpp::datetime::Date d = utils4cpp::datetime::Date::currentLocalDate();
+    utils4cpp::datetime::UDate d = utils4cpp::datetime::UDate::currentLocalDate();
     std::string str = d.toString("%F");
     std::wstring wstr = d.toWString(L"%F");
 

@@ -113,9 +113,9 @@ inline const T& min(const T& t1, const T& t2)
     return t1 < t2 ? t1 : t2;
 }
 
-static inline Date fixedDate(int y, int m, int d)
+static inline UDate fixedDate(int y, int m, int d)
 {
-    Date result(y, m, 1);
+    UDate result(y, m, 1);
     result.setDate(y, m, min(d, result.daysInMonth()));
     return result;
 }
@@ -129,7 +129,7 @@ static inline Date fixedDate(int y, int m, int d)
 
     \sa isValid()
 */
-Date::Date()
+UDate::UDate()
 {
     makeInvalid();
 }
@@ -150,7 +150,7 @@ Date::Date()
 
     \sa isValid()
 */
-Date::Date(int y, int m, int d, int dst)
+UDate::UDate(int y, int m, int d, int dst)
 {
     setDate(y, m, d, dst);
 }
@@ -160,7 +160,7 @@ Date::Date(int y, int m, int d, int dst)
 
     \sa isValid()
 */
-Date::Date(const std::tm& tm)
+UDate::UDate(const std::tm& tm)
 {
     fromTm(tm);
 }
@@ -173,7 +173,7 @@ Date::Date(const std::tm& tm)
 
     \sa month(), day()
 */
-int Date::year() const
+int UDate::year() const
 {
     return m_dt.year;
 }
@@ -199,7 +199,7 @@ int Date::year() const
 
     \sa year(), day()
 */
-int Date::month() const
+int UDate::month() const
 {
     return m_dt.mon;
 }
@@ -211,7 +211,7 @@ int Date::month() const
 
     \sa year(), month(), dayOfWeek()
 */
-int Date::day() const
+int UDate::day() const
 {
     return m_dt.mday;
 }
@@ -221,7 +221,7 @@ int Date::day() const
 
     The value is positive if DST is in effect, zero if not and negative if no information is available.
 */
-int Date::dst() const
+int UDate::dst() const
 {
     return m_dt.isdst;
 }
@@ -241,7 +241,7 @@ int Date::dst() const
 
     \sa day(), dayOfYear(), Date::DayOfWeek
 */
-int Date::dayOfWeek() const
+int UDate::dayOfWeek() const
 {
     return m_dt.wday;
 }
@@ -254,7 +254,7 @@ int Date::dayOfWeek() const
 
     \sa day(), dayOfWeek()
 */
-int Date::dayOfYear() const
+int UDate::dayOfYear() const
 {
     return m_dt.yday;
 }
@@ -266,7 +266,7 @@ int Date::dayOfYear() const
 
     \sa day(), daysInYear()
 */
-int Date::daysInMonth() const
+int UDate::daysInMonth() const
 {
     if (m_dt.mon == 2 && isLeapYear(m_dt.year))
         return 29;
@@ -281,7 +281,7 @@ int Date::daysInMonth() const
 
     \sa day(), daysInMonth()
 */
-int Date::daysInYear() const
+int UDate::daysInYear() const
 {
     if (!isValid())
         return 0;
@@ -292,9 +292,9 @@ int Date::daysInYear() const
 /*!
     Returns \c true if this date is valid; otherwise returns \c false.
 */
-bool Date::isValid() const
+bool UDate::isValid() const
 {
-    return Date::isValid(m_dt.year, m_dt.mon, m_dt.mday);
+    return UDate::isValid(m_dt.year, m_dt.mon, m_dt.mday);
 }
 
 /*!
@@ -306,7 +306,7 @@ bool Date::isValid() const
 
     \sa isValid()
 */
-bool Date::setDate(int y, int m, int d, int dst)
+bool UDate::setDate(int y, int m, int d, int dst)
 {
     if (isValid(y, m, d)) {
         m_dt.year = y;
@@ -328,7 +328,7 @@ bool Date::setDate(int y, int m, int d, int dst)
 
     \sa year(), month(), day(), isValid()
 */
-void Date::getDate(int& year, int& month, int& day) const
+void UDate::getDate(int& year, int& month, int& day) const
 {
     year = m_dt.year;
     month = m_dt.mon;
@@ -340,7 +340,7 @@ void Date::getDate(int& year, int& month, int& day) const
 
     \sa toTm()
 */
-void Date::fromTm(const std::tm& tm)
+void UDate::fromTm(const std::tm& tm)
 {
     m_dt.mday = tm.tm_mday;
     m_dt.mon = tm.tm_mon + 1;
@@ -355,7 +355,7 @@ void Date::fromTm(const std::tm& tm)
 
     \sa fromTm()
 */
-std::tm Date::toTm()
+std::tm UDate::toTm()
 {
     std::tm datetm;
     std::memset(&datetm, 0, sizeof(datetm));
@@ -373,7 +373,7 @@ std::tm Date::toTm()
 
     If this date is invalid, returns 0;
 */
-std::int64_t Date::toJulianDay() const
+std::int64_t UDate::toJulianDay() const
 {
     if (isValid())
         return julianDayFromDate(m_dt.year, m_dt.mon, m_dt.mday);
@@ -384,7 +384,7 @@ std::int64_t Date::toJulianDay() const
 /*!
     Converts julian day to date.
 */
-Date Date::fromJulianDay(std::int64_t julianDay)
+UDate UDate::fromJulianDay(std::int64_t julianDay)
 {
     /*
      * Math from The Calendar FAQ at http://www.tondering.dk/claus/cal/julperiod.php
@@ -407,7 +407,7 @@ Date Date::fromJulianDay(std::int64_t julianDay)
     if (year <= 0)
         --year;
 
-    return Date(year, month, day);
+    return UDate(year, month, day);
 }
 
 /*!
@@ -416,7 +416,7 @@ Date Date::fromJulianDay(std::int64_t julianDay)
 
     Returns 0 if either date is invalid.
 */
-std::int64_t Date::daysTo(const Date& d) const
+std::int64_t UDate::daysTo(const UDate& d) const
 {
     if (!isValid())
         return 0;
@@ -432,10 +432,10 @@ std::int64_t Date::daysTo(const Date& d) const
 
     \sa addMonths(), addYears(), daysTo()
 */
-Date Date::addDays(std::int64_t days) const
+UDate UDate::addDays(std::int64_t days) const
 {
     if (!isValid())
-        return Date();
+        return UDate();
 
     if (!days)
         return *this;
@@ -453,7 +453,7 @@ Date Date::addDays(std::int64_t days) const
 	\note The result is 1024 character limits.
 */
 #include <iomanip>
-std::string Date::toString(const char* format)
+std::string UDate::toString(const char* format)
 {
 	std::size_t buff_size = 1024; 
 	std::string result;
@@ -477,7 +477,7 @@ std::string Date::toString(const char* format)
 
     \note The result is 1024 character limits.
 */
-std::wstring Date::toWString(const wchar_t* format)
+std::wstring UDate::toWString(const wchar_t* format)
 {
     std::size_t buff_size = 1024;
     std::wstring result;
@@ -502,10 +502,10 @@ std::wstring Date::toWString(const wchar_t* format)
 
     \sa addDays(), addYears()
 */
-Date Date::addMonths(int months) const
+UDate UDate::addMonths(int months) const
 {
     if (!isValid())
-        return Date();
+        return UDate();
     if (!months)
         return *this;
 
@@ -567,10 +567,10 @@ Date Date::addMonths(int months) const
 
     \sa addDays(), addMonths()
 */
-Date Date::addYears(int nyears) const
+UDate UDate::addYears(int nyears) const
 {
     if (!isValid())
-        return Date();
+        return UDate();
 
     int old_y = m_dt.year;
     int y = m_dt.year;
@@ -590,7 +590,7 @@ Date Date::addYears(int nyears) const
 
     \sa isValid()
 */
-void Date::makeInvalid()
+void UDate::makeInvalid()
 {
     std::memset(&m_dt, 0, sizeof(m_dt));
     m_dt.isdst = -1;
@@ -601,7 +601,7 @@ void Date::makeInvalid()
 
     \sa operator!=()
 */
-bool Date::operator==(const Date& other) const
+bool UDate::operator==(const UDate& other) const
 {
     return m_dt.year == other.m_dt.year
         && m_dt.mon == other.m_dt.mon
@@ -614,7 +614,7 @@ bool Date::operator==(const Date& other) const
 
     \sa operator==()
 */
-bool Date::operator!=(const Date& other) const
+bool UDate::operator!=(const UDate& other) const
 {
     return m_dt.year != other.m_dt.year
         || m_dt.mon != other.m_dt.mon
@@ -626,7 +626,7 @@ bool Date::operator!=(const Date& other) const
 
     \sa operator>(), operator<=()
 */
-bool Date::operator<(const Date& other) const
+bool UDate::operator<(const UDate& other) const
 {
     return toJulianDay() < other.toJulianDay();
 }
@@ -637,7 +637,7 @@ bool Date::operator<(const Date& other) const
 
     \sa operator>=(), operator<()
 */
-bool Date::operator<=(const Date& other) const
+bool UDate::operator<=(const UDate& other) const
 {
     if (*this == other)
         return true;
@@ -649,7 +649,7 @@ bool Date::operator<=(const Date& other) const
 
     \sa operator>=(), operator<()
 */
-bool Date::operator>(const Date& other) const
+bool UDate::operator>(const UDate& other) const
 {
     return toJulianDay() > other.toJulianDay();
 }
@@ -660,7 +660,7 @@ bool Date::operator>(const Date& other) const
 
     \sa operator>(), operator<=()
 */
-bool Date::operator>=(const Date& other) const
+bool UDate::operator>=(const UDate& other) const
 {
     if (*this == other)
         return true;
@@ -673,7 +673,7 @@ bool Date::operator>=(const Date& other) const
 
     \sa dst()
 */
-bool Date::isDstFlagSameTo(const Date& other) const
+bool UDate::isDstFlagSameTo(const UDate& other) const
 {
     if (m_dt.isdst < 0) {
         return other.dst() < 0;
@@ -688,7 +688,7 @@ bool Date::isDstFlagSameTo(const Date& other) const
     Returns \c true if this month \a m has 31 days;
     otherwise returns \c false.
 */
-bool Date::is31Days(int m)
+bool UDate::is31Days(int m)
 {
     return m == Month::Jan || m == Month::Feb || m == Month::May || m == Month::July
         || m == Month::Aug || m == Month::Oct || m == Month::Dec;
@@ -698,7 +698,7 @@ bool Date::is31Days(int m)
     Returns \c true if this month \a m has 30 days;
     otherwise returns \c false.
 */
-bool Date::is30Days(int m)
+bool UDate::is30Days(int m)
 {
     return m == Month::Apr || m == Month::June || m == Month::Sept || m == Month::Nov;
 }
@@ -707,7 +707,7 @@ bool Date::is30Days(int m)
     Returns \c true if this date (\a year, \a month, \a day) is valid;
     otherwise returns \c false.
 */
-bool Date::isValid(int y, int m, int d)
+bool UDate::isValid(int y, int m, int d)
 {
     using uint = unsigned int;
 
@@ -723,7 +723,7 @@ bool Date::isValid(int y, int m, int d)
     Returns \c true if the specified \a year is a leap year; otherwise
     returns \c false.
 */
-bool Date::isLeapYear(int y)
+bool UDate::isLeapYear(int y)
 {
     // No year 0 in Gregorian calendar, so -1, -5, -9 etc are leap years
     if (y < 1)
@@ -736,7 +736,7 @@ bool Date::isLeapYear(int y)
     Returns \c true if this date is earlier than Gregorian Calendar(1582.10.04);
     otherwise returns \c false.
 */
-bool Date::beforGregorianCalendar(int year, int month, int day)
+bool UDate::beforGregorianCalendar(int year, int month, int day)
 {
     if (year > 1582)
         return false;
@@ -751,7 +751,7 @@ bool Date::beforGregorianCalendar(int year, int month, int day)
     Returns \c true if this date \a d is earlier than Gregorian Calendar(1582.10.04);
     otherwise returns \c false.
 */
-bool Date::beforGregorianCalendar(const Date& d)
+bool UDate::beforGregorianCalendar(const UDate& d)
 {
     return beforGregorianCalendar(d.m_dt.year, d.m_dt.mon, d.m_dt.mday);
 }
@@ -761,7 +761,7 @@ bool Date::beforGregorianCalendar(const Date& d)
 
     Returns 0 if the date is invalid.
 */
-int Date::dayOfYear(int year, int month, int day)
+int UDate::dayOfYear(int year, int month, int day)
 {
     if (!isValid(year, month, day))
         return 0;
@@ -790,7 +790,7 @@ int Date::dayOfYear(int year, int month, int day)
 
     Returns 0 if the date is invalid.
 */
-int Date::dayOfWeek(int year, int month, int day)
+int UDate::dayOfWeek(int year, int month, int day)
 {
     int weekday = 0;
     if (!isValid(year, month, day))
@@ -810,7 +810,7 @@ int Date::dayOfWeek(int year, int month, int day)
 /*!
     Returns the current local date, as reported by the system clock.
 */
-Date Date::currentLocalDate()
+UDate UDate::currentLocalDate()
 {
     std::time_t t = std::time(nullptr);
     std::tm tm;
@@ -823,13 +823,13 @@ Date Date::currentLocalDate()
     tm = *std::localtime(&t);
 #endif
 
-    return Date(tm);
+    return UDate(tm);
 }
 
 /*!
     Returns the current GM(Greenwish Mean) date, as reported by the system clock.
 */
-Date Date::currentGmDate()
+UDate UDate::currentGmDate()
 {
     std::time_t t = std::time(nullptr);
     std::tm tm;
@@ -842,7 +842,7 @@ Date Date::currentGmDate()
     tm = *std::gmtime(&t);
 #endif
 
-    return Date(tm);
+    return UDate(tm);
 }
 
 /*****************************************************************************
@@ -852,7 +852,7 @@ Date Date::currentGmDate()
 /*!
     Writes the \a date to stream \a out.
 */
-UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const Date& date)
+UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const UDate& date)
 {
     out << "Date(\""
         << std::setw(4) << std::setfill('0') << date.year() << "-"

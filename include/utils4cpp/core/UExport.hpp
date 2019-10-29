@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_EXPORT_HPP
-#define UTILS4CPP_CORE_EXPORT_HPP
+#ifndef UTILS4CPP_CORE_UEXPORT_HPP
+#define UTILS4CPP_CORE_UEXPORT_HPP
 
 /*!
     \def UTILS4CPP_DECL_EXPORT
@@ -70,4 +70,4 @@
 #   define UTILS4CPP_EXPORT     /*! Ensure defined */
 #endif
 
-#endif // UTILS4CPP_CORE_EXPORT_HPP
+#endif // UTILS4CPP_CORE_UEXPORT_HPP

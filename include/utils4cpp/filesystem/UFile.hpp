@@ -31,46 +31,18 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
-#define UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
+#ifndef UTILS4CPP_FILESYSTEM_UFILE_HPP
+#define UTILS4CPP_FILESYSTEM_UFILE_HPP
 
 namespace utils4cpp {
-/*!
-    \brief Date-time libraries.
-    \since v0.0
-*/
-namespace datetime {
+namespace filesystem {
 
-    enum Month {
-        Jan = 1,                    //!< January
-        Feb,                        //!< February
-        Mar,                        //!< March
-        Apr,                        //!< April
-        May,                        //!< May
-        June,                       //!< June
-        July,                       //!< July
-        Aug,                        //!< August
-        Sept,                       //!< September
-        Oct,                        //!< October
-        Nov,                        //!< November  
-        Dec                         //!< December
-    };  
+class UFile
+{
 
-enum DateFormat {
-    TextDate,                       // default utils4cpp
-    ISODate,                        // ISO 8601
-    SystemLocaleDate,               // deprecated
-    LocalDate = SystemLocaleDate,   // deprecated
-    LocaleDate,                     // deprecated
-    SystemLocaleShortDate,
-    SystemLocaleLongDate,
-    DefaultLocaleShortDate,
-    DefaultLocaleLongDate,
-    RFC2822Date,                    // RFC 2822 (+ 850 and 1036 during parsing)
-    ISODateWithMs
 };
 
-} // namespace datetime
+} // namespace filesystem
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_DATETIMEGLOBAL_HPP
+#endif // UTILS4CPP_FILESYSTEM_UFILE_HPP
