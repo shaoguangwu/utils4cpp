@@ -99,4 +99,29 @@
 #   define UTILS4CPP_HAS_U8STRING                      0
 #endif /* UTILS4CPP_HAS_CHAR8T */
 
+/*!
+    \def UTILS4CPP_HAS_STDSTRINGVIEW
+    \li 1 Supports std::string_view.
+    \li 0 Not supports std::string_view.
+
+    std::string_view since from c++17.
+*/
+#if UTILS4CPP_HAS_CPP17
+#   /* MSVC */
+#   if defined(_MSC_VER) && _MSC_VER >= 1910
+#       define UTILS4CPP_HAS_STDSTRINGVIEW          1
+#   /* GCC */
+#   elif defined(__GNUC__) && __GNUC__ >= 7
+#       define UTILS4CPP_HAS_STDSTRINGVIEW          1
+#   /* Clang */
+#   elif defined(__clang__) && __clang_major__ >= 4
+#       define UTILS4CPP_HAS_STDSTRINGVIEW          1
+#   /* Unkown, default to not support */
+#   else
+#       define UTILS4CPP_HAS_STDSTRINGVIEW          0
+#   endif
+#else /* !UTILS4CPP_HAS_CPP17 */
+#   define UTILS4CPP_HAS_STDSTRINGVIEW              0
+#endif
+
 #endif // UTILS4CPP_CORE_USTLCONFIG_HPP

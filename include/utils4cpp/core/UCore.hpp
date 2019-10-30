@@ -36,6 +36,7 @@
 #include "utils4cpp/core/UVersion.hpp"
 #include "utils4cpp/core/UExport.hpp"
 #include "utils4cpp/core/UOsDetection.hpp"
+#include "utils4cpp/core/UCppStandardDetection.hpp"
 #include "utils4cpp/core/UStlConfig.hpp"
 
 #endif // UTILS4CPP_CORE_UCORE_HPP
