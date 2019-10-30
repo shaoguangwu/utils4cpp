@@ -439,7 +439,7 @@ public:
         Checks if the string view begins with the given prefix.
         Effectively returns size() >= x.size() && compare(0, x.size(), x) == 0.
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa ends_with(), compare()
     */
     constexpr bool starts_with(UBasicStringView x) const noexcept
@@ -452,7 +452,7 @@ public:
         Checks if the string view begins with the given prefix.
         Effectively returns !empty() && Traits::eq(front(), x).
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa ends_with(), compare()
     */
     constexpr bool starts_with(charT x) const noexcept 
@@ -464,7 +464,7 @@ public:
         Checks if the string view begins with the given prefix.
         Effectively returns starts_with(UBasicStringView(x)).
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa ends_with(), compare()
     */
     constexpr bool starts_with(const charT* x) const noexcept
@@ -476,7 +476,7 @@ public:
         Checks if the string view ends with the given suffix.
         Effectively returns size() >= x.size() && compare(size() - x.size(), npos, x) == 0.
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa starts_with(), compare()
     */
     constexpr bool ends_with(basic_string_view x) const noexcept
@@ -489,7 +489,7 @@ public:
         Checks if the string view ends with the given suffix.
         Effectively returns !empty() && Traits::eq(back(), x).
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa starts_with(), compare()
     */
     constexpr bool ends_with(charT x) const noexcept
@@ -501,7 +501,7 @@ public:
         Checks if the string view ends with the given suffix.
         Effectively returns ends_with(UBasicStringView(x)).
 
-        \note std::basic_string_view provides this function since from c++20.
+        \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa starts_with(), compare()
     */
     constexpr bool ends_with(const charT* x) const noexcept
