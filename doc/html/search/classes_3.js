@@ -1,6 +1,7 @@
 var searchData=
 [
   ['ubasicstringlist',['UBasicStringList',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html',1,'utils4cpp::str']]],
+  ['ubasicstringview',['UBasicStringView',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html',1,'utils4cpp::str']]],
   ['udate',['UDate',['../classutils4cpp_1_1datetime_1_1_u_date.html',1,'utils4cpp::datetime']]],
   ['udatetime',['UDateTime',['../classutils4cpp_1_1datetime_1_1_u_date_time.html',1,'utils4cpp::datetime']]],
   ['udir',['UDir',['../classutils4cpp_1_1filesystem_1_1_u_dir.html',1,'utils4cpp::filesystem']]],

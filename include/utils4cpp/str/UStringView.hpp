@@ -67,6 +67,7 @@ using U8StringView = UBasicStringView<char8_t, std::char_traits<char8_t>>;
 /*!
     \class UBasicStringView
     \since v0.0
+
     \brief The template class UBasicStringView describes an object that can refer to a constant
     contiguous sequence of char-like objects with the first element of the sequence at position zero.
 

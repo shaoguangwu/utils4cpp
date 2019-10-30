@@ -5,5 +5,5 @@ var searchData=
   ['addmsecs',['addMSecs',['../classutils4cpp_1_1datetime_1_1_u_time.html#ade640a85271b45c5f88fb3e872b3639a',1,'utils4cpp::datetime::UTime']]],
   ['addsecs',['addSecs',['../classutils4cpp_1_1datetime_1_1_u_time.html#acde139f9077f9de4506858606c87d3be',1,'utils4cpp::datetime::UTime']]],
   ['addyears',['addYears',['../classutils4cpp_1_1datetime_1_1_u_date.html#a404cdfb347d3d0adfbc253724f3b3c9f',1,'utils4cpp::datetime::UDate']]],
-  ['at',['at',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a9d8788a6a443993835d9211a60d62765',1,'utils4cpp::str::UBasicStringList']]]
+  ['at',['at',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a9d8788a6a443993835d9211a60d62765',1,'utils4cpp::str::UBasicStringList::at()'],['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#a3e36302a779e06c8e4bf88b69ccc6178',1,'utils4cpp::str::UBasicStringView::at()']]]
 ];

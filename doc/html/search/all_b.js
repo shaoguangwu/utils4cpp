@@ -1,6 +1,7 @@
 var searchData=
 [
   ['mar',['Mar',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4ab4b0277e5cc708559f8abaf60b5402cb',1,'utils4cpp::datetime']]],
+  ['max_5fsize',['max_size',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#ac49fe9447fbb26bf7257d8c98400a171',1,'utils4cpp::str::UBasicStringView']]],
   ['may',['May',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4aa2265b3141aa4f578140c81ae34f6d62',1,'utils4cpp::datetime']]],
   ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
   ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_u_time.html#aed875628e33eabc3d75e8682dcff4321',1,'utils4cpp::datetime::UTime']]],

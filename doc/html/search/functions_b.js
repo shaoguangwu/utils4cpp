@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['max_5fsize',['max_size',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#ac49fe9447fbb26bf7257d8c98400a171',1,'utils4cpp::str::UBasicStringView']]],
   ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
   ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_u_time.html#aed875628e33eabc3d75e8682dcff4321',1,'utils4cpp::datetime::UTime']]],
   ['month',['month',['../classutils4cpp_1_1datetime_1_1_u_date.html#a35ba9a55984ffb543b60a416cbab8028',1,'utils4cpp::datetime::UDate']]],
