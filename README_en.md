@@ -3,6 +3,7 @@
 ![avatar](./doc/logo/utils4cpp.png)
 
 [![license](https://img.shields.io/badge/license-BSD%203--Clause-blue)](LICENSE)
+![](https://img.shields.io/badge/status-building-brightgreen)
 
 [(Chinese Documents Available)](README.md)
 
