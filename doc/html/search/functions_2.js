@@ -11,6 +11,8 @@ var searchData=
   ['comparestring',['compareString',['../namespaceutils4cpp_1_1str.html#a2a187e1e4272bedd89a70007cb50c599',1,'utils4cpp::str']]],
   ['constdata',['constData',['../classutils4cpp_1_1filesystem_1_1_u_path.html#afc21963e5fba4a70c0dadfcb419a5520',1,'utils4cpp::filesystem::UPath::constData()'],['../classutils4cpp_1_1str_1_1_u_string.html#a92fe904014addca3f78acd2fb08961b8',1,'utils4cpp::str::UString::constData()']]],
   ['constiteratorat',['constIteratorAt',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a90548d64de1edeeb95683f24264d60f9',1,'utils4cpp::str::UBasicStringList']]],
+  ['constlower',['constLower',['../classutils4cpp_1_1geometry_1_1_u_interval.html#a21c7b988d130bac1ba83075c1a83a60f',1,'utils4cpp::geometry::UInterval']]],
+  ['constupper',['constUpper',['../classutils4cpp_1_1geometry_1_1_u_interval.html#abba35893a7ab45b051ba2c76ae989bac',1,'utils4cpp::geometry::UInterval']]],
   ['contains',['contains',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a7dd4b55ec7e45190ba25b3833b79ce43',1,'utils4cpp::str::UBasicStringList']]],
   ['containscharacter',['containsCharacter',['../namespaceutils4cpp_1_1str.html#a87f195268ace1687ba63bb638c571f21',1,'utils4cpp::str']]],
   ['containssubstr',['containsSubstr',['../namespaceutils4cpp_1_1str.html#a3c792db25abae896b7670626c2431ef5',1,'utils4cpp::str']]],

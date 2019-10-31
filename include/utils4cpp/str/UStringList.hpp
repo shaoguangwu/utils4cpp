@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGLIST_HPP
-#define UTILS4CPP_STR_STRINGLIST_HPP
+#ifndef UTILS4CPP_STR_USTRINGLIST_HPP
+#define UTILS4CPP_STR_USTRINGLIST_HPP
 
 #include <list>
 #include <set>
@@ -45,7 +45,7 @@ namespace utils4cpp {
 namespace str {
 
 /*!
-    \class BasicStringList
+    \class UBasicStringList
     \since v0.0
 
     \brief The string list template class.
@@ -617,4 +617,4 @@ using U32StringList = UBasicStringList<std::u32string>;
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_STRINGLIST_HPP
+#endif // UTILS4CPP_STR_USTRINGLIST_HPP

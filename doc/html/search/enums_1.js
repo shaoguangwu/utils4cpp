@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['casesensitivity',['CaseSensitivity',['../namespaceutils4cpp_1_1str.html#a6e2f228e3dafdaad70bede18299a9da7',1,'utils4cpp::str']]]
+  ['dateformat',['DateFormat',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349',1,'utils4cpp::datetime']]]
 ];

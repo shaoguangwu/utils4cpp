@@ -124,4 +124,38 @@
 #   define UTILS4CPP_HAS_STDSTRINGVIEW              0
 #endif
 
+/*!
+    \def UTILS4CPP_HAS_NODISCARD
+    \li 1 Supports [[nodiscard]].
+    \li 0 Not supports [[nodiscard]].
+
+    [[nodiscard]] since from c++17.
+*/
+#if UTILS4CPP_HAS_CPP17
+#   /* MSVC */
+#   if defined(_MSC_VER) && _MSC_VER >= 1911
+#       define UTILS4CPP_HAS_NODISCARD              1
+#   /* GCC */
+#   elif defined(__GNUC__) && __GNUC__ >= 7
+#       define UTILS4CPP_HAS_NODISCARD          1
+#   /* Clang */
+#   elif defined(__clang__) || __clang_major__ > 3 || (__clang_major__ == 3 && __clang_minor__ >= 9)
+#       define UTILS4CPP_HAS_NODISCARD          1
+#   /* Unkown, default to not support */
+#   else
+#       define UTILS4CPP_HAS_NODISCARD          0
+#   endif
+#else /* !UTILS4CPP_HAS_CPP17 */
+#   define UTILS4CPP_HAS_NODISCARD              0
+#endif
+
+/*!
+    \def UTILS4CPP_NODISCARD
+*/
+#if UTILS4CPP_HAS_NODISCARD
+#   define UTILS4CPP_NODISCARD  [[nodiscard]]
+#else
+#   define UTILS4CPP_NODISCARD
+#endif // UTILS4CPP_HAS_NODISCARD
+
 #endif // UTILS4CPP_CORE_USTLCONFIG_HPP

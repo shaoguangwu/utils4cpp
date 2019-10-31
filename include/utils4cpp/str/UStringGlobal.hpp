@@ -47,16 +47,16 @@ namespace utils4cpp {
 namespace str {
 
 /*! Indicates case sensitive or not. */
-enum CaseSensitivity {
-    CaseInsensitive,                ///< Case insensitive.  (no)
-    CaseSensitive                   ///< Case sensitive.    (yes)
+enum UCaseSensitivity {
+    UCaseInsensitive,                ///< Case insensitive.  (no)
+    UCaseSensitive                   ///< Case sensitive.    (yes)
 };
 
 /*!
     Swap char \a a and \a b with no intermediate variable.
 */
 template<typename CharT>
-inline void swapChar(CharT &a, CharT& b) noexcept
+inline void uSwapChar(CharT &a, CharT& b) noexcept
 {
     a = a ^ b;
     b = a ^ b;

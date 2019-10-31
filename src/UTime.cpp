@@ -43,7 +43,7 @@
 #endif
 #include <sys/timeb.h>
 
-#include "utils4cpp/datetime/Time.hpp"
+#include "utils4cpp/datetime/UTime.hpp"
 
 namespace utils4cpp {
 namespace datetime {
@@ -201,14 +201,20 @@ std::wstring UTime::toWString(const wchar_t* format) const
     return result;
 }
 
+/*!   
+    \todo
+*/
 std::string UTime::sprintfTime(const char* format) const
 {
-    
+    return std::string();
 }
 
+/*!
+    \todo
+*/
 std::wstring UTime::sprintfTime(const wchar_t* format) const
 {
-
+    return std::wstring();
 }
 
 bool UTime::operator==(const UTime& other) const

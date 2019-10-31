@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['oct',['Oct',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a104e353f7d537c7bfbe67f1180769eeb',1,'utils4cpp::datetime']]]
+  ['rfc2822date',['RFC2822Date',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a49317cf37e950d2482706cbd7b492c99',1,'utils4cpp::datetime']]]
 ];

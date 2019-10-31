@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_DATETIME_TIME_HPP
-#define UTILS4CPP_DATETIME_TIME_HPP
+#ifndef UTILS4CPP_DATETIME_UTIME_HPP
+#define UTILS4CPP_DATETIME_UTIME_HPP
 
 #include <cstdint>
 #include <string>
@@ -44,7 +44,7 @@ namespace utils4cpp {
 namespace datetime {
 
 /*!
-	\class Time
+	\class UTime
     \since v0.0
 
 	\brief Defines a Time class.
@@ -106,4 +106,4 @@ private:
 } // namespace datetime
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_DATETIME_TIME_HPP
+#endif // UTILS4CPP_DATETIME_UTIME_HPP

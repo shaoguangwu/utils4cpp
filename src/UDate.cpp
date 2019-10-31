@@ -41,7 +41,7 @@
 #   include <sys/time.h>
 #endif // UTILS4CPP_OS_UNIX
 
-#include "utils4cpp/datetime/Date.hpp"
+#include "utils4cpp/datetime/UDate.hpp"
 
 namespace utils4cpp {
 namespace datetime {

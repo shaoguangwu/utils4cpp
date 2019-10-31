@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['month',['Month',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4',1,'utils4cpp::datetime']]]
+  ['ucasesensitivity',['UCaseSensitivity',['../namespaceutils4cpp_1_1str.html#ab134b38e0ee29cc3ac486a820fcb85b7',1,'utils4cpp::str']]]
 ];

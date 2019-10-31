@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGUTILS_HPP
-#define UTILS4CPP_STR_STRINGUTILS_HPP
+#ifndef UTILS4CPP_STR_USTRINGUTILS_HPP
+#define UTILS4CPP_STR_USTRINGUTILS_HPP
 
 #include <clocale>
 
@@ -1024,4 +1024,4 @@ std::wstring formatString(const std::wstring& format, Args ... args)
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_STRINGUTILS_HPP
+#endif // UTILS4CPP_STR_USTRINGUTILS_HPP

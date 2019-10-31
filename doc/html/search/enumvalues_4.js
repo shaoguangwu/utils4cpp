@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['isodate',['ISODate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a52dcf5379bce1fa8990a4940ec6b03f0',1,'utils4cpp::datetime']]],
-  ['isodatewithms',['ISODateWithMs',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349ab89e58c3032410fb61a7e1dc63144ac0',1,'utils4cpp::datetime']]]
+  ['jan',['Jan',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4ac8d4aa2d1abf8ea729c76d1ddb6b3e8c',1,'utils4cpp::datetime']]],
+  ['july',['July',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a583b97bd5f049fd05164ebe1fa40c46e',1,'utils4cpp::datetime']]],
+  ['june',['June',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a4b694d88d2d7db7d516595aa5a535297',1,'utils4cpp::datetime']]]
 ];

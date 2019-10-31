@@ -42,7 +42,7 @@ namespace utils4cpp {
 namespace datetime {
 
 /*!
-	\class ElapsedTimer
+	\class UElapsedTimer
     \since v0.0
 
 	\brief Defines a elapsed timer.

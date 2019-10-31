@@ -45,8 +45,9 @@ namespace datetime {
 class UTILS4CPP_EXPORT UDateTime
 {
 public:
-    UDateTime();
-}
+    UDateTime()
+    {}
+};
 
 } // namespace datetime
 } // namespace utils4cpp

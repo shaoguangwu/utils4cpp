@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\DateTime.hpp">
-      <Filter>include\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPath.hpp">
       <Filter>include\filesystem</Filter>
     </ClInclude>
@@ -107,11 +104,20 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\UMatrix.hpp">
       <Filter>include\datastructure</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDateTime.hpp">
+      <Filter>include\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UString.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringView.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UInterval.hpp">
+      <Filter>include\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\DateTime.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\UDate.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -127,5 +133,13 @@
     <ClCompile Include="..\..\..\..\src\UFile.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\UDateTime.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\include\utils4cpp\str\UStringViewUtility.inl">
+      <Filter>include\str</Filter>
+    </None>
   </ItemGroup>
 </Project>

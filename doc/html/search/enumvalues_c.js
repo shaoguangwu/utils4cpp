@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['textdate',['TextDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349ab32a112bcfda5b6af36cf863524b20a4',1,'utils4cpp::datetime']]]
+  ['ucaseinsensitive',['UCaseInsensitive',['../namespaceutils4cpp_1_1str.html#ab134b38e0ee29cc3ac486a820fcb85b7aba64ddfc34d52d6bd16cf32746c4c6d9',1,'utils4cpp::str']]],
+  ['ucasesensitive',['UCaseSensitive',['../namespaceutils4cpp_1_1str.html#ab134b38e0ee29cc3ac486a820fcb85b7a3100b417e8d5204b874cf0b3f103406a',1,'utils4cpp::str']]]
 ];

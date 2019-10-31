@@ -37,14 +37,16 @@
 namespace utils4cpp {
 namespace geometry {
 
-template<typename T, unsigned int D>
+template<typename ElemT, unsigned int D>
 class UPointBase
 {
 public:
-    UPointBase();
+    using value_type = ElemT;
+    UPointBase()
+        {}
 
 private:
-    T m_data[D];
+    ElemT m_data[D];
 };
 
 } // namespace geometry
