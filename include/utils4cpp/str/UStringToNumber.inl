@@ -41,7 +41,7 @@
 
 namespace utils4cpp {
 namespace str {
-namespace impl {
+namespace detail {
 
 /*!
     template<typename NumT> NumT stringToNumber(const std::string& str, std::size_t* pos, int base)
@@ -561,7 +561,7 @@ inline long double stringToNumber(const std::wstring& str)
     return std::stold(str);
 }
 
-} // namespace impl
+} // namespace detail
 } // namespace str
 } // namespace utils4cpp
 

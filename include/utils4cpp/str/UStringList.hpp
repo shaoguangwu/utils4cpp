@@ -44,6 +44,24 @@
 namespace utils4cpp {
 namespace str {
 
+// forward declaration for UBasicStringView
+template<class StringT>
+class UBasicStringList;
+
+/*! The std::string list. */
+using UStringList = UBasicStringList<std::string>;
+/*! The std::wstring list. */
+using UWStringList = UBasicStringList<std::wstring>;
+/*! The std::u16string list. */
+using U16StringList = UBasicStringList<std::u16string>;
+/*! The std::u32string list. */
+using U32StringList = UBasicStringList<std::u32string>;
+
+#if UTILS4CPP_HAS_U8STRING
+/*! The std::u8string list. (if c++20 enabled) */
+using U8StringList = UBasicStringList<std::u8string>;
+#endif
+
 /*!
     \class UBasicStringList
     \since v0.0
@@ -73,7 +91,7 @@ private:
         */
         result_type operator()(const StringT& s1, const StringT& s2) const
         {
-            return compareString(s1, s2, CaseInsensitive) < 0;
+            return compareString(s1, s2, UCaseInsensitive) < 0;
         }
     };
 
@@ -268,7 +286,8 @@ public:
 
         \sa indexOf()
     */
-    bool contains(const StringT& str, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale()) const
+    bool contains(const StringT& str, CaseSensitivity cs = UCaseSensitive, 
+        const std::locale& loc = std::locale()) const
     {
         for (const auto& string : *this) {
             if (string.size() == str.size() && compareString(string, str, cs, loc) == 0) {
@@ -422,9 +441,9 @@ public:
         \note Sorting is performed using the STL's std::sort() algorithm, 
             which averages linear-logarithmic time, i.e. O(n log n). 
     */
-    void sort(CaseSensitivity cs = CaseSensitive)
+    void sort(CaseSensitivity cs = UCaseSensitive)
     {
-        if (cs = CaseSensitive) {
+        if (cs = UCaseSensitive) {
             return std::sort(this->begin(), this->end());
         } else {
             return std::sort(this->begin(), this->end(), CaseInsensitiveLessThan());
@@ -447,7 +466,8 @@ public:
 
         \sa contains()
     */
-    UBasicStringList filter(const StringT& str, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale()) const
+    UBasicStringList filter(const StringT& str, CaseSensitivity cs = UCaseSensitive, 
+        const std::locale& loc = std::locale()) const
     {
         const auto& self = *this;
         UBasicStringList result;
@@ -599,20 +619,6 @@ public:
         return *this;
     }
 };
-
-/*! The std::string list. */
-using UStringList = UBasicStringList<std::string>;
-/*! The std::wstring list. */
-using UWStringList = UBasicStringList<std::wstring>;
-/*! The std::u16string list. */
-using U16StringList = UBasicStringList<std::u16string>;
-/*! The std::u32string list. */
-using U32StringList = UBasicStringList<std::u32string>;
-
-#if UTILS4CPP_HAS_CPP20
-    /*! The std::u8string list. (if c++20 enabled) */
-    using U8StringList = UBasicStringList<std::u8string>;
-#endif
 
 } // namespace str
 } // namespace utils4cpp

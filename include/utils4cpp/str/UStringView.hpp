@@ -31,11 +31,11 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_STRINGVIEW_HPP
+#ifndef UTILS4CPP_STR_USTRINGVIEW_HPP
 #define UTILS4CPP_STR_USTRINGVIEW_HPP
 
 #include "utils4cpp/str/UStringGlobal.hpp"
-#include "utils4cpp/str/UStringViewUtility.inl"
+#include "utils4cpp/str/UOstreamString.inl"
 
 namespace utils4cpp {
 namespace str {
@@ -1403,7 +1403,7 @@ template<class charT, class traits>
 inline std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& os, 
     const UBasicStringView<charT, traits> str) 
 {
-    return impl::ostream_string(os, str.data(), str.size());
+    return detail::ostream_string(os, str.data(), str.size());
 }
 
 inline namespace string_view_literals {

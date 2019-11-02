@@ -31,15 +31,15 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_USTRINGVIEWUTILITY_INL
-#define UTILS4CPP_STR_USTRINGVIEWUTILITY_INL
+#ifndef UTILS4CPP_STR_UOSTREAMSTRING_INL
+#define UTILS4CPP_STR_UOSTREAMSTRING_INL
 
 #include <ostream>
 
 namespace utils4cpp {
 namespace str {
-namespace impl {
 namespace detail {
+namespace impl {
 
 template<class CharT, class Traits, class SizeT>
 inline SizeT oss_put(std::basic_ostream<CharT, Traits>& os,
@@ -100,18 +100,18 @@ inline std::basic_ostream<CharT, Traits>& ostream_string(std::basic_ostream<Char
     if (entry) {
         SizeT width = static_cast<SizeT>(os.width());
         if (width <= size) {
-            if (detail::oss_put(os, data, size) != size) {
+            if (impl::oss_put(os, data, size) != size) {
                 return os;
             }
         }
         else if ((os.flags() & stream::adjustfield) == stream::left) {
-            if (detail::oss_put(os, data, size) != size ||
-                !detail::oss_fill(os, width - size)) {
+            if (impl::oss_put(os, data, size) != size ||
+                !impl::oss_fill(os, width - size)) {
                 return os;
             }
         }
-        else if (!detail::oss_fill(os, width - size) ||
-            detail::oss_put(os, data, size) != size) {
+        else if (!impl::oss_fill(os, width - size) ||
+            impl::oss_put(os, data, size) != size) {
             return os;
         }
         os.width(0);
@@ -120,8 +120,8 @@ inline std::basic_ostream<CharT, Traits>& ostream_string(std::basic_ostream<Char
     return os;
 }
 
-} // namespace impl
+} // namespace detail
 } // namespace str
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_STR_USTRINGVIEWUTILITY_INL
+#endif // UTILS4CPP_STR_UOSTREAMSTRING_INL

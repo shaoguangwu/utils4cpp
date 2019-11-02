@@ -40,7 +40,6 @@
 #include <locale>
 #include <algorithm>
 #include <memory>
-#include <typeinfo>
 #include <type_traits>
 
 #include "utils4cpp/str/UStringToNumber.inl"
@@ -54,122 +53,6 @@ template<class StringT>
 using UStringVector = std::vector<StringT>;
 
 
-/*****************************************************************************
-    declaration
- *****************************************************************************/
-
-template<class StringT>
-void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int option = 0);
-template<class StringT>
-StringT removeCharacter(const StringT& str, typename StringT::value_type ch, int option = 0);
-
-template<class StringT>
-void removeSubstrSelf(StringT& str, const StringT& sub, int option = 0);
-template<class StringT>
-StringT removeSubstr(const StringT& str, const StringT& sub, int option = 0);
-
-template<class StringT>
-bool containsCharacter(const StringT& str, typename StringT::value_type ch, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-template<class StringT>
-bool containsSubstr(const StringT& str, const StringT& sub, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-
-template<class StringT>
-void replaceStringSelf(StringT& str, const StringT& before, const StringT& after);
-template<class StringT>
-StringT replaceString(const StringT& str, const StringT& before, const StringT& after);
-
-template<class StringT>
-UStringVector<StringT> splitString(const StringT& str, typename StringT::value_type delim);
-template<class StringT>
-UStringVector<StringT> splitString(const StringT& str, const StringT& delim);
-
-template<class StringT, class DelimT>
-StringT joinString(const UStringVector<StringT>& strs, const DelimT& delim);
-
-template<class StringT>
-void toLowerSelf(StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-StringT toLower(const StringT& str, const std::locale& loc = std::locale());
-
-template<class StringT>
-void toUpperSelf(StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-StringT toUpper(const StringT& str, const std::locale& loc = std::locale());
-
-template<class StringT>
-bool isLower(const StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-bool isUpper(const StringT& str, const std::locale& loc = std::locale());
-
-template<class StringT>
-void capitalizedSelf(StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-StringT capitalized(const StringT& str, const std::locale& loc = std::locale());
-
-template<class StringT>
-void capitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-StringT capitalizedWords(const StringT& str, const std::locale& loc = std::locale());
-
-template<class StringT>
-void uncapitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale());
-template<class StringT>
-StringT uncapitalizedWords(const StringT& str, const std::locale& loc = std::locale());
-
-template<class DstStringT, class SrcStringT>
-DstStringT convertString(const SrcStringT& str, const char* locale);
-template<> // template specialization
-std::string convertString(const std::wstring& str, const char* locale);
-template<> // template specialization
-std::wstring convertString(const std::string& str, const char* locale);
-
-template<class DstStringT, class SrcStringT>
-DstStringT convertString(const SrcStringT& str);
-template<> // template specialization
-std::string convertString(const std::wstring& str);
-template<> // template specialization
-std::wstring convertString(const std::string& str);
-
-template<class StringT>
-bool startsWith(const StringT& str, typename StringT::value_type starts, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-template<class StringT>
-bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-
-template<class StringT>
-bool endsWith(const StringT& str, typename StringT::value_type ends, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-template<class StringT>
-bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-
-template<class StringT>
-bool compareString(const StringT& str1, const StringT& str2, CaseSensitivity cs = CaseSensitive, const std::locale& loc = std::locale());
-
-template<class StringT>
-void truncateStringSelf(StringT& str, typename StringT::size_type pos);
-template<class StringT>
-StringT truncateString(const StringT& str, typename StringT::size_type pos);
-
-template<class StringT>
-void reverseStringSelf(StringT& str);
-template<class StringT>
-StringT reverseString(const StringT& str);
-
-template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = true);
-template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, std::size_t* pos, bool noexception = true);
-template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, bool noexception = true);
-
-template<typename ... Args>
-std::string formatString(const std::string& format, Args ... args);
-template<typename ... Args>
-std::wstring formatString(const std::wstring& format, Args ... args);
-
-
-/*****************************************************************************
-    implementation
- *****************************************************************************/
-
 /*!
     Remove character \a ch from string \a str.
 
@@ -181,7 +64,7 @@ std::wstring formatString(const std::wstring& format, Args ... args);
     \sa removeSubstr(), removeCharacter()
 */
 template<class StringT>
-void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int option)
+void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int option = 0)
 {
     using CharT = typename StringT::value_type;
     using SizeT = typename StringT::size_type;
@@ -227,7 +110,7 @@ void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int opti
     \sa removeSubstr(), removeCharacterSelf()
 */
 template<class StringT>
-inline StringT removeCharacter(const StringT& str, typename StringT::value_type ch, int option)
+inline StringT removeCharacter(const StringT& str, typename StringT::value_type ch, int option = 0)
 {
     StringT result(str);
     removeCharacterSelf(str, ch, option);
@@ -245,7 +128,7 @@ inline StringT removeCharacter(const StringT& str, typename StringT::value_type 
     \sa removeCharacter(), removeSubstr()
 */
 template<class StringT>
-void removeSubstrSelf(StringT& str, const StringT& sub, int option)
+void removeSubstrSelf(StringT& str, const StringT& sub, int option = 0)
 {
     using CharT = typename StringT::value_type;
     using SizeT = typename StringT::size_type;
@@ -290,7 +173,7 @@ void removeSubstrSelf(StringT& str, const StringT& sub, int option)
     \sa removeCharacter(), removeSubstrSelf()
 */
 template<class StringT>
-inline StringT removeSubstr(const StringT& str, const StringT& sub, int option)
+inline StringT removeSubstr(const StringT& str, const StringT& sub, int option = 0)
 {
     StringT result(str);
     removeSubstr(result, sub, option);
@@ -303,10 +186,11 @@ inline StringT removeSubstr(const StringT& str, const StringT& sub, int option)
     \sa containsSubstr()
 */
 template<class StringT>
-bool containsCharacter(const StringT& str, typename StringT::value_type ch, CaseSensitivity cs, const std::locale& loc)
+bool containsCharacter(const StringT& str, typename StringT::value_type ch, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     if (!str.empty()) {
-        if (cs == CaseSensitive) {
+        if (cs == UCaseSensitive) {
             return str.find(ch) != StringT::npos;
         }
         else {
@@ -329,10 +213,11 @@ bool containsCharacter(const StringT& str, typename StringT::value_type ch, Case
     \sa containsCharacter()
 */
 template<class StringT>
-bool containsSubstr(const StringT& str, const StringT& sub, CaseSensitivity cs, const std::locale& loc)
+bool containsSubstr(const StringT& str, const StringT& sub, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     if (!str.empty() && !sub.empty()) {
-        if (cs == CaseSensitive) {
+        if (cs == UCaseSensitive) {
             return str.find(sub) != StringT::npos;
         } else {
             StringT temp = toLower(str, loc);
@@ -452,7 +337,7 @@ StringT joinString(const UStringVector<StringT>& strs, const DelimT& delim)
     \sa toLower(), toUpperSelf(), isLower()
 */
 template<class StringT>
-inline void toLowerSelf(StringT& str, const std::locale& loc)
+inline void toLowerSelf(StringT& str, const std::locale& loc = std::locale())
 {
     using CharT = typename StringT::value_type;
     std::transform(str.begin(), str.end(), str.begin(),
@@ -465,9 +350,9 @@ inline void toLowerSelf(StringT& str, const std::locale& loc)
     \sa toLowerSelf(), toUpper(), isLower()
 */
 template<class StringT>
-inline StringT toLower(const StringT& str, const std::locale& loc)
+inline StringT toLower(const StringT& str, const std::locale& loc = std::locale())
 {
-    std::string result(str);
+    StringT result(str);
     toLowerSelf(result, loc);
     return result;
 }
@@ -478,7 +363,7 @@ inline StringT toLower(const StringT& str, const std::locale& loc)
     \sa toUpper(), toLower(), isUpper()
 */
 template<class StringT>
-inline void toUpperSelf(StringT& str, const std::locale& loc)
+inline void toUpperSelf(StringT& str, const std::locale& loc = std::locale())
 {
     using CharT = typename StringT::value_type;
     std::transform(str.begin(), str.end(), str.begin(),
@@ -491,9 +376,9 @@ inline void toUpperSelf(StringT& str, const std::locale& loc)
     \sa toUpperSelf(), toLower(), isUpper()
 */
 template<class StringT>
-inline StringT toUpper(const StringT& str, const std::locale& loc)
+inline StringT toUpper(const StringT& str, const std::locale& loc = std::locale())
 {
-    std::string result(str);
+    StringT result(str);
     toUpperSelf(result);
     return result;
 }
@@ -505,7 +390,7 @@ inline StringT toUpper(const StringT& str, const std::locale& loc)
     \sa isUpper(), toLower()
  */
 template<class StringT>
-bool isLower(const StringT& str, const std::locale& loc)
+bool isLower(const StringT& str, const std::locale& loc = std::locale())
 {
     if (str.empty()) {
         return false;
@@ -525,7 +410,7 @@ bool isLower(const StringT& str, const std::locale& loc)
     \sa isLower(), toUpper()
 */
 template<class StringT>
-bool isUpper(const StringT& str, const std::locale& loc)
+bool isUpper(const StringT& str, const std::locale& loc = std::locale())
 {
     if (str.empty()) {
         return false;
@@ -544,7 +429,7 @@ bool isUpper(const StringT& str, const std::locale& loc)
     \sa capitalized()
 */
 template<class StringT>
-inline void capitalizedSelf(StringT& str, const std::locale& loc)
+inline void capitalizedSelf(StringT& str, const std::locale& loc = std::locale())
 {
     if (!str.empty()) {
         toLower(str, loc);
@@ -558,10 +443,10 @@ inline void capitalizedSelf(StringT& str, const std::locale& loc)
     \sa capitalizedSelf()
 */
 template<class StringT>
-inline StringT capitalized(const StringT& str, const std::locale& loc)
+inline StringT capitalized(const StringT& str, const std::locale& loc = std::locale())
 {
-    std::string result(str);
-    capitalized(result, loc);
+    StringT result(str);
+    capitalizedSelf(result, loc);
     return result;
 }
 
@@ -572,7 +457,7 @@ inline StringT capitalized(const StringT& str, const std::locale& loc)
     \sa capitalizedWords(), uncapitalizedWordsSelf()
 */
 template<class StringT>
-void capitalizedWordsSelf(StringT& str, const std::locale& loc)
+void capitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale())
 {
     using SizeT = typename StringT::size_type;
 
@@ -591,7 +476,7 @@ void capitalizedWordsSelf(StringT& str, const std::locale& loc)
     \sa capitalizedWordsSelf(), uncapitalizedWords()
 */
 template<class StringT>
-inline StringT capitalizedWords(const StringT& str, const std::locale& loc)
+inline StringT capitalizedWords(const StringT& str, const std::locale& loc = std::locale())
 {
     StringT result(str);
     capitalizedWords(str, loc);
@@ -605,7 +490,7 @@ inline StringT capitalizedWords(const StringT& str, const std::locale& loc)
     \sa uncapitalizedWords(), capitalizedWords()
 */
 template<class StringT>
-void uncapitalizedWordsSelf(StringT& str, const std::locale& loc)
+void uncapitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale())
 {
     using SizeT = typename StringT::size_type;
 
@@ -624,7 +509,7 @@ void uncapitalizedWordsSelf(StringT& str, const std::locale& loc)
     \sa uncapitalizedWordsSelf(), capitalizedWords()
 */
 template<class StringT>
-inline StringT uncapitalizedWords(const StringT& str, const std::locale& loc)
+inline StringT uncapitalizedWords(const StringT& str, const std::locale& loc = std::locale())
 {
     StringT result(str);
     uncapitalizedWordsSelf(str, loc);
@@ -747,13 +632,14 @@ std::wstring convertString(const std::string& str)
     \sa endsWith()
 */
 template<class StringT>
-bool startsWith(const StringT& str, typename StringT::value_type starts, CaseSensitivity cs, const std::locale& loc)
+bool startsWith(const StringT& str, typename StringT::value_type starts, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     if (str.empty()) {
         return false;
     }
 
-    if (CaseSensitivity::CaseInsensitive == cs) {
+    if (UCaseSensitivity::UCaseInsensitive == cs) {
         return std::tolower(starts, loc) == std::tolower(str.front(), loc);
     }
     else {
@@ -768,7 +654,8 @@ bool startsWith(const StringT& str, typename StringT::value_type starts, CaseSen
     \sa endsWith()
 */
 template<class StringT>
-bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs, const std::locale& loc)
+bool startsWith(const StringT& str, const StringT& starts, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std:locale())
 {
     using CharT = typename StringT::value_type;
 
@@ -776,7 +663,7 @@ bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs, c
         return false;
     }
 
-    if (CaseSensitivity::CaseInsensitive == cs) {
+    if (UCaseSensitivity::UCaseInsensitive == cs) {
         return std::equal(starts.begin(), starts.end(), str.begin(),
             [&](const CharT& a, const CharT& b) {
                 return std::tolower((a, loc) == std::tolower(b, loc);
@@ -794,13 +681,14 @@ bool startsWith(const StringT& str, const StringT& starts, CaseSensitivity cs, c
     \sa startsWith()
 */
 template<class StringT>
-bool endsWith(const StringT& str, typename StringT::value_type ends, CaseSensitivity, const std::locale& loc)
+bool endsWith(const StringT& str, typename StringT::value_type ends, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     if (str.empty()) {
         return false;
     }
 
-    if (CaseSensitivity::CaseInsensitive == cs) {
+    if (UCaseSensitivity::UCaseInsensitive == cs) {
         return std::towlower(ends, loc) == std::towlower(str.front(), loc);
     }
     else {
@@ -815,7 +703,8 @@ bool endsWith(const StringT& str, typename StringT::value_type ends, CaseSensiti
     \sa startsWith()
 */
 template<class StringT>
-bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs, const std::locale& loc)
+bool endsWith(const StringT& str, const StringT& ends, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     using CharT = typename StringT::value_type;
 
@@ -823,7 +712,7 @@ bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs, const
         return false;
     }
 
-    if (CaseSensitivity::CaseInsensitive == cs) {
+    if (UCaseSensitivity::UCaseInsensitive == cs) {
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
             [&](const CharT& a, const CharT& b) {
                 return std::tolower(a, loc) == std::tolower(b, loc);
@@ -841,9 +730,10 @@ bool endsWith(const StringT& str, const StringT& ends, CaseSensitivity cs, const
     If cs is CaseSensitive, the comparison is case sensitive; otherwise the comparison is case insensitive.
 */
 template<class StringT>
-inline bool compareString(const StringT& str1, const StringT& str2, CaseSensitivity cs, const std::locale& loc)
+inline bool compareString(const StringT& str1, const StringT& str2, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
-    if (cs == CaseInsensitive) {
+    if (cs == UCaseInsensitive) {
         return toLower(str1, loc).compare(toLower(str2, loc));
     }
     else {
@@ -914,16 +804,16 @@ inline StringT reverseString(const StringT& str)
     \note If param \a noexception set to true and exceptions are performed, return zero.
 */
 template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
+NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception = true)
 {
     if (noexception) {
         try {
             return impl::stringToNumber<NumT>(str, pos, base);
         }
-        catch (const std::exception& e) {
+        catch (...) {
             return NumT(0);
         }
-    }
+    } 
     else {
         return impl::stringToNumber<NumT>(str, pos, base);
     }
@@ -943,18 +833,18 @@ NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception)
     \note Converses to decimal base integer by default.
 */
 template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, std::size_t* pos, bool noexception)
+NumT toNumber(const StringT& str, std::size_t* pos, bool noexception = true)
 {
     if (noexception) {
         try {
-            return impl::stringToNumber<NumT>(str, pos);
+            return detail::stringToNumber<NumT>(str, pos);
         }
-        catch (const std::exception& e) {
+        catch (...) {
             return NumT(0);
         }
     }
     else {
-        return impl::stringToNumber<NumT>(str, pos);
+        return detail::stringToNumber<NumT>(str, pos);
     }
 }
 
@@ -971,18 +861,18 @@ NumT toNumber(const StringT& str, std::size_t* pos, bool noexception)
     \note Converses to decimal base integer by default.
 */
 template<typename NumT, class StringT>
-NumT toNumber(const StringT& str, bool noexception)
+NumT toNumber(const StringT& str, bool noexception = true)
 {
     if (noexception) {
         try {
-            return impl::stringToNumber<NumT>(str);
+            return detail::stringToNumber<NumT>(str);
         }
-        catch (const std::exception& e) {
+        catch (...) {
             return NumT(0);
         }
     }
     else {
-        return impl::stringToNumber<NumT>(str);
+        return detail::stringToNumber<NumT>(str);
     }
 }
 
