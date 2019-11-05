@@ -58,7 +58,7 @@
     <ClCompile Include="..\..\..\..\src\UTime.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\include\utils4cpp\str\UStringViewUtility.inl" />
+    <None Include="..\..\..\..\include\utils4cpp\str\UOstreamString.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

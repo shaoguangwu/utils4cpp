@@ -138,7 +138,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\include\utils4cpp\str\UStringViewUtility.inl">
+    <None Include="..\..\..\..\include\utils4cpp\str\UOstreamString.inl">
       <Filter>include\str</Filter>
     </None>
   </ItemGroup>
