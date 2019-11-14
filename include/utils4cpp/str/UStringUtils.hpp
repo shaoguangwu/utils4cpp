@@ -43,7 +43,7 @@
 #include <type_traits>
 
 #include "utils4cpp/str/UStringToNumber.inl"
-#include "utils4cpp/str/UStringGlobal.hpp"
+#include "utils4cpp/str/UStringView.hpp"
 
 namespace utils4cpp {
 namespace str {
@@ -654,7 +654,7 @@ bool startsWith(const StringT& str, typename StringT::value_type starts,
     \sa endsWith()
 */
 template<class StringT>
-bool startsWith(const StringT& str, const StringT& starts, 
+bool startsWith(const StringT& str, UBasicStringView<typename StringT::value_type> starts,
     UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std:locale())
 {
     using CharT = typename StringT::value_type;
@@ -672,6 +672,19 @@ bool startsWith(const StringT& str, const StringT& starts,
     else {
         return std::equal(starts.begin(), starts.end(), str.begin());
     }
+}
+
+/*!
+    Returns true if \a str starts with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa endsWith()
+*/
+template<class StringT>
+bool startsWith(const StringT& str, const StringT& starts,
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std:locale())
+{
+    return startsWith(str, UBasicStringView<typename StringT::value_type>(starts.c_str()), cs, loc);
 }
 
 /*!
@@ -703,7 +716,7 @@ bool endsWith(const StringT& str, typename StringT::value_type ends,
     \sa startsWith()
 */
 template<class StringT>
-bool endsWith(const StringT& str, const StringT& ends, 
+bool endsWith(const StringT& str, UBasicStringView<typename StringT::value_type> ends,
     UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
 {
     using CharT = typename StringT::value_type;
@@ -721,6 +734,19 @@ bool endsWith(const StringT& str, const StringT& ends,
     else {
         return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
     }
+}
+
+/*!
+    Returns true if \a str ends with \a starts.
+    parameter \a cs indicates case sensitivity.
+
+    \sa startsWith()
+*/
+template<class StringT>
+bool endsWith(const StringT& str, const StringT& ends, 
+    UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+{
+    return endsWith(str, UBasicStringView(ends), cs, loc);
 }
 
 /*!

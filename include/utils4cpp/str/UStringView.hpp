@@ -41,11 +41,11 @@ namespace utils4cpp {
 namespace str {
 
 #if UTILS4CPP_HAS_STDSTRINGVIEW
-    template<typename charT, class Traits = std::char_traits<charT>>
-    using UBasicStringView = std::basic_string_view<charT, Traits>;
+    template<typename CharT, class Traits = std::char_traits<CharT>>
+    using UBasicStringView = std::basic_string_view<CharT, Traits>;
 #else
     // forward declaration for UBasicStringView
-    template<typename charT, class Traits = std::char_traits<charT>>
+    template<typename CharT, class Traits = std::char_traits<CharT>>
     class UBasicStringView;
 #endif // UTILS4CPP_HAS_STDSTRINGVIEW
 
@@ -74,16 +74,16 @@ using U8StringView = UBasicStringView<char8_t, std::char_traits<char8_t>>;
     If has std::string_view, The template class UBasicStringView is same as std::string_view,
     otherwise, we define it.
 */
-template<typename charT, class Traits = std::char_traits<charT>>
+template<typename CharT, class Traits = std::char_traits<CharT>>
 class UBasicStringView
 {
 public:
     using traits_type = Traits;
-    using value_type = charT;
-    using pointer = charT*;
-    using const_pointer = const charT*;
-    using reference = charT&;
-    using const_reference = const charT&;
+    using value_type = CharT;
+    using pointer = CharT*;
+    using const_pointer = const CharT*;
+    using reference = CharT&;
+    using const_reference = const CharT&;
     using const_iterator = const_pointer;
     using iterator = const_iterator;
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
@@ -114,7 +114,7 @@ public:
         After construction, data() is equal to \a str, and size() is equal to Traits::length(str).
     */
     constexpr UBasicStringView(const CharT* str)
-        : m_ptr(), m_len(traits::length(str)) {}
+        : m_ptr(), m_len(Traits::length(str)) {}
 
     /*!
         Constructs a view of the first count characters of the character array starting with the 
@@ -233,7 +233,7 @@ public:
     constexpr const_reference at(size_t pos) const 
     {
         return pos >= m_len ? 
-            throw std::out_of_range("utils4cpp::str::UBasicStringView::at") : m_ptr[pos];
+            throw std::out_of_range("out of range") : m_ptr[pos];
     }
 
     /*!
@@ -317,10 +317,10 @@ public:
 
         \sa substr()
     */
-    constexpr size_type copy(charT* dest, size_type count, size_type pos = 0) const 
+    constexpr size_type copy(CharT* dest, size_type count, size_type pos = 0) const 
     {
         if (pos > size()) {
-            throw std::out_of_range("utils4cpp::str::UBasicStringView::copy");
+            throw std::out_of_range("out of range");
         }
         size_type rlen = std::min(count, m_len - pos);
         traits_type::copy(dest, data() + pos, rlen);
@@ -336,14 +336,14 @@ public:
     constexpr UBasicStringView substr(size_type pos, size_type count = npos) const 
     {
         if (pos > size()) {
-            throw std::out_of_range("utils4cpp::str::UBasicStringView::substr");
+            throw std::out_of_range("out of range");
         }
         return UBasicStringView(data() + pos, std::min(size() - pos, count));
     }
 
     /*!
         The length rlen of the sequences to compare is the smaller of size() and v.size(). 
-        The function compares the two views by calling traits::compare(data(), v.data(), rlen), 
+        The function compares the two views by calling Traits::compare(data(), v.data(), rlen), 
         and returns a value according to the following table:
 
         <table>
@@ -363,7 +363,7 @@ public:
     */
     constexpr int compare(UBasicStringView v) const noexcept
     {
-        const int cmp = traits::compare(m_ptr, v.m_ptr, std::min(m_len, v.m_len));
+        const int cmp = Traits::compare(m_ptr, v.m_ptr, std::min(m_len, v.m_len));
         return cmp != 0 ? cmp : (m_len == v.m_len ? 0 : m_len < v.m_len ? -1 : 1);
     }
 
@@ -414,7 +414,7 @@ public:
 
         \sa operator==(), operator!=(), operator<(), operator>(), operator<=(), operator>=()
     */
-    constexpr int compare(const charT* s) const 
+    constexpr int compare(const CharT* s) const 
     {
         return compare(UBasicStringView(s));
     }
@@ -431,7 +431,7 @@ public:
 
         \sa substr(), operator==(), operator!=(), operator<(), operator>(), operator<=(), operator>=()
     */
-    constexpr int compare(size_type pos1, size_type count1, const charT* s) const 
+    constexpr int compare(size_type pos1, size_type count1, const CharT* s) const 
     {
         return substr(pos1, count1).compare(UBasicStringView(s));
     }
@@ -449,7 +449,7 @@ public:
         \sa substr(), operator==(), operator!=(), operator<(), operator>(), operator<=(), operator>=()
     */
     constexpr int compare(size_type pos1, size_type count1,
-        const charT* s, size_type count2) const 
+        const CharT* s, size_type count2) const
     {
         return substr(pos1, count1).compare(UBasicStringView(s, count2));
     }
@@ -467,7 +467,7 @@ public:
     constexpr bool starts_with(UBasicStringView x) const noexcept
     {
         return size() >= x.size() && compare(0, x.size(), x) == 0;
-        return m_len >= x.m_len && traits::compare(m_ptr, x.m_ptr, x.m_len) == 0;
+        return m_len >= x.m_len && Traits::compare(m_ptr, x.m_ptr, x.m_len) == 0;
     }
 
     /*!
@@ -480,9 +480,9 @@ public:
         \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa ends_with(), compare()
     */
-    constexpr bool starts_with(charT x) const noexcept 
+    constexpr bool starts_with(CharT x) const noexcept
     {
-        return !empty() && traits::eq(x, front());
+        return !empty() && Traits::eq(x, front());
     }
 
     /*!
@@ -495,7 +495,7 @@ public:
         \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa ends_with(), compare()
     */
-    constexpr bool starts_with(const charT* x) const noexcept
+    constexpr bool starts_with(const CharT* x) const noexcept
     {
         return starts_with(UBasicStringView(x));
     }
@@ -513,7 +513,7 @@ public:
     constexpr bool ends_with(UBasicStringView x) const noexcept
     {
         return m_len >= x.m_len &&
-            traits::compare(m_ptr + m_len - x.m_len, x.m_ptr, x.m_len) == 0;
+            Traits::compare(m_ptr + m_len - x.m_len, x.m_ptr, x.m_len) == 0;
     }
 
     /*!
@@ -526,9 +526,9 @@ public:
         \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa starts_with(), compare()
     */
-    constexpr bool ends_with(charT x) const noexcept
+    constexpr bool ends_with(CharT x) const noexcept
     {
-        return !empty() && traits::eq(x, back());
+        return !empty() && Traits::eq(x, back());
     }
 
     /*!
@@ -541,7 +541,7 @@ public:
         \note std::basic_string_view provides this function since from c++20, use it carefully.
         \sa starts_with(), compare()
     */
-    constexpr bool ends_with(const charT* x) const noexcept
+    constexpr bool ends_with(const CharT* x) const noexcept
     {
         return ends_with(UBasicStringView(x));
     }
@@ -558,14 +558,14 @@ public:
         if (pos > size() || v.empty() || v.size() > size() - pos) {
             return npos;
         }
-        const charT* cur = m_ptr + pos;
-        const charT* last = cend() - v.size() + 1;
+        const CharT* cur = m_ptr + pos;
+        const CharT* last = cend() - v.size() + 1;
         for ( ; cur != last; ++cur) {
-            cur = traits::find(cur, last - cur, v[0]);
+            cur = Traits::find(cur, last - cur, v[0]);
             if (!cur) {
                 return npos;
             }       
-            if (traits::compare(cur, v.cbegin(), v.size()) == 0) {
+            if (Traits::compare(cur, v.cbegin(), v.size()) == 0) {
                 return cur - m_ptr;
             }
         }
@@ -581,10 +581,10 @@ public:
         \return Position of the first character of the found substring, or npos if no such substring is found.
         \sa rfind(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find(charT ch, size_type pos = 0) const noexcept 
+    constexpr size_type find(CharT ch, size_type pos = 0) const noexcept 
     {
         if (pos <= size()) {
-            const charT* ret_ptr = traits::find(m_ptr + pos, m_len - pos, ch);
+            const CharT* ret_ptr = Traits::find(m_ptr + pos, m_len - pos, ch);
             if (ret_ptr) {
                 return ret_ptr - m_ptr;
             }        
@@ -601,7 +601,7 @@ public:
         \return Position of the first character of the found substring, or npos if no such substring is found.
         \sa rfind(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type find(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return find(UBasicStringView(s, count), pos);
     }
@@ -615,7 +615,7 @@ public:
         \return Position of the first character of the found substring, or npos if no such substring is found.
         \sa rfind(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find(const charT* s, size_type pos = 0) const noexcept
+    constexpr size_type find(const CharT* s, size_type pos = 0) const noexcept
     {
         return find(UBasicStringView(s), pos);
     }
@@ -638,8 +638,8 @@ public:
         if (v.m_len == 0u) {     // an empty string is always found
             return pos;
         }
-        for (const charT* cur = m_ptr + pos; ; --cur) {
-            if (traits::compare(cur, v.m_ptr, v.m_len) == 0) {
+        for (const CharT* cur = m_ptr + pos; ; --cur) {
+            if (Traits::compare(cur, v.m_ptr, v.m_len) == 0) {
                 return cur - m_ptr;
             }
             if (cur == m_ptr) {
@@ -657,7 +657,7 @@ public:
         \return Position of the first character of the found substring or npos if no such substring is found.
         \sa find(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type rfind(charT c, size_type pos = npos) const noexcept
+    constexpr size_type rfind(CharT c, size_type pos = npos) const noexcept
     {
         return rfind(UBasicStringView(&c, 1), pos);
     }
@@ -671,7 +671,7 @@ public:
         \return Position of the first character of the found substring or npos if no such substring is found.
         \sa find(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type rfind(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type rfind(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return rfind(UBasicStringView(s, count), pos);
     }
@@ -685,7 +685,7 @@ public:
         \return Position of the first character of the found substring or npos if no such substring is found.
         \sa find(), find_first_of(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type rfind(const charT* s, size_type pos = npos) const noexcept
+    constexpr size_type rfind(const CharT* s, size_type pos = npos) const noexcept
     {
         return rfind(UBasicStringView(s), pos);
     }
@@ -702,8 +702,8 @@ public:
         if (pos >= m_len || v.m_len == 0) {
             return npos;
         }     
-        const_iterator iter = std::find_first_of
-        (this->cbegin() + pos, this->cend(), v.cbegin(), v.cend(), traits::eq);
+        const_iterator iter = std::find_first_of(
+            this->cbegin() + pos, this->cend(), v.cbegin(), v.cend(), Traits::eq);
         return iter == this->cend() ? npos : std::distance(this->cbegin(), iter);
     }
     /*!
@@ -716,7 +716,7 @@ public:
         \return Position of the first occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_first_of(charT c, size_type pos = 0) const noexcept
+    constexpr size_type find_first_of(CharT c, size_type pos = 0) const noexcept
     {
         return find(c, pos);
     }
@@ -730,7 +730,7 @@ public:
         \return Position of the first occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_first_of(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type find_first_of(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return find_first_of(UBasicStringView(s, count), pos);
     }
@@ -744,7 +744,7 @@ public:
         \return Position of the first occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_last_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_first_of(const charT* s, size_type pos = 0) const noexcept
+    constexpr size_type find_first_of(const CharT* s, size_type pos = 0) const noexcept
     {
         return find_first_of(UBasicStringView(s), pos);
     }
@@ -769,7 +769,7 @@ public:
             pos = m_len - (pos + 1);
         }
         const_reverse_iterator iter = std::find_first_of
-        (this->crbegin() + pos, this->crend(), v.cbegin(), v.cend(), traits::eq);
+        (this->crbegin() + pos, this->crend(), v.cbegin(), v.cend(), Traits::eq);
         return iter == this->crend() ? npos : reverse_distance(this->crbegin(), iter);
     }
     /*!
@@ -784,7 +784,7 @@ public:
         \return Position of the last occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_last_of(charT c, size_type pos = npos) const noexcept
+    constexpr size_type find_last_of(CharT c, size_type pos = npos) const noexcept
     {
         return find_last_of(UBasicStringView(&c, 1), pos);
     }
@@ -800,7 +800,7 @@ public:
         \return Position of the last occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_last_of(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type find_last_of(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return find_last_of(UBasicStringView(s, count), pos);
     }
@@ -816,7 +816,7 @@ public:
         \return Position of the last occurrence of any character of the substring, or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_first_not_of(), find_last_not_of()
     */
-    constexpr size_type find_last_of(const charT* s, size_type pos = npos) const noexcept
+    constexpr size_type find_last_of(const CharT* s, size_type pos = npos) const noexcept
     {
         return find_last_of(UBasicStringView(s), pos);
     }
@@ -851,7 +851,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_last_not_of()
     */
-    constexpr size_type find_first_not_of(charT c, size_type pos = 0) const noexcept
+    constexpr size_type find_first_not_of(CharT c, size_type pos = 0) const noexcept
     {
         return find_first_not_of(UBasicStringView(&c, 1), pos);
     }
@@ -866,7 +866,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_last_not_of()
     */
-    constexpr size_type find_first_not_of(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type find_first_not_of(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return find_first_not_of(UBasicStringView(s, count), pos);
     }
@@ -881,7 +881,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_last_not_of()
     */
-    constexpr size_type find_first_not_of(const charT* s, size_type pos = 0) const noexcept
+    constexpr size_type find_first_not_of(const CharT* s, size_type pos = 0) const noexcept
     {
         return find_first_not_of(UBasicStringView(s), pos);
     }
@@ -917,7 +917,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_first_not_of()
     */
-    constexpr size_type find_last_not_of(charT c, size_type pos = npos) const noexcept
+    constexpr size_type find_last_not_of(CharT c, size_type pos = npos) const noexcept
     {
         return find_last_not_of(UBasicStringView(&c, 1), pos);
     }
@@ -932,7 +932,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_first_not_of()
     */
-    constexpr size_type find_last_not_of(const charT* s, size_type pos, size_type count) const noexcept
+    constexpr size_type find_last_not_of(const CharT* s, size_type pos, size_type count) const noexcept
     {
         return find_last_not_of(UBasicStringView(s, count), pos);
     }
@@ -947,7 +947,7 @@ public:
                 or npos if no such character is found.
         \sa find(), rfind(), find_first_of(), find_last_of(), find_first_not_of()
     */
-    constexpr size_type find_last_not_of(const charT* s, size_type pos = npos) const noexcept
+    constexpr size_type find_last_not_of(const CharT* s, size_type pos = npos) const noexcept
     {
         return find_last_not_of(UBasicStringView(s), pos);
     }
@@ -960,10 +960,10 @@ private:
     }
 
     template <typename Iterator>
-    Iterator find_not_of(Iterator first, Iterator last, basic_string_view v) const noexcept
+    Iterator find_not_of(Iterator first, Iterator last, UBasicStringView v) const noexcept
     {
         for (; first != last; ++first) {
-            if (0 == traits::find(v.ptr_, v.m_len, *first)) {
+            if (0 == Traits::find(v.ptr_, v.m_len, *first)) {
                 return first;
             }
         }
@@ -971,7 +971,7 @@ private:
     }
 
 private:
-    const charT* m_ptr;
+    const CharT* m_ptr;
     std::size_t m_len;
 }; // class UBasicStringView
 
@@ -986,8 +986,8 @@ private:
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator==(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator==(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept 
 {
     if (x.size() != y.size()) {
         return false;
@@ -1006,8 +1006,8 @@ inline constexpr bool operator==(UBasicStringView<charT, traits> x, UBasicString
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator!=(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator!=(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept 
 {
     if (x.size() != y.size()) {
         return true;
@@ -1026,8 +1026,8 @@ inline constexpr bool operator!=(UBasicStringView<charT, traits> x, UBasicString
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator<(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept 
 {
     return x.compare(y) < 0;
 }
@@ -1043,8 +1043,8 @@ inline constexpr bool operator<(UBasicStringView<charT, traits> x, UBasicStringV
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept 
 {
     return x.compare(y) > 0;
 }
@@ -1060,8 +1060,8 @@ inline constexpr bool operator>(UBasicStringView<charT, traits> x, UBasicStringV
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<=(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept
+template<typename CharT, typename Traits>
+inline constexpr bool operator<=(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept
 {
     return x.compare(y) <= 0;
 }
@@ -1077,8 +1077,8 @@ inline constexpr bool operator<=(UBasicStringView<charT, traits> x, UBasicString
 
     \return \c true if the corresponding comparison holds, \c false otherwise.
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>=(UBasicStringView<charT, traits> x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>=(UBasicStringView<CharT, Traits> x, UBasicStringView<CharT, Traits> y) noexcept 
 {
     return x.compare(y) >= 0;
 }
@@ -1086,302 +1086,302 @@ inline constexpr bool operator>=(UBasicStringView<charT, traits> x, UBasicString
 /*!
     Equivalent to:
     \code
-        x == UBasicStringView<charT, traits>(y);
+        x == UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator==(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator==(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x == UBasicStringView<charT, traits>(y);
+    return x == UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) == y;
+        UBasicStringView<CharT, Traits>(x) == y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator==(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator==(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) == y;
+    return UBasicStringView<CharT, Traits>(x) == y;
 }
 
 /*!
     Equivalent to:
     \code
-        x == UBasicStringView<charT, traits>(y);
+        x == UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator==(UBasicStringView<charT, traits> x, const charT* y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator==(UBasicStringView<CharT, Traits> x, const CharT* y) noexcept 
 {
-    return x == UBasicStringView<charT, traits>(y);
+    return x == UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) == y;
+        UBasicStringView<CharT, Traits>(x) == y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator==(const charT* x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator==(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) == y;
+    return UBasicStringView<CharT, Traits>(x) == y;
 }
 
 /*!
     Equivalent to:
     \code
-        x != UBasicStringView<charT, traits>(y);
+        x != UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator!=(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator!=(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x != UBasicStringView<charT, traits>(y);
+    return x != UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) != y;
+        UBasicStringView<CharT, Traits>(x) != y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator!=(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator!=(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) != y;
+    return UBasicStringView<CharT, Traits>(x) != y;
 }
 
 /*!
     Equivalent to:
     \code
-        x != UBasicStringView<charT, traits>(y);
+        x != UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator!=(UBasicStringView<charT, traits> x, const charT* y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator!=(UBasicStringView<CharT, Traits> x, const CharT* y) noexcept 
 {
-    return x != UBasicStringView<charT, traits>(y);
+    return x != UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) != y;
+        UBasicStringView<CharT, Traits>(x) != y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator!=(const charT* x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator!=(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) != y;
+    return UBasicStringView<CharT, Traits>(x) != y;
 }
 
 /*!
     Equivalent to:
     \code
-        x < basic_string_view<charT, traits>(y);
+        x < basic_string_view<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator<(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator<(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x < basic_string_view<charT, traits>(y);
+    return x < basic_string_view<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) < y;
+        UBasicStringView<CharT, Traits>(x) < y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator<(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator<(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) < y;
+    return UBasicStringView<CharT, Traits>(x) < y;
 }
 
 /*!
     Equivalent to:
     \code
-        x < UBasicStringView<charT, traits>(y);
+        x < UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<(UBasicStringView<charT, traits> x, const charT* y) noexcept
+template<typename CharT, typename Traits>
+inline constexpr bool operator<(UBasicStringView<CharT, Traits> x, const CharT* y) noexcept
 {
-    return x < UBasicStringView<charT, traits>(y);
+    return x < UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) < y;
+        UBasicStringView<CharT, Traits>(x) < y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<(const charT* x, UBasicStringView<charT, traits> y) noexcept
+template<typename CharT, typename Traits>
+inline constexpr bool operator<(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept
 {
-    return UBasicStringView<charT, traits>(x) < y;
+    return UBasicStringView<CharT, Traits>(x) < y;
 }
 
 /*!
     Equivalent to:
     \code
-        x > UBasicStringView<charT, traits>(y);
+        x > UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator>(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator>(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x > UBasicStringView<charT, traits>(y);
+    return x > UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) > y;
+        UBasicStringView<CharT, Traits>(x) > y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator>(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator>(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) > y;
+    return UBasicStringView<CharT, Traits>(x) > y;
 }
 
 /*!
     Equivalent to:
     \code
-        x > UBasicStringView<charT, traits>(y);
+        x > UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>(UBasicStringView<charT, traits> x,
-    const charT* y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>(UBasicStringView<CharT, Traits> x,
+    const CharT* y) noexcept 
 {
-    return x > UBasicStringView<charT, traits>(y);
+    return x > UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) > y;
+        UBasicStringView<CharT, Traits>(x) > y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>(const charT* x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) > y;
+    return UBasicStringView<CharT, Traits>(x) > y;
 }
 
 /*!
     Equivalent to:
     \code
-        x <= UBasicStringView<charT, traits>(y);
+        x <= UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator<=(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator<=(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x <= UBasicStringView<charT, traits>(y);
+    return x <= UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) <= y;
+        UBasicStringView<CharT, Traits>(x) <= y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator<=(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator<=(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) <= y;
+    return UBasicStringView<CharT, Traits>(x) <= y;
 }
 
 /*!
     Equivalent to:
     \code
-        x <= UBasicStringView<charT, traits>(y);
+        x <= UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<=(UBasicStringView<charT, traits> x, const charT* y) noexcept
+template<typename CharT, typename Traits>
+inline constexpr bool operator<=(UBasicStringView<CharT, Traits> x, const CharT* y) noexcept
 {
-    return x <= UBasicStringView<charT, traits>(y);
+    return x <= UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) <= y;
+        UBasicStringView<CharT, Traits>(x) <= y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator<=(const charT* x, UBasicStringView<charT, traits> y) noexcept
+template<typename CharT, typename Traits>
+inline constexpr bool operator<=(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept
 {
-    return UBasicStringView<charT, traits>(x) <= y;
+    return UBasicStringView<CharT, Traits>(x) <= y;
 }
 
 /*!
     Equivalent to:
     \code
-        x >= UBasicStringView<charT, traits>(y);
+        x >= UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator>=(UBasicStringView<charT, traits> x,
-    const std::basic_string<charT, traits, Allocator>& y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator>=(UBasicStringView<CharT, Traits> x,
+    const std::basic_string<CharT, Traits, Allocator>& y) noexcept 
 {
-    return x >= UBasicStringView<charT, traits>(y);
+    return x >= UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) >= y;
+        UBasicStringView<CharT, Traits>(x) >= y;
     \endcode
 */
-template<typename charT, typename traits, typename Allocator>
-inline constexpr bool operator>=(const std::basic_string<charT, traits, Allocator>& x,
-    UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits, typename Allocator>
+inline constexpr bool operator>=(const std::basic_string<CharT, Traits, Allocator>& x,
+    UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) >= y;
+    return UBasicStringView<CharT, Traits>(x) >= y;
 }
 
 /*!
     Equivalent to:
     \code
-        x >= UBasicStringView<charT, traits>(y);
+        x >= UBasicStringView<CharT, Traits>(y);
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>=(UBasicStringView<charT, traits> x, const charT* y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>=(UBasicStringView<CharT, Traits> x, const CharT* y) noexcept 
 {
-    return x >= UBasicStringView<charT, traits>(y);
+    return x >= UBasicStringView<CharT, Traits>(y);
 }
 
 /*!
     Equivalent to:
     \code
-        UBasicStringView<charT, traits>(x) >= y;
+        UBasicStringView<CharT, Traits>(x) >= y;
     \endcode
 */
-template<typename charT, typename traits>
-inline constexpr bool operator>=(const charT* x, UBasicStringView<charT, traits> y) noexcept 
+template<typename CharT, typename Traits>
+inline constexpr bool operator>=(const CharT* x, UBasicStringView<CharT, Traits> y) noexcept 
 {
-    return UBasicStringView<charT, traits>(x) >= y;
+    return UBasicStringView<CharT, Traits>(x) >= y;
 }
 
 /*!
@@ -1399,9 +1399,9 @@ inline constexpr bool operator>=(const charT* x, UBasicStringView<charT, traits>
 
     \exception May throw \c std::ios_base::failure if an exception is thrown during output.
 */
-template<class charT, class traits>
-inline std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& os, 
-    const UBasicStringView<charT, traits> str) 
+template<class CharT, class Traits>
+inline std::basic_ostream<CharT, Traits>& operator<<(std::basic_ostream<CharT, Traits>& os, 
+    const UBasicStringView<CharT, Traits> str) 
 {
     return detail::ostream_string(os, str.data(), str.size());
 }

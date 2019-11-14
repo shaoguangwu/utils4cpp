@@ -31,13 +31,65 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_UCORE_HPP
-#define UTILS4CPP_CORE_UCORE_HPP
+#ifndef UTILS4CPP_STR_UCASECONVERSION_HPP
+#define UTILS4CPP_STR_UCASECONVERSION_HPP
 
-#include "utils4cpp/core/UVersion.hpp"
-#include "utils4cpp/core/UExport.hpp"
-#include "utils4cpp/core/UOsDetection.hpp"
-#include "utils4cpp/core/UCppStandardDetection.hpp"
-#include "utils4cpp/core/UStlConfig.hpp"
+#include <locale>
 
-#endif // UTILS4CPP_CORE_UCORE_HPP
+namespace utils4cpp {
+namespace str {
+
+//
+//  case conversion functors
+//
+
+/**
+    \class ToLowerF
+    \brief a tolower functor.
+
+    \sa ToUpperF
+*/
+template<class CharT>
+struct ToLowerF
+{
+    using argument_type = CharT;
+    using result_type = CharT;
+
+    ToLowerF(const std::locale& loc)
+        : m_loc(&loc) {}
+
+    result_type operator()(CharT ch) const
+    {
+        return std::tolower(ch, *m_loc);
+    }
+private:
+    const std::locale* m_loc;
+};
+
+/**
+    \class ToLowerF
+    \brief a tolower functor.
+
+    \sa ToLowerF
+*/
+template<class CharT>
+struct ToUpperF
+{
+    using argument_type = CharT;
+    using result_type = CharT;
+
+    ToLowerF(const std::locale& loc)
+        : m_loc(&loc) {}
+
+    result_type operator()(CharT ch) const
+    {
+        return std::toupper(ch, *m_loc);
+    }
+private:
+    const std::locale* m_loc;
+};
+
+} // namespace str
+} // namespace utils4cpp
+
+#endif // UTILS4CPP_STR_UCASECONVERSION_HPP

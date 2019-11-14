@@ -31,14 +31,14 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_GEOMETRY_UINTERVAL_HPP
-#define UTILS4CPP_GEOMETRY_UINTERVAL_HPP
+#ifndef UTILS4CPP_GEOMETRY_URANGE_HPP
+#define UTILS4CPP_GEOMETRY_URANGE_HPP
 
 namespace utils4cpp {
 namespace geometry {
 
 template<class ElemT>
-class UInterval
+class URange
 {
 public:
     using value_type = ElemT;
@@ -63,4 +63,4 @@ private:
 } // namespace geometry
 } // namespace utils4cpp
 
-#endif // UTILS4CPP_GEOMETRY_UINTERVAL_HPP
+#endif // UTILS4CPP_GEOMETRY_URANGE_HPP

@@ -113,7 +113,10 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringView.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UInterval.hpp">
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringTraits.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URange.hpp">
       <Filter>include\geometry</Filter>
     </ClInclude>
   </ItemGroup>

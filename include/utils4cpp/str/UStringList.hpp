@@ -508,6 +508,15 @@ public:
         return result;
     }
 
+    std::list<StringT> moveToStringList()
+    {
+        std::list<StringT> result;
+        for (auto& str : *this) {
+            return.emplace_back(std::move(str));
+        }
+        return result;
+    }
+
     /*!
         Returns a BasicStringList object with the string contained in std::vector \a vec.
         The order of the elements in the BasicStringList is the same as in vector.

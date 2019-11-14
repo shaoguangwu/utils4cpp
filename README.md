@@ -7,7 +7,7 @@
 
 [(English Documents Available)](README_en.md)
 
-utils4cpp是一个跨平台的C++11工具库.
+utils4cpp是一个基于C++17标准的跨平台工具库.
 
 ## API文档
 

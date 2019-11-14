@@ -143,16 +143,6 @@ std::chrono::hours::rep UElapsedTimer::elapsedHours() const
 }
 
 /*!
-    Returns the elapsed time in days with integer value.
-
-    \sa elapsedHDaysFloating()
-*/
-UElapsedTimer::chrono_days::rep UElapsedTimer::elapsedDays() const
-{
-    return std::chrono::duration_cast<chrono_days>(chrono_clock_type::now() - m_tp).count();
-}
-
-/*!
     Returns the elapsed time in milliseconds with floating value.
 
     \sa elapsed()
@@ -220,16 +210,6 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMinutesFloating() c
 UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedHoursFloating() const
 {
     return static_cast<hours_floating_t>(chrono_clock_type::now() - m_tp).count();
-}
-
-/*!
-    Returns the elapsed time in days with floating value.
-
-    \sa elapsedDays()
-*/
-UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedDaysFloating() const
-{
-    return static_cast<days_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
 } }// namespace
