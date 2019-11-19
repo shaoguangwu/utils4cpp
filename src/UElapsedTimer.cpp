@@ -43,12 +43,6 @@ namespace datetime {
 */
 
 /*!
-    \var UElapsedTimer::chrono_days
-
-    std::chrono::days defines in c++20 standard, define it before that.
-*/
-
-/*!
     \var UElapsedTimer::elapsed_time_floating_t
 
     The floating type of elapsed time.

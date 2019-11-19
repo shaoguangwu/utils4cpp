@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['lastindexof',['lastIndexOf',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#af0323defe36c233679140b4f5ec7b71f',1,'utils4cpp::str::UBasicStringList']]],
-  ['length',['length',['../classutils4cpp_1_1str_1_1_u_string.html#a18edc7fe68956de31dba624c512da803',1,'utils4cpp::str::UString::length()'],['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#aa6ea5124ba7022be8e676de593f410e8',1,'utils4cpp::str::UBasicStringView::length()']]],
-  ['localdate',['LocalDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a1cfc4213165b8b821656f82830564a33',1,'utils4cpp::datetime']]],
-  ['localedate',['LocaleDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a13a910a2f252f4be12ad10d94ceba0c8',1,'utils4cpp::datetime']]],
-  ['lower',['lower',['../classutils4cpp_1_1geometry_1_1_u_interval.html#a725766da67a1a62fa203ebdba6953000',1,'utils4cpp::geometry::UInterval::lower() noexcept'],['../classutils4cpp_1_1geometry_1_1_u_interval.html#a731ebc7e8991833f2bda5133c84b2719',1,'utils4cpp::geometry::UInterval::lower() const noexcept']]]
+  ['jan',['Jan',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4ac8d4aa2d1abf8ea729c76d1ddb6b3e8c',1,'utils4cpp::datetime']]],
+  ['join',['join',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a4819c9e1c001ae57173bb4c2a3e6f59c',1,'utils4cpp::str::UBasicStringList::join(typename StringT::value_type delim) const'],['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a64fd721ee112856728cd7410d6f16eba',1,'utils4cpp::str::UBasicStringList::join(const StringT &amp;delim) const']]],
+  ['joinstring',['joinString',['../namespaceutils4cpp_1_1str.html#ad8c1950f19afc15092f8f71a9fb533d7',1,'utils4cpp::str']]],
+  ['juliandayfromdate',['julianDayFromDate',['../namespaceutils4cpp_1_1datetime.html#afae7c83e5102fe9efcd6932f546d0a1c',1,'utils4cpp::datetime']]],
+  ['july',['July',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a583b97bd5f049fd05164ebe1fa40c46e',1,'utils4cpp::datetime']]],
+  ['june',['June',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4a4b694d88d2d7db7d516595aa5a535297',1,'utils4cpp::datetime']]]
 ];

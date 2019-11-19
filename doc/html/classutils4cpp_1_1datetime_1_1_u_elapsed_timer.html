@@ -84,8 +84,7 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for utils4cpp::datetime::UElapsedTimer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classutils4cpp_1_1datetime_1_1_u_elapsed_timer__coll__graph.svg" width="179" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classutils4cpp_1_1datetime_1_1_u_elapsed_timer__coll__graph.svg" width="179" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -93,9 +92,8 @@ Public Types</h2></td></tr>
 <tr class="memitem:a9ab003a16022dfe6e777f66af60150cf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a9ab003a16022dfe6e777f66af60150cf">chrono_clock_type</a> = std::chrono::high_resolution_clock</td></tr>
 <tr class="memdesc:a9ab003a16022dfe6e777f66af60150cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of std::chrono clock.  <a href="#a9ab003a16022dfe6e777f66af60150cf">More...</a><br /></td></tr>
 <tr class="separator:a9ab003a16022dfe6e777f66af60150cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2bc710b94bb1ef1a2f477d9fc055dbe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ac2bc710b94bb1ef1a2f477d9fc055dbe">chrono_days</a> = std::chrono::duration&lt; std::chrono::hours::rep, std::ratio&lt; 86400 &gt; &gt;</td></tr>
-<tr class="memdesc:ac2bc710b94bb1ef1a2f477d9fc055dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">std::chrono::days defines in c++20 standard, define it before that.  <a href="#ac2bc710b94bb1ef1a2f477d9fc055dbe">More...</a><br /></td></tr>
-<tr class="separator:ac2bc710b94bb1ef1a2f477d9fc055dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9987390d443e20cac055296f13e734"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a7e9987390d443e20cac055296f13e734">time_point</a> = typename chrono_clock_type::time_point</td></tr>
+<tr class="separator:a7e9987390d443e20cac055296f13e734"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b8772b7c9f6584e058fe2875e168f1e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e">elapsed_time_floating_t</a> = double</td></tr>
 <tr class="memdesc:a3b8772b7c9f6584e058fe2875e168f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The floating type of elapsed time.  <a href="#a3b8772b7c9f6584e058fe2875e168f1e">More...</a><br /></td></tr>
 <tr class="separator:a3b8772b7c9f6584e058fe2875e168f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,9 +127,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab56116b487a737f472ee8a7f68f3f944"><td class="memItemLeft" align="right" valign="top">std::chrono::hours::rep&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ab56116b487a737f472ee8a7f68f3f944">elapsedHours</a> () const</td></tr>
 <tr class="memdesc:ab56116b487a737f472ee8a7f68f3f944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elapsed time in hours with integer value.  <a href="#ab56116b487a737f472ee8a7f68f3f944">More...</a><br /></td></tr>
 <tr class="separator:ab56116b487a737f472ee8a7f68f3f944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53bf45fd34a6258230a51bb0852694df"><td class="memItemLeft" align="right" valign="top">chrono_days::rep&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a53bf45fd34a6258230a51bb0852694df">elapsedDays</a> () const</td></tr>
-<tr class="memdesc:a53bf45fd34a6258230a51bb0852694df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elapsed time in days with integer value.  <a href="#a53bf45fd34a6258230a51bb0852694df">More...</a><br /></td></tr>
-<tr class="separator:a53bf45fd34a6258230a51bb0852694df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1be8697e7e29df8af59c8bd2deb8d2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e">elapsed_time_floating_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#af1be8697e7e29df8af59c8bd2deb8d2d">elapsedFloating</a> () const</td></tr>
 <tr class="memdesc:af1be8697e7e29df8af59c8bd2deb8d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elapsed time in milliseconds with floating value.  <a href="#af1be8697e7e29df8af59c8bd2deb8d2d">More...</a><br /></td></tr>
 <tr class="separator:af1be8697e7e29df8af59c8bd2deb8d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,9 +148,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a38dad74d875aebfd00d4ad08a243eaa7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e">elapsed_time_floating_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a38dad74d875aebfd00d4ad08a243eaa7">elapsedHoursFloating</a> () const</td></tr>
 <tr class="memdesc:a38dad74d875aebfd00d4ad08a243eaa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elapsed time in hours with floating value.  <a href="#a38dad74d875aebfd00d4ad08a243eaa7">More...</a><br /></td></tr>
 <tr class="separator:a38dad74d875aebfd00d4ad08a243eaa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42ed2aa76cd8f1efb0e9db65227c5d1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e">elapsed_time_floating_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a42ed2aa76cd8f1efb0e9db65227c5d1b">elapsedDaysFloating</a> () const</td></tr>
-<tr class="memdesc:a42ed2aa76cd8f1efb0e9db65227c5d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elapsed time in days with floating value.  <a href="#a42ed2aa76cd8f1efb0e9db65227c5d1b">More...</a><br /></td></tr>
-<tr class="separator:a42ed2aa76cd8f1efb0e9db65227c5d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines a elapsed timer. </p>
@@ -181,24 +173,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2bc710b94bb1ef1a2f477d9fc055dbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2bc710b94bb1ef1a2f477d9fc055dbe">&#9670;&nbsp;</a></span>chrono_days</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ac2bc710b94bb1ef1a2f477d9fc055dbe">utils4cpp::datetime::UElapsedTimer::chrono_days</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>std::chrono::days defines in c++20 standard, define it before that. </p>
-
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8hpp_source.html#l00057">57</a> of file <a class="el" href="_u_elapsed_timer_8hpp_source.html">UElapsedTimer.hpp</a>.</p>
-
-</div>
-</div>
 <a id="a3b8772b7c9f6584e058fe2875e168f1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b8772b7c9f6584e058fe2875e168f1e">&#9670;&nbsp;</a></span>elapsed_time_floating_t</h2>
 
@@ -213,7 +187,23 @@ Public Member Functions</h2></td></tr>
 
 <p>The floating type of elapsed time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8hpp_source.html#l00059">59</a> of file <a class="el" href="_u_elapsed_timer_8hpp_source.html">UElapsedTimer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8hpp_source.html#l00055">55</a> of file <a class="el" href="_u_elapsed_timer_8hpp_source.html">UElapsedTimer.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7e9987390d443e20cac055296f13e734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e9987390d443e20cac055296f13e734">&#9670;&nbsp;</a></span>time_point</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a7e9987390d443e20cac055296f13e734">utils4cpp::datetime::UElapsedTimer::time_point</a> =  typename chrono_clock_type::time_point</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8hpp_source.html#l00054">54</a> of file <a class="el" href="_u_elapsed_timer_8hpp_source.html">UElapsedTimer.hpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +226,7 @@ Public Member Functions</h2></td></tr>
 <p>Constructs a elapsed timer, and start timing. </p>
 <dl class="section see"><dt>See also</dt><dd>reset() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00062">62</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00056">56</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,51 +249,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in milliseconds with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#af1be8697e7e29df8af59c8bd2deb8d2d" title="Returns the elapsed time in milliseconds with floating value.">elapsedFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00080">80</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a53bf45fd34a6258230a51bb0852694df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53bf45fd34a6258230a51bb0852694df">&#9670;&nbsp;</a></span>elapsedDays()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">UElapsedTimer::chrono_days::rep utils4cpp::datetime::UElapsedTimer::elapsedDays </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the elapsed time in days with integer value. </p>
-<dl class="section see"><dt>See also</dt><dd>elapsedHDaysFloating() </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00150">150</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a42ed2aa76cd8f1efb0e9db65227c5d1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42ed2aa76cd8f1efb0e9db65227c5d1b">&#9670;&nbsp;</a></span>elapsedDaysFloating()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e">UElapsedTimer::elapsed_time_floating_t</a> utils4cpp::datetime::UElapsedTimer::elapsedDaysFloating </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the elapsed time in days with floating value. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a53bf45fd34a6258230a51bb0852694df" title="Returns the elapsed time in days with integer value.">elapsedDays()</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00230">230</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00074">74</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -325,7 +271,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in milliseconds with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a6f7502661a2deaf1d2ba0bd56f2c6a4c" title="Returns the elapsed time in milliseconds with integer value.">elapsed()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00160">160</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00144">144</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -347,7 +293,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in hours with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a38dad74d875aebfd00d4ad08a243eaa7" title="Returns the elapsed time in hours with floating value.">elapsedHoursFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00140">140</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00134">134</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -369,7 +315,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in hours with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ab56116b487a737f472ee8a7f68f3f944" title="Returns the elapsed time in hours with integer value.">elapsedHours()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00220">220</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00204">204</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,7 +337,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in microseconds with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3e420e2ba0684fb91caac44d4f6236c1" title="Returns the elapsed time in microseconds with floating value.">elapsedMicrosecondsFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00100">100</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00094">94</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +359,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in microseconds with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a86061347f78f394716fe6bf123e3cdbb" title="Returns the elapsed time in microseconds with integer value.">elapsedMicroseconds()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00180">180</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00164">164</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -435,7 +381,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in milliseconds with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ad1305bbab597f771b358a8a87e1cf536" title="Returns the elapsed time in milliseconds with floating value.">elapsedMillisecondsFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00110">110</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00104">104</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +403,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in milliseconds with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a88ddfd531739a413f28bb09359984273" title="Returns the elapsed time in milliseconds with integer value.">elapsedMilliseconds()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00190">190</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00174">174</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +425,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in minutes with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a6876d5b439b9401257f3c442053c4ee3" title="Returns the elapsed time in minutes with floating value.">elapsedMinutesFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00130">130</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00124">124</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -501,7 +447,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in minutes with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a1c61813c8fa506d4116bbf43f16bc629" title="Returns the elapsed time in minutes with integer value.">elapsedMinutes()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00210">210</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00194">194</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -523,7 +469,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in nanoseconds with integer value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a93765e59ebc1d867a91e44a4d1a7d332" title="Returns the elapsed time in nanoseconds with floating value.">elapsedNanosecondsFloating()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00090">90</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00084">84</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -545,7 +491,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in nanoseconds with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a4d5c557bc54f69fc6409f39cfe6636ed" title="Returns the elapsed time in nanoseconds with integer value.">elapsedNanoseconds()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00170">170</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00154">154</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +513,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in seconds with integer value. </p>
 <p>sa <a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#ac4553a2f2529ac94a8b7831ff450efea" title="Returns the elapsed time in seconds with floating value.">elapsedSecondsFloating()</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00120">120</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00114">114</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +535,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the elapsed time in seconds with floating value. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a53b3ef1f124c1ad17b83b05d49f54c49" title="Returns the elapsed time in seconds with integer value.">elapsedSeconds()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00200">200</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00184">184</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>
@@ -610,7 +556,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Restart timing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00070">70</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_elapsed_timer_8cpp_source.html#l00064">64</a> of file <a class="el" href="_u_elapsed_timer_8cpp_source.html">UElapsedTimer.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difference_5ftype',['difference_type',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#a6e9cb1cf62990a9e993f42a3c476617e',1,'utils4cpp::str::UBasicStringView']]]
+  ['argument_5ftype',['argument_type',['../structutils4cpp_1_1str_1_1_to_lower_f.html#a38efe576ca05bd755fc960a123fdcfc1',1,'utils4cpp::str::ToLowerF::argument_type()'],['../structutils4cpp_1_1str_1_1_to_upper_f.html#a0b24e24cebe31a697729cfcc3e4b5ef6',1,'utils4cpp::str::ToUpperF::argument_type()']]]
 ];

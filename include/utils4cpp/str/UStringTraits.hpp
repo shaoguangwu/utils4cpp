@@ -31,8 +31,8 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_STR_USTRINGTRAITS_HPP
-#define UTILS4CPP_STR_USTRINGTRAITS_HPP
+#ifndef UTILS4CPP_STR_USTRINGALGORITHM_HPP
+#define UTILS4CPP_STR_USTRINGALGORITHM_HPP
 
 #include <locale>
 #include <memory>
@@ -40,17 +40,11 @@
 
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringView.hpp"
+#include "utils4cpp/str/UStringToNumber.hpp"
 
-namespace utils4cpp {
-namespace str {
+namespace utils4cpp::str {
 
-template<class StringIsh>
-using IsStringIsh = std::enable_if_t<std::conjunction_v<
-    std::is_convertible<const StringIsh&, std::basic_string<
-    typename StringIsh::value_type, typename StringIsh::traits_type, typename StringIsh::allocator_type>>,
-    std::negation<std::is_convertible<const StringIsh&, const typename StringIsh::value_type *>>>>;
-
-template<class StringT, class = IsStringIsh<StringT>>
+template<class StringT, class = if_std_basic_string<StringT>>
 class UStringTraits
 {
 public:
@@ -232,7 +226,7 @@ public:
         if (str.empty()) {
             return false;
         }
-        return _equal_transtwo(ch, str.front(), cs, loc);
+        return _equalTranstwo(ch, str.front(), cs, loc);
     }
 
     static bool startsWith(const StringT& str, UBasicStringView<char_type> starts,
@@ -272,7 +266,7 @@ public:
         if (str.empty()) {
             return false;
         }
-        return _equal_transtwo(ch, str.back(), cs, loc);
+        return _equalTranstwo(ch, str.back(), cs, loc);
     }
 
     static bool endsWith(const StringT& str, UBasicStringView<char_type> ends,
@@ -305,6 +299,20 @@ public:
         return endsWith(str, UBasicStringView<char_type>(ends.c_str(), ends.size()), cs, loc);
     }
 
+    // contains
+
+    static bool contains(const StringT& str, char_type ch,
+        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+    {
+
+    }
+
+    static bool contains(const StringT& str, const String& substr, 
+        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+    {
+
+    }
+
     // reverse
 
     static StringT& reverse(StringT& str) noexcept
@@ -330,7 +338,7 @@ public:
             ch = (cs == UCaseSensitive ? ch : std::tolower(ch, loc));
             auto it = str.cbegin();
             while (it != str.cend()) {
-                if (_equal_transone(ch, *it)) {
+                if (_equalTransone(ch, *it)) {
                     str.erase(it);
                     return str;
                 }
@@ -369,7 +377,7 @@ public:
             size_type pos = str.size() - 1;
             auto it = str.crbegin();
             while (it != str.crend()) {
-                if (_equal_transone(ch, *it)) {
+                if (_equalTransone(ch, *it)) {
                     str.erase(pos, 1);
                     return str;
                 }
@@ -409,7 +417,7 @@ public:
             ch = (cs == UCaseSensitive ? ch : std::tolower(ch, loc));
             auto it = str.cbegin();
             while (it != str.cend()) {
-                if (_equal_transone(ch, *it)) {
+                if (_equalTransone(ch, *it)) {
                     str.erase(it);
                     continue;
                 }
@@ -474,14 +482,14 @@ public:
     {
         if (nth > 0) {
             if (cs == UCaseSensitive) {
-                auto pos = _nth_finder(str, ch, nth);
+                auto pos = _nthFinder(str, ch, nth);
                 if (pos != StringT::npos) {
                     str.erase(pos, 1);
                 }
             }
             else {
                 StringT s = toUpper(str, loc);
-                auto pos = _nth_finder(s, ch, nth);
+                auto pos = _nthFinder(s, ch, nth);
                 if (pos != StringT::npos) {
                     str.erase(pos, 1);
                 }
@@ -495,7 +503,7 @@ public:
     {
         if (nth > 0) {
             if (cs == UCaseSensitive) {
-                auto pos = _nth_finder(str, substr, nth);
+                auto pos = _nthFinder(str, substr, nth);
                 if (pos != StringT::npos) {
                     str.erase(pos, substr.size());
                 }
@@ -503,7 +511,7 @@ public:
             else {
                 StringT s = toLower(str, loc);
                 StringT sub = toLower(substr, loc);
-                auto pos = _nth_finder(s, sub, nth);
+                auto pos = _nthFinder(s, sub, nth);
                 if (pos != StringT::npos) {
                     str.erase(pos, substr.size());
                 }
@@ -512,11 +520,125 @@ public:
         return str;
     }
 
+    // toNumber
+
+    template<class NumberT, bool Exception = true>
+    static NumberT toNumber(const StringT& str, std::size_t* pos = 0, int base = 10)
+    {
+        return stringToNumber<StringT, NumberT, Exception>(str, pos, base)
+    }
+
+    template<typename NumberT, bool Exception = true>
+    NumberT toNumber(const StringT& str, std::size_t* pos = 0)
+    {
+        return stringToNumber<StringT, NumberT, Exception>(str, pos);
+    }
+
+    // split
+
+    // join
+
+    // trim
+
+    static StringT& trimLeft(StringT& str, const std::locale& loc = std::locale())
+    {
+        auto it = str.cbegin();
+        while (it != str.cend()) {
+            if (!std::isspace(*it, loc)) {
+                break;
+            }
+            ++it;
+        }
+        str.erase(str.cbegin(), it);
+        return str;
+    }
+
+    static StringT& trimRight(StringT& str, const std::locale& loc = std::locale())
+    {
+        size_type sz = str.size();
+        auto it = str.crbegin();
+        while (it != str.crend()) {
+            if (!std::isspace(*it, loc)) {
+                break;
+            }
+            ++it;
+        }
+        str.erase(sz - (it - str.crbegin()));
+        return str;
+    }
+
+    static StringT& trim(StringT& str, const std::locale& loc = std::locale())
+    {
+        return trimLeft(trimRight(str, loc));
+    }
+
+    static StringT& trimAll(StringT& str, const std::locale& loc = std::locale())
+    {
+        size_type offset = 0;
+        for (size_type i = 0; i < str.size(); ++i) {
+            if (!std::isspace(str[i], loc)) {
+                str[offset++] = str[i];
+            }
+        }
+        str.resize(offset);
+        return str;
+    }
+
+    static StringT trimmedLeft(const StringT& str, const std::locale& loc = std::locale())
+    {
+        auto it = str.cbegin();
+        while (it != str.cend()) {
+            if (!std::isspace(*it, loc)) {
+                break;
+            }
+            ++it;
+        }
+        return { it , str.cend() };
+    }
+
+    static StringT trimmedRight(const StringT& str, const std::locale& loc = std::locale())
+    {
+        size_type sz = str.size();
+        auto it = str.crbegin();
+        while (it != str.crend()) {
+            if (!std::isspace(*it, loc)) {
+                break;
+            }
+            ++it;
+        }
+        return StringT(str, 0, sz - (it - str.crbegin()));
+    }
+
+    static StringT trimmed(const StringT& str, const std::locale& loc = std::locale())
+    {
+        StringT result = trimmedLeft(str, loc);
+        return trimRight(result, loc);
+    }
+
+    static StringT trimmedAll(const StringT& str, const std::locale& loc = std::locale())
+    {
+        StringT result;
+        result.resize(str.size());
+        size_type sz = 0;
+        for (auto ch : str) {
+            if (!std::isspace(ch, loc)) {
+                result[sz++] = ch;
+            }
+        }
+
+        result.resize(sz);
+        if (sz < str.size() / 2) {
+            result.shrink_to_fit();
+        }
+        return result;
+    }
+
 private:
     inline static bool _isLower(char_type ch, const std::locale& loc = std::locale())
     {
         return std::use_facet<std::ctype<char_type>>(loc).is(std::ctype_base::lower, ch);
     }
+
     inline static bool _isUpper(char_type ch, const std::locale& loc = std::locale())
     {
         return std::use_facet<std::ctype<char_type>>(loc).is(std::ctype_base::upper, ch);
@@ -526,6 +648,7 @@ private:
     {
         return std::use_facet<std::ctype<char_type>>(loc).tolower(ch);
     }
+
     inline static const char_type* _toLower(char_type* first, char_type* end, 
         const std::locale& loc = std::locale())
     {
@@ -536,32 +659,33 @@ private:
     {
         return std::use_facet<std::ctype<char_type>>(loc).toupper(ch);
     }
+
     inline static const char_type* _toUpper(char_type* first, char_type* end, 
         const std::locale& loc = std::locale())
     {
         return std::use_facet<std::ctype<char_type>>(loc).toupper(first, end);
     }
 
-    static bool _equal(const char_type& ch1, const char_type& ch2)
+    inline static bool _equal(const char_type& ch1, const char_type& ch2)
     {
         return ch1 == ch2;
     }
 
-    static bool _equal_transone(const char_type& ch1, const char_type& ch2,
+    inline static bool _equalTransone(const char_type& ch1, const char_type& ch2,
         const UCaseSensitivity& cs = UCaseSensitive,
         const std::locale& loc = std::locale())
     {
         return (cs == UCaseSensitive ? ch1 == ch2 : ch1 == std::tolower(ch2, loc));
     }
 
-    static bool _equal_transtwo(const char_type& ch1, const char_type& ch2,
+    inline static bool _equalTranstwo(const char_type& ch1, const char_type& ch2,
         const UCaseSensitivity& cs = UCaseSensitive,
         const std::locale& loc = std::locale())
     {
         return (cs == UCaseSensitive ? ch1 == ch2 : _toLower(ch1, loc) == _toLower(ch2, loc));
     }
 
-    static size_type _nth_finder(const StringT& str, char_type ch, size_type nth) noexcept
+    static size_type _nthFinder(const StringT& str, char_type ch, size_type nth) noexcept
     {
         size_type count = 1;
         auto pos = str.find(ch);
@@ -574,7 +698,7 @@ private:
         return StringT::npos;
     }
 
-    static size_type _nth_finder(const StringT& str, const StringT& sub, size_type nth) noexcept
+    static size_type _nthFinder(const StringT& str, const StringT& sub, size_type nth) noexcept
     {
         size_type count = 1;
         size_type sub_size = sub.size();
@@ -618,7 +742,6 @@ private:
 
 };
 
-} // namespace str
-} // namespace utils4cpp
+} // namespace utils4cpp::str
 
-#endif // UTILS4CPP_STR_USTRINGTRAITS_HPP
+#endif // UTILS4CPP_STR_USTRINGALGORITHM_HPP

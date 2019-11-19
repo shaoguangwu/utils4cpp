@@ -43,9 +43,9 @@
 
 /*! Compiler enabled c++20 standard or not. */
 #if UTILS4CPP_CPLUSPLUS > 201703L
-#   define UTILS4CPP_HAS_CPP20      1
+#   define UTILS4CPP_HAS_CPP2A      1
 #else
-#   define UTILS4CPP_HAS_CPP20      0
+#   define UTILS4CPP_HAS_CPP2A      0
 #endif
 
 /*! Compiler enabled c++17 standard or not. */

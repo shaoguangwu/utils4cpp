@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['mar',['Mar',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4ab4b0277e5cc708559f8abaf60b5402cb',1,'utils4cpp::datetime']]],
-  ['max_5fsize',['max_size',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#ac49fe9447fbb26bf7257d8c98400a171',1,'utils4cpp::str::UBasicStringView']]],
-  ['may',['May',['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4aa2265b3141aa4f578140c81ae34f6d62',1,'utils4cpp::datetime']]],
-  ['min',['min',['../namespaceutils4cpp_1_1datetime.html#aeb884714da4d2924c0b3b24874e3ab72',1,'utils4cpp::datetime']]],
-  ['minute',['minute',['../classutils4cpp_1_1datetime_1_1_u_time.html#aed875628e33eabc3d75e8682dcff4321',1,'utils4cpp::datetime::UTime']]],
-  ['month',['month',['../classutils4cpp_1_1datetime_1_1_u_date.html#a35ba9a55984ffb543b60a416cbab8028',1,'utils4cpp::datetime::UDate::month()'],['../namespaceutils4cpp_1_1datetime.html#ad91a40987de161061ad863b9c1ac8fb4',1,'utils4cpp::datetime::Month()']]],
-  ['monthdays',['monthDays',['../namespaceutils4cpp_1_1datetime.html#afbb646e613f012d954e91ed1c494cabe',1,'utils4cpp::datetime']]],
-  ['movetoinputstring',['moveToInputString',['../classutils4cpp_1_1filesystem_1_1_u_path.html#afcb582c22d93e37103eabea748065139',1,'utils4cpp::filesystem::UPath::moveToInputString()'],['../classutils4cpp_1_1str_1_1_u_string.html#afe01afaf2ead2f2b38d1e40c6912a902',1,'utils4cpp::str::UString::moveToInputString()']]],
-  ['msec',['msec',['../classutils4cpp_1_1datetime_1_1_u_time.html#a701745071cb4202f09e594f0a56c4be6',1,'utils4cpp::datetime::UTime']]],
-  ['msecs_5fper_5fday',['MSECS_PER_DAY',['../namespaceutils4cpp_1_1datetime.html#ad0e38d66116da539981d8f0d7daf16e8a32ccbfcc046eef7af7cc61a5091631dc',1,'utils4cpp::datetime']]],
-  ['msecs_5fper_5fhour',['MSECS_PER_HOUR',['../namespaceutils4cpp_1_1datetime.html#ad0e38d66116da539981d8f0d7daf16e8a21ca8bb7489227210c844969bb77f6bd',1,'utils4cpp::datetime']]],
-  ['msecs_5fper_5fmin',['MSECS_PER_MIN',['../namespaceutils4cpp_1_1datetime.html#ad0e38d66116da539981d8f0d7daf16e8afe64f4f0da5afd9ca5698222dba3f49c',1,'utils4cpp::datetime']]],
-  ['msecsto',['msecsTo',['../classutils4cpp_1_1datetime_1_1_u_time.html#a34d226d2acfb02315cb871b86cb2207d',1,'utils4cpp::datetime::UTime']]]
+  ['lastindexof',['lastIndexOf',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#af0323defe36c233679140b4f5ec7b71f',1,'utils4cpp::str::UBasicStringList']]],
+  ['length',['length',['../classutils4cpp_1_1str_1_1_u_string.html#a18edc7fe68956de31dba624c512da803',1,'utils4cpp::str::UString::length()'],['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#ad7a15e82259efbaac8af287c74990836',1,'utils4cpp::str::UBasicStringView::length()']]],
+  ['localdate',['LocalDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a1cfc4213165b8b821656f82830564a33',1,'utils4cpp::datetime']]],
+  ['localedate',['LocaleDate',['../namespaceutils4cpp_1_1datetime.html#a4d63337b8d07d14578d3605d222db349a13a910a2f252f4be12ad10d94ceba0c8',1,'utils4cpp::datetime']]],
+  ['lower',['lower',['../classutils4cpp_1_1geometry_1_1_u_range.html#a338fc394acdc8e852ce9ee6493a49cd2',1,'utils4cpp::geometry::URange::lower() noexcept'],['../classutils4cpp_1_1geometry_1_1_u_range.html#af86b0494b0c4edc07aed0fa3fa57fb39',1,'utils4cpp::geometry::URange::lower() const noexcept'],['../classutils4cpp_1_1str_1_1_u_string_traits.html#ada359121aa572fd2a54dada98a272fa7',1,'utils4cpp::str::UStringTraits::lower()']]]
 ];

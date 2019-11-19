@@ -37,14 +37,9 @@
 #include <string>
 
 #include "utils4cpp/core/UCore.hpp"
+#include "utils4cpp/core/UTypeTraits.hpp"
 
-namespace utils4cpp {
-
-/*!
-    \brief string libraries.
-    \since v0.0
-*/
-namespace str {
+namespace utils4cpp::str {
 
 /*! Indicates case sensitive or not. */
 enum UCaseSensitivity {
@@ -63,7 +58,137 @@ inline void uSwapChar(CharT &a, CharT& b) noexcept
     a = a ^ b;
 }
 
-} // namespace str
-} // namespace utils4cpp
+namespace detail {
+
+template<class StringT, class CharT>
+using _is_std_basic_string = u_and<
+    std::is_same<typename StringT::value_type, CharT>,
+    std::is_convertible<const StringT&,
+    std::basic_string<CharT, typename StringT::traits_type, typename StringT::allocator_type>>,
+    u_not<std::is_convertible<const StringT&, const CharT *>>>;
+
+template<class StringT, class CharT>
+struct _std_basic_string_traits
+{
+    using is = _is_std_basic_string<StringT, CharT>;
+    using type = typename std::enable_if_t<is::value, StringT>;
+};
+
+} // namespace utils4cpp::str::detail
+
+//
+// std_basic_string_traits
+//
+
+template<class StringT>
+using std_basic_string_traits = detail::_std_basic_string_traits<StringT, typename StringT::value_type>;
+
+template<class StringT>
+using is_std_basic_string = std_basic_string_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_basic_string_v = is_std_basic_string<StringT>::value;
+
+template<class StringT>
+using if_std_basic_string = typename std_basic_string_traits<StringT>::type;
+
+//
+// std_string_traits
+//
+
+template<class StringT>
+using std_string_traits = detail::_std_basic_string_traits<StringT, typename std::string::value_type>;
+
+template<class StringT>
+using is_std_string = std_string_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_string_v = is_std_string<StringT>::value;
+
+template<class StringT>
+using if_std_string = typename std_string_traits<StringT>::type;
+
+//
+// std_wstring_traits
+//
+
+template<class StringT>
+using std_wstring_traits = detail::_std_basic_string_traits<StringT, typename std::wstring::value_type>;
+
+template<class StringT>
+using is_std_wstring = std_wstring_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_wstring_v = is_std_wstring<StringT>::value;
+
+template<class StringT>
+using if_std_wstring = typename std_wstring_traits<StringT>::type;
+
+//
+// std_u16string_traits
+//
+
+template<class StringT>
+using std_u16string_traits = detail::_std_basic_string_traits<StringT, typename std::u16string::value_type>;
+
+template<class StringT>
+using is_std_u16string = std_u16string_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_u16string_v = is_std_u16string<StringT>::value;
+
+template<class StringT>
+using if_std_u16string = typename std_u16string_traits<StringT>::type;
+
+//
+// std_u32string_traits
+//
+
+template<class StringT>
+using std_u32string_traits = detail::_std_basic_string_traits<StringT, typename std::u32string::value_type>;
+
+template<class StringT>
+using is_std_u32string = std_u32string_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_u32string_v = is_std_u32string<StringT>::value;
+
+template<class StringT>
+using if_std_u32string = typename std_u32string_traits<StringT>::type;
+
+#if UTILS4CPP_HAS_U8STRING
+
+//
+// std_u8string_traits
+//
+
+template<class StringT>
+using std_u8string_traits = detail::_std_basic_string_traits<StringT, typename std::u8string::value_type>;
+
+template<class StringT>
+using is_std_u8string = std_u8string_traits<StringT>::is;
+
+template<class StringT>
+inline constexpr bool is_std_u8string_v = is_std_u8string<StringT>::value;
+
+template<class StringT>
+using if_std_u8string = typename std_u8string_traits<StringT>::type;
+
+#endif // UTILS4CPP_HAS_U8STRING
+
+//
+// std_string_or_wstring_traits
+//
+
+template<class StringT>
+using is_std_string_or_wstring = u_or<is_std_string<StringT>, is_std_wstring<StringT>>;
+
+template<class StringT>
+inline constexpr bool is_std_string_or_wstring_v = is_std_string_or_wstring<StringT>::value;
+
+template<class StringT>
+using if_std_string_or_wstring = std::enable_if_t<is_std_string_or_wstring_v<StringT>, StringT>;
+
+} // namespace utils4cpp::global
 
 #endif // UTILS4CPP_STR_USTRINGGLOBAL_HPP

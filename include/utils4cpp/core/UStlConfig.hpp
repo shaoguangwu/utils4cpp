@@ -66,9 +66,9 @@
     \li 1 Supports char8_t.
     \li 0 Not supports char8_t.
 
-    char8_t since from c++20.
+    char8_t since from c++2a.
 */
-#if UTILS4CPP_HAS_CPP20
+#if UTILS4CPP_HAS_CPP2A
 #   if defined(_MSC_VER) && _MSC_VER >= 1922
 #   /* MSVC */
 #       define UTILS4CPP_HAS_CHAR8T                 1
@@ -82,16 +82,16 @@
 #   else
 #       define UTILS4CPP_HAS_CHAR8T                 0
 #   endif
-#else /* !UTILS4CPP_HAS_CPP20 */
+#else /* !UTILS4CPP_HAS_CPP2A */
 #   define UTILS4CPP_HAS_CHAR8T                     0
-#endif /* UTILS4CPP_HAS_CPP20 */
+#endif /* UTILS4CPP_HAS_CPP2A */
 
 /*!
     \def UTILS4CPP_HAS_U8STRING
     \li 1 Supports std::u8string.
     \li 0 Not supports std::u8string.
 
-    std::u8string since from c++20.
+    std::u8string since from c++2a.
 */
 #if UTILS4CPP_HAS_CHAR8T
 #   define UTILS4CPP_HAS_U8STRING                      1

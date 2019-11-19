@@ -40,4 +40,9 @@
 #include "utils4cpp/core/UCppStandardDetection.hpp"
 #include "utils4cpp/core/UStlConfig.hpp"
 
+/** Converts between types using a combination of implicit and user-defined conversions.
+    Returns a value of type new_type.
+*/
+#define u_static_cast(new_type, expression) (static_cast<new_typw>(expression))
+
 #endif // UTILS4CPP_CORE_UCORE_HPP

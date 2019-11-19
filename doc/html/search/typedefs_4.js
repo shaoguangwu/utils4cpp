@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pointer',['pointer',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#a35fc5ef5719f2ba5d18bcf6d9f312784',1,'utils4cpp::str::UBasicStringView']]]
+  ['elapsed_5ftime_5ffloating_5ft',['elapsed_time_floating_t',['../classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e',1,'utils4cpp::datetime::UElapsedTimer']]]
 ];
