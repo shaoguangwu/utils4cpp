@@ -41,10 +41,11 @@ namespace utils4cpp {
 /**
     \brief variadic logical AND metafunction.
 
-    Forms the logical conjunction of the type traits \c B..., effectively performing a logical AND on the sequence of traits.
+    Forms the logical conjunction of the type traits \c B..., effectively performing a 
+    logical AND on the sequence of traits.
 
-    \tparam B... every template argument Bi for which \c Bi::value is instantiated must be usable as a base class 
-    and define member value that is convertible to bool
+    \tparam B... every template argument Bi for which \c Bi::value is instantiated must 
+    be usable as a base class and define member value that is convertible to bool.
 */
 template<class...B>
 using u_and = std::conjunction<B...>;
@@ -52,10 +53,11 @@ using u_and = std::conjunction<B...>;
 /**
     \brief variadic logical OR metafunction.
 
-    Forms the logical disjunction of the type traits \c B..., effectively performing a logical OR on the sequence of traits.
+    Forms the logical disjunction of the type traits \c B..., effectively performing a 
+    logical OR on the sequence of traits.
     
-    \tparam B... every template argument Bi for which \c Bi::value is instantiated must be usable as a base class 
-    and define member value that is convertible to bool.
+    \tparam B... every template argument Bi for which \c Bi::value is instantiated must 
+    be usable as a base class and define member value that is convertible to bool.
 */
 template<class...B>
 using u_or = std::disjunction<B...>;
@@ -75,6 +77,34 @@ template<class T>
 using primitive_t = std::decay_t<T>;
 
 /**
+    If \c T is an arithmetic type, \b if_arithmetic has a public member typedef \c type, equal to \c T;
+    otherwise, there is no member typedef.
+*/
+template<class T>
+using if_arithmetic = std::enable_if_t<std::is_arithmetic_v<T>, T>;
+
+/**
+    Identifies bool types.
+    Checks whether \c T is a bool type.
+*/
+template<class T>
+using is_bool = std::is_same<bool, T>;
+
+/**
+    Checks if type \c T is a bool type.
+    \b is_bool_v equals to \c true if \c T is a bool type, otherwise equals to \c flase.
+*/
+template<class T>
+inline constexpr bool is_bool_v = is_bool<T>::value;
+
+/**
+    If \c T is a bool type, \b if_bool has a public member typedef \c type, equal to \c bool;
+    otherwise, there is no member typedef.
+*/
+template<class T>
+using if_bool = std::enable_if_t<is_bool_v<T>, T>;
+
+/**
     If \c T is an integral type, \b if_integral has a public member typedef \c type, equal to \c T;
     otherwise, there is no member typedef.
 */
@@ -89,11 +119,25 @@ template<class T>
 using if_floating_point = std::enable_if_t<std::is_floating_point_v<T>, T>;
 
 /**
-    If \c T is an arithmetic type, \b if_arithmetic has a public member typedef \c type, equal to \c T;
-    otherwise, there is no member typedef.
+    Checks whether \c T is an integral type but not a bool type.
 */
 template<class T>
-using if_arithmetic = std::enable_if_t<std::is_arithmetic_v<T>, T>;
+using is_integral_not_bool = u_and<std::is_integral<T>, u_not<is_bool<T>>>;
+
+/**
+    Checks if type \c T is an integral type but not a bool type.
+    \b is_integral_not_bool_v equals to \c true if \c T is an integral type but not a bool type, 
+    otherwise equals to \c flase.
+*/
+template<class T>
+inline constexpr bool is_integral_not_bool_v = is_integral_not_bool<T>::value;
+
+/**
+    If \c T is an integral type but not a bool type, \b if_integral_not_bool has a public member typedef \c type, 
+    equal to \c T; otherwise, there is no member typedef.
+*/
+template<class T>
+using if_integral_not_bool = std::enable_if_t<is_integral_not_bool_v<T>, T>;
 
 /**
     If \c T is a signed arithmetic type, \b if_signed has a public member
@@ -118,7 +162,8 @@ using is_signed_integral = std::conjunction<std::is_integral<T>, std::is_signed<
 
 /**
     Checks if type \c T is a signed integeral type.
-    \b is_signed_integeral_v equals to true if \c T is a signed interger type, otherwise equals to flase.
+    \b is_signed_integeral_v equals to \c true if \c T is a signed interger type, 
+    otherwise equals to \c flase.
 */
 template<class T>
 inline constexpr bool is_signed_integeral_v = is_signed_integral<T>::value;
@@ -139,7 +184,8 @@ using is_unsigned_integeral = std::conjunction<std::is_integral<T>, std::is_unsi
 
 /**
     Checks if type \c T is an unsigned integeral type.
-    \b is_unsigned_integeral_v equals to true if \c T is an unsigned integeral type, otherwise equals to flase.
+    \b is_unsigned_integeral_v equals to \c true if \c T is an unsigned integeral type, 
+    otherwise equals to \c flase.
 */
 template<class T>
 inline constexpr bool is_unsigned_integeral_v = is_unsigned_integeral<T>::value;

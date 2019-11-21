@@ -37,6 +37,7 @@
 #include <locale>
 #include <memory>
 #include <algorithm>
+#include <charconv>
 
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringView.hpp"
@@ -301,12 +302,14 @@ public:
 
     // contains
 
+    // todo
     static bool contains(const StringT& str, char_type ch,
         UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
     {
 
     }
 
+    // todo
     static bool contains(const StringT& str, const String& substr, 
         UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
     {
@@ -532,6 +535,45 @@ public:
     NumberT toNumber(const StringT& str, std::size_t* pos = 0)
     {
         return stringToNumber<StringT, NumberT, Exception>(str, pos);
+    }
+
+    // number
+
+    // TODO
+    template<class NumberT, class = if_integral_not_bool<NumberT>>
+    static StringT number(NumberT n, int base = 10)
+    {
+        std::to_chars_result res = std::to_chars();
+    }
+
+    // TODO
+    template<class NumberT, class = if_floating_point<NumberT>>
+    static StringT number(NumberT n, char format = 'g', int precision = 6)
+    {
+        switch (format)
+        {
+        case 'f':
+            break;
+        case 'e':
+            break;
+        case 'g':
+            break;
+        default:
+            return StringT();
+            break;
+        }
+    }
+
+    // TODO
+    template<class NumberT, class = if_bool<NumberT>>
+    static StringT number(NumberT n, bool boolalpha = false)
+    {
+        if (boolalpha) {
+            return number(static_cast<int>(n));
+        }
+        else {
+            // TODO
+        }
     }
 
     // split
