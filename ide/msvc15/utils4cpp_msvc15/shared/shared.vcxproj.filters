@@ -92,9 +92,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringList.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.inl">
-      <Filter>include\str</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringUtils.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
@@ -110,14 +107,32 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UString.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringView.hpp">
-      <Filter>include\str</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringTraits.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URange.hpp">
       <Filter>include\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UTypeTraits.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UDocConfig.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringConvert.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCompilerDetection.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UProcessorDetection.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UCharConvert.hpp">
+      <Filter>include\str</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,10 +154,11 @@
     <ClCompile Include="..\..\..\..\src\UDateTime.cpp">
       <Filter>src</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\include\utils4cpp\str\UOstreamString.inl">
-      <Filter>include\str</Filter>
-    </None>
+    <ClCompile Include="..\..\..\..\src\UStringConvert.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\UCharConvert.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

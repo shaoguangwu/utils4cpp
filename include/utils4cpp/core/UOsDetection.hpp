@@ -34,39 +34,39 @@
 #ifndef UTILS4CPP_CORE_UOSDETECTION_HPP
 #define UTILS4CPP_CORE_UOSDETECTION_HPP
 
-/*
-   The operating system, must be one of: (UTILS4CPP_OS_x)
+/**
+    The operating system, must be one of: (UTILS4CPP_OS_x)
 
-     DARWIN   - Any Darwin system (macOS, iOS, watchOS, tvOS)
-     MACOS    - macOS
-     IOS      - iOS
-     WATCHOS  - watchOS
-     TVOS     - tvOS
-     WIN32    - Win32 (Windows and Windows Server)
-     WINRT    - WinRT (Windows Runtime)
-     CYGWIN   - Cygwin
-     SOLARIS  - Sun Solaris
-     HPUX     - HP-UX
-     LINUX    - Linux [has variants]
-     FREEBSD  - FreeBSD [has variants]
-     NETBSD   - NetBSD
-     OPENBSD  - OpenBSD
-     INTERIX  - Interix
-     AIX      - AIX
-     HURD     - GNU Hurd
-     QNX      - QNX [has variants]
-     QNX6     - QNX RTP 6.1
-     LYNX     - LynxOS
-     BSD4     - Any BSD 4.4 system
-     UNIX     - Any UNIX BSD/SYSV system
-     ANDROID  - Android platform
-     HAIKU    - Haiku
+    \li DARWIN   - Any Darwin system (macOS, iOS, watchOS, tvOS)
+    \li MACOS    - macOS
+    \li IOS      - iOS
+    \li WATCHOS  - watchOS
+    \li TVOS     - tvOS
+    \li WIN32    - Win32 (Windows and Windows Server)
+    \li WINRT    - WinRT (Windows Runtime)
+    \li CYGWIN   - Cygwin
+    \li SOLARIS  - Sun Solaris
+    \li HPUX     - HP-UX
+    \li LINUX    - Linux [has variants]
+    \li FREEBSD  - FreeBSD [has variants]
+    \li NETBSD   - NetBSD
+    \li OPENBSD  - OpenBSD
+    \li INTERIX  - Interix
+    \li AIX      - AIX
+    \li HURD     - GNU Hurd
+    \li QNX      - QNX [has variants]
+    \li QNX6     - QNX RTP 6.1
+    \li LYNX     - LynxOS
+    \li BSD4     - Any BSD 4.4 system
+    \li UNIX     - Any UNIX BSD/SYSV system
+    \li ANDROID  - Android platform
+    \li HAIKU    - Haiku
 
-   The following operating systems have variants:
-     LINUX    - both UTILS4CPP_OS_LINUX and UTILS4CPP_OS_ANDROID are defined when building for Android
-              - only UTILS4CPP_OS_LINUX is defined if building for other Linux systems
-     FREEBSD  - UTILS4CPP_OS_FREEBSD is defined only when building for FreeBSD with a BSD userland
-              - UTILS4CPP_OS_FREEBSD_KERNEL is always defined on FreeBSD, even if the userland is from GNU
+    The following operating systems have variants:
+        LINUX    - both UTILS4CPP_OS_LINUX and UTILS4CPP_OS_ANDROID are defined when building for Android
+                 - only UTILS4CPP_OS_LINUX is defined if building for other Linux systems
+        FREEBSD  - UTILS4CPP_OS_FREEBSD is defined only when building for FreeBSD with a BSD userland
+                 - UTILS4CPP_OS_FREEBSD_KERNEL is always defined on FreeBSD, even if the userland is from GNU
 */
 
 #if defined(__APPLE__) && (defined(__GNUC__) || defined(__xlC__) || defined(__xlc__))

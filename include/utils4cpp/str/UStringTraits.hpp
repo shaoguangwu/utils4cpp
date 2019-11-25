@@ -34,7 +34,6 @@
 #ifndef UTILS4CPP_STR_USTRINGALGORITHM_HPP
 #define UTILS4CPP_STR_USTRINGALGORITHM_HPP
 
-#include <locale>
 #include <memory>
 #include <algorithm>
 #include <charconv>

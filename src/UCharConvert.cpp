@@ -31,45 +31,62 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_CORE_UEXPORT_HPP
-#define UTILS4CPP_CORE_UEXPORT_HPP
+#include "utils4cpp/str/UCharConvert.hpp"
 
-/*!
-    \def UTILS4CPP_DECL_EXPORT
-    Declare export symbol for utils4cpp library.
-*/
+namespace utils4cpp::str {
 
-/*!
-    \def UTILS4CPP_DECL_IMPORT
-    Declare import symbol for utils4cpp library.
-*/
+UTILS4CPP_EXPORT 
+std::optional<wchar_t> charToWChar(char c)
+{
+    std::wint_t w = std::btowc(static_cast<int>(c));
+    return w == WEOF ? std::nullopt : std::optional<wchar_t>{ w };
+}
 
-#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__)
-/* Defines needed for building dynamic-link library on windows. */
-#   define UTILS4CPP_DECL_EXPORT   __declspec(dllexport)
-#   define UTILS4CPP_DECL_IMPORT   __declspec(dllimport)
-#else
-/* Do not need export/import symbol */
-#   define UTILS4CPP_DECL_EXPORT
-#   define UTILS4CPP_DECL_IMPORT
-#endif
+UTILS4CPP_EXPORT 
+std::optional<char> wcharToChar(std::wint_t c)
+{
+    int cn = std::wctob(c);
+    return cn == EOF ? std::nullopt : std::optional<char>{ cn };
+}
 
-/*!
-    \def UTILS4CPP_EXPORT
-    The export/import symbol for utils4cpp library.
-*/
-#ifdef UTILS4CPP_HAS_DLL  
-#   /* Compiled to dynamic-link library */
-#   ifdef UTILS4CPP_DLL_EXPORT
-#       define UTILS4CPP_EXPORT UTILS4CPP_DECL_EXPORT
-#   /* Import dynamic-link library */
-#   else
-#       define UTILS4CPP_EXPORT UTILS4CPP_DECL_IMPORT
-#   endif
-#endif
+UTILS4CPP_EXPORT 
+std::optional<char16_t> charToU16Char(char c)
+{
+    std::mbstate_t state{};
+    using output_char_type = char16_t;
+    output_char_type oc;
 
-#ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT     /*! Ensure defined */
-#endif
+    std::size_t rc = std::mbrtoc16(&oc, &c, 1, &state);
+    return rc <= static_cast<std::size_t>(-1) / 2 ?
+        std::optional<output_char_type>{ oc } : std::nullopt;
+}
 
-#endif // UTILS4CPP_CORE_UEXPORT_HPP
+UTILS4CPP_EXPORT 
+std::optional<char32_t> charToU32Char(char c)
+{
+    std::mbstate_t state{};
+    using output_char_type = char32_t;
+    output_char_type oc;
+
+    std::size_t rc = std::mbrtoc32(&oc, &c, 1, &state);
+    return rc <= static_cast<std::size_t>(-1) / 2 ? 
+        std::optional<output_char_type>{ oc } : std::nullopt;
+}
+
+#if UTILS4CPP_HAS_U8STRING
+
+UTILS4CPP_EXPORT 
+std::optional<char8_t> charToU8Char(char c)
+{
+    std::mbstate_t state{};
+    using output_char_type = char8_t;
+    output_char_type oc;
+
+    std::size_t rc = std::mbrtoc8(&oc, &c, 1, &state);
+    return rc <= static_cast<std::size_t>(-1) / 2 ?
+        std::optional<output_char_type>{ oc } : std::nullopt;
+}
+
+#endif // UTILS4CPP_HAS_U8STRING
+
+} // namespace utils4cpp::str

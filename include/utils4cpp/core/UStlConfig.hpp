@@ -34,9 +34,10 @@
 #ifndef UTILS4CPP_CORE_USTLCONFIG_HPP
 #define UTILS4CPP_CORE_USTLCONFIG_HPP
 
+#include "utils4cpp/core/UCompilerDetection.hpp"
 #include "utils4cpp/core/UCppStandardDetection.hpp"
 
-/*!
+/**
     \def UTILS4CPP_HAS_STDFILESYSTEM
     \li 1 Supports std::filesystem.
     \li 0 Not supports std::filesystem.
@@ -61,7 +62,7 @@
 #   define UTILS4CPP_HAS_STDFILESYSTEM              0
 #endif /* UTILS4CPP_HAS_CPP17 */
 
-/*!
+/**
     \def UTILS4CPP_HAS_CHAR8T
     \li 1 Supports char8_t.
     \li 0 Not supports char8_t.
@@ -86,7 +87,7 @@
 #   define UTILS4CPP_HAS_CHAR8T                     0
 #endif /* UTILS4CPP_HAS_CPP2A */
 
-/*!
+/**
     \def UTILS4CPP_HAS_U8STRING
     \li 1 Supports std::u8string.
     \li 0 Not supports std::u8string.
@@ -99,7 +100,7 @@
 #   define UTILS4CPP_HAS_U8STRING                      0
 #endif /* UTILS4CPP_HAS_CHAR8T */
 
-/*!
+/**
     \def UTILS4CPP_HAS_STDSTRINGVIEW
     \li 1 Supports std::string_view.
     \li 0 Not supports std::string_view.
@@ -124,7 +125,28 @@
 #   define UTILS4CPP_HAS_STDSTRINGVIEW              0
 #endif
 
-/*!
+/*
+    std::any, std::optional, st::variant
+*/
+#if defined(UTILS4CPP_CC_MSVC) && UTILS4CPP_CC_MSVC >= 1910
+#   define UTILS4CPP_HAS_STDANY         1
+#   define UTILS4CPP_HAS_STDOPTINAL     1
+#   define UTILS4CPP_HAS_STDVARIANT     1
+#elif defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 700
+#   define UTILS4CPP_HAS_STDANY         1
+#   define UTILS4CPP_HAS_STDOPTINAL     1
+#   define UTILS4CPP_HAS_STDVARIANT     1
+#elif defined(UTILS4CPP_CC_CLANG) && __clang_major__ >= 4
+#   define UTILS4CPP_HAS_STDANY         1
+#   define UTILS4CPP_HAS_STDOPTINAL     1
+#   define UTILS4CPP_HAS_STDVARIANT     1
+#else
+#   define UTILS4CPP_HAS_STDANY         0
+#   define UTILS4CPP_HAS_STDOPTINAL     0
+#   define UTILS4CPP_HAS_STDVARIANT     0
+#endif
+
+/**
     \def UTILS4CPP_HAS_NODISCARD
     \li 1 Supports [[nodiscard]].
     \li 0 Not supports [[nodiscard]].
@@ -149,7 +171,7 @@
 #   define UTILS4CPP_HAS_NODISCARD              0
 #endif
 
-/*!
+/**
     \def UTILS4CPP_NODISCARD
 */
 #if UTILS4CPP_HAS_NODISCARD

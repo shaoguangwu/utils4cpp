@@ -31,40 +31,89 @@
 **
 ************************************************************************************/
 
-#ifndef UTILS4CPP_USTRINGCONVERT_HPP
-#define UTILS4CPP_USTRINGCONVERT_HPP
+#ifndef UTILS4CPP_STR_UCHARCONVERT_HPP
+#define UTILS4CPP_STR_UCHARCONVERT_HPP
+
+#include <optional>
 
 #include "utils4cpp/str/UStringGlobal.hpp"
 
 namespace utils4cpp::str {
 
-UTILS4CPP_EXPORT std::string wstringToString(const std::wstring& str);
-UTILS4CPP_EXPORT std::wstring stringToWString(const std::string& str);
+UTILS4CPP_EXPORT std::optional<wchar_t> charToWChar(char c);
+UTILS4CPP_EXPORT std::optional<char> wcharToChar(std::wint_t c);
 
-UTILS4CPP_EXPORT std::string u16stringToString(const std::u16string& str);
-UTILS4CPP_EXPORT std::u16string strinngToU16String(const std::string& str);
-
-UTILS4CPP_EXPORT std::string u32stringToString(const std::u32string& str);
-UTILS4CPP_EXPORT std::u32string stringToU32String(const std::string& str);
+UTILS4CPP_EXPORT std::optional<char16_t> charToU16Char(char c);
+UTILS4CPP_EXPORT std::optional<char32_t> charToU32Char(char c);
 
 #if UTILS4CPP_HAS_U8STRING
-
-UTILS4CPP_EXPORT std::string u8stringToString(const std::u8string& str);
-UTILS4CPP_EXPORT std::u8string stringToU8String(const std::string& str);
-
+UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
 #endif // UTILS4CPP_HAS_U8STRING
 
+
 /**
-    \class UStringCvt
+    \class UCharCvt
+    \brief 
+    \TODO comments
 */
-template<class InternStringT, class ExternStringT>
-class UStringCvt
+template<class InputT, class OutputT, 
+    class = if_char<InputT>, class = if_character<OutputT>>
+class UCharCvt 
 {
 public:
-    UStringCvt() {}
-    ~UStringCvt() {}
+    using input_type = primitive_t<InputT>;
+    using output_type = primitive_t<OutputT>;
+
+    static std::optional<output_type> convert(input_type c)
+    {
+        if constexpr (std::is_same_v<c, wchar_t>) {
+            return charToWChar(c);
+        }
+        else if constexpr (std::is_same_v<c, char16_t>) {
+            return charToU16Char(c);
+        }
+        else if constexpr (std::is_same_v<c, char32_t>) {
+            return charToU32Char(c);
+        }
+#if UTILS4CPP_HAS_CHAR8T
+        else if constexpr (std::is_same_v<c, char8_t>) {
+            return charToU8Char(c);
+        }
+#endif // UTILS4CPP_HAS_CHAR8T
+        else {
+            return std::nullopt;
+        }
+    }
 };
 
-} // namespace utils4cpp::str
+template<class InputT>
+class UCharCvt<InputT, InputT>
+{
+public:
+    using input_type = primitive_t<InputT>;
+    using output_type = primitive_t<InputT>;
 
-#endif // UTILS4CPP_USTRINGCONVERT_HPP
+    static std::optional<output_type> convert(input_type c)
+    {
+        return c;
+    }
+
+};
+
+template<>
+class UCharCvt<wchar_t, char>
+{
+public:
+    using input_type = wchar_t;
+    using output_type = char;
+
+    static std::optional<output_type> convert(input_type c)
+    {
+        return wcharToChar(c);
+    }
+
+};
+
+}
+
+#endif // UTILS4CPP_STR_UCHARCONVERT_HPP

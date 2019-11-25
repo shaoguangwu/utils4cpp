@@ -34,8 +34,6 @@
 #ifndef UTILS4CPP_STR_USTRINGTONUMBER_INL
 #define UTILS4CPP_STR_USTRINGTONUMBER_INL
 
-#include <string>
-
 #include "utils4cpp/core/UTypeTraits.hpp"
 #include "utils4cpp/str/UStringGlobal.hpp"
 
@@ -81,10 +79,10 @@ inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos 
         }
         else {
             if constexpr (sizeof(NumberT) <= sizeof(unsigned long)) {
-                return static_cast<primitive_t<NumberT>>(std::stoul(str));
+                return static_cast<primitive_t<NumberT>>(std::stoul(str, pos, base));
             }
             else {
-                return static_cast<primitive_t<NumberT>>(std::stoull(str));
+                return static_cast<primitive_t<NumberT>>(std::stoull(str, pos, base));
             }
         }
     }

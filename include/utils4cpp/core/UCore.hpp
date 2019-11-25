@@ -35,10 +35,12 @@
 #define UTILS4CPP_CORE_UCORE_HPP
 
 #include "utils4cpp/core/UVersion.hpp"
-#include "utils4cpp/core/UExport.hpp"
+#include "utils4cpp/core/UProcessorDetection.hpp"
 #include "utils4cpp/core/UOsDetection.hpp"
+#include "utils4cpp/core/UCompilerDetection.hpp"
 #include "utils4cpp/core/UCppStandardDetection.hpp"
 #include "utils4cpp/core/UStlConfig.hpp"
+#include "utils4cpp/core/UExport.hpp"
 
 /** Converts between types using a combination of implicit and user-defined conversions.
     Returns a value of type new_type.

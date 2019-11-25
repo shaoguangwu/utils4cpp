@@ -38,54 +38,78 @@
 namespace utils4cpp::str {
 
 UTILS4CPP_EXPORT 
-std::string wstr2str(const std::wstring& str)
+std::string wstringToString(const std::wstring& str)
 {
     using output_type = std::string;
-    using output_char_type = typename output_type::value_type;
 
+    output_type result;
     if (str.empty()) {
-        return output_type();
+        return result;
     }
 
     std::mbstate_t state{};
     auto wstr = str.c_str();
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
     std::size_t len = std::wcsrtombs(nullptr, &wstr, 0, &state);
-    if (static_cast<std::size_t>(-1) == len || len < 1) {
-        return output_type();
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(pop)
+#endif
+    if (static_cast<std::size_t>(-1) == len || len == 0) {
+        return result;
     }
-    output_type result;
-    result.resize(len + 1);
-    std::wcsrtombs(&result.front(), &wstr, len + 1, &state);
-    result.resize(len);
-    return result;
 
+    result.resize(len);
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
+    std::wcsrtombs(&result.front(), &wstr, len, &state);
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(pop)
+#endif
+    return result;
 }
 
 UTILS4CPP_EXPORT 
-std::wstring str2wstr(const std::string& str)
+std::wstring stringToWString(const std::string& str)
 {
     using output_type = std::wstring;
-    using output_char_type = typename output_type::value_type;
 
+    output_type result;
     if (str.empty()) {
-        return output_type();
+        return result;
     }
 
     std::mbstate_t state{};
     auto mbstr = str.c_str();
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
     std::size_t len = std::mbsrtowcs(nullptr, &mbstr, 0, &state);
-    if (static_cast<std::size_t>(-1) == len || len < 1) {
-        return output_type();
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(pop)
+#endif
+    if (static_cast<std::size_t>(-1) == len || len == 0) {
+        return result;
     }
-    output_type result;
-    result.resize(len + 1);
-    std::mbsrtowcs(&result.front(), &mbstr, len + 1, &state);
     result.resize(len);
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
+    std::mbsrtowcs(&result.front(), &mbstr, len, &state);
+#ifdef UTILS4CPP_CC_MSVC
+#pragma warning(pop)
+#endif
     return result;
 }
 
 UTILS4CPP_EXPORT 
-std::string u16str2str(const std::u16string& str)
+std::string u16stringToString(const std::u16string& str)
 {
     using input_type = std::u16string;
     using input_char_type = typename input_type::value_type;
@@ -101,33 +125,62 @@ std::string u16str2str(const std::u16string& str)
     std::mbstate_t state{};
     output_char_type buf[MB_LEN_MAX];
     std::size_t rc = 0;
-    std::size_t offset = 0;
+    std::size_t n = 0;
+
     for (input_char_type c : str) {
         rc = std::c16rtomb(buf, c, &state);
         if (static_cast<std::size_t>(-1) == rc) {
             return output_type();
         }
-        std::copy(buf, buf + rc, &result[offset]);
-        offset += rc;
+        std::copy(buf, buf + rc, &result[n]);
+        n += rc;
     }
-    result.resize(offset);
+
+    result.resize(n);
     return result;
 }
 
-// TODO
 UTILS4CPP_EXPORT 
-std::u16string str2u16str(const std::string& str)
+std::u16string strinngToU16String(const std::string& str)
 {
+    using input_type = std::string;
+    using input_char_type = typename input_type::value_type;
     using output_type = std::u16string;
     using output_char_type = typename output_type::value_type;
 
+    output_type result;
     if (str.empty()) {
-        return output_type();
+        return result;
     }
+
+    std::mbstate_t state{};
+    output_char_type c;
+    const input_char_type* ptr = str.c_str();
+    const input_char_type* end = str.c_str() + str.size() + 1;
+    result.resize(str.size());
+    std::size_t n = 0;
+
+    while (std::size_t rc = std::mbrtoc16(&c, ptr, end - ptr, &state)) {
+        if (rc <= static_cast<std::size_t>(-1) / 2) {
+            result[n++] = c;
+            ptr += rc;
+        }
+        else if (rc == static_cast<std::size_t>(-3)) {
+            // earlier surrogate pair.
+        }
+        else if (rc == static_cast<std::size_t>(-1)) {
+            return output_type();
+        }
+        else {
+            break;
+        }
+    }
+    result.resize(n);
+    return result;
 }
 
 UTILS4CPP_EXPORT 
-std::string u32str2str(const std::u32string& str)
+std::string u32stringToString(const std::u32string& str)
 {
     using input_type = std::u32string;
     using input_char_type = typename input_type::value_type;
@@ -143,35 +196,60 @@ std::string u32str2str(const std::u32string& str)
     std::mbstate_t state{};
     output_char_type buf[MB_LEN_MAX];
     std::size_t rc = 0;
-    std::size_t offset = 0;
+    std::size_t n = 0;
     for (input_char_type c : str) {
         rc = std::c32rtomb(buf, c, &state);
         if (static_cast<std::size_t>(-1) == rc) {
             return output_type();
         }
-        std::copy(buf, buf + rc, &result[offset]);
-        offset += rc;
+        std::copy(buf, buf + rc, &result[n]);
+        n += rc;
     }
-    result.resize(offset);
+    result.resize(n);
     return result;
 }
 
 // TODO
 UTILS4CPP_EXPORT 
-std::u32string str2u32str(const std::string& str)
+std::u32string stringToU32String(const std::string& str)
 {
+    using input_type = std::string;
+    using input_char_type = typename input_type::value_type;
     using output_type = std::u32string;
     using output_char_type = typename output_type::value_type;
 
+    output_type result;
     if (str.empty()) {
-        return output_type();
+        return result;
     }
+
+    std::mbstate_t state{};
+    output_char_type c;
+    const input_char_type* ptr = str.c_str();
+    const input_char_type* end = str.c_str() + str.size() + 1;
+    result.resize(str.size());
+    std::size_t n = 0;
+
+    while (std::size_t rc = std::mbrtoc32(&c, ptr, end - ptr, &state)) {
+        if (rc <= static_cast<std::size_t>(-1) / 2) {
+            result[n++] = c;
+            ptr += rc;
+        }
+        else if (rc == static_cast<std::size_t>(-1)) {
+            return output_type();
+        }
+        else {
+            break;
+        }
+    }
+    result.resize(n);
+    return result;
 }
 
 #if UTILS4CPP_HAS_U8STRING
 
 UTILS4CPP_EXPORT 
-std::string u8str2str(const std::u8string& str)
+std::string u8stringToString(const std::u8string& str)
 {
     using input_type = std::u8string;
     using input_char_type = typename input_type::value_type;
@@ -187,29 +265,54 @@ std::string u8str2str(const std::u8string& str)
     std::mbstate_t state{};
     output_char_type buf[MB_LEN_MAX];
     std::size_t rc = 0;
-    std::size_t offset = 0;
+    std::size_t n = 0;
     for (input_char_type c : str) {
         rc = std::c8rtomb(buf, c, &state);
         if (static_cast<std::size_t>(-1) == rc) {
             return output_type();
         }
-        std::copy(buf, buf + rc, &result[offset]);
-        offset += rc;
+        std::copy(buf, buf + rc, &result[n]);
+        n += rc;
     }
-    result.resize(offset);
+    result.resize(n);
     return result;
 }
 
 // TODO
 UTILS4CPP_EXPORT 
-std::u8string str2u8str(const std::string& str)
+std::u8string stringToU8String(const std::string& str)
 {
+    using input_type = std::string;
+    using input_char_type = typename input_type::value_type;
     using output_type = std::u8string;
     using output_char_type = typename output_type::value_type;
 
+    output_type result;
     if (str.empty()) {
-        return output_type();
+        return result;
     }
+
+    std::mbstate_t state{};
+    output_char_type c;
+    const input_char_type* ptr = str.c_str();
+    const input_char_type* end = str.c_str() + str.size() + 1;
+    result.resize(str.size());
+    std::size_t n = 0;
+
+    while (std::size_t rc = std::mbrtoc8(&c, ptr, end - ptr, &state)) {
+        if (rc <= static_cast<std::size_t>(-1) / 2) {
+            result[n++] = c;
+            ptr += rc;
+        }
+        else if (rc == static_cast<std::size_t>(-1)) {
+            return output_type();
+        }
+        else {
+            break;
+        }
+    }
+    result.resize(n);
+    return result;
 }
 
 #endif // UTILS4CPP_HAS_U8STRING

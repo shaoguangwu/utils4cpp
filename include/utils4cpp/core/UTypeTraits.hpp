@@ -154,8 +154,8 @@ template<class T>
 using if_unsigned = std::enable_if_t<std::is_unsigned_v<T>, T>;
 
 /**
-    If \c T is a signed integeral type, \b is_signed_interger has a public member
-    typedef \c type, equal to \c T; otherwise, there is no member typedef.
+    Identifies signed integral type.
+    Checks whether \c T is a signed integral type.
 */
 template<class T>
 using is_signed_integral = std::conjunction<std::is_integral<T>, std::is_signed<T>>;
@@ -176,8 +176,8 @@ template<class T>
 using if_signed_integeral = std::enable_if_t<is_signed_integeral_v<T>, T>;
 
 /**
-    Checks if type \c T is an unsigned integeral type.\b is_unsigned_interger
-    equals to true if \c T is a unsigned integeral type, otherwise equals to flase.
+    Identifies unsigned integral type.
+    Checks whether \c T is an unsigned integral type.
 */
 template<class T>
 using is_unsigned_integeral = std::conjunction<std::is_integral<T>, std::is_unsigned<T>>;
@@ -197,6 +197,70 @@ inline constexpr bool is_unsigned_integeral_v = is_unsigned_integeral<T>::value;
 template<class T>
 using if_unsigned_integeral = std::enable_if_t<is_unsigned_integeral_v<T>, T>;
 
-}
+//
+// is_character
+//
+
+namespace detail {
+
+template<class T>
+struct _is_character
+    : std::false_type
+{ };
+
+template<>
+struct _is_character<char>
+    : std::true_type
+{ };
+
+template<>
+struct _is_character<wchar_t>
+    : std::true_type
+{ };
+
+template<>
+struct _is_character<char16_t>
+    : std::true_type
+{ };
+
+template<>
+struct _is_character<char32_t>
+    : std::true_type
+{ };
+
+} // namespace detail
+
+/**
+    Identifies character type.
+    Checks whether \c T is a character type.
+*/
+template<class T>
+struct is_character
+    : detail::_is_character<std::remove_cv_t<T>>::type
+{ };
+
+/**
+    Checks if type \c T is a character type.
+    \b is_character_v equals to \c true if \c T is a character type,
+    otherwise equals to \c flase.
+*/
+template<class T>
+inline constexpr bool is_character_v = is_character<T>::value;
+
+/**
+    If \c T is a character type, \b if_character has a public member
+    typedef \c type, equal to \c std::remove_cv_t<T>; otherwise, there is no member typedef.
+*/
+template<class T>
+using if_character = std::enable_if_t<is_character_v<T>, std::remove_cv_t<T>>;
+
+/**
+    If \c std::remove_cv_t<T> equal to char, \b if_char has a public member
+    typedef \c type; otherwise, there is no member typedef.
+*/
+template<class T>
+using if_char = std::enable_if_t<std::is_same_v<char, std::remove_cv_t<T>>, char>;
+
+} // namespace utils4cpp
 
 #endif // UTILS4CPP_CORE_UTYPETRAITS_HPP

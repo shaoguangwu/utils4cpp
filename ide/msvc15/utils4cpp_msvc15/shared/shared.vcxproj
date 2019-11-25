@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCompilerDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCore.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardDetection.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UDocConfig.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UExport.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UProcessorDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UStlConfig.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UOsDetection.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UTypeTraits.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UVersion.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\UMatrix.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDate.hpp" />
@@ -42,24 +46,24 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UPoint.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URect.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\USize.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UCharConvert.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringConvert.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringTraits.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UString.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringGlobal.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringList.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.inl" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringUtils.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringView.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\UCharConvert.cpp" />
     <ClCompile Include="..\..\..\..\src\UDate.cpp" />
     <ClCompile Include="..\..\..\..\src\UDateTime.cpp" />
     <ClCompile Include="..\..\..\..\src\UDir.cpp" />
     <ClCompile Include="..\..\..\..\src\UElapsedTimer.cpp" />
     <ClCompile Include="..\..\..\..\src\UFile.cpp" />
+    <ClCompile Include="..\..\..\..\src\UStringConvert.cpp" />
     <ClCompile Include="..\..\..\..\src\UTime.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\include\utils4cpp\str\UOstreamString.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

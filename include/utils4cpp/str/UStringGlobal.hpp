@@ -34,6 +34,10 @@
 #ifndef UTILS4CPP_STR_USTRINGGLOBAL_HPP
 #define UTILS4CPP_STR_USTRINGGLOBAL_HPP
 
+#include <cwchar>
+#include <cuchar>
+
+#include <locale>
 #include <string>
 
 #include "utils4cpp/core/UCore.hpp"
@@ -84,7 +88,7 @@ template<class StringT>
 using std_basic_string_traits = detail::_std_basic_string_traits<StringT, typename StringT::value_type>;
 
 template<class StringT>
-using is_std_basic_string = std_basic_string_traits<StringT>::is;
+using is_std_basic_string = typename std_basic_string_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_basic_string_v = is_std_basic_string<StringT>::value;
@@ -100,7 +104,7 @@ template<class StringT>
 using std_string_traits = detail::_std_basic_string_traits<StringT, typename std::string::value_type>;
 
 template<class StringT>
-using is_std_string = std_string_traits<StringT>::is;
+using is_std_string = typename std_string_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_string_v = is_std_string<StringT>::value;
@@ -116,7 +120,7 @@ template<class StringT>
 using std_wstring_traits = detail::_std_basic_string_traits<StringT, typename std::wstring::value_type>;
 
 template<class StringT>
-using is_std_wstring = std_wstring_traits<StringT>::is;
+using is_std_wstring = typename std_wstring_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_wstring_v = is_std_wstring<StringT>::value;
@@ -132,7 +136,7 @@ template<class StringT>
 using std_u16string_traits = detail::_std_basic_string_traits<StringT, typename std::u16string::value_type>;
 
 template<class StringT>
-using is_std_u16string = std_u16string_traits<StringT>::is;
+using is_std_u16string = typename std_u16string_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_u16string_v = is_std_u16string<StringT>::value;
@@ -148,7 +152,7 @@ template<class StringT>
 using std_u32string_traits = detail::_std_basic_string_traits<StringT, typename std::u32string::value_type>;
 
 template<class StringT>
-using is_std_u32string = std_u32string_traits<StringT>::is;
+using is_std_u32string = typename std_u32string_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_u32string_v = is_std_u32string<StringT>::value;
@@ -166,7 +170,7 @@ template<class StringT>
 using std_u8string_traits = detail::_std_basic_string_traits<StringT, typename std::u8string::value_type>;
 
 template<class StringT>
-using is_std_u8string = std_u8string_traits<StringT>::is;
+using is_std_u8string = typename std_u8string_traits<StringT>::is;
 
 template<class StringT>
 inline constexpr bool is_std_u8string_v = is_std_u8string<StringT>::value;

@@ -42,8 +42,7 @@
 #include <memory>
 #include <type_traits>
 
-#include "utils4cpp/str/UStringToNumber.inl"
-#include "utils4cpp/str/UStringView.hpp"
+#include "utils4cpp/str/UStringToNumber.hpp"
 
 namespace utils4cpp {
 namespace str {
