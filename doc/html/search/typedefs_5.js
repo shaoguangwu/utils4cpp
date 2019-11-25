@@ -1,27 +1,4 @@
 var searchData=
 [
-  ['if_5farithmetic',['if_arithmetic',['../namespaceutils4cpp.html#aa3adc4ffbd320e21fbf8316c7caaf1e1',1,'utils4cpp']]],
-  ['if_5ffloating_5fpoint',['if_floating_point',['../namespaceutils4cpp.html#a0be5f6da19bf5535d893db0a4b937864',1,'utils4cpp']]],
-  ['if_5fintegral',['if_integral',['../namespaceutils4cpp.html#a7e952be4a1322ff31168f02cb5b586ae',1,'utils4cpp']]],
-  ['if_5fsigned',['if_signed',['../namespaceutils4cpp.html#ad29a7e48875c723baa6fbcafe1f2a365',1,'utils4cpp']]],
-  ['if_5fsigned_5fintegeral',['if_signed_integeral',['../namespaceutils4cpp.html#a959aeb3876750312e37dd4332fcc8c6e',1,'utils4cpp']]],
-  ['if_5fstd_5fbasic_5fstring',['if_std_basic_string',['../namespaceutils4cpp_1_1str.html#a87e713765a46101bd7e1dafad9cd1815',1,'utils4cpp::str']]],
-  ['if_5fstd_5fstring',['if_std_string',['../namespaceutils4cpp_1_1str.html#a6384dae06e7a2977a7c2b4a9ad896538',1,'utils4cpp::str']]],
-  ['if_5fstd_5fstring_5for_5fwstring',['if_std_string_or_wstring',['../namespaceutils4cpp_1_1str.html#ab47c6bf4d4f35c75e7e324e71ae40bc2',1,'utils4cpp::str']]],
-  ['if_5fstd_5fu16string',['if_std_u16string',['../namespaceutils4cpp_1_1str.html#a7b40e54b845105ce2a7e1d7ea56c3113',1,'utils4cpp::str']]],
-  ['if_5fstd_5fu32string',['if_std_u32string',['../namespaceutils4cpp_1_1str.html#a4be6de17e5a67017f92709afe8c5f319',1,'utils4cpp::str']]],
-  ['if_5fstd_5fwstring',['if_std_wstring',['../namespaceutils4cpp_1_1str.html#a2adb0fe25306528aa5344b5e54b90abd',1,'utils4cpp::str']]],
-  ['if_5funsigned',['if_unsigned',['../namespaceutils4cpp.html#a4a5aefd03a91173fb77b9b67468696f4',1,'utils4cpp']]],
-  ['if_5funsigned_5fintegeral',['if_unsigned_integeral',['../namespaceutils4cpp.html#a39d086fad3f09dd6d451aec095f415ff',1,'utils4cpp']]],
-  ['input_5fstring_5ftype',['input_string_type',['../classutils4cpp_1_1str_1_1_u_string.html#aa707d530c9482049b343501c67227557',1,'utils4cpp::str::UString']]],
-  ['is',['is',['../structutils4cpp_1_1str_1_1detail_1_1__std__basic__string__traits.html#ae24de7cf330a3436c2b2bcecbfbea413',1,'utils4cpp::str::detail::_std_basic_string_traits']]],
-  ['is_5fsigned_5fintegral',['is_signed_integral',['../namespaceutils4cpp.html#a4575596f61c80871c45429bf44970919',1,'utils4cpp']]],
-  ['is_5fstd_5fbasic_5fstring',['is_std_basic_string',['../namespaceutils4cpp_1_1str.html#ac670e25ed2c6f9e537265c63df4efdfa',1,'utils4cpp::str']]],
-  ['is_5fstd_5fstring',['is_std_string',['../namespaceutils4cpp_1_1str.html#ae26ddce2f5df143e1199992a354c1b18',1,'utils4cpp::str']]],
-  ['is_5fstd_5fstring_5for_5fwstring',['is_std_string_or_wstring',['../namespaceutils4cpp_1_1str.html#ab0932d80735dbad3ea1bcc441e35086b',1,'utils4cpp::str']]],
-  ['is_5fstd_5fu16string',['is_std_u16string',['../namespaceutils4cpp_1_1str.html#a1f63af5baa11b9a025927292b128090d',1,'utils4cpp::str']]],
-  ['is_5fstd_5fu32string',['is_std_u32string',['../namespaceutils4cpp_1_1str.html#a410067588deaaf11a3ce3c6b36315f9f',1,'utils4cpp::str']]],
-  ['is_5fstd_5fwstring',['is_std_wstring',['../namespaceutils4cpp_1_1str.html#a593cbdd01ce9ecd23c1586212c45c09e',1,'utils4cpp::str']]],
-  ['is_5funsigned_5fintegeral',['is_unsigned_integeral',['../namespaceutils4cpp.html#afd7c185db39e9f89c88d5d293f2d96de',1,'utils4cpp']]],
-  ['iterator',['iterator',['../classutils4cpp_1_1str_1_1_u_basic_string_list.html#a9e4f64c592f1d3e65d0a275c6af8a6aa',1,'utils4cpp::str::UBasicStringList::iterator()'],['../classutils4cpp_1_1str_1_1_u_string_traits.html#a874941d4cc2d4f6ab87e77e900e43d72',1,'utils4cpp::str::UStringTraits::iterator()'],['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#a2d5e5401ac320500d052fe6414b6fb6d',1,'utils4cpp::str::UBasicStringView::iterator()']]]
+  ['output_5ftype',['output_type',['../classutils4cpp_1_1str_1_1_u_char_cvt.html#a8f7b33b33ea19daf98fc5a20b1f8f777',1,'utils4cpp::str::UCharCvt::output_type()'],['../classutils4cpp_1_1str_1_1_u_char_cvt_3_01_input_t_00_01_input_t_01_4.html#a6fadc5d7f4510589963ade822ec03e55',1,'utils4cpp::str::UCharCvt&lt; InputT, InputT &gt;::output_type()'],['../classutils4cpp_1_1str_1_1_u_char_cvt_3_01wchar__t_00_01char_01_4.html#abf2acde89af4819224663b641a3eff7b',1,'utils4cpp::str::UCharCvt&lt; wchar_t, char &gt;::output_type()']]]
 ];

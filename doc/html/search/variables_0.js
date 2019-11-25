@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['is_5fbool_5fv',['is_bool_v',['../namespaceutils4cpp.html#a03157e7b09bf936b9482aa00ab01cfeb',1,'utils4cpp']]],
+  ['is_5fcharacter_5fv',['is_character_v',['../namespaceutils4cpp.html#a04dea91111f1d2b41f5513c1adfe9622',1,'utils4cpp']]],
+  ['is_5fintegral_5fnot_5fbool_5fv',['is_integral_not_bool_v',['../namespaceutils4cpp.html#a7f2e56eab4c45c070cfbc781c63cb696',1,'utils4cpp']]],
   ['is_5fsigned_5fintegeral_5fv',['is_signed_integeral_v',['../namespaceutils4cpp.html#ab9c930fed0ed984b628eb4e742af3570',1,'utils4cpp']]],
   ['is_5fstd_5fbasic_5fstring_5fv',['is_std_basic_string_v',['../namespaceutils4cpp_1_1str.html#aa926813dc5e6ffd99d885c192db40d57',1,'utils4cpp::str']]],
   ['is_5fstd_5fstring_5for_5fwstring_5fv',['is_std_string_or_wstring_v',['../namespaceutils4cpp_1_1str.html#afb29756777f2661e73e987ae36ab8b11',1,'utils4cpp::str']]],

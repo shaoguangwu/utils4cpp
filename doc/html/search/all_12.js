@@ -18,7 +18,6 @@ var searchData=
   ['toupperf',['ToUpperF',['../structutils4cpp_1_1str_1_1_to_upper_f.html',1,'utils4cpp::str']]],
   ['toupperself',['toUpperSelf',['../namespaceutils4cpp_1_1str.html#a1c94a293818c71b2db2c3ccfece03845',1,'utils4cpp::str']]],
   ['towstring',['toWString',['../classutils4cpp_1_1datetime_1_1_u_date.html#a55855b651f0a698e502a255b1f3a31ed',1,'utils4cpp::datetime::UDate::toWString(const wchar_t *format)'],['../classutils4cpp_1_1datetime_1_1_u_date.html#ae4a5565538d40c0d854e2e266f6f0621',1,'utils4cpp::datetime::UDate::toWString(DateFormat format=TextDate) const'],['../classutils4cpp_1_1datetime_1_1_u_time.html#a2b1473075eb002e673e4d45e0786d561',1,'utils4cpp::datetime::UTime::toWString()']]],
-  ['traits_5ftype',['traits_type',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#a32b87cac930ac47527e34cfd64592d6e',1,'utils4cpp::str::UBasicStringView']]],
   ['trim',['trim',['../classutils4cpp_1_1str_1_1_u_string_traits.html#a113287417692bb7aac1b22ccf71deb2b',1,'utils4cpp::str::UStringTraits']]],
   ['trimall',['trimAll',['../classutils4cpp_1_1str_1_1_u_string_traits.html#abd4d840c24f2ad8f46e296c361e83471',1,'utils4cpp::str::UStringTraits']]],
   ['trimleft',['trimLeft',['../classutils4cpp_1_1str_1_1_u_string_traits.html#ab61c96c0fab88dd6c5407a81ff309d93',1,'utils4cpp::str::UStringTraits']]],

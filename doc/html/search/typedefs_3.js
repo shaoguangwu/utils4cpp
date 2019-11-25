@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difference_5ftype',['difference_type',['../classutils4cpp_1_1str_1_1_u_basic_string_view.html#af8ae1cbf1a11e765169da2cc7be36ee3',1,'utils4cpp::str::UBasicStringView']]]
+  ['elapsed_5ftime_5ffloating_5ft',['elapsed_time_floating_t',['../classutils4cpp_1_1datetime_1_1_u_elapsed_timer.html#a3b8772b7c9f6584e058fe2875e168f1e',1,'utils4cpp::datetime::UElapsedTimer']]]
 ];

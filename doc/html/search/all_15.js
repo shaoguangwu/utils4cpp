@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['year',['year',['../classutils4cpp_1_1datetime_1_1_u_date.html#a87b068134d998631b4a48a595fc7a49e',1,'utils4cpp::datetime::UDate']]]
+  ['wchartochar',['wcharToChar',['../namespaceutils4cpp_1_1str.html#a86e7919f9da10815aeeda5f9ababe605',1,'utils4cpp::str']]],
+  ['wstringtostring',['wstringToString',['../namespaceutils4cpp_1_1str.html#a574ca6128f30d57bd4640dacc83f5b8e',1,'utils4cpp::str']]]
 ];

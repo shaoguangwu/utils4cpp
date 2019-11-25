@@ -66,6 +66,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -78,6 +79,8 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceutils4cpp_1_1datetime"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp_1_1datetime.html">datetime</a></td></tr>
 <tr class="memdesc:namespaceutils4cpp_1_1datetime"><td class="mdescLeft">&#160;</td><td class="mdescRight">Date-time libraries. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceutils4cpp_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp_1_1detail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceutils4cpp_1_1filesystem"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp_1_1filesystem.html">filesystem</a></td></tr>
 <tr class="memdesc:namespaceutils4cpp_1_1filesystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">file system libraries. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -85,6 +88,11 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespaceutils4cpp_1_1geometry"><td class="mdescLeft">&#160;</td><td class="mdescRight">The geometry namespace supports for geometric data structures. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceutils4cpp_1_1str"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp_1_1str.html">str</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structutils4cpp_1_1is__character.html">is_character</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -104,15 +112,27 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a50804fcdf606b090a38b249ecb5edfc5"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a50804fcdf606b090a38b249ecb5edfc5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a50804fcdf606b090a38b249ecb5edfc5">primitive_t</a> = std::decay_t&lt; T &gt;</td></tr>
 <tr class="separator:a50804fcdf606b090a38b249ecb5edfc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#aa3adc4ffbd320e21fbf8316c7caaf1e1">if_arithmetic</a> = std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, T &gt;</td></tr>
+<tr class="separator:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58926b12fe150e08ddadf8b8397f7fb4"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a58926b12fe150e08ddadf8b8397f7fb4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">is_bool</a> = std::is_same&lt; bool, T &gt;</td></tr>
+<tr class="separator:a58926b12fe150e08ddadf8b8397f7fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998297706f23d86addc92f850e3a0605"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a998297706f23d86addc92f850e3a0605"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a998297706f23d86addc92f850e3a0605">if_bool</a> = std::enable_if_t&lt; <a class="el" href="namespaceutils4cpp.html#a03157e7b09bf936b9482aa00ab01cfeb">is_bool_v</a>&lt; T &gt;, T &gt;</td></tr>
+<tr class="separator:a998297706f23d86addc92f850e3a0605"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e952be4a1322ff31168f02cb5b586ae"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a7e952be4a1322ff31168f02cb5b586ae"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a7e952be4a1322ff31168f02cb5b586ae">if_integral</a> = std::enable_if_t&lt; std::is_integral_v&lt; T &gt;, T &gt;</td></tr>
 <tr class="separator:a7e952be4a1322ff31168f02cb5b586ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0be5f6da19bf5535d893db0a4b937864"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a0be5f6da19bf5535d893db0a4b937864"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a0be5f6da19bf5535d893db0a4b937864">if_floating_point</a> = std::enable_if_t&lt; std::is_floating_point_v&lt; T &gt;, T &gt;</td></tr>
 <tr class="separator:a0be5f6da19bf5535d893db0a4b937864"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#aa3adc4ffbd320e21fbf8316c7caaf1e1">if_arithmetic</a> = std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, T &gt;</td></tr>
-<tr class="separator:aa3adc4ffbd320e21fbf8316c7caaf1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092408762919e8baadc1df9403f56e12"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a092408762919e8baadc1df9403f56e12"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a092408762919e8baadc1df9403f56e12">is_integral_not_bool</a> = <a class="el" href="namespaceutils4cpp.html#ae06ece3b4933dc1965d67f935c887418">u_and</a>&lt; std::is_integral&lt; T &gt;, <a class="el" href="namespaceutils4cpp.html#a1ebe13ad5960645ebec2f6297c6766a1">u_not</a>&lt; <a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">is_bool</a>&lt; T &gt; &gt;&gt;</td></tr>
+<tr class="separator:a092408762919e8baadc1df9403f56e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e8777cd522f58f04dd21e141b7ea12"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a94e8777cd522f58f04dd21e141b7ea12"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a94e8777cd522f58f04dd21e141b7ea12">if_integral_not_bool</a> = std::enable_if_t&lt; <a class="el" href="namespaceutils4cpp.html#a7f2e56eab4c45c070cfbc781c63cb696">is_integral_not_bool_v</a>&lt; T &gt;, T &gt;</td></tr>
+<tr class="separator:a94e8777cd522f58f04dd21e141b7ea12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad29a7e48875c723baa6fbcafe1f2a365"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ad29a7e48875c723baa6fbcafe1f2a365"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#ad29a7e48875c723baa6fbcafe1f2a365">if_signed</a> = std::enable_if_t&lt; std::is_signed_v&lt; T &gt;, T &gt;</td></tr>
 <tr class="separator:ad29a7e48875c723baa6fbcafe1f2a365"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,15 +151,30 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a39d086fad3f09dd6d451aec095f415ff"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a39d086fad3f09dd6d451aec095f415ff"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a39d086fad3f09dd6d451aec095f415ff">if_unsigned_integeral</a> = std::enable_if_t&lt; <a class="el" href="namespaceutils4cpp.html#a980e7389d0677f972fd751a9d6d8db14">is_unsigned_integeral_v</a>&lt; T &gt;, T &gt;</td></tr>
 <tr class="separator:a39d086fad3f09dd6d451aec095f415ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2fd711fbcb6943cd5d62b0f652a9978"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac2fd711fbcb6943cd5d62b0f652a9978"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#ac2fd711fbcb6943cd5d62b0f652a9978">if_character</a> = std::enable_if_t&lt; <a class="el" href="namespaceutils4cpp.html#a04dea91111f1d2b41f5513c1adfe9622">is_character_v</a>&lt; T &gt;, std::remove_cv_t&lt; T &gt; &gt;</td></tr>
+<tr class="separator:ac2fd711fbcb6943cd5d62b0f652a9978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7030b58d09d5c9b7d3ca618f0256c51d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a7030b58d09d5c9b7d3ca618f0256c51d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a7030b58d09d5c9b7d3ca618f0256c51d">if_char</a> = std::enable_if_t&lt; std::is_same_v&lt; char, std::remove_cv_t&lt; T &gt; &gt;, char &gt;</td></tr>
+<tr class="separator:a7030b58d09d5c9b7d3ca618f0256c51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a03157e7b09bf936b9482aa00ab01cfeb"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a03157e7b09bf936b9482aa00ab01cfeb"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a03157e7b09bf936b9482aa00ab01cfeb">is_bool_v</a> = <a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">is_bool</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:a03157e7b09bf936b9482aa00ab01cfeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f2e56eab4c45c070cfbc781c63cb696"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a7f2e56eab4c45c070cfbc781c63cb696"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a7f2e56eab4c45c070cfbc781c63cb696">is_integral_not_bool_v</a> = <a class="el" href="namespaceutils4cpp.html#a092408762919e8baadc1df9403f56e12">is_integral_not_bool</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:a7f2e56eab4c45c070cfbc781c63cb696"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9c930fed0ed984b628eb4e742af3570"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ab9c930fed0ed984b628eb4e742af3570"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#ab9c930fed0ed984b628eb4e742af3570">is_signed_integeral_v</a> = <a class="el" href="namespaceutils4cpp.html#a4575596f61c80871c45429bf44970919">is_signed_integral</a>&lt;T&gt;::value</td></tr>
 <tr class="separator:ab9c930fed0ed984b628eb4e742af3570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a980e7389d0677f972fd751a9d6d8db14"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a980e7389d0677f972fd751a9d6d8db14"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a980e7389d0677f972fd751a9d6d8db14">is_unsigned_integeral_v</a> = <a class="el" href="namespaceutils4cpp.html#afd7c185db39e9f89c88d5d293f2d96de">is_unsigned_integeral</a>&lt;T&gt;::value</td></tr>
 <tr class="separator:a980e7389d0677f972fd751a9d6d8db14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04dea91111f1d2b41f5513c1adfe9622"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a04dea91111f1d2b41f5513c1adfe9622"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils4cpp.html#a04dea91111f1d2b41f5513c1adfe9622">is_character_v</a> = <a class="el" href="structutils4cpp_1_1is__character.html">is_character</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:a04dea91111f1d2b41f5513c1adfe9622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="aa3adc4ffbd320e21fbf8316c7caaf1e1"></a>
@@ -157,7 +192,64 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is an arithmetic type, <b>if_arithmetic</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00096">96</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00084">84</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a998297706f23d86addc92f850e3a0605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a998297706f23d86addc92f850e3a0605">&#9670;&nbsp;</a></span>if_bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#a998297706f23d86addc92f850e3a0605">utils4cpp::if_bool</a> = typedef std::enable_if_t&lt;<a class="el" href="namespaceutils4cpp.html#a03157e7b09bf936b9482aa00ab01cfeb">is_bool_v</a>&lt;T&gt;, T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If <code>T</code> is a bool type, <b>if_bool</b> has a public member typedef <code>type</code>, equal to <code>bool</code>; otherwise, there is no member typedef. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00105">105</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7030b58d09d5c9b7d3ca618f0256c51d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7030b58d09d5c9b7d3ca618f0256c51d">&#9670;&nbsp;</a></span>if_char</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#a7030b58d09d5c9b7d3ca618f0256c51d">utils4cpp::if_char</a> = typedef std::enable_if_t&lt;std::is_same_v&lt;char, std::remove_cv_t&lt;T&gt; &gt;, char&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If <code>std::remove_cv_t&lt;T&gt;</code> equal to char, <b>if_char</b> has a public member typedef <code>type</code>; otherwise, there is no member typedef. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00262">262</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ac2fd711fbcb6943cd5d62b0f652a9978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2fd711fbcb6943cd5d62b0f652a9978">&#9670;&nbsp;</a></span>if_character</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#ac2fd711fbcb6943cd5d62b0f652a9978">utils4cpp::if_character</a> = typedef std::enable_if_t&lt;<a class="el" href="namespaceutils4cpp.html#a04dea91111f1d2b41f5513c1adfe9622">is_character_v</a>&lt;T&gt;, std::remove_cv_t&lt;T&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If <code>T</code> is a character type, <b>if_character</b> has a public member typedef <code>type</code>, equal to <code>std::remove_cv_t&lt;T&gt;</code>; otherwise, there is no member typedef. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00255">255</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -176,7 +268,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is a floating-point type, <b>if_floating_point</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00089">89</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00119">119</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -195,7 +287,26 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is an integral type, <b>if_integral</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00082">82</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00112">112</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a94e8777cd522f58f04dd21e141b7ea12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94e8777cd522f58f04dd21e141b7ea12">&#9670;&nbsp;</a></span>if_integral_not_bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#a94e8777cd522f58f04dd21e141b7ea12">utils4cpp::if_integral_not_bool</a> = typedef std::enable_if_t&lt;<a class="el" href="namespaceutils4cpp.html#a7f2e56eab4c45c070cfbc781c63cb696">is_integral_not_bool_v</a>&lt;T&gt;, T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>If <code>T</code> is an integral type but not a bool type, <b>if_integral_not_bool</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00140">140</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +325,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is a signed arithmetic type, <b>if_signed</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00103">103</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00147">147</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -233,7 +344,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is a signed integeral type, <b>if_signed_integeral</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00131">131</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00176">176</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -252,7 +363,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is a unsigned arithmetic type, <b>if_signed</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00110">110</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00154">154</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -271,7 +382,45 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>If <code>T</code> is an unsigned integeral type, <b>if_unsigned_integeral</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00152">152</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00198">198</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a58926b12fe150e08ddadf8b8397f7fb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58926b12fe150e08ddadf8b8397f7fb4">&#9670;&nbsp;</a></span>is_bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">utils4cpp::is_bool</a> = typedef std::is_same&lt;bool, T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Identifies bool types. Checks whether <code>T</code> is a bool type. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00091">91</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a092408762919e8baadc1df9403f56e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a092408762919e8baadc1df9403f56e12">&#9670;&nbsp;</a></span>is_integral_not_bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceutils4cpp.html#a092408762919e8baadc1df9403f56e12">utils4cpp::is_integral_not_bool</a> = typedef <a class="el" href="namespaceutils4cpp.html#ae06ece3b4933dc1965d67f935c887418">u_and</a>&lt;std::is_integral&lt;T&gt;, <a class="el" href="namespaceutils4cpp.html#a1ebe13ad5960645ebec2f6297c6766a1">u_not</a>&lt;<a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">is_bool</a>&lt;T&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks whether <code>T</code> is an integral type but not a bool type. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00125">125</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,9 +437,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If <code>T</code> is a signed integeral type, <b>is_signed_interger</b> has a public member typedef <code>type</code>, equal to <code>T</code>; otherwise, there is no member typedef. </p>
+<p>Identifies signed integral type. Checks whether <code>T</code> is a signed integral type. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00117">117</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00161">161</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -307,9 +456,9 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if type <code>T</code> is an unsigned integeral type.<b>is_unsigned_interger</b> equals to true if <code>T</code> is a unsigned integeral type, otherwise equals to flase. </p>
+<p>Identifies unsigned integral type. Checks whether <code>T</code> is an unsigned integral type. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00138">138</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00183">183</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +477,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>The result of applying the decay type conversions to <b>T</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00075">75</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00077">77</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -350,12 +499,12 @@ template&lt;class... B&gt; </div>
 <p>Forms the logical conjunction of the type traits <code>B</code>..., effectively performing a logical AND on the sequence of traits.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">B...</td><td>every template argument Bi for which <code>Bi::value</code> is instantiated must be usable as a base class and define member value that is convertible to bool </td></tr>
+    <tr><td class="paramname">B...</td><td>every template argument Bi for which <code>Bi::value</code> is instantiated must be usable as a base class and define member value that is convertible to bool. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00050">50</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00051">51</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +531,7 @@ template&lt;class B &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00071">71</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00073">73</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -409,11 +558,92 @@ template&lt;class... B&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00061">61</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00063">63</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a03157e7b09bf936b9482aa00ab01cfeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03157e7b09bf936b9482aa00ab01cfeb">&#9670;&nbsp;</a></span>is_bool_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool utils4cpp::is_bool_v = <a class="el" href="namespaceutils4cpp.html#a58926b12fe150e08ddadf8b8397f7fb4">is_bool</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks if type <code>T</code> is a bool type. <b>is_bool_v</b> equals to <code>true</code> if <code>T</code> is a bool type, otherwise equals to <code>flase</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00098">98</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a04dea91111f1d2b41f5513c1adfe9622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04dea91111f1d2b41f5513c1adfe9622">&#9670;&nbsp;</a></span>is_character_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool utils4cpp::is_character_v = <a class="el" href="structutils4cpp_1_1is__character.html">is_character</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks if type <code>T</code> is a character type. <b>is_character_v</b> equals to <code>true</code> if <code>T</code> is a character type, otherwise equals to <code>flase</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00248">248</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7f2e56eab4c45c070cfbc781c63cb696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2e56eab4c45c070cfbc781c63cb696">&#9670;&nbsp;</a></span>is_integral_not_bool_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool utils4cpp::is_integral_not_bool_v = <a class="el" href="namespaceutils4cpp.html#a092408762919e8baadc1df9403f56e12">is_integral_not_bool</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks if type <code>T</code> is an integral type but not a bool type. <b>is_integral_not_bool_v</b> equals to <code>true</code> if <code>T</code> is an integral type but not a bool type, otherwise equals to <code>flase</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00133">133</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+
+</div>
+</div>
 <a id="ab9c930fed0ed984b628eb4e742af3570"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab9c930fed0ed984b628eb4e742af3570">&#9670;&nbsp;</a></span>is_signed_integeral_v</h2>
 
@@ -435,9 +665,9 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Checks if type <code>T</code> is a signed integeral type. <b>is_signed_integeral_v</b> equals to true if <code>T</code> is a signed interger type, otherwise equals to flase. </p>
+<p>Checks if type <code>T</code> is a signed integeral type. <b>is_signed_integeral_v</b> equals to <code>true</code> if <code>T</code> is a signed interger type, otherwise equals to <code>flase</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00124">124</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00169">169</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
@@ -462,9 +692,9 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Checks if type <code>T</code> is an unsigned integeral type. <b>is_unsigned_integeral_v</b> equals to true if <code>T</code> is an unsigned integeral type, otherwise equals to flase. </p>
+<p>Checks if type <code>T</code> is an unsigned integeral type. <b>is_unsigned_integeral_v</b> equals to <code>true</code> if <code>T</code> is an unsigned integeral type, otherwise equals to <code>flase</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00145">145</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_type_traits_8hpp_source.html#l00191">191</a> of file <a class="el" href="_u_type_traits_8hpp_source.html">UTypeTraits.hpp</a>.</p>
 
 </div>
 </div>
