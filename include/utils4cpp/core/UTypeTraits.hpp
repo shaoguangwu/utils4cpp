@@ -241,8 +241,7 @@ struct is_character
 
 /**
     Checks if type \c T is a character type.
-    \b is_character_v equals to \c true if \c T is a character type,
-    otherwise equals to \c flase.
+    \b is_character_v equals to \c true if \c T is a character type, otherwise equals to \c flase.
 */
 template<class T>
 inline constexpr bool is_character_v = is_character<T>::value;
@@ -255,11 +254,25 @@ template<class T>
 using if_character = std::enable_if_t<is_character_v<T>, std::remove_cv_t<T>>;
 
 /**
+    Identifies char type.
+    Checks whether \c T is char type.
+*/
+template<class T>
+using is_char = std::is_same<char, std::remove_cv_t<T>>;
+
+/**
+    Checks if type \c T is char type.
+    \b is_char_v equals to \c true if \c T is char type, otherwise equals to \c flase.
+*/
+template<class T>
+inline constexpr bool is_char_v = is_char<T>::value;
+
+/**
     If \c std::remove_cv_t<T> equal to char, \b if_char has a public member
     typedef \c type; otherwise, there is no member typedef.
 */
 template<class T>
-using if_char = std::enable_if_t<std::is_same_v<char, std::remove_cv_t<T>>, char>;
+using if_char = std::enable_if_t<is_char_v<T>, char>;
 
 } // namespace utils4cpp
 

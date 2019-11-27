@@ -41,8 +41,53 @@
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringUtils.hpp"
 
+#include <list>
+
 namespace utils4cpp {
 namespace str {
+
+/**
+    \class UStringList
+    \since v0.0
+    \brief
+*/
+template<class StringT>
+class UStringList
+{
+public:
+    using string_type = StringT;
+    using value_type = typename StringT::value_type;
+
+private:
+    std::list<StringT> m_data;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // forward declaration for UBasicStringView
 template<class StringT>

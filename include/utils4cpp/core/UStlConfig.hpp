@@ -147,37 +147,74 @@
 #endif
 
 /**
-    \def UTILS4CPP_HAS_NODISCARD
+    \def UTILS4CPP_HAS_ATTR_NODISCARD
     \li 1 Supports [[nodiscard]].
     \li 0 Not supports [[nodiscard]].
 
     [[nodiscard]] since from c++17.
 */
+/**
+    \def UTILS4CPP_HAS_ATTR_MAYBE_UNUSED
+    \li 1 Supports [[maybe_unused]].
+    \li 0 Not supports [[maybe_unused]].
+
+    [[maybe_unused]] since from c++17.
+*/
 #if UTILS4CPP_HAS_CPP17
 #   /* MSVC */
-#   if defined(_MSC_VER) && _MSC_VER >= 1911
-#       define UTILS4CPP_HAS_NODISCARD              1
+#   if defined(_MSC_VER) && _MSC_VER >= 1910
+#       define UTILS4CPP_HAS_ATTR_FALLTHROUGH       1
+#       if _MSC_VER >= 1910
+#           define UTILS4CPP_HAS_ATTR_NODISCARD     1
+#           define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED  1
+#       endif
 #   /* GCC */
 #   elif defined(__GNUC__) && __GNUC__ >= 7
-#       define UTILS4CPP_HAS_NODISCARD          1
+#       define UTILS4CPP_HAS_ATTR_FALLTHROUGH       1
+#       define UTILS4CPP_HAS_ATTR_NODISCARD         1
+#       define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED      1
 #   /* Clang */
 #   elif defined(__clang__) || __clang_major__ > 3 || (__clang_major__ == 3 && __clang_minor__ >= 9)
-#       define UTILS4CPP_HAS_NODISCARD          1
+#       define UTILS4CPP_HAS_ATTR_FALLTHROUGH       1
+#       define UTILS4CPP_HAS_ATTR_NODISCARD         1
+#       define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED      1
 #   /* Unkown, default to not support */
 #   else
-#       define UTILS4CPP_HAS_NODISCARD          0
+#       define UTILS4CPP_HAS_ATTR_FALLTHROUGH       0
+#       define UTILS4CPP_HAS_ATTR_NODISCARD         0
+#       define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED      0
 #   endif
 #else /* !UTILS4CPP_HAS_CPP17 */
-#   define UTILS4CPP_HAS_NODISCARD              0
+#   define UTILS4CPP_HAS_ATTR_FALLTHROUGH           0
+#   define UTILS4CPP_HAS_ATTR_NODISCARD             0
+#   define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED          0
 #endif
+
+/**
+    \def UTILS4CPP_FALLTHROUGH
+*/
+#if UTILS4CPP_HAS_ATTR_FALLTHROUGH
+#   define UTILS4CPP_FALLTHROUGH  [[fallthrough]]
+#else
+#   define UTILS4CPP_FALLTHROUGH
+#endif // UTILS4CPP_HAS_ATTR_FALLTHROUGH
 
 /**
     \def UTILS4CPP_NODISCARD
 */
-#if UTILS4CPP_HAS_NODISCARD
+#if UTILS4CPP_HAS_ATTR_NODISCARD
 #   define UTILS4CPP_NODISCARD  [[nodiscard]]
 #else
 #   define UTILS4CPP_NODISCARD
-#endif // UTILS4CPP_HAS_NODISCARD
+#endif // UTILS4CPP_HAS_ATTR_NODISCARD
+
+/**
+    \def UTILS4CPP_MAYBE_UNUSED
+*/
+#if UTILS4CPP_HAS_ATTR_MAYBE_UNUSED
+#   define UTILS4CPP_MAYBE_UNUSED  [[maybe_unused]]
+#else
+#   define UTILS4CPP_MAYBE_UNUSED
+#endif // UTILS4CPP_HAS_ATTR_MAYBE_UNUSED
 
 #endif // UTILS4CPP_CORE_USTLCONFIG_HPP

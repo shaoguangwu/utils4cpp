@@ -56,27 +56,26 @@ UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
     \brief 
     \TODO comments
 */
-template<class InputT, class OutputT, 
-    class = if_char<InputT>, class = if_character<OutputT>>
+template<class InputT, class OutputT>
 class UCharCvt 
 {
 public:
-    using input_type = primitive_t<InputT>;
-    using output_type = primitive_t<OutputT>;
+    using input_type = std::enable_if_t<is_char_v<InputT>, primitive_t<InputT>>;
+    using output_type = std::enable_if_t<is_character_v<OutputT>, primitive_t<OutputT>>;
 
     static std::optional<output_type> convert(input_type c)
     {
-        if constexpr (std::is_same_v<c, wchar_t>) {
+        if constexpr (std::is_same_v<output_type, wchar_t>) {
             return charToWChar(c);
         }
-        else if constexpr (std::is_same_v<c, char16_t>) {
+        else if constexpr (std::is_same_v<output_type, char16_t>) {
             return charToU16Char(c);
         }
-        else if constexpr (std::is_same_v<c, char32_t>) {
+        else if constexpr (std::is_same_v<output_type, char32_t>) {
             return charToU32Char(c);
         }
 #if UTILS4CPP_HAS_CHAR8T
-        else if constexpr (std::is_same_v<c, char8_t>) {
+        else if constexpr (std::is_same_v<output_type, char8_t>) {
             return charToU8Char(c);
         }
 #endif // UTILS4CPP_HAS_CHAR8T
@@ -90,14 +89,13 @@ template<class InputT>
 class UCharCvt<InputT, InputT>
 {
 public:
-    using input_type = primitive_t<InputT>;
-    using output_type = primitive_t<InputT>;
+    using input_type = std::enable_if_t<is_character_v<InputT>, primitive_t<InputT>>;
+    using output_type = input_type;
 
     static std::optional<output_type> convert(input_type c)
     {
         return c;
     }
-
 };
 
 template<>
@@ -111,7 +109,6 @@ public:
     {
         return wcharToChar(c);
     }
-
 };
 
 }

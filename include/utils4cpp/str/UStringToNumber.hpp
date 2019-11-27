@@ -61,7 +61,7 @@ namespace utils4cpp::str {
     \sa if_std_string_or_wstring, if_integral
 */
 template<class StringT, class NumberT, bool Except = true,
-    class = if_std_string_or_wstring<StringT>,
+    class = if_std_char_or_wchar_string<StringT>,
     class = if_integral<primitive_t<NumberT>>>
 inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos = 0, int base = 0) noexcept(!Exception)
 {
@@ -117,7 +117,7 @@ inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos 
     \sa if_std_string_or_wstring, if_floating_point
 */
 template<class StringT, class NumberT, bool Except = true,
-    class = if_std_string_or_wstring<StringT>,
+    class = if_std_char_or_wchar_string<StringT>,
     class = if_floating_point<primitive_t<NumberT>>>
 inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos = 0) noexcept(!Except)
 {

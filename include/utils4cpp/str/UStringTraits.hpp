@@ -39,7 +39,6 @@
 #include <charconv>
 
 #include "utils4cpp/str/UStringGlobal.hpp"
-#include "utils4cpp/str/UStringView.hpp"
 #include "utils4cpp/str/UStringToNumber.hpp"
 
 namespace utils4cpp::str {

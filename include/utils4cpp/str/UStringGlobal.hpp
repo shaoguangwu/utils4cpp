@@ -62,137 +62,148 @@ inline void uSwapChar(CharT &a, CharT& b) noexcept
     a = a ^ b;
 }
 
+//
+//  convertible to stl-style string traits
+//
+
+template<class StringT>
+using is_convertible_to_stlstyle_string = u_and<
+    std::is_convertible<const StringT&, std::basic_string<
+    typename StringT::value_type, typename StringT::traits_type, typename StringT::allocator_type>>,
+    u_not<std::is_convertible<const StringT&, const typename StringT::value_type *>>>;
+
+template<class StringT>
+inline constexpr bool is_convertible_to_stlstyle_string_v = is_convertible_to_stlstyle_string<StringT>::value;
+
+template<class StringT>
+using if_convertible_to_stlstyle_string = std::enable_if_t<is_convertible_to_stlstyle_string_v<StringT>, StringT>;
+
 namespace detail {
 
 template<class StringT, class CharT>
-using _is_std_basic_string = u_and<
+using _is_stlstyle_string = u_and<
     std::is_same<typename StringT::value_type, CharT>,
-    std::is_convertible<const StringT&,
-    std::basic_string<CharT, typename StringT::traits_type, typename StringT::allocator_type>>,
-    u_not<std::is_convertible<const StringT&, const CharT *>>>;
+    std::is_same<StringT, std::basic_string<
+    typename StringT::value_type,
+    typename StringT::traits_type,
+    typename StringT::allocator_type>>>;
 
 template<class StringT, class CharT>
-struct _std_basic_string_traits
-{
-    using is = _is_std_basic_string<StringT, CharT>;
-    using type = typename std::enable_if_t<is::value, StringT>;
-};
+inline constexpr bool _is_stlstyle_string_v = _is_stlstyle_string<StringT, CharT>::value;
+
+template<class StringT, class CharT>
+using _if_stlstyle_string = std::enable_if_t<_is_stlstyle_string_v<StringT, CharT>, StringT>;
 
 } // namespace utils4cpp::str::detail
 
 //
-// std_basic_string_traits
+// std::basic_string traits
 //
 
 template<class StringT>
-using std_basic_string_traits = detail::_std_basic_string_traits<StringT, typename StringT::value_type>;
-
-template<class StringT>
-using is_std_basic_string = typename std_basic_string_traits<StringT>::is;
+using is_std_basic_string = detail::_is_stlstyle_string<StringT, typename StringT::value_type>;
 
 template<class StringT>
 inline constexpr bool is_std_basic_string_v = is_std_basic_string<StringT>::value;
 
 template<class StringT>
-using if_std_basic_string = typename std_basic_string_traits<StringT>::type;
+using if_std_basic_string = std::enable_if_t<is_std_basic_string_v<StringT>, StringT>;
 
 //
-// std_string_traits
-//
-
-template<class StringT>
-using std_string_traits = detail::_std_basic_string_traits<StringT, typename std::string::value_type>;
-
-template<class StringT>
-using is_std_string = typename std_string_traits<StringT>::is;
-
-template<class StringT>
-inline constexpr bool is_std_string_v = is_std_string<StringT>::value;
-
-template<class StringT>
-using if_std_string = typename std_string_traits<StringT>::type;
-
-//
-// std_wstring_traits
+// std char string traits
 //
 
 template<class StringT>
-using std_wstring_traits = detail::_std_basic_string_traits<StringT, typename std::wstring::value_type>;
+using is_std_char_string = detail::_is_stlstyle_string<StringT, char>;
 
 template<class StringT>
-using is_std_wstring = typename std_wstring_traits<StringT>::is;
+inline constexpr bool is_std_char_string_v = is_std_char_string<StringT>::value;
 
 template<class StringT>
-inline constexpr bool is_std_wstring_v = is_std_wstring<StringT>::value;
-
-template<class StringT>
-using if_std_wstring = typename std_wstring_traits<StringT>::type;
+using if_std_char_string = std::enable_if_t<is_std_char_string_v<StringT>, StringT>;
 
 //
-// std_u16string_traits
+// std wchar_t string traits
 //
 
 template<class StringT>
-using std_u16string_traits = detail::_std_basic_string_traits<StringT, typename std::u16string::value_type>;
+using is_std_wchar_string = detail::_is_stlstyle_string<StringT, wchar_t>;
 
 template<class StringT>
-using is_std_u16string = typename std_u16string_traits<StringT>::is;
+inline constexpr bool is_std_wchar_string_v = is_std_wchar_string<StringT>::value;
 
 template<class StringT>
-inline constexpr bool is_std_u16string_v = is_std_u16string<StringT>::value;
-
-template<class StringT>
-using if_std_u16string = typename std_u16string_traits<StringT>::type;
+using if_std_wchar_string = std::enable_if_t<is_std_wchar_string_v<StringT>, StringT>;
 
 //
-// std_u32string_traits
+// std char16 string traits
 //
 
 template<class StringT>
-using std_u32string_traits = detail::_std_basic_string_traits<StringT, typename std::u32string::value_type>;
+using is_std_char16_string = detail::_is_stlstyle_string<StringT, char16_t>;
 
 template<class StringT>
-using is_std_u32string = typename std_u32string_traits<StringT>::is;
+inline constexpr bool is_std_char16_string_v = is_std_char16_string<StringT>::value;
 
 template<class StringT>
-inline constexpr bool is_std_u32string_v = is_std_u32string<StringT>::value;
+using if_std_char16_string = std::enable_if_t<is_std_char16_string_v<StringT>, StringT>;
+
+//
+// std char32 string traits
+//
 
 template<class StringT>
-using if_std_u32string = typename std_u32string_traits<StringT>::type;
+using is_std_char32_string = detail::_is_stlstyle_string<StringT, char32_t>;
+
+template<class StringT>
+inline constexpr bool is_std_char32_string_v = is_std_char32_string<StringT>::value;
+
+template<class StringT>
+using if_std_char32_string = std::enable_if_t<is_std_char32_string_v<StringT>, StringT>;
 
 #if UTILS4CPP_HAS_U8STRING
 
 //
-// std_u8string_traits
+// std char8_t string traits
 //
 
 template<class StringT>
-using std_u8string_traits = detail::_std_basic_string_traits<StringT, typename std::u8string::value_type>;
+using is_std_char8_string = detail::_is_stlstyle_string<StringT, char8_t>;
 
 template<class StringT>
-using is_std_u8string = typename std_u8string_traits<StringT>::is;
+inline constexpr bool is_std_char8_string_v = is_std_char8_string<StringT>::value;
 
 template<class StringT>
-inline constexpr bool is_std_u8string_v = is_std_u8string<StringT>::value;
+using if_std_char8_string = std::enable_if_t<is_std_char8_string_v<StringT>, StringT>;
+
+//
+// std char string or std char8_t string traits
+//
 
 template<class StringT>
-using if_std_u8string = typename std_u8string_traits<StringT>::type;
+using is_std_char_or_char8_string = u_or<is_std_char_string<StringT>, is_std_char8_string<StringT>>;
+
+template<class StringT>
+inline constexpr bool is_std_char_or_char8_string_v = is_std_char_or_char8_string<StringT>::value;
+
+template<class StringT>
+using if_std_char_or_char8_string = std::enable_if_t<is_std_char_or_char8_string_v<StringT>, StringT>;
 
 #endif // UTILS4CPP_HAS_U8STRING
 
 //
-// std_string_or_wstring_traits
+// std char string or std wchar_t string traits
 //
 
 template<class StringT>
-using is_std_string_or_wstring = u_or<is_std_string<StringT>, is_std_wstring<StringT>>;
+using is_std_char_or_wchar_string = u_or<is_std_char_string<StringT>, is_std_wchar_string<StringT>>;
 
 template<class StringT>
-inline constexpr bool is_std_string_or_wstring_v = is_std_string_or_wstring<StringT>::value;
+inline constexpr bool is_std_char_or_wchar_string_v = is_std_char_or_wchar_string<StringT>::value;
 
 template<class StringT>
-using if_std_string_or_wstring = std::enable_if_t<is_std_string_or_wstring_v<StringT>, StringT>;
+using if_std_char_or_wchar_string = std::enable_if_t<is_std_char_or_wchar_string_v<StringT>, StringT>;
 
-} // namespace utils4cpp::global
+} // namespace utils4cpp::str
 
 #endif // UTILS4CPP_STR_USTRINGGLOBAL_HPP

@@ -36,7 +36,6 @@
 
 #include <type_traits>
 #include "utils4cpp/str/UStringUtils.hpp"
-#include "utils4cpp/str/UStringView.hpp"
 
 namespace utils4cpp {
 namespace str {
