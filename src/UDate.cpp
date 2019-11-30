@@ -48,7 +48,7 @@ namespace datetime {
 
 static const char monthDays[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-/*!
+/**
     \internal
     Division, rounding down (rather than towards zero).
 
@@ -124,7 +124,7 @@ static inline UDate fixedDate(int y, int m, int d)
   Date member functions
  *****************************************************************************/
 
-/*!
+/**
     Constructs an invalid date.
 
     \sa isValid()
@@ -134,7 +134,7 @@ UDate::UDate()
     makeInvalid();
 }
 
-/*!
+/**
     Constructs a date with year \a y, month \a m and day \a d.
 
     If the specified date is invalid, the date is set to default 
@@ -155,7 +155,7 @@ UDate::UDate(int y, int m, int d, int dst)
     setDate(y, m, d, dst);
 }
 
-/*!
+/**
     Constructs a date with std::tm structur \a tm.
 
     \sa isValid()
@@ -165,7 +165,7 @@ UDate::UDate(const std::tm& tm)
     fromTm(tm);
 }
 
-/*!
+/**
     Returns the year of this date. Negative numbers indicate years
     before 1 CE, such that year -44 is 44 BCE.
 
@@ -178,7 +178,7 @@ int UDate::year() const
     return m_dt.year;
 }
 
-/*!
+/**
     Returns the number corresponding to the month of this date, using
     the following convention:
 
@@ -204,7 +204,7 @@ int UDate::month() const
     return m_dt.mon;
 }
 
-/*!
+/**
     Returns the day of the month (1 to 31) of this date.
 
     Returns 0 if the date is invalid.
@@ -216,7 +216,7 @@ int UDate::day() const
     return m_dt.mday;
 }
 
-/*!
+/**
     Returns the daylight saving time flag.
 
     The value is positive if DST is in effect, zero if not and negative if no information is available.
@@ -226,7 +226,7 @@ int UDate::dst() const
     return m_dt.isdst;
 }
 
-/*!
+/**
     Returns the weekday (1 = Monday to 7 = Sunday) for this date.
 
     Returns 0 if the date is invalid. Using the following convention:
@@ -246,7 +246,7 @@ int UDate::dayOfWeek() const
     return m_dt.wday;
 }
 
-/*!
+/**
     Returns the day of the year (1 to 365 or 366 on leap years) for
     this date.
 
@@ -259,7 +259,7 @@ int UDate::dayOfYear() const
     return m_dt.yday;
 }
 
-/*!
+/**
     Returns the number of days in the month (28 to 31) for this date.
 
     Returns 0 if the date is invalid.
@@ -274,7 +274,7 @@ int UDate::daysInMonth() const
         return monthDays[m_dt.mon];
 }
 
-/*!
+/**
     Returns the number of days in the year (365 or 366) for this date.
 
     Returns 0 if the date is invalid.
@@ -289,7 +289,7 @@ int UDate::daysInYear() const
     return isLeapYear(m_dt.year) ? 366 : 365;
 }
 
-/*!
+/**
     Returns \c true if this date is valid; otherwise returns \c false.
 */
 bool UDate::isValid() const
@@ -297,7 +297,7 @@ bool UDate::isValid() const
     return UDate::isValid(m_dt.year, m_dt.mon, m_dt.mday);
 }
 
-/*!
+/**
     Sets the date's year \a y, month \a m, and day \a d. Returns \c true if
     the date is valid; otherwise returns \c false.
 
@@ -322,7 +322,7 @@ bool UDate::setDate(int y, int m, int d, int dst)
     return false;
 }
 
-/*!
+/**
     Extracts the date's year, month, and day, and assigns them to
     \a year, \a month, and \a day.
 
@@ -335,7 +335,7 @@ void UDate::getDate(int& year, int& month, int& day) const
     day = m_dt.mday;
 }
 
-/*!
+/**
     Sets this date with a tm structur.
 
     \sa toTm()
@@ -350,7 +350,7 @@ void UDate::fromTm(const std::tm& tm)
     m_dt.isdst = tm.tm_isdst;
 }
 
-/*!
+/**
     Converts date to a tm struct.
 
     \sa fromTm()
@@ -368,7 +368,7 @@ std::tm UDate::toTm()
     return datetm;
 }
 
-/*!
+/**
     Converts this date to julian day.
 
     If this date is invalid, returns 0;
@@ -381,7 +381,7 @@ std::int64_t UDate::toJulianDay() const
         return 0;
 }
 
-/*!
+/**
     Converts julian day to date.
 */
 UDate UDate::fromJulianDay(std::int64_t julianDay)
@@ -410,7 +410,7 @@ UDate UDate::fromJulianDay(std::int64_t julianDay)
     return UDate(year, month, day);
 }
 
-/*!
+/**
     Returns the number of days from this date to \a d (which is
     negative if \a d is earlier than this date).
 
@@ -424,7 +424,7 @@ std::int64_t UDate::daysTo(const UDate& d) const
         return toJulianDay() - d.toJulianDay();
 }
 
-/*!
+/**
     Returns a Date object containing a date \a ndays later than the
     date of this object (or earlier if \a ndays is negative).
 
@@ -443,7 +443,7 @@ UDate UDate::addDays(std::int64_t days) const
         return fromJulianDay(toJulianDay() + days);
 }
 
-/*!
+/**
     Returns the date as a string. The \a format parameter determines
     the format of the result string.
 
@@ -468,7 +468,7 @@ std::string UDate::toString(const char* format)
 	return result;
 }
 
-/*!
+/**
     Returns the date as a wide string. The \a format parameter determines
     the format of the result string.
 
@@ -492,7 +492,7 @@ std::wstring UDate::toWString(const wchar_t* format)
     return result;
 }
 
-/*!
+/**
     Returns a Date object containing a date \a nmonths later than the
     date of this object (or earlier if \a nmonths is negative).
 
@@ -556,7 +556,7 @@ UDate UDate::addMonths(int months) const
     return fixedDate(y, m, d);
 }
 
-/*!
+/**
     Returns a Date object containing a date \a nyears later than the
     date of this object (or earlier if \a nyears is negative).
 
@@ -585,7 +585,7 @@ UDate UDate::addYears(int nyears) const
     return fixedDate(y, m_dt.mon, m_dt.mday);
 }
 
-/*!
+/**
     Sets the Date object to be default invalid state.
 
     \sa isValid()
@@ -596,7 +596,7 @@ void UDate::makeInvalid()
     m_dt.isdst = -1;
 }
 
-/*!
+/**
     Returns \c true if this date is equal to \a d; otherwise returns \c false.
 
     \sa operator!=()
@@ -608,7 +608,7 @@ bool UDate::operator==(const UDate& other) const
         && m_dt.mday == other.m_dt.mday;
 }
 
-/*!
+/**
     Returns \c true if this date is different from \a d; otherwise
     returns \c false.
 
@@ -621,7 +621,7 @@ bool UDate::operator!=(const UDate& other) const
         || m_dt.mday != m_dt.mday;
 }
 
-/*!
+/**
     Returns \c true if this date is earlier than \a d; otherwise returns \c false.
 
     \sa operator>(), operator<=()
@@ -631,7 +631,7 @@ bool UDate::operator<(const UDate& other) const
     return toJulianDay() < other.toJulianDay();
 }
 
-/*!
+/**
     Returns \c true if this date is earlier than or equal to \a d;
     otherwise returns \c false.
 
@@ -644,7 +644,7 @@ bool UDate::operator<=(const UDate& other) const
     return *this < other;
 }
 
-/*!
+/**
     Returns \c true if this date is later than \a d; otherwise returns \c false.
 
     \sa operator>=(), operator<()
@@ -654,7 +654,7 @@ bool UDate::operator>(const UDate& other) const
     return toJulianDay() > other.toJulianDay();
 }
 
-/*!
+/**
     Returns \c true if this date is later than or equal to \a d;
     otherwise returns \c false.
 
@@ -667,7 +667,7 @@ bool UDate::operator>=(const UDate& other) const
     return *this > other;
 }
 
-/*!
+/**
     Returns \c true if daylight savings time flag is same to \a other's daylight savings time flag,
     otherwise returns \c false.
 
@@ -684,7 +684,7 @@ bool UDate::isDstFlagSameTo(const UDate& other) const
     }
 }
 
-/*!
+/**
     Returns \c true if this month \a m has 31 days;
     otherwise returns \c false.
 */
@@ -694,7 +694,7 @@ bool UDate::is31Days(int m)
         || m == Month::Aug || m == Month::Oct || m == Month::Dec;
 }
 
-/*!
+/**
     Returns \c true if this month \a m has 30 days;
     otherwise returns \c false.
 */
@@ -703,7 +703,7 @@ bool UDate::is30Days(int m)
     return m == Month::Apr || m == Month::June || m == Month::Sept || m == Month::Nov;
 }
 
-/*!
+/**
     Returns \c true if this date (\a year, \a month, \a day) is valid;
     otherwise returns \c false.
 */
@@ -719,7 +719,7 @@ bool UDate::isValid(int y, int m, int d)
         return isLeapYear(y) ? (uint)d <= 29 : (uint)d <= 28;
 }
 
-/*!
+/**
     Returns \c true if the specified \a year is a leap year; otherwise
     returns \c false.
 */
@@ -732,7 +732,7 @@ bool UDate::isLeapYear(int y)
     return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
 }
 
-/*!
+/**
     Returns \c true if this date is earlier than Gregorian Calendar(1582.10.04);
     otherwise returns \c false.
 */
@@ -747,7 +747,7 @@ bool UDate::beforGregorianCalendar(int year, int month, int day)
     return true;
 }
 
-/*!
+/**
     Returns \c true if this date \a d is earlier than Gregorian Calendar(1582.10.04);
     otherwise returns \c false.
 */
@@ -756,7 +756,7 @@ bool UDate::beforGregorianCalendar(const UDate& d)
     return beforGregorianCalendar(d.m_dt.year, d.m_dt.mon, d.m_dt.mday);
 }
 
-/*!
+/**
     Returns the day of the year (1 to 365 or 366 on leap years) for this date.
 
     Returns 0 if the date is invalid.
@@ -776,7 +776,7 @@ int UDate::dayOfYear(int year, int month, int day)
         return days + day;
 }
 
-/*!
+/**
     Returns the weekday (1 = Monday to 7 = Sunday) for this date (\a year, \a month, \a day).
     Using the following convention:
 
@@ -807,7 +807,7 @@ int UDate::dayOfWeek(int year, int month, int day)
     return weekday;
 }
 
-/*!
+/**
     Returns the current local date, as reported by the system clock.
 */
 UDate UDate::currentLocalDate()
@@ -826,7 +826,7 @@ UDate UDate::currentLocalDate()
     return UDate(tm);
 }
 
-/*!
+/**
     Returns the current GM(Greenwish Mean) date, as reported by the system clock.
 */
 UDate UDate::currentGmDate()
@@ -849,7 +849,7 @@ UDate UDate::currentGmDate()
   Date frriend functions
  *****************************************************************************/
 
-/*!
+/**
     Writes the \a date to stream \a out.
 */
 UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const UDate& date)

@@ -59,9 +59,6 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UOsDetection.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UStlConfig.hpp">
-      <Filter>include\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UVersion.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
@@ -122,16 +119,22 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringConvert.hpp">
-      <Filter>include\str</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCompilerDetection.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UProcessorDetection.hpp">
       <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UCharConvert.hpp">
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppFeatures.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardAttributes.hpp">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UCharCvt.hpp">
+      <Filter>include\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringCvt.hpp">
       <Filter>include\str</Filter>
     </ClInclude>
   </ItemGroup>

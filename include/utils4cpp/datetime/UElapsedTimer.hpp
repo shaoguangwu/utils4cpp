@@ -41,7 +41,7 @@
 namespace utils4cpp {
 namespace datetime {
 
-/*!
+/**
 	\class UElapsedTimer
     \since v0.0
 

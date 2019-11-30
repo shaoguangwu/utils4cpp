@@ -18,83 +18,35 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCompilerDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCore.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardAttributes.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UDocConfig.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UExport.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UProcessorDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppFeatures.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UOsDetection.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UTypeTraits.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UVersion.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datastructure\UMatrix.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDate.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDateTime.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UDateTimeGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UElapsedTimer.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\datetime\UTime.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UDir.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UFile.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UFileSystemGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPath.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPathToString.inl" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\filesystem\UPathUtils.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UCuboid.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URange.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\UPoint.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\URect.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\geometry\USize.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UCharCvt.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringCvt.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringToNumber.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringTraits.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UString.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringGlobal.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringList.hpp" />
-    <ClInclude Include="..\..\..\..\include\utils4cpp\str\UStringUtils.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\UCharConvert.cpp" />
-    <ClCompile Include="..\..\..\..\src\UDate.cpp" />
-    <ClCompile Include="..\..\..\..\src\UDateTime.cpp" />
-    <ClCompile Include="..\..\..\..\src\UDir.cpp" />
-    <ClCompile Include="..\..\..\..\src\UElapsedTimer.cpp" />
-    <ClCompile Include="..\..\..\..\src\UFile.cpp" />
-    <ClCompile Include="..\..\..\..\src\UStringConvert.cpp" />
-    <ClCompile Include="..\..\..\..\src\UTime.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A890A3FF-5C1E-4853-A68B-D26B24F63268}</ProjectGuid>
+    <ProjectGuid>{453EFFCE-8FF3-4E00-84F4-2AC8ACAA39CF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>shared</RootNamespace>
+    <RootNamespace>teststr</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -120,19 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>utils4cppd</TargetName>
+    <IncludePath>C:\Users\Shaoguang\Documents\GitHub\utils4cpp\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>utils4cppd</TargetName>
+    <IncludePath>C:\Users\Shaoguang\Documents\GitHub\utils4cpp\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>utils4cpp</TargetName>
+    <IncludePath>C:\Users\Shaoguang\Documents\GitHub\utils4cpp\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>utils4cpp</TargetName>
+    <IncludePath>C:\Users\Shaoguang\Documents\GitHub\utils4cpp\include;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,21 +97,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);UTILS4CPP_HAS_DLL;UTILS4CPP_DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(OutDir)*.dll ..\..\..\..\bin\shared\$(PlatformTarget)\
-copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -164,22 +114,15 @@ copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);UTILS4CPP_HAS_DLL;UTILS4CPP_DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(OutDir)*.dll ..\..\..\..\bin\shared\$(PlatformTarget)\
-copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -190,23 +133,17 @@ copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);UTILS4CPP_HAS_DLL;UTILS4CPP_DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(OutDir)*.dll ..\..\..\..\bin\shared\$(PlatformTarget)\
-copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -217,25 +154,29 @@ copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);UTILS4CPP_HAS_DLL;UTILS4CPP_DLL_EXPORT</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>../../../../include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>copy $(OutDir)*.dll ..\..\..\..\bin\shared\$(PlatformTarget)\
-copy $(OutDir)*.lib ..\..\..\..\bin\shared\$(PlatformTarget)\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\UCharConvert.cpp" />
+    <ClCompile Include="..\..\..\src\UDate.cpp" />
+    <ClCompile Include="..\..\..\src\UDateTime.cpp" />
+    <ClCompile Include="..\..\..\src\UDir.cpp" />
+    <ClCompile Include="..\..\..\src\UElapsedTimer.cpp" />
+    <ClCompile Include="..\..\..\src\UFile.cpp" />
+    <ClCompile Include="..\..\..\src\UStringConvert.cpp" />
+    <ClCompile Include="..\..\..\src\UTime.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

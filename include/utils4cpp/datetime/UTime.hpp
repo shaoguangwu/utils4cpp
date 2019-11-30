@@ -43,7 +43,7 @@
 namespace utils4cpp {
 namespace datetime {
 
-/*!
+/**
 	\class UTime
     \since v0.0
 

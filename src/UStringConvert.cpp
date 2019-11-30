@@ -33,7 +33,7 @@
 
 #include <cuchar>
 #include <cwchar>
-#include "utils4cpp/str/UStringConvert.hpp"
+#include "utils4cpp/str/UStringCvt.hpp"
 
 namespace utils4cpp::str {
 
@@ -141,7 +141,7 @@ std::string u16stringToString(const std::u16string& str)
 }
 
 UTILS4CPP_EXPORT 
-std::u16string strinngToU16String(const std::string& str)
+std::u16string stringToU16String(const std::string& str)
 {
     using input_type = std::string;
     using input_char_type = typename input_type::value_type;
@@ -246,7 +246,7 @@ std::u32string stringToU32String(const std::string& str)
     return result;
 }
 
-#if UTILS4CPP_HAS_U8STRING
+#if UTILS4CPP_HAS_CHAR8T
 
 UTILS4CPP_EXPORT 
 std::string u8stringToString(const std::u8string& str)

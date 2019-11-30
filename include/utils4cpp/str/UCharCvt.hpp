@@ -40,13 +40,12 @@
 
 namespace utils4cpp::str {
 
-UTILS4CPP_EXPORT std::optional<wchar_t> charToWChar(char c);
 UTILS4CPP_EXPORT std::optional<char> wcharToChar(std::wint_t c);
-
+UTILS4CPP_EXPORT std::optional<wchar_t> charToWChar(char c);
 UTILS4CPP_EXPORT std::optional<char16_t> charToU16Char(char c);
 UTILS4CPP_EXPORT std::optional<char32_t> charToU32Char(char c);
 
-#if UTILS4CPP_HAS_U8STRING
+#if UTILS4CPP_HAS_CHAR8T
 UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
 #endif // UTILS4CPP_HAS_U8STRING
 
@@ -57,13 +56,13 @@ UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
     \TODO comments
 */
 template<class InputT, class OutputT>
-class UCharCvt 
+class UCharCvt
 {
 public:
-    using input_type = std::enable_if_t<is_char_v<InputT>, primitive_t<InputT>>;
-    using output_type = std::enable_if_t<is_character_v<OutputT>, primitive_t<OutputT>>;
+    using input_type = if_char<InputT>;
+    using output_type = if_character<OutputT>;
 
-    static std::optional<output_type> convert(input_type c)
+    static std::optional<output_type> convert(UTILS4CPP_ATTR_MAYBE_UNUSED input_type c)
     {
         if constexpr (std::is_same_v<output_type, wchar_t>) {
             return charToWChar(c);
@@ -89,7 +88,7 @@ template<class InputT>
 class UCharCvt<InputT, InputT>
 {
 public:
-    using input_type = std::enable_if_t<is_character_v<InputT>, primitive_t<InputT>>;
+    using input_type = if_character<InputT>;
     using output_type = input_type;
 
     static std::optional<output_type> convert(input_type c)

@@ -201,7 +201,7 @@ std::wstring UTime::toWString(const wchar_t* format) const
     return result;
 }
 
-/*!   
+/**   
     \todo
 */
 std::string UTime::sprintfTime(const char* format) const
@@ -209,7 +209,7 @@ std::string UTime::sprintfTime(const char* format) const
     return std::string();
 }
 
-/*!
+/**
     \todo
 */
 std::wstring UTime::sprintfTime(const wchar_t* format) const
@@ -243,7 +243,7 @@ bool UTime::operator>=(const UTime& other) const
     return m_msecs >= other.m_msecs;
 }
 
-/*!
+/**
     Returns \c true if daylight savings time flag is same to \a other's daylight savings time flag,
     otherwise returns \c false.
 
@@ -306,7 +306,7 @@ UTime UTime::currentGmTime()
     return { tm.tm_hour, tm.tm_min, tm.tm_sec, tb.millitm, tb.dstflag };
 }
 
-/*!
+/**
     Writes the \a time to stream \a out.
 */
 UTILS4CPP_EXPORT std::ostream& operator<<(std::ostream& out, const UTime& time)

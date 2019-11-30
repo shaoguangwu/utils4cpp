@@ -95,9 +95,6 @@
 #       else
 #          define UTILS4CPP_OS_MACOS
 #       endif
-#
-#   else
-#       warning "Unknown Apple platform."
 #   endif
 #
 #elif defined(__ANDROID__) || defined(ANDROID)
@@ -183,13 +180,9 @@
 #   define UTILS4CPP_OS_HAIKU
 #
 #elif defined(__MAKEDEPEND__)
-#
-#else
-#   warning "Unknown OS."
 #endif
 
-
-
+// ==============================================================================
 
 #if defined(UTILS4CPP_OS_WIN32) || defined(UTILS4CPP_OS_WIN64) || defined(UTILS4CPP_OS_WINRT)
 #   define UTILS4CPP_OS_WIN

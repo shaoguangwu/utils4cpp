@@ -39,19 +39,20 @@
 
 #include <locale>
 #include <string>
+#include <string_view>
 
 #include "utils4cpp/core/UCore.hpp"
 #include "utils4cpp/core/UTypeTraits.hpp"
 
 namespace utils4cpp::str {
 
-/*! Indicates case sensitive or not. */
+/** Indicates case sensitive or not. */
 enum UCaseSensitivity {
     UCaseInsensitive,                ///< Case insensitive.  (no)
     UCaseSensitive                   ///< Case sensitive.    (yes)
 };
 
-/*!
+/**
     Swap char \a a and \a b with no intermediate variable.
 */
 template<typename CharT>
@@ -76,7 +77,8 @@ template<class StringT>
 inline constexpr bool is_convertible_to_stlstyle_string_v = is_convertible_to_stlstyle_string<StringT>::value;
 
 template<class StringT>
-using if_convertible_to_stlstyle_string = std::enable_if_t<is_convertible_to_stlstyle_string_v<StringT>, StringT>;
+using if_convertible_to_stlstyle_string = std::enable_if_t<
+    is_convertible_to_stlstyle_string_v<StringT>, primitive_t<StringT>>;
 
 namespace detail {
 
@@ -161,11 +163,11 @@ inline constexpr bool is_std_char32_string_v = is_std_char32_string<StringT>::va
 template<class StringT>
 using if_std_char32_string = std::enable_if_t<is_std_char32_string_v<StringT>, StringT>;
 
-#if UTILS4CPP_HAS_U8STRING
-
 //
 // std char8_t string traits
 //
+
+#if UTILS4CPP_HAS_CHAR8T
 
 template<class StringT>
 using is_std_char8_string = detail::_is_stlstyle_string<StringT, char8_t>;
@@ -189,7 +191,7 @@ inline constexpr bool is_std_char_or_char8_string_v = is_std_char_or_char8_strin
 template<class StringT>
 using if_std_char_or_char8_string = std::enable_if_t<is_std_char_or_char8_string_v<StringT>, StringT>;
 
-#endif // UTILS4CPP_HAS_U8STRING
+#endif // UTILS4CPP_HAS_CHAR8T
 
 //
 // std char string or std wchar_t string traits

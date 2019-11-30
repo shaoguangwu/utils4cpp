@@ -34,7 +34,6 @@
 #ifndef UTILS4CPP_STR_USTRINGTONUMBER_INL
 #define UTILS4CPP_STR_USTRINGTONUMBER_INL
 
-#include "utils4cpp/core/UTypeTraits.hpp"
 #include "utils4cpp/str/UStringGlobal.hpp"
 
 namespace utils4cpp::str {

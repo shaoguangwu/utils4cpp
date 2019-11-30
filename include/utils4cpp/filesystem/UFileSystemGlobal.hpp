@@ -42,13 +42,13 @@
 #endif /* UTILS4CPP_HAS_STDFILESYSTEM */ 
 
 namespace utils4cpp {
-/*!
+/**
     \brief file system libraries.
     \since v0.0
 */
 namespace filesystem {
 
-/*!
+/**
     Returns the path separator on native operating system.
     The template parameter \a CharT must one of char, wchar_t, char16_t, char32_t, 
     char8_t(c++20).

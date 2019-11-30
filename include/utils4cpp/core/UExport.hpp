@@ -34,12 +34,12 @@
 #ifndef UTILS4CPP_CORE_UEXPORT_HPP
 #define UTILS4CPP_CORE_UEXPORT_HPP
 
-/*!
+/**
     \def UTILS4CPP_DECL_EXPORT
     Declare export symbol for utils4cpp library.
 */
 
-/*!
+/**
     \def UTILS4CPP_DECL_IMPORT
     Declare import symbol for utils4cpp library.
 */
@@ -54,7 +54,7 @@
 #   define UTILS4CPP_DECL_IMPORT
 #endif
 
-/*!
+/**
     \def UTILS4CPP_EXPORT
     The export/import symbol for utils4cpp library.
 */
@@ -69,7 +69,7 @@
 #endif
 
 #ifndef UTILS4CPP_EXPORT
-#   define UTILS4CPP_EXPORT     /*! Ensure defined */
+#   define UTILS4CPP_EXPORT     /** Ensure defined */
 #endif
 
 #endif // UTILS4CPP_CORE_UEXPORT_HPP

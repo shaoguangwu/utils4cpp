@@ -35,7 +35,7 @@
 #define UTILS4CPP_DATETIME_UDATETIMEGLOBAL_HPP
 
 namespace utils4cpp {
-/*!
+/**
     \brief Date-time libraries.
     \since v0.0
 */

@@ -42,7 +42,7 @@
 namespace utils4cpp {
 namespace filesystem {
 
-/*!
+/**
     \class UPath
     \brief Objects of type path represent paths on a filesystem. 
     \since v0.0
@@ -54,20 +54,20 @@ template<class StringT>
 class UPath
 {
 public:
-    /*! Typedef for StringT::value_type. Provided for STL compatibility. */
+    /** Typedef for StringT::value_type. Provided for STL compatibility. */
     using valu_type = typename StringT::value_type;
-    /*! Typedef for StringT. Provided for STL compatibility. */
+    /** Typedef for StringT. Provided for STL compatibility. */
     using string_type = StringT;
-    /*! Typedef for StringT::size_type. Provided for STL compatibility. */
+    /** Typedef for StringT::size_type. Provided for STL compatibility. */
     using size_type = typename StringT::size_type;
 
 public:
-    /*! 
+    /** 
         Constructs an empty path.
     */
     UPath() noexcept(std::is_nothrow_default_constructible_v<StringT>) = default;
 
-    /*!
+    /**
         Destroys the path object.
     */
     ~UPath() = default;

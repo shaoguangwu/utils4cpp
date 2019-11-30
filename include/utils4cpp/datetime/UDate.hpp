@@ -44,7 +44,7 @@
 namespace utils4cpp {
 namespace datetime {
 
-/*!
+/**
     \class UDate
     \since v0.0
 
@@ -52,7 +52,7 @@ namespace datetime {
 */
 class UTILS4CPP_EXPORT UDate
 {
-    /*! Structure holding a calendar date broken down into its components. */
+    /** Structure holding a calendar date broken down into its components. */
     struct dt 
     {
         int mday;               //!< day of the month - [1, 31]

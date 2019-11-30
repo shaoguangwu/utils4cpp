@@ -31,22 +31,22 @@
 **
 ************************************************************************************/
 
-#include "utils4cpp/str/UCharConvert.hpp"
+#include "utils4cpp/str/UCharCvt.hpp"
 
 namespace utils4cpp::str {
+
+UTILS4CPP_EXPORT
+std::optional<char> wcharToChar(std::wint_t c)
+{
+    int cn = std::wctob(c);
+    return cn == EOF ? std::nullopt : std::optional<char>{ cn };
+}
 
 UTILS4CPP_EXPORT 
 std::optional<wchar_t> charToWChar(char c)
 {
     std::wint_t w = std::btowc(static_cast<int>(c));
     return w == WEOF ? std::nullopt : std::optional<wchar_t>{ w };
-}
-
-UTILS4CPP_EXPORT 
-std::optional<char> wcharToChar(std::wint_t c)
-{
-    int cn = std::wctob(c);
-    return cn == EOF ? std::nullopt : std::optional<char>{ cn };
 }
 
 UTILS4CPP_EXPORT 
@@ -73,7 +73,7 @@ std::optional<char32_t> charToU32Char(char c)
         std::optional<output_char_type>{ oc } : std::nullopt;
 }
 
-#if UTILS4CPP_HAS_U8STRING
+#if UTILS4CPP_HAS_CHAR8T
 
 UTILS4CPP_EXPORT 
 std::optional<char8_t> charToU8Char(char c)

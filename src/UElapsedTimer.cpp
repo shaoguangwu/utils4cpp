@@ -36,19 +36,19 @@
 namespace utils4cpp {
 namespace datetime {
 
-/*!
+/**
     \var UElapsedTimer::chrono_clock_type
 
     The type of std::chrono clock.
 */
 
-/*!
+/**
     \var UElapsedTimer::elapsed_time_floating_t
 
     The floating type of elapsed time.
 */
 
-/*!
+/**
     Constructs a elapsed timer, and start timing.
 
     \sa reset()
@@ -58,7 +58,7 @@ UElapsedTimer::UElapsedTimer()
 {
 }
 
-/*!
+/**
     Restart timing.
 */
 void UElapsedTimer::restart()
@@ -66,7 +66,7 @@ void UElapsedTimer::restart()
     m_tp = chrono_clock_type::now();
 }
 
-/*!
+/**
     Returns the elapsed time in milliseconds with integer value.
 
     \sa elapsedFloating()
@@ -76,7 +76,7 @@ std::chrono::milliseconds::rep UElapsedTimer::elapsed() const
     return elapsedMilliseconds();
 }
 
-/*!
+/**
     Returns the elapsed time in nanoseconds with integer value.
 
     \sa elapsedNanosecondsFloating()
@@ -86,7 +86,7 @@ std::chrono::nanoseconds::rep UElapsedTimer::elapsedNanoseconds() const
     return std::chrono::duration_cast<std::chrono::nanoseconds>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in microseconds with integer value.
 
     \sa elapsedMicrosecondsFloating()
@@ -96,7 +96,7 @@ std::chrono::microseconds::rep UElapsedTimer::elapsedMicroseconds() const
     return std::chrono::duration_cast<std::chrono::microseconds>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in milliseconds with integer value.
 
     \sa elapsedMillisecondsFloating()
@@ -106,7 +106,7 @@ std::chrono::milliseconds::rep UElapsedTimer::elapsedMilliseconds() const
     return std::chrono::duration_cast<std::chrono::milliseconds>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in seconds with integer value.
 
     sa elapsedSecondsFloating()
@@ -116,7 +116,7 @@ std::chrono::seconds::rep UElapsedTimer::elapsedSeconds() const
     return std::chrono::duration_cast<std::chrono::seconds>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in minutes with integer value.
 
     \sa elapsedMinutesFloating()
@@ -126,7 +126,7 @@ std::chrono::minutes::rep UElapsedTimer::elapsedMinutes() const
     return std::chrono::duration_cast<std::chrono::minutes>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in hours with integer value.
 
     \sa elapsedHoursFloating()
@@ -136,7 +136,7 @@ std::chrono::hours::rep UElapsedTimer::elapsedHours() const
     return std::chrono::duration_cast<std::chrono::hours>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in milliseconds with floating value.
 
     \sa elapsed()
@@ -146,7 +146,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedFloating() const
     return elapsedMillisecondsFloating();
 }
 
-/*!
+/**
     Returns the elapsed time in nanoseconds with floating value.
 
     \sa elapsedNanoseconds()
@@ -156,7 +156,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedNanosecondsFloating
     return static_cast<nanoseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in microseconds with floating value.
 
     \sa elapsedMicroseconds()
@@ -166,7 +166,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMicrosecondsFloatin
     return static_cast<microseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in milliseconds with floating value.
 
     \sa elapsedMilliseconds()
@@ -176,7 +176,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMillisecondsFloatin
     return static_cast<milliseconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in seconds with floating value.
 
     \sa elapsedSeconds()
@@ -186,7 +186,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedSecondsFloating() c
     return static_cast<seconds_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in minutes with floating value.
 
     \sa elapsedMinutes()
@@ -196,7 +196,7 @@ UElapsedTimer::elapsed_time_floating_t UElapsedTimer::elapsedMinutesFloating() c
     return static_cast<minutes_floating_t>(chrono_clock_type::now() - m_tp).count();
 }
 
-/*!
+/**
     Returns the elapsed time in hours with floating value.
 
     \sa elapsedHours()

@@ -46,6 +46,7 @@
     \li RVCT    - ARM Realview Compiler Suite
     \li GNU     - GNU C++
     \li MINGW   - MinGW Compiler for Windows (_GNU)
+    \li MINGW64 - MinGW64 Compiler for Windows (_GNU)
     \li PGI     - Portland Group C++
     \li EDG     - Edison Design Group C++
     \li COMEAU  - Comeau C++
@@ -66,7 +67,7 @@
 #elif defined(_MSC_VER)
 #   define UTILS4CPP_CC_MSVC        (_MSC_VER)
 #   ifdef __clang__
-#       define UTILS4CPP_CC__CLANG  ((__clang_major__ * 100) + __clang_minor__)
+#       define UTILS4CPP_CC_CLANG  ((__clang_major__ * 100) + __clang_minor__)
 #   endif // __clang__
 #   ifdef __INTEL_COMPILER
 #       define UTILS4CPP_CC_INTEL   __INTEL_COMPILER
@@ -83,15 +84,18 @@
 
 #elif defined(__GNUC__)
 #   define UTILS4CPP_CC_GNU    ((__GNUC__ * 100) + __GNUC_MINOR__)
+#   if defined(__MINGW64__)
+#       define UTILS4CPP_CC_MINGW64 (__MINGW64_VERSION_MAJOR * 100) + __MINGW64_VERSION_MINOR)
+#   endif // __MINGW64__
 #   if defined(__MINGW32__)
-#       define UTILS4CPP_CC_MINGW
+#       define UTILS4CPP_CC_MINGW ((__MINGW32_MAJOR_VERSION * 100) + __MINGW32_MINOR_VERSION)
 #   endif // __MINGW32__
 #   if defined(__INTEL_COMPILER)
 /* Intel C++ also masquerades as GCC */
 #       define UTILS4CPP_CC_INTEL   __INTEL_COMPILER
 #       if defined(__clang__)
 /* Intel C++ masquerades as Clang masquerading as GCC */
-#           define UTILS4CPP_CC_CLANG
+#           define UTILS4CPP_CC_CLANG ((__clang_major__ * 100) + __clang_minor__)
 #       endif // __clang__
 #   endif // __INTEL_COMPILER
 

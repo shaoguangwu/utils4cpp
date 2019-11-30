@@ -47,12 +47,12 @@
 namespace utils4cpp {
 namespace str {
 
-/*! StringVector is a sequence container that encapsulates strings. */
+/** StringVector is a sequence container that encapsulates strings. */
 template<class StringT>
 using UStringVector = std::vector<StringT>;
 
 
-/*!
+/**
     Remove character \a ch from string \a str.
 
     The \a option :
@@ -98,7 +98,7 @@ void removeCharacterSelf(StringT& str, typename StringT::value_type ch, int opti
     }
 }
 
-/*!
+/**
     Remove character \a ch from string \a str.
 
     The \a option :
@@ -116,7 +116,7 @@ inline StringT removeCharacter(const StringT& str, typename StringT::value_type 
     return result;
 }
 
-/*!
+/**
     Remove substring \a sub from string \a str.
 
     The \a option :
@@ -161,7 +161,7 @@ void removeSubstrSelf(StringT& str, const StringT& sub, int option = 0)
     }
 }
 
-/*!
+/**
     Remove substring \a sub from string \a str.
 
     The \a option :
@@ -179,7 +179,7 @@ inline StringT removeSubstr(const StringT& str, const StringT& sub, int option =
     return result;
 }
 
-/*!
+/**
     Returns \c true if \a str contains \a ch, otherwise returns \c false.
 
     \sa containsSubstr()
@@ -206,7 +206,7 @@ bool containsCharacter(const StringT& str, typename StringT::value_type ch,
     return false;
 }
 
-/*!
+/**
     Returns \c true if \a str contains \a sub, otherwise returns \c false.
 
     \sa containsCharacter()
@@ -226,7 +226,7 @@ bool containsSubstr(const StringT& str, const StringT& sub,
     return false;
 }
 
-/*!
+/**
     Replaces all part strings (\a before) in this string (\a str) with \a after.
 
     \sa replaceString()
@@ -251,7 +251,7 @@ inline StringT replaceString(const StringT& str, const StringT& before, const St
     return result;
 }
 
-/*!
+/**
     Splits this string (\a str) with delimiter (\a delim).
 
     \note
@@ -281,7 +281,7 @@ UStringVector<StringT> splitString(const StringT& str, typename StringT::value_t
     return result;
 }
 
-/*!
+/**
     Splits this string (\a str) with delimiter (\a delim).
 
     \note
@@ -312,7 +312,7 @@ UStringVector<StringT> splitString(const StringT& str, const StringT& delim)
     return result;
 }
 
-/*!
+/**
     Joins \a strs with delimiter (\a delim).
 
     \sa splitString()
@@ -330,7 +330,7 @@ StringT joinString(const UStringVector<StringT>& strs, const DelimT& delim)
     return result;
 }
 
-/*!
+/**
     Converts the given string (\a str) to lowercase, if possible.
 
     \sa toLower(), toUpperSelf(), isLower()
@@ -343,7 +343,7 @@ inline void toLowerSelf(StringT& str, const std::locale& loc = std::locale())
         [&](const CharT& c) -> CharT { return std::tolower(c, loc); });
 }
 
-/*!
+/**
     Converts the given string (\a str) to lowercase, if possible.
 
     \sa toLowerSelf(), toUpper(), isLower()
@@ -356,7 +356,7 @@ inline StringT toLower(const StringT& str, const std::locale& loc = std::locale(
     return result;
 }
 
-/*!
+/**
     Converts the given string (\a str) to uppercase, if possible.
 
     \sa toUpper(), toLower(), isUpper()
@@ -369,7 +369,7 @@ inline void toUpperSelf(StringT& str, const std::locale& loc = std::locale())
         [&](const CharT& c) -> CharT { return std::toupper(c, loc); });
 }
 
-/*!
+/**
     Converts the given string (\a str) to uppercase, if possible.
 
     \sa toUpperSelf(), toLower(), isUpper()
@@ -382,7 +382,7 @@ inline StringT toUpper(const StringT& str, const std::locale& loc = std::locale(
     return result;
 }
 
-/*!
+/**
     Returns \c true if the string only contains lowercase letters,
     otherwise returns \c false.
 
@@ -402,7 +402,7 @@ bool isLower(const StringT& str, const std::locale& loc = std::locale())
     return true;
 }
 
-/*!
+/**
     Returns \c true if the string only contains uppercase letters,
     otherwise returns \c false.
 
@@ -422,7 +422,7 @@ bool isUpper(const StringT& str, const std::locale& loc = std::locale())
     return true;
 }
 
-/*!
+/**
     Capitalized string (i.e the first letter is uppercased, all other are lowercased).
 
     \sa capitalized()
@@ -436,7 +436,7 @@ inline void capitalizedSelf(StringT& str, const std::locale& loc = std::locale()
     }
 }
 
-/*!
+/**
     Return a capitalized string (i.e the first letter is uppercased, all other are lowercased).
 
     \sa capitalizedSelf()
@@ -449,7 +449,7 @@ inline StringT capitalized(const StringT& str, const std::locale& loc = std::loc
     return result;
 }
 
-/*!
+/**
     Return a 'capitalized words' string (i.e the first letter of each word
     is uppercased all other are left untouched though).
 
@@ -468,7 +468,7 @@ void capitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale())
     return result;
 }
 
-/*!
+/**
     Return a 'capitalized words' string (i.e the first letter of each word
     is uppercased all other are left untouched though).
 
@@ -482,7 +482,7 @@ inline StringT capitalizedWords(const StringT& str, const std::locale& loc = std
     return result;
 }
 
-/*!
+/**
     Uncapitalized string's words (i.e the first letter of each word
     is lowercased all other are left untouched though).
 
@@ -501,7 +501,7 @@ void uncapitalizedWordsSelf(StringT& str, const std::locale& loc = std::locale()
     return result;
 }
 
-/*!
+/**
     Return a 'uncapitalized words' string (i.e the first letter of each word
     is lowercased all other are left untouched though).
 
@@ -515,7 +515,7 @@ inline StringT uncapitalizedWords(const StringT& str, const std::locale& loc = s
     return result;
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
 */
 template<class DstStringT, class SrcStringT>
@@ -524,7 +524,7 @@ DstStringT convertString(const SrcStringT& str, const char* locale)
     return DstStringT();
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
     Template function specialization.
 */
@@ -560,7 +560,7 @@ std::string convertString(const std::wstring& str, const char* locale)
     return result;
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
     Template function specialization.
 */
@@ -595,7 +595,7 @@ std::wstring convertString(const std::string& str, const char* locale)
     return result;
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
 */
 template<class DstStringT, class SrcStringT>
@@ -604,7 +604,7 @@ DstStringT convertString(const SrcStringT& tr)
     return DstStringT();
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
     Template function specialization.
 */
@@ -614,7 +614,7 @@ std::string convertString(const std::wstring& str)
     return convertString<std::string, std::wstring>(str, "");
 }
 
-/*!
+/**
     Converts SrcStringT to DstStringT.
     Template function specialization.
 */
@@ -624,7 +624,7 @@ std::wstring convertString(const std::string& str)
     return convertString<std::wstring, std::string>(str, "");
 }
 
-/*!
+/**
     Returns true if \a str starts with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -646,7 +646,7 @@ bool startsWith(const StringT& str, typename StringT::value_type starts,
     }
 }
 
-/*!
+/**
     Returns true if \a str starts with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -673,7 +673,7 @@ bool startsWith(const StringT& str, UBasicStringView<typename StringT::value_typ
     }
 }
 
-/*!
+/**
     Returns true if \a str starts with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -686,7 +686,7 @@ bool startsWith(const StringT& str, const StringT& starts,
     return startsWith(str, UBasicStringView<typename StringT::value_type>(starts.c_str()), cs, loc);
 }
 
-/*!
+/**
     Returns true if \a str ends with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -708,7 +708,7 @@ bool endsWith(const StringT& str, typename StringT::value_type ends,
     }
 }
 
-/*!
+/**
     Returns true if \a str ends with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -735,7 +735,7 @@ bool endsWith(const StringT& str, UBasicStringView<typename StringT::value_type>
     }
 }
 
-/*!
+/**
     Returns true if \a str ends with \a starts.
     parameter \a cs indicates case sensitivity.
 
@@ -748,7 +748,7 @@ bool endsWith(const StringT& str, const StringT& ends,
     return endsWith(str, UBasicStringView(ends), cs, loc);
 }
 
-/*!
+/**
     Compares s1 with s2 and returns an integer less than, equal to, or greater than zero if s1 is less than,
     equal to, or greater than s2.
 
@@ -766,7 +766,7 @@ inline bool compareString(const StringT& str1, const StringT& str2,
     }
 }
 
-/*!
+/**
     Truncates the string at the given \a pos index.
     If the specified position index is beyond the end of the string, nothing happens.
 
@@ -778,7 +778,7 @@ inline void truncateStringSelf(StringT& str, typename StringT::size_type pos)
     str = str.substr(0, pos);
 }
 
-/*!
+/**
     Returns a substring that contains the [0, pos) characters of the string.
     If the specified position index is beyond the end of the string, returns [o, str.size()).
 
@@ -790,7 +790,7 @@ inline StringT truncateString(const StringT& str, typename StringT::size_type po
     return str.substr(0, pos);
 }
 
-/*!
+/**
     Reverse string \a str.
 
     \sa reverseString()
@@ -804,7 +804,7 @@ inline void reverseStringSelf(StringT& str)
     }
 }
 
-/*!
+/**
     Reverse string \a str.
 
     \sa reverseStringSelf()
@@ -815,7 +815,7 @@ inline StringT reverseString(const StringT& str)
     return { str.rbegin(), str.rend() };
 }
 
-/*!
+/**
     Interprets an integer value in the string \a str.
 
     \param str the string to convert.
@@ -844,7 +844,7 @@ NumT toNumber(const StringT& str, std::size_t* pos, int base, bool noexception =
     }
 }
 
-/*!
+/**
     Interprets an integer value or a floating point value in the string \a str.
 
     \param str the string to convert.
@@ -873,7 +873,7 @@ NumT toNumber(const StringT& str, std::size_t* pos, bool noexception = true)
     }
 }
 
-/*!
+/**
     Interprets an integer value a floating point value in the string \a str.
 
     \param str the string to convert.
@@ -901,7 +901,7 @@ NumT toNumber(const StringT& str, bool noexception = true)
     }
 }
 
-/*!
+/**
     Format string in a specified \a format by \a args.
     The format specifiers can reference snprintf()'s format specifiers.
 */
@@ -918,7 +918,7 @@ std::string formatString(const std::string& format, Args ... args)
 
 }
 
-/*!
+/**
     Format wide string in a specified \a format by \a args.
     The format specifiers can reference swprintf()'s format specifiers.
 

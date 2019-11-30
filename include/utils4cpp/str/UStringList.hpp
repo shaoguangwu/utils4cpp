@@ -41,8 +41,6 @@
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringUtils.hpp"
 
-#include <list>
-
 namespace utils4cpp {
 namespace str {
 
@@ -93,21 +91,21 @@ private:
 template<class StringT>
 class UBasicStringList;
 
-/*! The std::string list. */
+/** The std::string list. */
 using UStringList = UBasicStringList<std::string>;
-/*! The std::wstring list. */
+/** The std::wstring list. */
 using UWStringList = UBasicStringList<std::wstring>;
-/*! The std::u16string list. */
+/** The std::u16string list. */
 using U16StringList = UBasicStringList<std::u16string>;
-/*! The std::u32string list. */
+/** The std::u32string list. */
 using U32StringList = UBasicStringList<std::u32string>;
 
 #if UTILS4CPP_HAS_U8STRING
-/*! The std::u8string list. (if c++20 enabled) */
+/** The std::u8string list. (if c++20 enabled) */
 using U8StringList = UBasicStringList<std::u8string>;
 #endif
 
-/*!
+/**
     \class UBasicStringList
     \since v0.0
 
@@ -117,21 +115,21 @@ template<class StringT>
 class UBasicStringList : public std::list<StringT>
 {
 public:
-    /*! Typedef for StringT. Provided for STL compatibility. */
+    /** Typedef for StringT. Provided for STL compatibility. */
     using value_type = StringT;
-    /*! Typedef for std::list<T>::size_type. Provided for STL compatibility. */
+    /** Typedef for std::list<T>::size_type. Provided for STL compatibility. */
     using size_type = typename std::list<StringT>::size_type;
-    /*! Typedef for std::list<T>::iterator. Provided for STL compatibility. */
+    /** Typedef for std::list<T>::iterator. Provided for STL compatibility. */
     using iterator = typename std::list<StringT>::iterator;
-    /*! Typedef for std::list<T>::const_iterator. Provided for STL compatibility. */
+    /** Typedef for std::list<T>::const_iterator. Provided for STL compatibility. */
     using const_iterator = typename std::list<StringT>::const_iterator;
 
 private:
-    /*! This structure is used to compare two strings in case insensitive.
+    /** This structure is used to compare two strings in case insensitive.
     */
     struct CaseInsensitiveLessThan {
         using result_type = bool;
-        /*! Returns \c true if StringT \a s1 is less than StringT \a s2 in case insensitive.
+        /** Returns \c true if StringT \a s1 is less than StringT \a s2 in case insensitive.
             Otherwise returns \c false.
         */
         result_type operator()(const StringT& s1, const StringT& s2) const
@@ -140,7 +138,7 @@ private:
         }
     };
 
-    /*!
+    /**
         Returns the iterator at index position in the list.
 
         \li If (\a index < 0), return begin().
@@ -159,7 +157,7 @@ private:
         return it;
     }
 
-    /*!
+    /**
         Returns the constant iterator at index position in the list, same as constItr().
 
         \li If (\a index < 0), return cbegin().
@@ -178,7 +176,7 @@ private:
         return it;
     }
 
-    /*!
+    /**
         Returns the constant iterator at index position in the list.
 
         \li If (\a index < 0), return cbegin().
@@ -210,7 +208,7 @@ public:
     //{
     //}
 
-    /*!
+    /**
         Returns the iterator at index position in the list.
 
         \li If (\a index < 0), return begin().
@@ -226,7 +224,7 @@ public:
         return itr(index);
     }
 
-    /*!
+    /**
         Returns the constant iterator at index position in the list, Same as constIteratorAt().
         
         \li If (\a index < 0), return begin().
@@ -242,7 +240,7 @@ public:
         return itr(index);
     }
 
-    /*!
+    /**
         Returns the constant iterator at index position in the list.
 
         \li If (\a index < 0), return begin().
@@ -255,7 +253,7 @@ public:
         return iteratorAt(index);
     }
 
-    /*!
+    /**
         Returns the item at index position in the list, with bounds checking.
 
         \note If \a index is not within the range of the list, an exception of type std::out_of_range is thrown.
@@ -270,7 +268,7 @@ public:
         return *constItr(index);
     }
 
-    /*!
+    /**
         Returns the item at index position as a modifiable reference. 
         The \a index must be a valid index position in the list (i.e., 0 <= i < size()).
         otherwise return unexpected result.
@@ -283,7 +281,7 @@ public:
         return *itr(index);
     }
 
-    /*!
+    /**
         Returns the item at index position as a constant reference. 
         The \a index must be a valid index position in the list (i.e., 0 <= i < size()).
         otherwise return unexpected result.
@@ -296,7 +294,7 @@ public:
         return *constItr(index);
     }
 
-    /*!
+    /**
         Exchange the item at index position \a i with the item at index position \a j.
         The \a index must be a valid index position in the list (i.e., 0 <= i < size()),
         otherwise the behavior is undefined.
@@ -310,7 +308,7 @@ public:
         std::swap(self[i], self[j]);
     }
 
-    /*!
+    /**
         Exchange the item at index position \a i with the item at index position \a j, with bounds checking.
 
         \exception std::out_of_range if (i < 0 || index >= size() || j < 0 || j >= size()).
@@ -325,7 +323,7 @@ public:
         std::swap(self[i], self[j]);
     }
 
-    /*!
+    /**
         Returns true if the list contains the string \a str, otherwise returns \a false. 
         The search is case insensitive if \a cs is CaseInsensitive; the search is case sensitive by default.
 
@@ -342,7 +340,7 @@ public:
         return false;
     }   
 
-    /*!
+    /**
         Returns the index position of the first occurrence of \a str in the list, 
         searching forward from index position \a from. Returns -1 if no item matched.
 
@@ -373,7 +371,7 @@ public:
         return -1;
     }
 
-    /*!
+    /**
         Returns the index position of the last occurrence of \a str in the list, 
         searching backward from index position \a from. If \a from is -1 (the default), 
         the search starts at the last item. Returns -1 if no item matched.
@@ -407,7 +405,7 @@ public:
         return -1;
     }
 
-    /*!
+    /**
         Joins all the string list's strings into a single character with each element
         separated by the given \a delim.
     */
@@ -423,7 +421,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Joins all the string list's strings into a single string with each element 
         separated by the given \a delim (which can be an empty string).
     */
@@ -439,7 +437,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Removes duplicate entries. The entries do not have to be sorted. 
         They will retain their original order. Returns the number of removed entries.
     */
@@ -468,7 +466,7 @@ public:
         return n - j;
     }
 
-    /*!
+    /**
         Returns a new string list which removes duplicate entries from a \a list. 
         The entries do not have to be sorted. They will retain their original order.
     */
@@ -479,7 +477,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Sorts the list of strings in ascending order. If \a cs is CaseSensitive (the default), 
         the string comparison is case sensitive; otherwise the comparison is case insensitive.
         
@@ -495,7 +493,7 @@ public:
         }
     }
 
-    /*!
+    /**
         Returns a list of all the strings containing the substring \a str.
         If \a cs is CaseSensitive (the default), the string comparison is case sensitive; 
         otherwise the comparison is case insensitive.
@@ -524,7 +522,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Returns a BasicStringList object with the string contained in \a list. 
         The order of the elements in the BasicStringList is the same as in \a list.
 
@@ -539,7 +537,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Returns a std::list object with the strings contained in this list.
 
         \sa fromStdList(), toStdVector()
@@ -562,7 +560,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Returns a BasicStringList object with the string contained in std::vector \a vec.
         The order of the elements in the BasicStringList is the same as in vector.
 
@@ -577,7 +575,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Returns a std::vector object with the strings contained in this list.
 
         \sa fromStdVector(), toStdList()
@@ -591,7 +589,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Appends the given string \a str to this string list and returns a reference to this string list.
 
         \sa operator<<()
@@ -602,7 +600,7 @@ public:
         return *this;
     }
 
-    /*!
+    /**
         Appends the strings of the other string list to this list and returns a reference to this list.
 
         \sa operator+(), operator<<()
@@ -615,7 +613,7 @@ public:
         return *this;
     }
 
-    /*!
+    /**
         Appends the strings of the std::list \a list to this list and returns a reference to this list.
 
         \sa operator+(), operator<<()
@@ -628,7 +626,7 @@ public:
         return *this;
     }
 
-    /*!
+    /**
         Returns a string list that is the concatenation of this string list with the other string list.
 
         \sa operator+=()
@@ -640,7 +638,7 @@ public:
         return result;
     }
 
-    /*!
+    /**
         Appends the given string \a str to this string list and returns a reference to this string list.
 
         \sa operator+=()
@@ -651,7 +649,7 @@ public:
         return *this;
     }
 
-    /*!
+    /**
         Appends the strings of the other string \a list to this list and returns a reference to this list.
 
         \sa operator+=()
@@ -662,7 +660,7 @@ public:
         return *this;
     }
 
-    /*!
+    /**
         Appends the strings of the std::list \a list to this list and returns a reference to this list.
 
         \sa operator+=()
