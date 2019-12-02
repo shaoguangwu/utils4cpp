@@ -42,8 +42,9 @@ namespace utils4cpp::str {
     \brief Converts a string to a signed or unsigned integer value.
 
     Interprets a signed or unsigned integer value in the string \a str. calls:
-    \c std::stoi(str, pos, base) or \c std::stol(str, pos, base) or \c std::stoll(str, pos, base),
-    or \c std::stoul(str, pos, base) or \c std::stoull(str, pos, base).
+    <code> std::stoi(str, pos, base) </code> or <code> std::stol(str, pos, base) </code> 
+    or <code> std::stoll(str, pos, base) </code> ,
+    or <code> std::stoul(str, pos, base) </code> or <code> std::stoull(str, pos, base) </code> .
 
     \tparam StringT input string type, must be \c std::basic_string<char, Traits, Allocator>
         or \c std::basic_string<wchar_t, Traits, Allocator>.

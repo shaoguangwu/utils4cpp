@@ -98,6 +98,8 @@
         ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 900 )    || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 700 )
 #       define UTILS4CPP_HAS_VERSION_HEADER         1
+#   elif __has_include(<version>)
+#           define UTILS4CPP_HAS_VERSION_HEADER     1
 #   endif
 #else
 #   define UTILS4CPP_HAS_VERSION_HEADER             0

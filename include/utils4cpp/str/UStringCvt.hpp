@@ -54,33 +54,19 @@ UTILS4CPP_EXPORT std::u8string stringToU8String(const std::string& str);
 
 #endif // UTILS4CPP_HAS_U8STRING
 
-
-
 /**
-    for msvc std::codecvt bug.
-    - InternStringT : std_char16_string or std_char32_string
-    - ExternStringT : std_char_string
+    若 std::has_facet<Facet>(loc) == false 则为 std::bad_cast
 */
-#if UTILS4CPP_CC_MSVC && UTILS4CPP_CC_MSVC < 1920 && !UTILS4CPP_HAS_CHAR8T
-template<class InternStringT, class ExternStringT,
-    class = std::enable_if_t<u_or<is_std_char16_string<InternStringT>,
-        is_std_char32_string<InternStringT>>::value, InternStringT>,
-    class = if_std_char_string<ExternStringT>>
+template<class InternStringT, class ExternStringT>
 class UStringCvt
 {
-    using substitute_intern_value_type = std::conditional_t<
-        is_std_char16_string_v<InternStringT>, std::int16_t, std::int32_t>;
-    using substitute_intern_string_type = std::basic_string<substitute_intern_value_type,
-        typename InternStringT::traits_type,
-        typename InternStringT::allocator_type>;
 public:
     using intern_string_type = InternStringT;
     using extern_string_type = ExternStringT;
     using intern_char_type = typename intern_string_type::value_type;
     using extern_char_type = typename extern_string_type::value_type;
 
-public:
-    // char => char16_t
+    template<bool Except = true>
     static intern_string_type in(const extern_string_type& str,
         const std::locale& loc = std::locale())
     {
@@ -88,68 +74,14 @@ public:
             return intern_string_type();
         }
 
-        auto& convertor = std::use_facet<
-            std::codecvt<substitute_intern_value_type, extern_char_type, std::mbstate_t>>(loc);
-        std::mbstate_t state{};
-        substitute_intern_string_type intern(str.size(), '\0');
-        const extern_char_type* from_next;
-        substitute_intern_value_type* to_next;
-
-        auto result = convertor.in(state, str.data(), str.data() + str.size(), from_next,
-            intern.data(), intern.data() + intern.size(), to_next);
-
-        if (result != std::codecvt_base::ok) {
-            return intern_string_type();
+        try {
+            auto& convertor = std::use_facet<
+                std::codecvt<intern_char_type, extern_char_type, std::mbstate_t>>(loc);
         }
-        return { intern.cbegin(), intern.cbegin() + (to_next - intern.data()) };
-    }
-
-    static extern_string_type out(const intern_string_type& str,
-        const std::locale& loc = std::locale())
-    {
-        if (str.empty()) {
-            return extern_string_type();
+        catch (...) {
+            if constexpr (Except) throw;
+            else return intern_string_type();
         }
-
-        auto& convertor = std::use_facet<
-            std::codecvt<substitute_intern_value_type, extern_char_type, std::mbstate_t>>(loc);
-        std::mbstate_t state{};
-        substitute_intern_string_type intern(str.cbegin(), str.cend());
-        extern_string_type external(intern.size() * convertor.max_length(), '\0');
-        const substitute_intern_value_type* from_next;
-        extern_char_type* to_next;
-
-        auto result = convertor.out(state, intern.data(), intern.data() + intern.size(), from_next,
-            external.data(), external.data() + external.size(), to_next);
-
-        if (result != std::codecvt_base::ok) {
-            return extern_string_type();
-        }
-        external.resize(to_next - external.data());
-        return external;
-    }
-};
-#endif // UTILS4CPP_CC_MSVC
-
-template<class InternStringT, class ExternStringT>
-class UStringCvt<InternStringT, ExternStringT, 
-    if_std_basic_string<InternStringT>, if_std_basic_string<ExternStringT>>
-{
-public:
-    using intern_string_type = InternStringT;
-    using extern_string_type = ExternStringT;
-    using intern_char_type = typename intern_string_type::value_type;
-    using extern_char_type = typename extern_string_type::value_type;
-
-    static intern_string_type in(const extern_string_type& str,
-        const std::locale& loc = std::locale())
-    {
-        if (str.empty()) {
-            return intern_string_type();
-        }
-
-        auto& convertor = std::use_facet<
-            std::codecvt<intern_char_type, extern_char_type, std::mbstate_t>>(loc);
         std::mbstate_t state{};
         intern_string_type intern(str.size(), '\0');
         const extern_char_type* from_next;
@@ -172,8 +104,14 @@ public:
             return extern_string_type();
         }
 
-        auto& convertor = std::use_facet<
-            std::codecvt<intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        try {
+            auto& convertor = std::use_facet<
+                std::codecvt<intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        } catch (...) {
+            if constexpr (Except) throw;
+            else return extern_string_type();
+        }
+
         std::mbstate_t state{};
         extern_string_type external(str.size() * convertor.max_length(), '\0');
         const intern_char_type* from_next;
@@ -191,15 +129,14 @@ public:
 };
 
 /**
-    Partial template specialization for identity conversion.
+    Template specialization for identity conversion.
 */
-template<class InternStringT>
-class UStringCvt<InternStringT, InternStringT, 
-    if_std_basic_string<InternStringT>, if_std_basic_string<InternStringT>>
+template<class StringT>
+class UStringCvt<StringT, StringT>
 {
 public:
-    using intern_string_type = InternStringT;
-    using extern_string_type = InternStringT;
+    using intern_string_type = StringT;
+    using extern_string_type = StringT;
     using intern_char_type = typename intern_string_type::value_type;
     using extern_char_type = typename extern_string_type::value_type;
 
@@ -216,6 +153,197 @@ public:
     }
 };
 
+/**
+    Template specialization for std::u16string and std::string interconversion.
+
+    Since C++20, <code> std::codecvt<char16_t, char, StateT> </code> will be deprecate, 
+    so use <code> std::codecvt<std::int16_t, char, StateT> </code> to instead.
+    There is a bug std::codecvt<char16_t, char, StateT> (error LNK1120) for msvc compiler.
+    Also use <code> std::codecvt<std::int16_t, char, StateT> </code> to avoid it.
+*/
+template<>
+class UStringCvt<std::u16string, std::string>
+{
+public:
+    using intern_string_type = std::u16string;
+    using extern_string_type = std::string;
+    using intern_char_type = typename intern_string_type::value_type;
+    using extern_char_type = typename extern_string_type::value_type;
+
+private:
+    // for msvc std::codecvt bug (error LNK1120).
+#if (UTILS4CPP_CC_MSVC && UTILS4CPP_CC_MSVC >= 1900 && UTILS4CPP_CC_MSVC < 1920 ) || UTILS4CPP_HAS_CHAR8T
+    using substitute_intern_char_type = std::int16_t;
+    using substitute_intern_string_type = std::basic_string<substitute_intern_char_type>;
+#else
+    using substitute_intern_char_type = intern_char_type;
+    using substitute_intern_string_type = intern_string_type;
+#endif
+
+public:
+
+    static intern_string_type in(const extern_string_type& str,
+        const std::locale& loc = std::locale())
+    {
+        if (str.empty()) {
+            return intern_string_type();
+        }
+
+        auto& convertor = std::use_facet<
+            std::codecvt<substitute_intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        std::mbstate_t state{};
+
+#if UTILS4CPP_HAS_CHAR8T
+        substitute_intern_string_type intern(str.size(), '\0');
+        const extern_char_type* from_next = nullptr;
+        substitute_intern_char_type* to_next = nullptr;
+
+        auto result = convertor.in(state, str.data(), str.data() + str.size(), from_next,
+            intern.data(), intern.data() + intern.size(), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return intern_string_type();
+        }
+        return { intern.cbegin(), intern.cbegin() + (to_next - intern.data()) };
+#else
+        intern_string_type intern(str.size(), '\0');
+        const extern_char_type* from_next = nullptr;
+        substitute_intern_char_type* to_next = nullptr;
+
+        auto result = convertor.in(state, str.data(), str.data() + str.size(), from_next,
+            reinterpret_cast<substitute_intern_char_type*>(intern.data()),
+            reinterpret_cast<substitute_intern_char_type*>(intern.data() + intern.size()), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return intern_string_type();
+        }
+        intern.resize(to_next - reinterpret_cast<substitute_intern_char_type*>(intern.data()));
+        return intern;
+#endif
+    }
+
+    static extern_string_type out(const intern_string_type& str,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        if (str.empty()) {
+            return extern_string_type();
+        }
+
+        auto& convertor = std::use_facet<
+            std::codecvt<substitute_intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        std::mbstate_t state{};
+        extern_string_type external(str.size() * convertor.max_length(), '\0');
+        const substitute_intern_char_type* from_next = nullptr;
+        extern_char_type* to_next = nullptr;
+
+        auto result = convertor.out(state, 
+            reinterpret_cast<const substitute_intern_char_type *>(str.data()), 
+            reinterpret_cast<const substitute_intern_char_type *>(str.data() + str.size()), from_next,
+            external.data(), external.data() + external.size(), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return extern_string_type();
+        }
+        external.resize(to_next - external.data());
+        return external;
+    }
+};
+
+/**
+    Template specialization for std::u32string and std::string interconversion.
+
+    Since C++20, <code> std::codecvt<char32_t, char, StateT> </code> will be deprecate,
+    so use <code> std::codecvt<std::int32_t, char, StateT> </code> to instead.
+    There is a bug std::codecvt<char32_t, char, StateT> (error LNK1120) for msvc compiler.
+    Also use <code> std::codecvt<std::int32_t, char, StateT> </code> to avoid it.
+*/
+template<>
+class UStringCvt<std::u32string, std::string>
+{
+public:
+    using intern_string_type = std::u32string;
+    using extern_string_type = std::string;
+    using intern_char_type = typename intern_string_type::value_type;
+    using extern_char_type = typename extern_string_type::value_type;
+
+private:
+    // for msvc std::codecvt bug (error LNK1120).
+#if (UTILS4CPP_CC_MSVC && UTILS4CPP_CC_MSVC >= 1900 && UTILS4CPP_CC_MSVC < 1920 ) || UTILS4CPP_HAS_CHAR8T
+    using substitute_intern_char_type = std::int32_t;
+    using substitute_intern_string_type = std::basic_string<substitute_intern_char_type>;
+#else
+    using substitute_intern_char_type = intern_char_type;
+    using substitute_intern_string_type = intern_string_type;
+#endif
+
+public:
+
+    static intern_string_type in(const extern_string_type& str,
+        const std::locale& loc = std::locale())
+    {
+        if (str.empty()) {
+            return intern_string_type();
+        }
+
+        auto& convertor = std::use_facet<
+            std::codecvt<substitute_intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        std::mbstate_t state{};
+
+#if UTILS4CPP_HAS_CHAR8T
+        substitute_intern_string_type intern(str.size(), '\0');
+        const extern_char_type* from_next = nullptr;
+        substitute_intern_char_type* to_next = nullptr;
+
+        auto result = convertor.in(state, str.data(), str.data() + str.size(), from_next,
+            intern.data(), intern.data() + intern.size(), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return intern_string_type();
+        }
+        return { intern.cbegin(), intern.cbegin() + (to_next - intern.data()) };
+#else
+        intern_string_type intern(str.size(), '\0');
+        const extern_char_type* from_next = nullptr;
+        substitute_intern_char_type* to_next = nullptr;
+
+        auto result = convertor.in(state, str.data(), str.data() + str.size(), from_next,
+            reinterpret_cast<substitute_intern_char_type*>(intern.data()),
+            reinterpret_cast<substitute_intern_char_type*>(intern.data() + intern.size()), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return intern_string_type();
+        }
+        intern.resize(to_next - reinterpret_cast<substitute_intern_char_type*>(intern.data()));
+        return intern;
+#endif
+    }
+
+    static extern_string_type out(const intern_string_type& str,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        if (str.empty()) {
+            return extern_string_type();
+        }
+
+        auto& convertor = std::use_facet<
+            std::codecvt<substitute_intern_char_type, extern_char_type, std::mbstate_t>>(loc);
+        std::mbstate_t state{};
+        extern_string_type external(str.size() * convertor.max_length(), '\0');
+        const substitute_intern_char_type* from_next = nullptr;
+        extern_char_type* to_next = nullptr;
+
+        auto result = convertor.out(state,
+            reinterpret_cast<const substitute_intern_char_type *>(str.data()),
+            reinterpret_cast<const substitute_intern_char_type *>(str.data() + str.size()), from_next,
+            external.data(), external.data() + external.size(), to_next);
+
+        if (result != std::codecvt_base::ok) {
+            return extern_string_type();
+        }
+        external.resize(to_next - external.data());
+        return external;
+    }
+};
 
 } // namespace utils4cpp::str
 
