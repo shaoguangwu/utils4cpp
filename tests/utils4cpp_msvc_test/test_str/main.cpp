@@ -2,37 +2,38 @@
 #include <string>
 #include <utils4cpp/str/UCharCvt.hpp>
 #include <utils4cpp/str/UStringCvt.hpp>
+#include <utils4cpp/str/UStringTraits.hpp>
 
-template<int Num>
-class A 
-{
-public:
-    enum {
-        Result = Num * A<Num - 1>::Result
-    };
+enum A {
+    AX = 0,
+    AY
 };
 
-template<>
-class A<0>
+template<A a>
+void ppp(int b)
 {
-public:
-    enum {
-        Result = 1
-    };
-};
+    if constexpr (a == AX) {
+        std::cout << "X" << std::endl;
+    }
+    else
+    {
+        static_assert(a != AX);
+    }
+}
 
 int main()
 {
-    int a = sizeof(A<10>);
-    //using namespace utils4cpp::str;
-    //UStringCvt<std::u16string, std::string>::intern_string_type a;
-    //UStringCvt<std::u16string, std::string>::extern_string_type b;
-    //auto str = UStringCvt<std::u16string, std::string>::in(std::string("hehe"));
-    //auto str1 = UStringCvt<std::string, std::u16string>::in(std::u16string(u"abcdefg"));
+    using namespace utils4cpp::str;
+    std::string str("abcdefg");
+    auto wstr = UStringCvt<std::wstring, std::string>::in(str);
+    auto u16str = UStringCvt<std::u16string, std::string>::in(str);
+    auto u32str = UStringCvt<std::u32string, std::string>::in(str);
+    auto str1 = UStringCvt<std::string, std::string>::in(str);
 
-    auto& f = std::use_facet<std::codecvt<std::int32_t, char, std::mbstate_t>>(std::locale());
-    int b = f.max_length();
+    //UStringCvt<std::wstring, std::string>::intern_char_type dd;
+    //UStringCvt<std::string_view, std::string>::intern_char_type ddd;
 
-    int res = A<10>::Result;
+    ppp<A::AY>(2);
+
     return 0;
 }

@@ -74,7 +74,7 @@
 #if ( defined(UTILS4CPP_CC_MSVC) && UTILS4CPP_CC_MSVC < UTILS4CPP_MSVC_MINVER_REQUIRE )     || \
     ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU < UTILS4CPP_GNU_MINVER_REQUIRE * 100 )  || \
     ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG < UTILS4CPP_CLANG_LIBSTD_MINVER_REQUIRE * 100 )
-#error Unsupported compiler or compiler's version is too low.
+#error Unsupported compiler or compiler version is too low.
 #endif
 
 //

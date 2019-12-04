@@ -34,9 +34,10 @@
 #ifndef UTILS4CPP_STR_USTRINGALGORITHM_HPP
 #define UTILS4CPP_STR_USTRINGALGORITHM_HPP
 
-#include <memory>
+//#include <memory>
 #include <algorithm>
 #include <charconv>
+#include <list>
 
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringToNumber.hpp"
@@ -575,8 +576,6 @@ public:
     }
 
     // split
-
-    // join
 
     // trim
 

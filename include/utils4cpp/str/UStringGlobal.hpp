@@ -80,7 +80,31 @@ template<class StringT>
 using if_convertible_to_stlstyle_string = std::enable_if_t<
     is_convertible_to_stlstyle_string_v<StringT>, primitive_t<StringT>>;
 
+//
+//  convertible to stl-style string_view traits
+//
+
+template<class SVT>
+using is_convertible_to_stlstyle_string_view = u_and<
+    std::is_convertible<const SVT&, std::basic_string_view<
+    typename SVT::value_type, typename SVT::traits_type>>,
+    u_and<u_not<std::is_convertible<const SVT *,
+    const std::basic_string<typename SVT::value_type, typename SVT::traits_type>*>>,
+    u_not<std::is_convertible<const SVT&, const typename SVT::value_type *>>>>;
+
+template<class SVT>
+inline constexpr bool is_convertible_to_stlstyle_string_view_v = 
+    is_convertible_to_stlstyle_string_view<SVT>::value;
+
+template<class SVT>
+using if_convertible_to_stlstyle_string_view = std::enable_if_t<
+    is_convertible_to_stlstyle_string_view_v<SVT>, primitive_t<SVT>>;
+
 namespace detail {
+
+//
+// is stlstyle string traits
+//
 
 template<class StringT, class CharT>
 using _is_stlstyle_string = u_and<
@@ -95,6 +119,23 @@ inline constexpr bool _is_stlstyle_string_v = _is_stlstyle_string<StringT, CharT
 
 template<class StringT, class CharT>
 using _if_stlstyle_string = std::enable_if_t<_is_stlstyle_string_v<StringT, CharT>, StringT>;
+
+//
+// is stlstyle string view traits
+//
+
+template<class SVT, class CharT>
+using _is_stlstyle_string_view = u_and<
+    std::is_same<typename SVT::value_type, CharT>,
+    std::is_same<SVT, std::basic_string_view<
+    typename SVT::value_type,
+    typename SVT::traits_type>>>;
+
+template<class StringT, class CharT>
+inline constexpr bool _is_stlstyle_string_view_v = _is_stlstyle_string_view<StringT, CharT>::value;
+
+template<class StringT, class CharT>
+using _if_stlstyle_string_view = std::enable_if_t<_is_stlstyle_string_view_v<StringT, CharT>, StringT>;
 
 } // namespace utils4cpp::str::detail
 
@@ -112,6 +153,19 @@ template<class StringT>
 using if_std_basic_string = std::enable_if_t<is_std_basic_string_v<StringT>, StringT>;
 
 //
+// std::basic_string_view traits
+//
+
+template<class SVT>
+using is_std_basic_string_view = detail::_is_stlstyle_string_view<SVT, typename SVT::value_type>;
+
+template<class SVT>
+inline constexpr bool is_std_basic_string_view_v = is_std_basic_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_basic_string_view = std::enable_if_t<is_std_basic_string_view_v<SVT>, SVT>;
+
+//
 // std char string traits
 //
 
@@ -123,6 +177,19 @@ inline constexpr bool is_std_char_string_v = is_std_char_string<StringT>::value;
 
 template<class StringT>
 using if_std_char_string = std::enable_if_t<is_std_char_string_v<StringT>, StringT>;
+
+//
+// std char string_view traits
+//
+
+template<class SVT>
+using is_std_char_string_view = detail::_is_stlstyle_string_view<SVT, char>;
+
+template<class SVT>
+inline constexpr bool is_std_char_string_view_v = is_std_char_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char_string_view = std::enable_if_t<is_std_char_string_view_v<SVT>, SVT>;
 
 //
 // std wchar_t string traits
@@ -138,6 +205,19 @@ template<class StringT>
 using if_std_wchar_string = std::enable_if_t<is_std_wchar_string_v<StringT>, StringT>;
 
 //
+// std wchar_t string view traits
+//
+
+template<class SVT>
+using is_std_wchar_string_view = detail::_is_stlstyle_string_view<SVT, wchar_t>;
+
+template<class SVT>
+inline constexpr bool is_std_wchar_string_view_v = is_std_wchar_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_wchar_string_view = std::enable_if_t<is_std_wchar_string_view_v<SVT>, SVT>;
+
+//
 // std char16 string traits
 //
 
@@ -149,6 +229,19 @@ inline constexpr bool is_std_char16_string_v = is_std_char16_string<StringT>::va
 
 template<class StringT>
 using if_std_char16_string = std::enable_if_t<is_std_char16_string_v<StringT>, StringT>;
+
+//
+// std char16 string_view traits
+//
+
+template<class SVT>
+using is_std_char16_string_view = detail::_is_stlstyle_string_view<SVT, char16_t>;
+
+template<class SVT>
+inline constexpr bool is_std_char16_string_view_v = is_std_char16_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char16_string_view = std::enable_if_t<is_std_char16_string_view_v<SVT>, SVT>;
 
 //
 // std char32 string traits
@@ -164,10 +257,23 @@ template<class StringT>
 using if_std_char32_string = std::enable_if_t<is_std_char32_string_v<StringT>, StringT>;
 
 //
-// std char8_t string traits
+// std char32 string_view traits
 //
 
+template<class SVT>
+using is_std_char32_string_view = detail::_is_stlstyle_string_view<SVT, char32_t>;
+
+template<class SVT>
+inline constexpr bool is_std_char32_string_view_v = is_std_char32_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char32_string_view = std::enable_if_t<is_std_char32_string_view_v<SVT>, SVT>;
+
 #if UTILS4CPP_HAS_CHAR8T
+
+//
+// std char8_t string traits
+//
 
 template<class StringT>
 using is_std_char8_string = detail::_is_stlstyle_string<StringT, char8_t>;
@@ -177,6 +283,19 @@ inline constexpr bool is_std_char8_string_v = is_std_char8_string<StringT>::valu
 
 template<class StringT>
 using if_std_char8_string = std::enable_if_t<is_std_char8_string_v<StringT>, StringT>;
+
+//
+// std char8_t string_view traits
+//
+
+template<class SVT>
+using is_std_char8_string_view = detail::_is_stlstyle_string_view<SVT, char8_t>;
+
+template<class SVT>
+inline constexpr bool is_std_char8_string_view_v = is_std_char8_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char8_string_view = std::enable_if_t<is_std_char8_string_view_v<SVT>, StringT>;
 
 //
 // std char string or std char8_t string traits
@@ -190,6 +309,19 @@ inline constexpr bool is_std_char_or_char8_string_v = is_std_char_or_char8_strin
 
 template<class StringT>
 using if_std_char_or_char8_string = std::enable_if_t<is_std_char_or_char8_string_v<StringT>, StringT>;
+
+//
+// std char string_view or std char8_t string_view traits
+//
+
+template<class SVT>
+using is_std_char_or_char8_string_view = u_or<is_std_char_string_view<SVT>, is_std_char8_string_view<SVT>>;
+
+template<class SVT>
+inline constexpr bool is_std_char_or_char8_string_view_v = is_std_char_or_char8_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char_or_char8_string_view = std::enable_if_t<is_std_char_or_char8_string_view_v<SVT>, SVT>;
 
 #endif // UTILS4CPP_HAS_CHAR8T
 
@@ -205,6 +337,19 @@ inline constexpr bool is_std_char_or_wchar_string_v = is_std_char_or_wchar_strin
 
 template<class StringT>
 using if_std_char_or_wchar_string = std::enable_if_t<is_std_char_or_wchar_string_v<StringT>, StringT>;
+
+//
+// std char string_view or std wchar_t string_view traits
+//
+
+template<class SVT>
+using is_std_char_or_wchar_string_view = u_or<is_std_char_string_view<SVT>, is_std_wchar_string_view<SVT>>;
+
+template<class SVT>
+inline constexpr bool is_std_char_or_wchar_string_view_v = is_std_char_or_wchar_string_view<SVT>::value;
+
+template<class SVT>
+using if_std_char_or_wchar_string_view = std::enable_if_t<is_std_char_or_wchar_string_view_v<SVT>, SVT>;
 
 } // namespace utils4cpp::str
 
