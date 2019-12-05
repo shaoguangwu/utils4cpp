@@ -33,6 +33,12 @@ int main()
     //UStringCvt<std::wstring, std::string>::intern_char_type dd;
     //UStringCvt<std::string_view, std::string>::intern_char_type ddd;
 
+    std::string str11("Abcd"), str22("abcd");
+    int r = UStringTraits<std::string>::compare<UCaseInsensitive>(str11, str22);
+
+    std::string str33("a,,b,c,,");
+    auto list = UStringTraits<std::string>::split<UCaseInsensitive>(str33, ',', false);
+
     ppp<A::AY>(2);
 
     return 0;

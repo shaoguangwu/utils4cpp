@@ -25,6 +25,7 @@
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppStandardDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UDocConfig.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UExport.hpp" />
+    <ClInclude Include="..\..\..\..\include\utils4cpp\core\UNumericTraits.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UProcessorDetection.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UCppFeatures.hpp" />
     <ClInclude Include="..\..\..\..\include\utils4cpp\core\UOsDetection.hpp" />

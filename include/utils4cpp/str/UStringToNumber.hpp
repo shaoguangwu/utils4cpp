@@ -63,7 +63,7 @@ namespace utils4cpp::str {
 template<class StringT, class NumberT, bool Except = true,
     class = if_std_char_or_wchar_string<StringT>,
     class = if_integral<primitive_t<NumberT>>>
-inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos = 0, int base = 0) noexcept(!Exception)
+inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos = 0, int base = 0) noexcept(!Except)
 {
     try {
         if constexpr (std::is_signed_v<primitive_t<NumberT>>) {
@@ -87,7 +87,7 @@ inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos 
         }
     }
     catch (...) {
-        if constexpr (Exception) {
+        if constexpr (Except) {
             throw;
         }
         else {
@@ -133,7 +133,7 @@ inline primitive_t<NumberT> stringToNumber(const StringT& str, std::size_t* pos 
         }
     }
     catch (...) {
-        if constexpr (Exception) {
+        if constexpr (Except) {
             throw;
         }
         else {

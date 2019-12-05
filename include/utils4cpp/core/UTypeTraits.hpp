@@ -265,6 +265,15 @@ struct _is_character<char32_t>
     : std::true_type
 { };
 
+#if UTILS4CPP_HAS_CHAR8T
+
+template<>
+struct _is_character<char8_t>
+    : std::true_type
+{ };
+
+#endif // UTILS4CPP_HAS_CHAR8T
+
 } // namespace detail
 
 /**

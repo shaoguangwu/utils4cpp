@@ -34,7 +34,6 @@
 #ifndef UTILS4CPP_STR_USTRINGALGORITHM_HPP
 #define UTILS4CPP_STR_USTRINGALGORITHM_HPP
 
-//#include <memory>
 #include <algorithm>
 #include <charconv>
 #include <list>
@@ -123,14 +122,17 @@ public:
         return true;
     }
 
+    //
     // compare
+    //
 
-    static int compare(const StringT& str1, UBasicStringView<char_type> str2,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static int compare(const StringT& str1, std::basic_string_view<char_type> str2,
+        const std::locale& loc = std::locale())
     {
         size_type lhs_sz = str1.size();
         size_type rhs_sz = str2.size();
-        if (cs == UCaseSensitive) {
+        if constexpr (CS == UCaseSensitive) {
             if (int result = char_traits_type::compare(str1.data(), str2.data(), std::min(lhs_sz, rhs_sz))) {
                 return result;
             }
@@ -151,22 +153,24 @@ public:
         return 0;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static int compare(const StringT& str1, const char_type* str2,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        return compare(str1, UBasicStringView<char_type>(str2), cs, loc);
+        return compare<CS>(str1, std::basic_string_view<char_type>(str2), loc);
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static int compare(const StringT& str1, const StringT& str2,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        if (cs == UCaseSensitive) {
+        if constexpr (CS == UCaseSensitive) {
             return str1.compare(str2);
         }
         else {
             size_type lhs_sz = str1.size();
             size_type rhs_sz = str2.size();
-            if (int result = _strucmp(str1.data(), str2.data(), std::min(lhs_sz, rhs_sz))) {
+            if (int result = _strucmp(str1.data(), str2.data(), std::min(lhs_sz, rhs_sz), loc)) {
                 return result;
             }
             if (lhs_sz < rhs_sz) {
@@ -180,7 +184,9 @@ public:
         return 0;
     }
 
+    //
     // append
+    //
 
     static StringT& append(StringT& str, char_type ch)
     {
@@ -194,7 +200,7 @@ public:
         return str;
     }
 
-    static StringT& append(StringT& str, UBasicStringView<char_type> s)
+    static StringT& append(StringT& str, std::basic_string_view<char_type> s)
     {
         str.append(s.data(), s.size());
         return str;
@@ -218,88 +224,92 @@ public:
         return str;
     }
 
-    // starts and ends
+    //
+    // starts with
+    //
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool startsWith(const StringT& str, char_type ch, 
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale()) noexcept
+        const std::locale& loc = std::locale()) noexcept
     {
         if (str.empty()) {
             return false;
         }
-        return _equalTranstwo(ch, str.front(), cs, loc);
+        return _equal<CS>(ch, str.front(), loc);
     }
 
-    static bool startsWith(const StringT& str, UBasicStringView<char_type> starts,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static bool startsWith(const StringT& str, std::basic_string_view<char_type> starts,
+        const std::locale& loc = std::locale())
     {
         if (str.empty() || starts.empty() || starts.size() > str.size()) {
             return false;
         }
-
-        if (UCaseSensitivity::UCaseInsensitive == cs) {
-            return std::equal(starts.begin(), starts.end(), str.begin(),
-                [&](const char_type& a, const char_type& b) {
-                    return _toLower(a, loc) == _toLower(b, loc);
-                }
-            );
-        }
-        else {
-            return std::equal(starts.begin(), starts.end(), str.begin());
-        }
+        return std::equal(starts.begin(), starts.end(), str.begin(),
+            [&](const char_type& a, const char_type& b) {
+                return _equal<CS>(a, b, loc);
+            });
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool startsWith(const StringT& str, const char_type* starts,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        return startsWith(str, UBasicStringView<char_type>(starts), cs, loc);
+        return startsWith<CS>(str, std::basic_string_view<char_type>(starts), loc);
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool startsWith(const StringT& str, const StringT& starts,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        return startsWith(str, UBasicStringView<char_type>(starts.c_str(), starts.size()), cs, loc);
+        return startsWith<CS>(str, std::basic_string_view<char_type>(starts.c_str(), starts.size()), loc);
     }
 
+    //
+    // ends with
+    //
+
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool endsWith(const StringT& str, char_type ch,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale()) noexcept
+        const std::locale& loc = std::locale())
     {
         if (str.empty()) {
             return false;
         }
-        return _equalTranstwo(ch, str.back(), cs, loc);
+        return _equal<CS>(ch, str.back(), loc);
     }
 
-    static bool endsWith(const StringT& str, UBasicStringView<char_type> ends,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static bool endsWith(const StringT& str, std::basic_string_view<char_type> ends,
+        const std::locale& loc = std::locale())
     {
         if (str.empty() || ends.empty() || ends.size() > str.size()) {
             return false;
         }
 
-        if (UCaseSensitivity::UCaseInsensitive == cs) {
-            return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
-                [&](const char_type& a, const char_type& b) {
-                    return _toLower(a, loc) == _toLower(b, loc);
-                });
-        }
-        else {
-            return std::equal(ends.rbegin(), ends.rend(), str.rbegin());
-        }
+        return std::equal(ends.rbegin(), ends.rend(), str.rbegin(),
+            [&](const char_type& a, const char_type& b) {
+                return _equal<CS>(a, b, loc);
+            });
     }
     
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool endsWith(const StringT& str, const char_type* ends,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        return endsWith(str, UBasicStringView<char_type>(ends), cs, loc);
+        return endsWith<CS>(str, std::basic_string_view<char_type>(ends), loc);
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static bool endsWith(const StringT& str, const StringT& ends,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        return endsWith(str, UBasicStringView<char_type>(ends.c_str(), ends.size()), cs, loc);
+        return endsWith<CS>(str, std::basic_string_view<char_type>(ends.c_str(), ends.size()), loc);
     }
 
+    //
     // contains
+    //
 
     // todo
     static bool contains(const StringT& str, char_type ch,
@@ -309,13 +319,15 @@ public:
     }
 
     // todo
-    static bool contains(const StringT& str, const String& substr, 
+    static bool contains(const StringT& str, const StringT& substr,
         UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
     {
 
     }
 
+    //
     // reverse
+    //
 
     static StringT& reverse(StringT& str) noexcept
     {
@@ -331,29 +343,34 @@ public:
         return {str.rbegin(), str.rend()};
     }
 
+    //
     // remove
+    //
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeFirst(StringT& str, char_type ch,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
         if (!str.empty()) {
-            ch = (cs == UCaseSensitive ? ch : std::tolower(ch, loc));
+            ch = _toLowerIf<CS == UCaseInsensitive>(ch, loc);
             auto it = str.cbegin();
             while (it != str.cend()) {
-                if (_equalTransone(ch, *it)) {
+                if (_equalTransOneIf<CS == UCaseInsensitive>(ch, *it, loc)) {
                     str.erase(it);
                     return str;
                 }
+                ++it;
             }
         }
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeFirst(StringT& str, const StringT& sub,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
         if (!str.empty() && !sub.empty() && sub.size() <= str.size()) {
-            if (cs == UCaseSensitive) {
+            if constexpr (CS == UCaseSensitive) {
                 auto pos = str.find(sub);
                 if (pos != StringT::npos) {
                     str.erase(pos, sub.size());
@@ -371,15 +388,16 @@ public:
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT removeLast(StringT& str, char_type ch, 
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale)
+        const std::locale& loc = std::locale)
     {
         if (!str.empty()) {
-            ch = (cs == UCaseSensitive ? ch : std::tolower(ch, loc));
+            ch = _toLowerIf<CS == UCaseInsensitive>(ch, loc);
             size_type pos = str.size() - 1;
             auto it = str.crbegin();
             while (it != str.crend()) {
-                if (_equalTransone(ch, *it)) {
+                if (_equalTransOneIf<CS == UCaseInsensitive>(ch, *it, loc)) {
                     str.erase(pos, 1);
                     return str;
                 }
@@ -390,11 +408,12 @@ public:
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeLast(StringT& str, const StringT& sub,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
         if (!str.empty() && !sub.empty() && sub.size() <= str.size()) {
-            if (cs == UCaseSensitive) {
+            if constexpr (CS == UCaseSensitive) {
                 auto pos = str.rfind(sub);
                 if (pos != StringT::npos) {
                     str.erase(pos, sub.size());
@@ -412,14 +431,15 @@ public:
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeAll(StringT& str, char_type ch,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
         if (!str.empty()) {
-            ch = (cs == UCaseSensitive ? ch : std::tolower(ch, loc));
+            ch = _toLowerIf<CS == UCaseInsensitive>(ch, loc);
             auto it = str.cbegin();
             while (it != str.cend()) {
-                if (_equalTransone(ch, *it)) {
+                if (_equalTransOneIf<CS == UCaseInsensitive>(ch, *it, loc)) {
                     str.erase(it);
                     continue;
                 }
@@ -429,11 +449,12 @@ public:
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeAll(StringT& str, const StringT& sub,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
         if (!str.empty() && !sub.empty() && sub.size() <= str.size()) {
-            if (cs == UCaseSensitive) {
+            if constexpr (CS == UCaseSensitive) {
                 auto pos = str.find(sub);
                 while (pos != StringT::npos) {
                     str.erase(pos, sub.size());
@@ -479,61 +500,61 @@ public:
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeNth(StringT& str, char_type ch, size_type nth,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        if (nth > 0) {
-            if (cs == UCaseSensitive) {
-                auto pos = _nthFinder(str, ch, nth);
-                if (pos != StringT::npos) {
-                    str.erase(pos, 1);
-                }
+        if constexpr (CS == UCaseSensitive) {
+            auto pos = _nthFinder(str, ch, nth);
+            if (pos != StringT::npos) {
+                str.erase(pos, 1);
             }
-            else {
-                StringT s = toUpper(str, loc);
-                auto pos = _nthFinder(s, ch, nth);
-                if (pos != StringT::npos) {
-                    str.erase(pos, 1);
-                }
+        }
+        else {
+            StringT s = toUpper(str, loc);
+            auto pos = _nthFinder(s, ch, nth);
+            if (pos != StringT::npos) {
+                str.erase(pos, 1);
             }
         }
         return str;
     }
 
+    template<UCaseSensitivity CS = UCaseSensitive>
     static StringT& removeNth(StringT& str, const StringT& substr, size_type nth,
-        UCaseSensitivity cs = UCaseSensitive, const std::locale& loc = std::locale())
+        const std::locale& loc = std::locale())
     {
-        if (nth > 0) {
-            if (cs == UCaseSensitive) {
-                auto pos = _nthFinder(str, substr, nth);
-                if (pos != StringT::npos) {
-                    str.erase(pos, substr.size());
-                }
+        if constexpr (CS == UCaseSensitive) {
+            auto pos = _nthFinder(str, substr, nth);
+            if (pos != StringT::npos) {
+                str.erase(pos, substr.size());
             }
-            else {
-                StringT s = toLower(str, loc);
-                StringT sub = toLower(substr, loc);
-                auto pos = _nthFinder(s, sub, nth);
-                if (pos != StringT::npos) {
-                    str.erase(pos, substr.size());
-                }
+        }
+        else {
+            StringT s = toLower(str, loc);
+            StringT sub = toLower(substr, loc);
+            auto pos = _nthFinder(s, sub, nth);
+            if (pos != StringT::npos) {
+                str.erase(pos, substr.size());
             }
         }
         return str;
     }
 
+    //
     // toNumber
+    //
 
-    template<class NumberT, bool Exception = true>
-    static NumberT toNumber(const StringT& str, std::size_t* pos = 0, int base = 10)
+    template<class NumberT, bool Except = true>
+    static NumberT toNumber(const StringT& str, std::size_t* pos = 0, int base = 10) noexcept(!Except)
     {
-        return stringToNumber<StringT, NumberT, Exception>(str, pos, base)
+        return stringToNumber<StringT, NumberT, Except>(str, pos, base);
     }
 
-    template<typename NumberT, bool Exception = true>
-    NumberT toNumber(const StringT& str, std::size_t* pos = 0)
+    template<typename NumberT, bool Except = true>
+    NumberT toNumber(const StringT& str, std::size_t* pos = 0) noexcept(!Except)
     {
-        return stringToNumber<StringT, NumberT, Exception>(str, pos);
+        return stringToNumber<StringT, NumberT, Except>(str, pos);
     }
 
     // number
@@ -575,9 +596,56 @@ public:
         }
     }
 
+    //
     // split
+    //
 
+    // \todo dai you hua
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static std::list<StringT> split(const StringT& str, char_type sep, 
+        bool keepEmptyParts = true, const std::locale& loc = std::locale())
+    {
+        std::list<StringT> string_list;
+        if (str.empty()) {
+            return string_list;
+        }
+
+        sep = _toLowerIf<CS == UCaseInsensitive>(sep, loc);
+        auto begin = str.begin();
+        size_type size = str.size();
+        size_type pos_prev = 0;
+        size_type pos_curr = 0;
+
+        for ( ; pos_curr < size; ++pos_curr) {
+            if (_equalTransOneIf<CS == UCaseInsensitive>(sep, str[pos_curr], loc)) {
+                if (!keepEmptyParts && pos_prev == pos_curr) {
+                    pos_prev = pos_curr + 1;
+                    continue;
+                }
+                else {
+                    string_list.emplace_back(begin + pos_prev, begin + pos_curr);
+                    pos_prev = pos_curr + 1;
+                }    
+            }
+        }
+
+        if (pos_prev == 0) {
+            string_list.emplace_back(str);
+            return string_list;
+        }
+
+        if (!keepEmptyParts && pos_prev == size) {
+            return string_list;
+        }
+        else {
+            string_list.emplace_back(begin + pos_prev, str.end());
+            return string_list;
+        }
+    }
+
+    //
     // trim
+    //
 
     static StringT& trimLeft(StringT& str, const std::locale& loc = std::locale())
     {
@@ -673,55 +741,94 @@ public:
     }
 
 private:
-    inline static bool _isLower(char_type ch, const std::locale& loc = std::locale())
+    inline static bool _isLower(char_type ch, const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).is(std::ctype_base::lower, ch);
     }
 
-    inline static bool _isUpper(char_type ch, const std::locale& loc = std::locale())
+    inline static bool _isUpper(char_type ch, const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).is(std::ctype_base::upper, ch);
     }
 
-    inline static char_type _toLower(char_type ch, const std::locale& loc = std::locale())
+    inline static char_type _toLower(char_type ch, const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).tolower(ch);
     }
 
     inline static const char_type* _toLower(char_type* first, char_type* end, 
-        const std::locale& loc = std::locale())
+        const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).tolower(first, end);
     }
 
-    inline static char_type _toUpper(char_type ch, const std::locale& loc = std::locale())
+    inline static char_type _toUpper(char_type ch, const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).toupper(ch);
     }
 
     inline static const char_type* _toUpper(char_type* first, char_type* end, 
-        const std::locale& loc = std::locale())
+        const std::locale& loc)
     {
         return std::use_facet<std::ctype<char_type>>(loc).toupper(first, end);
     }
 
-    inline static bool _equal(const char_type& ch1, const char_type& ch2)
+    template<bool Condition>
+    inline static char_type _toLowerIf(char_type ch, 
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc)
+    {
+        return Condition ? _toLower(ch, loc) : ch;
+    }
+
+    template<bool Condition>
+    inline static char_type _toUpperIf(char_type ch, 
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc)
+    {
+        return Condition ? _toUpper(ch, loc) : ch;
+    }
+
+    inline static bool _equalNoTrans(char_type ch1, char_type ch2)
     {
         return ch1 == ch2;
     }
 
-    inline static bool _equalTransone(const char_type& ch1, const char_type& ch2,
-        const UCaseSensitivity& cs = UCaseSensitive,
-        const std::locale& loc = std::locale())
+    inline static bool _equalTransOne(char_type ch1, char_type ch2,
+        const std::locale& loc)
     {
-        return (cs == UCaseSensitive ? ch1 == ch2 : ch1 == std::tolower(ch2, loc));
+        return ch1 == std::tolower(ch2, loc);
     }
 
-    inline static bool _equalTranstwo(const char_type& ch1, const char_type& ch2,
-        const UCaseSensitivity& cs = UCaseSensitive,
-        const std::locale& loc = std::locale())
+    template<bool Condition>
+    inline static bool _equalTransOneIf(char_type ch1, char_type ch2, 
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc)
     {
-        return (cs == UCaseSensitive ? ch1 == ch2 : _toLower(ch1, loc) == _toLower(ch2, loc));
+        return Condition ? _equalTransOne(ch1, ch2, loc) : _equalNoTrans(ch1, ch2);
+    }
+
+    inline static bool _equalTransTwo(char_type ch1, char_type ch2,
+        const std::locale& loc)
+    {
+        return _toLower(ch1, loc) == _toLower(ch2, loc);
+    }
+
+    template<bool Condition>
+    inline static bool _equalTransTwoIf(char_type ch1, char_type ch2,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc)
+    {
+        return Condition ? _equalTransTwo(ch1, ch2, loc) : _equalNoTrans(ch1, ch2);
+    }
+
+    template<UCaseSensitivity CS>
+    inline static bool _equal(char_type ch1, char_type ch2,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        return CS == UCaseSensitive ? _equalNoTrans(ch1, ch2) : _equalTransTwo(ch1, ch2, loc);
+    }
+
+    inline static bool _equal(char_type ch1, char_type ch2, UCaseSensitivity cs,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        return cs == UCaseSensitive ? _equalNoTrans(ch1, ch2) : _equalTransTwo(ch1, ch2, loc);
     }
 
     static size_type _nthFinder(const StringT& str, char_type ch, size_type nth) noexcept
@@ -767,7 +874,7 @@ private:
         Perform a case-independent string comparison.
     */
     static int _strucmp(const char_type* s1, const char_type* s2, size_type len, 
-        const std::locale& loc = std::locale())
+        const std::locale& loc)
     {
         char_type lc = 0;
         char_type rc = 0;

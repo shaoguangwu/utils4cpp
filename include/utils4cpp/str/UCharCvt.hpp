@@ -49,6 +49,14 @@ UTILS4CPP_EXPORT std::optional<char32_t> charToU32Char(char c);
 UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
 #endif // UTILS4CPP_HAS_U8STRING
 
+namespace detail {
+
+template<class InputT, class OutputT, class = std::enable_if_t<
+    u_and<is_character<InputT>, is_character<InputT>>::value>>
+class _UCharIsh
+{ };
+
+} // namespace detail
 
 /**
     \class UCharCvt
@@ -56,11 +64,11 @@ UTILS4CPP_EXPORT std::optional<char8_t> charToU8Char(char c);
     \TODO comments
 */
 template<class InputT, class OutputT>
-class UCharCvt
+class UCharCvt : public detail::_UCharIsh<InputT, OutputT>
 {
 public:
     using input_type = if_char<InputT>;
-    using output_type = if_character<OutputT>;
+    using output_type = OutputT;
 
     static std::optional<output_type> convert(UTILS4CPP_ATTR_MAYBE_UNUSED input_type c)
     {
@@ -86,6 +94,7 @@ public:
 
 template<class InputT>
 class UCharCvt<InputT, InputT>
+    : public detail::_UCharIsh<InputT, InputT>
 {
 public:
     using input_type = if_character<InputT>;
