@@ -77,6 +77,10 @@
 #error Unsupported compiler or compiler version is too low.
 #endif
 
+#if !defined(__cpp_static_assert) || __cpp_static_assert < 201411L
+#   error "utils4cpp needs 'static_assert' support."
+#endif
+
 //
 // C++20 features
 // 
@@ -86,6 +90,8 @@
 #   if  ( defined(UTILS4CPP_CC_MSVC) && UTILS4CPP_CC_MSVC >= 1922 ) || \
         ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 900 )    || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 700 )
+#       define UTILS4CPP_HAS_CHAR8T                 1
+#   elif defined(__cpp_char8_t)
 #       define UTILS4CPP_HAS_CHAR8T                 1
 #   endif
 #else

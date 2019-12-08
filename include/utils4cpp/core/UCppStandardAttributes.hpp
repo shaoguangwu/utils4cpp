@@ -38,10 +38,13 @@
 #include "utils4cpp/core/UCompilerDetection.hpp"
 
 /* atrribute [[deprecated]] and [[deprecated("reason")]] since C++14 */
-#if UTILS4CPP_HAS_CPP17
+#if UTILS4CPP_HAS_CPP14
 #   if  ( defined(UTILS4CPP_CC_MSVC) && UTILS4CPP_CC_MSVC >= 1900 ) || \
         ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 409 )    || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 304 )
+#       define UTILS4CPP_HAS_ATTR_DEPRECATED            1
+#       define UTILS4CPP_HAS_ATTR_DEPRECATED_REASON     1
+#   elif defined(__has_cpp_attribute) && __has_cpp_attribute(deprecated)
 #       define UTILS4CPP_HAS_ATTR_DEPRECATED            1
 #       define UTILS4CPP_HAS_ATTR_DEPRECATED_REASON     1
 #   endif
@@ -56,6 +59,8 @@
         ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 700 )    || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 309 )
 #       define UTILS4CPP_HAS_ATTR_FALLTHROUGH           1
+#   elif defined(__has_cpp_attribute) && __has_cpp_attribute(fallthrough)
+#       define UTILS4CPP_HAS_ATTR_FALLTHROUGH           1
 #   endif
 #else
 #   define UTILS4CPP_HAS_ATTR_FALLTHROUGH               0
@@ -66,8 +71,15 @@
 #   if  ( defined(UTILS4CPP_CC_MSVC) && UTILS4CPP_CC_MSVC >= 1911 ) || \
         ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 700 )    || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 309 )
-#       define UTILS4CPP_HAS_ATTR_NODISCARD                 1
-#       define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED              1
+#       define UTILS4CPP_HAS_ATTR_NODISCARD             1
+#       define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED          1
+#   elif defined(__has_cpp_attribute)
+#       if __has_cpp_attribute(nodiscard)
+#           define UTILS4CPP_HAS_ATTR_NODISCARD         1
+#       endif
+#       if __has_cpp_attribute(maybe_unused)
+#           define UTILS4CPP_HAS_ATTR_MAYBE_UNUSED      1
+#       endif
 #   endif
 #else
 #   define UTILS4CPP_HAS_ATTR_NODISCARD                 0
@@ -88,6 +100,13 @@
 #   if defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 900
 #       define UTILS4CPP_HAS_ATTR_LIKELY                1
 #       define UTILS4CPP_HAS_ATTR_UNLIKELY              1
+#   elif defined(__has_cpp_attribute)
+#       if __has_cpp_attribute(likely)
+#           define UTILS4CPP_HAS_ATTR_LIKELY            1
+#       endif
+#       if __has_cpp_attribute(unlikely)
+#           define UTILS4CPP_HAS_ATTR_UNLIKELY          1
+#       endif
 #   endif
 #else
 #   define UTILS4CPP_HAS_ATTR_LIKELY                    0
@@ -98,6 +117,8 @@
 #if UTILS4CPP_HAS_CPP2A
 #   if  ( defined(UTILS4CPP_CC_GNU) && UTILS4CPP_CC_GNU >= 900 ) || \
         ( defined(UTILS4CPP_CC_CLANG) && UTILS4CPP_CC_CLANG >= 900 )
+#       define UTILS4CPP_HAS_ATTR_NO_UNIQUE_ADDRESS     1
+#   elif defined(__has_cpp_attribute) && __has_cpp_attribute(no_unique_address)
 #       define UTILS4CPP_HAS_ATTR_NO_UNIQUE_ADDRESS     1
 #   endif
 #else
@@ -181,6 +202,8 @@
 */
 #if UTILS4CPP_HAS_ATTR_DEPRECATED_REASON
 #   define UTILS4CPP_ATTR_DEPRECATED_REASON(_reason_)   [[deprecated(_reason_)]]
+#elif defined(UTILS4CPP_HAS_ATTR_DEPRECATED)
+#   define UTILS4CPP_ATTR_DEPRECATED_REASON             [[deprecated]]
 #else
 #   define UTILS4CPP_ATTR_DEPRECATED_REASON(_reason_)
 #endif
@@ -235,6 +258,8 @@
 */
 #if UTILS4CPP_HAS_ATTR_NODISCARD_REASON
 #   define UTILS4CPP_ATTR_NODISCARD_REASON(_reason_)    [[nodiscard(_reason_)]]
+#elif defined(UTILS4CPP_HAS_ATTR_NODISCARD)
+#   define UTILS4CPP_ATTR_NODISCARD_REASON(_reason_)    [[nodiscard]]
 #else
 #   define UTILS4CPP_ATTR_NODISCARD_REASON(_reason_)
 #endif

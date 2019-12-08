@@ -37,19 +37,25 @@
 #include <algorithm>
 #include <charconv>
 #include <list>
+#include <vector>
 
 #include "utils4cpp/str/UStringGlobal.hpp"
 #include "utils4cpp/str/UStringToNumber.hpp"
 
 namespace utils4cpp::str {
 
-template<class StringT, class = if_std_basic_string<StringT>>
+template<class StringT>
 class UStringTraits
 {
 public:
+    static_assert(is_std_basic_string_v<StringT>,
+        "template parameter StringT must be std_basic_string");
+
+    using value_type = typename StringT::value_type;
     using char_type = typename StringT::value_type;
     using char_traits_type = typename StringT::traits_type;
     using string_type = StringT;
+    using string_view_type = std::basic_string_view<char_type>;
     using reference = StringT &;
     using const_reference = const StringT&;
     using size_type = typename StringT::size_type;
@@ -57,6 +63,7 @@ public:
     using const_iterator = typename StringT::const_iterator;
     using reverse_iterator = typename StringT::reverse_iterator;
     using const_reverse_iterator = typename StringT::const_reverse_iterator;
+    static constexpr size_type nth_begin = 0;
 
     // upper and lower
 
@@ -127,7 +134,7 @@ public:
     //
 
     template<UCaseSensitivity CS = UCaseSensitive>
-    static int compare(const StringT& str1, std::basic_string_view<char_type> str2,
+    static int compare(const StringT& str1, string_view_type str2,
         const std::locale& loc = std::locale())
     {
         size_type lhs_sz = str1.size();
@@ -157,7 +164,7 @@ public:
     static int compare(const StringT& str1, const char_type* str2,
         const std::locale& loc = std::locale())
     {
-        return compare<CS>(str1, std::basic_string_view<char_type>(str2), loc);
+        return compare<CS>(str1, string_view_type(str2), loc);
     }
 
     template<UCaseSensitivity CS = UCaseSensitive>
@@ -200,7 +207,7 @@ public:
         return str;
     }
 
-    static StringT& append(StringT& str, std::basic_string_view<char_type> s)
+    static StringT& append(StringT& str, string_view_type s)
     {
         str.append(s.data(), s.size());
         return str;
@@ -239,7 +246,7 @@ public:
     }
 
     template<UCaseSensitivity CS = UCaseSensitive>
-    static bool startsWith(const StringT& str, std::basic_string_view<char_type> starts,
+    static bool startsWith(const StringT& str, string_view_type starts,
         const std::locale& loc = std::locale())
     {
         if (str.empty() || starts.empty() || starts.size() > str.size()) {
@@ -255,14 +262,14 @@ public:
     static bool startsWith(const StringT& str, const char_type* starts,
         const std::locale& loc = std::locale())
     {
-        return startsWith<CS>(str, std::basic_string_view<char_type>(starts), loc);
+        return startsWith<CS>(str, string_view_type(starts), loc);
     }
 
     template<UCaseSensitivity CS = UCaseSensitive>
     static bool startsWith(const StringT& str, const StringT& starts,
         const std::locale& loc = std::locale())
     {
-        return startsWith<CS>(str, std::basic_string_view<char_type>(starts.c_str(), starts.size()), loc);
+        return startsWith<CS>(str, string_view_type(starts.c_str(), starts.size()), loc);
     }
 
     //
@@ -280,7 +287,7 @@ public:
     }
 
     template<UCaseSensitivity CS = UCaseSensitive>
-    static bool endsWith(const StringT& str, std::basic_string_view<char_type> ends,
+    static bool endsWith(const StringT& str, string_view_type ends,
         const std::locale& loc = std::locale())
     {
         if (str.empty() || ends.empty() || ends.size() > str.size()) {
@@ -297,14 +304,14 @@ public:
     static bool endsWith(const StringT& str, const char_type* ends,
         const std::locale& loc = std::locale())
     {
-        return endsWith<CS>(str, std::basic_string_view<char_type>(ends), loc);
+        return endsWith<CS>(str, string_view_type(ends), loc);
     }
 
     template<UCaseSensitivity CS = UCaseSensitive>
     static bool endsWith(const StringT& str, const StringT& ends,
         const std::locale& loc = std::locale())
     {
-        return endsWith<CS>(str, std::basic_string_view<char_type>(ends.c_str(), ends.size()), loc);
+        return endsWith<CS>(str, string_view_type(ends.c_str(), ends.size()), loc);
     }
 
     //
@@ -504,18 +511,12 @@ public:
     static StringT& removeNth(StringT& str, char_type ch, size_type nth,
         const std::locale& loc = std::locale())
     {
-        if constexpr (CS == UCaseSensitive) {
-            auto pos = _nthFinder(str, ch, nth);
-            if (pos != StringT::npos) {
-                str.erase(pos, 1);
-            }
+        if (str.empty()) {
+            return str;
         }
-        else {
-            StringT s = toUpper(str, loc);
-            auto pos = _nthFinder(s, ch, nth);
-            if (pos != StringT::npos) {
-                str.erase(pos, 1);
-            }
+        size_type pos = (CS == UCaseSensitive ? _nthFinder(str, ch, nth) : _nthFinderIns(str, ch, loc));
+        if (pos != StringT::npos) {
+            str.erase(pos, 1);
         }
         return str;
     }
@@ -524,19 +525,12 @@ public:
     static StringT& removeNth(StringT& str, const StringT& substr, size_type nth,
         const std::locale& loc = std::locale())
     {
-        if constexpr (CS == UCaseSensitive) {
-            auto pos = _nthFinder(str, substr, nth);
-            if (pos != StringT::npos) {
-                str.erase(pos, substr.size());
-            }
+        if (str.empty() || substr.empty() || substr.size() > str.size()) {
+            return str;
         }
-        else {
-            StringT s = toLower(str, loc);
-            StringT sub = toLower(substr, loc);
-            auto pos = _nthFinder(s, sub, nth);
-            if (pos != StringT::npos) {
-                str.erase(pos, substr.size());
-            }
+        size_type pos = (CS == UCaseSensitive ? _nthFinder(str, substr, nth) : _nthFinderIns(str, substr, loc));
+        if (pos != StringT::npos) {
+            str.erase(pos, substr.size());
         }
         return str;
     }
@@ -600,7 +594,6 @@ public:
     // split
     //
 
-    // \todo dai you hua
     template<UCaseSensitivity CS = UCaseSensitive>
     static std::list<StringT> split(const StringT& str, char_type sep, 
         bool keepEmptyParts = true, const std::locale& loc = std::locale())
@@ -618,14 +611,10 @@ public:
 
         for ( ; pos_curr < size; ++pos_curr) {
             if (_equalTransOneIf<CS == UCaseInsensitive>(sep, str[pos_curr], loc)) {
-                if (!keepEmptyParts && pos_prev == pos_curr) {
-                    pos_prev = pos_curr + 1;
-                    continue;
-                }
-                else {
-                    string_list.emplace_back(begin + pos_prev, begin + pos_curr);
-                    pos_prev = pos_curr + 1;
-                }    
+                if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+                    string_list.emplace_back(begin + pos_prev, begin + pos_curr);   
+                }  
+                pos_prev = pos_curr + 1;
             }
         }
 
@@ -634,13 +623,189 @@ public:
             return string_list;
         }
 
-        if (!keepEmptyParts && pos_prev == size) {
+        if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+            string_list.emplace_back(begin + pos_prev, str.end());
+        }
+        return string_list;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static std::list<StringT> split(const StringT& str, string_view_type sep,
+        bool keepEmptyParts = true, const std::locale& loc = std::locale())
+    {
+        std::list<StringT> string_list;
+        if (str.empty() || sep.empty() || sep.size() > str.size()) {
             return string_list;
+        }
+
+        if constexpr (CS == UCaseSensitive) {
+            _split(string_list, str, sep, keepEmptyParts);
         }
         else {
-            string_list.emplace_back(begin + pos_prev, str.end());
-            return string_list;
+            StringT sep_str(sep);  
+            _split(string_list, toLower(str, loc), lower(sep_str, loc), keepEmptyParts);
         }
+        return string_list;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    inline static std::list<StringT> split(const StringT& str, const char_type* sep,
+        bool keepEmptyParts = true, const std::locale& loc = std::locale())
+    {
+        if (!sep) {
+            return std::list<StringT>();
+        }
+        return split<CS>(str, string_view_type(sep), keepEmptyParts, loc);
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    inline static std::list<StringT> split(const StringT& str, const StringT& sep,
+        bool keepEmptyParts = true, const std::locale& loc = std::locale())
+    {
+        return split<CS>(str, (string_view_type)sep, keepEmptyParts, loc);
+    }
+
+    inline static std::list<StringT> split(const StringT& str, const std::vector<char_type>& seps,
+        bool keepEmptyParts = true)
+    {
+        std::list<StringT> string_list;
+        _split(string_list, str, seps, keepEmptyParts);
+        return string_list;
+    }
+
+    //
+    // replace
+    //
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceFirst(StringT& str, char_type before, char_type after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = ( CS == UCaseSensitive ? _nthFinder(str, before, nth_begin) :
+            _nthFinderIns(str, before, nth_begin, loc));
+        if (pos != StringT::npos) {
+            str[pos] = after;
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceFirst(StringT& str, const StringT& before, const StringT& after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _nthFinder(str, before, nth_begin) :
+            _nthFinderIns(str, before, nth_begin, loc));
+        if (pos != StringT::npos) {
+            str.replace(pos, before.size(), after);
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceLast(StringT& str, char_type before, char_type after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _rNthFinder(str, before, nth_begin) :
+            _rNthFinderIns(str, before, nth_begin, loc));
+        if (pos != StringT::npos) {
+            str[pos] = after;
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceNth(StringT& str, char_type before, char_type after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _rNthFinder(str, before, nth_begin) :
+            _rNthFinderIns(str, before, nth_begin, loc));
+        if (pos != StringT::npos) {
+            str[pos] = after;
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceNth(StringT& str, const StringT& before, const StringT& after,
+        size_type nth, UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _rNthFinder(str, before, nth) :
+            _rNthFinderIns(str, before, nth, loc));
+        if (pos != StringT::npos) {
+            str.replace(pos, before.size(), after);
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceRnth(StringT& str, char_type before, char_type after,
+        size_type nth, UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _rNthFinder(str, before, nth) :
+            _rNthFinderIns(str, before, nth, loc));
+        if (pos != StringT::npos) {
+            str[pos] = after;
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replaceRnth(StringT& str, const StringT& before, const StringT& after,
+        size_type nth, UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        auto pos = (CS == UCaseSensitive ? _rNthFinder(str, before, nth) :
+            _rNthFinderIns(str, before, nth, loc));
+        if (pos != StringT::npos) {
+            str.replace(pos, before.size(), after);
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replace(StringT& str, char_type before, char_type after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        before = _toLowerIf<CS == UCaseInsensitive>(before, loc);
+        for (auto& c : str) {
+            if (_equalTransOneIf<CS == UCaseInsensitive>(before, c, loc)) {
+                c = after;
+            }
+        }
+        return str;
+    }
+
+    template<UCaseSensitivity CS = UCaseSensitive>
+    static StringT& replace(StringT& str, const StringT& before, const StringT& after,
+        UTILS4CPP_ATTR_MAYBE_UNUSED const std::locale& loc = std::locale())
+    {
+        if (str.empty() || before.empty() || str.size() < before.size()) {
+            return str;
+        }
+        return (CS == UCaseSensitive ? _replace(str, before, after) :
+            _replaceIns(str, before, after, loc));
+    }
+
+    //
+    // repeated
+    //
+
+    static StringT& repeat(const StringT& str, size_type times)
+    {
+        if (str.empty() || times == 0) {
+            return StringT();
+        }
+        string_view_type sv = str;
+        str.reserve(str.size() * times);
+        while (--times > 0) {
+            str += sv;
+        }
+        return str;
+    }
+
+    inline static StringT repeated(const StringT& str, size_type times)
+    {
+        StringT result;
+        return repeat(result, times);
     }
 
     //
@@ -833,7 +998,7 @@ private:
 
     static size_type _nthFinder(const StringT& str, char_type ch, size_type nth) noexcept
     {
-        size_type count = 1;
+        size_type count = nth_begin;
         auto pos = str.find(ch);
         while (pos != StringT::npos) {
             if (count++ == nth) {
@@ -844,20 +1009,121 @@ private:
         return StringT::npos;
     }
 
-    static size_type _nthFinder(const StringT& str, const StringT& sub, size_type nth) noexcept
+    static size_type _nthFinderIns(const StringT& str, char_type ch, size_type nth,
+        const std::locale& loc)
     {
-        size_type count = 1;
-        size_type sub_size = sub.size();
-        if (!str.empty() && !sub.empty() && str.size() >= sub_size) {
-            auto pos = str.find(sub);
-            while (pos != StringT::npos) {
+        size_type count = nth_begin;
+        ch = _toLower(ch, loc);
+        for (size_type i = 0; i < str.size(); ++i) {
+            if (_equalTransOne(ch, str[i], loc)) {
                 if (count++ == nth) {
-                    return pos;
+                    return i;
                 }
-                pos = str.find(sub, pos + sub_size);
             }
         }
         return StringT::npos;
+    }
+
+    static size_type _rNthFinder(const StringT& str, char_type ch, size_type nth)
+    {
+        size_type count = nth_begin;
+        auto pos = str.rfind(ch);
+        while (pos != StringT::npos) {
+            if (count++ == nth) {
+                return pos;
+            }
+            pos = str.rfind(ch, pos + 1);
+        }
+        return StringT::npos;
+    }
+
+    static size_type _rNthFinderIns(const StringT& str, char_type ch, size_type nth,
+        const std::locale& loc)
+    {
+        size_type count = nth_begin;
+        ch = _toLower(ch, loc);
+        auto it = str.rbegin();
+        while (it != str.rend()) {
+            if (_equalTransOne(ch, *it, loc)) {
+                if (count++ == nth) {
+                    return static_cast<size_type>(it - str.rbegin() - 1);
+                }
+            }
+            ++it;
+        }
+        return StringT::npos;
+    }
+
+    static size_type _nthFinder(const StringT& str, const StringT& sub, size_type nth) noexcept
+    {
+        size_type count = nth_begin;
+        size_type sub_size = sub.size();
+        auto pos = str.find(sub);
+        while (pos != StringT::npos) {
+            if (count++ == nth) {
+                return pos;
+            }
+            pos = str.find(sub, pos + sub_size);
+        }
+        return StringT::npos;
+    }
+
+    static size_type _nthFinderIns(const StringT& str, const StringT& sub, size_type nth,
+        const std::locale& loc)
+    {
+        StringT lowstr = toLower(str, loc);
+        StringT lowsub = toLower(sub, loc);
+        return _nthFinder(lowstr, lowsub, nth);
+    }
+
+    static size_type _rNthFinder(const StringT& str, const StringT& sub, size_type nth)
+    {
+        size_type count = nth_begin;
+        string_view_type sv = str;
+        auto pos = sv.rfind(sub);
+        while (pos != string_view_type::npos) {
+            if (nth == count++) {
+                return pos;
+            }
+            sv = sv.substr(0, pos);
+            pos = sv.rfind(sub);
+        }
+        return StringT::npos;
+    }
+
+    static size_type _rNthFinderIns(const StringT& str, const StringT& sub, size_type nth,
+        const std::locale& loc)
+    {
+        StringT lowstr = toLower(str, loc);
+        StringT lowsub = toLower(sub, loc);
+        return _rNthFinder(lowstr, lowsub, nth);
+    }
+
+    static StringT& _replace(StringT& str, const StringT& before, const StringT& after)
+    {
+        auto pos = str.find(before);
+        while (pos != StringT::npos) {
+            str.replace(pos, before.size(), after);
+            pos = str.find(before, pos + after.size());
+        }
+        return str;
+    }
+
+    static StringT& _replaceIns(StringT& str, const StringT& before, const StringT& after,
+        const std::locale& loc = std::locale())
+    {
+        auto bsz = before.size();
+        auto asz = after.size();
+        auto s = toLower(str, loc);
+        auto sub = toLower(before, loc);
+        auto pos = s.find(before);
+        auto offset = pos;
+        while (pos != StringT::npos) {
+            str.replace(offset, bsz, after);
+            pos = str.find(before, pos + bsz);
+            offset += pos + asz - bsz;
+        }
+        return str;
     }
 
     static int _strcmp(const char_type* s1, const char_type* s2, size_type len)
@@ -884,6 +1150,68 @@ private:
             len--;
         }
         return static_cast<int>(lc - rc);
+    }
+
+    static void _split(std::list<StringT>& list, const string_view_type& str,
+        const string_view_type& sep, bool keepEmptyParts)
+    {
+        size_type sep_size = sep.size();
+        size_type pos_prev = 0;
+        size_type pos_curr = str.find(sep);
+        while (pos_curr != StringT::npos) {
+            if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+                list.emplace_back(str.substr(pos_prev, pos_curr - pos_prev));
+            }
+            pos_prev = pos_curr + sep_size;
+            pos_curr = str.find(sep, pos_prev);
+        }
+
+        if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+            list.emplace_back(str.substr(pos_prev));
+        }
+    }
+
+    inline static void _split(std::list<StringT>& list, const StringT& str, 
+        const string_view_type& sep, bool keepEmptyParts)
+    {
+        _split(list, string_view_type(str.data(), str.size()), sep, keepEmptyParts);
+    }
+
+    inline static void _split(std::list<StringT>& list, const StringT& str,
+        const StringT& sep, bool keepEmptyParts)
+    {
+        _split(list, string_view_type(str.data(), str.size()), 
+            string_view_type(sep.data(), sep.size()), keepEmptyParts);
+    }
+
+    static void _split(std::list<StringT>& list, const StringT& str,
+        const std::vector<char_type>& seps, bool keepEmptyParts)
+    {
+        auto begin = str.begin();
+        size_type size = str.size();
+        size_type pos_prev = 0;
+        size_type pos_curr = 0;
+
+        for (; pos_curr < size; ++pos_curr) {
+            for (auto& sep : seps) {
+                if (_equalNoTrans(sep, str[pos_curr])) {
+                    if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+                        list.emplace_back(begin + pos_prev, begin + pos_curr);
+                    }
+                    pos_prev = pos_curr + 1;
+                    continue;
+                }
+            }
+        }
+
+        //if (pos_prev == 0) {
+        //    list.emplace_back(str);
+        //    return;
+        //}
+
+        if (keepEmptyParts || (!keepEmptyParts && pos_prev != pos_curr)) {
+            list.emplace_back(begin + pos_prev, str.end());
+        }
     }
 
 };

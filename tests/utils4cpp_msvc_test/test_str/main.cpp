@@ -4,6 +4,8 @@
 #include <utils4cpp/str/UStringCvt.hpp>
 #include <utils4cpp/str/UStringTraits.hpp>
 
+#include <string_view>
+
 enum A {
     AX = 0,
     AY
@@ -36,8 +38,22 @@ int main()
     std::string str11("Abcd"), str22("abcd");
     int r = UStringTraits<std::string>::compare<UCaseInsensitive>(str11, str22);
 
-    std::string str33("a,,b,c,,");
-    auto list = UStringTraits<std::string>::split<UCaseInsensitive>(str33, ',', false);
+    std::string str33("aaaaa");
+    std::string_view v = "abc";
+    auto list = UStringTraits<std::string>::split<UCaseInsensitive>(str33, "abc", true);
+
+    std::string str44("acdba");
+    std::vector<char> seps{ 'g', 'h', 'G' };
+    auto list1 = UStringTraits<std::string>::split(str44, seps, false);
+
+    const char* s = "abcdabab";
+    std::string t1 = s;
+    std::string t2 = s;
+    std::string b = "ab";
+    std::string af1 = "kk";
+    std::string af2 = "gggg";
+    auto s1 = UStringTraits<std::string>::replace(t1, b, af1);
+    auto s2 = UStringTraits<std::string>::replaceRnth(t2, b, af2, 1);
 
     ppp<A::AY>(2);
 
